@@ -10,11 +10,24 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        if (auth()->user()->cannot('view_patient'))
+            return $this->permissionDenied('dashboard.index');
+
+        $patients = Patient::addSelect([
+                'patients.*',
+                'users.username',
+                'countries.name as country_name',
+            ])
+            ->createdByUser()
+            ->countryJoin();
+
+        return $this->renderView('dashboard.pages.patient.index', [
+            'patients' => $patients->get(),
+        ]);
     }
 
     /**
@@ -81,5 +94,40 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
         //
+    }
+
+    /**
+     * @param mixed $view
+     * @param array $withParams
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function renderView($view, array $withParams = [])
+    {
+        $params = [
+            'page' => 'Patients',
+            'resource' => 'Patient',
+            'translationFromKey' => 'lang.models.patient.fillable',
+            'crud' => [
+                'CREATE_PATIENT' => [
+                    'route' => route('/'),
+                    'can' => ! auth()->user()->cannot('create_patient'),
+                ],
+                'EDIT_PATIENT' => [
+                    'can' => ! auth()->user()->cannot('update_patient'),
+                ],
+                'DELETE_PATIENT' => [
+                    'can' => ! auth()->user()->cannot('delete_patient'),
+                ],
+            ],
+            'breadcrumbs' => array(
+                [
+                    'name' => 'Patients',
+                    'route' => route('dashboard.patients.index'),
+                    'active' => true,
+                ],
+            ),
+        ];
+        return parent::renderView($view, array_merge($withParams, $params));
     }
 }

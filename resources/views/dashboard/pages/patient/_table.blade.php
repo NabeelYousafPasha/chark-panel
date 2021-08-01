@@ -2,9 +2,10 @@
     <thead>
         <tr>
             <th>{{ trans('lang.dataTable.thead.sr_no') }}</th>
-            <th>Patient</th>
+            <th>Patient ID / Alias</th>
             <th>Gender</th>
-            <th>City</th>
+            <th>DOB / Age</th>
+            <th>Country</th>
             <th>Created By</th>
             <th>{{ trans('lang.dataTable.thead.actions') }}</th>
         </tr>
@@ -13,9 +14,10 @@
         @foreach($patients ?? [] as $key => $patient)
             <tr>
                 <td>{{ ++$key }}</td>
-                <td>{{ $patient->full_name }}</td>
+                <td>{{ $patient->alias }}</td>
                 <td>{{ ucfirst($patient->gender) }}</td>
-                <td>{{ $patient->city }}</td>
+                <td>{{ $patient->dob }} {{ $patient->age_via_dob->format('%y years, %m months and %d days') }}</td>
+                <td>{{ $patient->country_name }}</td>
                 <td>{{ $patient->username }}</td>
                 <td>
                     <div class="btn-group btn-group-xs">
@@ -37,7 +39,7 @@
                             </a>
                         @endif--}}
 
-                        @if($crud['DELETE_MODULE']['can'] ?? false)
+                        @if($crud['DELETE_PATIENT']['can'] ?? false)
                             <form
                                 class="patient__delete"
                                 method="POST"
