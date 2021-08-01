@@ -39,7 +39,9 @@ Route::group([
 
         // Front End
         Route::get('/home', [HomeController::class, 'index'])->name('home');
-        Route::post('/sleep-test', [HomeController::class, 'storeSleepTest'])->name('sleep-test.store');
+        Route::post('/sleep-test', function () {
+            dd('Route');
+        })->name('sleep-test.store');
 
         // Back End
         // user => change Password
@@ -54,8 +56,19 @@ Route::group([
                 return view('dashboard.index');
             })->name('index');
 
-            Route::get('/patients/{patient}/report', [PatientInformationController::class, 'generateReport'])->name('patients.report');
-            Route::resource('/patients', 'PatientInformationController');
+            // setup
+            Route::group([
+                'prefix' => 'setup',
+                'as' => 'setup.',
+            ], function () {
+                Route::resource('permissions_roles', 'PermissionRoleController');
+            });
+
+            // Clinic
+            Route::resource('/clinics', 'ClinicController');
+
+            // Patient
+            Route::resource('/patients', 'PatientController');
         });
 
     });

@@ -38,6 +38,37 @@
             </li>
 
             <li class="">
+                <a href="javascript:void(0)">
+                    <i class="fa-fw fa fa-gear"></i>
+                    <span class="nav-label">
+                        Setup
+                    </span>
+                    <span class="fa-fw fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li class="">
+                        <a
+                            href="{{ route('dashboard.setup.permissions_roles.index') }}"
+                        >
+                            <i class="fa-fw fa fa-gears"></i>
+                            <span class="nav-label custom-nav-label">
+                                Role - Permission
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="">
+                <a href="{{ route('dashboard.clinics.index') }}">
+                    <i class="fa-fw fa fa-hospital-o"></i>
+                    <span class="nav-label">
+                        {{ 'Clinics' }}
+                    </span>
+                </a>
+            </li>
+
+            <li class="">
                 <a href="{{ route('dashboard.patients.index') }}">
                     <i class="fa-fw fa fa-users"></i>
                     <span class="nav-label">
@@ -46,7 +77,8 @@
                 </a>
             </li>
 
-            {{--<li class="active">
+
+            {{--<li class="">
                 <a href="javascript:void(0)">
                     <i class="fa-fw fa fa-dashboard"></i>
                     <span class="nav-label">
@@ -55,7 +87,7 @@
                     <span class="fa-fw fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li class="active">
+                    <li class="">
                         <a
                             href="javascript:void(0)"
                         >
@@ -67,7 +99,7 @@
                         </a>
 
                         <ul class="nav nav-third-level collapse">
-                            <li class="active">
+                            <li class="">
                                 <a
                                     href="javascript:void(0)"
                                 >

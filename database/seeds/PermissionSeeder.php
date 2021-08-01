@@ -12,10 +12,12 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $operations = ['create', 'view', 'update', 'delete'];
+        $operations = Permission::getAllPermissionConstants();
+
         $entities = [
             'permission_role',
             'user',
+            'clinic',
             'patient',
         ];
 
@@ -35,7 +37,8 @@ class PermissionSeeder extends Seeder
 
 
         // only view permissions
-        $operations = ['view',];
+        $operations = [Permission::VIEW,];
+
         $entities = ['home', 'dashboard',];
 
         foreach ($entities as $entity) {

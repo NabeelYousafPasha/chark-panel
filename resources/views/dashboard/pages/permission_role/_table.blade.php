@@ -1,5 +1,5 @@
 <form
-    action="{{ route('setup.permissions_roles.store') }}"
+    action="{{ route('dashboard.setup.permissions_roles.store') }}"
     method="POST"
     id="permission_role_form"
     name="permission_role_form"
@@ -12,7 +12,7 @@
                 @foreach($roles as $role)
                     <th>
                         <small>
-                            {{ config("constants.roles.$role.name") }}
+                            {{ $role }}
                         </small>
                     </th>
                 @endforeach
