@@ -12,30 +12,28 @@
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Filter {{ $page }}</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                @include('dashboard.globals.form.form')
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>List of All {{ $page }}</h5>
+                        <div class="ibox-tools">
+                            @if($crud['CREATE_CLINIC']['can'] ?? false)
+                                <a
+                                    title="{{ $actions['add'] .' '. $resource }}"
+                                    class="btn btn-primary btn-xs"
+                                    href="{{ $crud['CREATE_CLINIC']['route'] ?? 'javascript::void(0)' }}"
+                                >
+                                    <i class="fa-fw fa fa-plus"></i>
+                                </a>
+                            @endif
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="ibox-content">
                         <div class="table-responsive">
-                            @includeIf('dashboard.pages.useractivity._table')
+                            @includeIf('dashboard.pages.clinic._table')
                         </div>
                     </div>
                 </div>
@@ -50,8 +48,8 @@
 
 @section('scripts')
     <script>
+        {{-- ***************** datatable *************** --}}
         $(document).ready(function(){
-            {{-- ***************** datatable *************** --}}
             $('.dataTables-example').DataTable({
                 pageLength: 25,
                 responsive: true,
@@ -72,14 +70,20 @@
                         }
                     }
                 ]
+
             });
 
-            {{-- ***************** select2 *************** --}}
-            $("#user").select2({
-                placeholder: "Select an User",
-                allowClear: true
-            });
+        });
 
+        {{-- ***************** action *************** --}}
+
+        $('.clinic__delete').on('click', function(e){
+            e.preventDefault();
+            let $form = $(this);
+            $('#modal__global_delete').modal({ backdrop: 'static', keyboard: false })
+                .on('click', '#delete__btn', function(){
+                    $form.submit();
+                });
         });
     </script>
 @endsection

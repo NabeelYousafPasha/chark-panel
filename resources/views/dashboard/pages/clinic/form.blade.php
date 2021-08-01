@@ -1,8 +1,6 @@
 @extends('dashboard.layout.app')
 
 @section('stylesheets')
-    {{-- Select 2 CSS --}}
-    <link href="{{ asset('backend-assets/css/plugins/select2/select2.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -38,15 +36,13 @@
 @endsection
 
 @section('scripts')
-    <!-- Select2 JS -->
-    <script src="{{ asset('backend-assets/js/plugins/select2/select2.full.min.js') }}"></script>
-
     <script>
-        // select2
-        $(".select2").select2();
-        $("#invited_as").select2({
-            placeholder: "Inviting as ...",
-            allowClear: false
+        $(document).ready(function () {
+            // select2
+            $("#industry_id").select2({
+                placeholder: "Select a Industry",
+                allowClear: true,
+            });
         });
     </script>
 @endsection

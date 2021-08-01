@@ -1,41 +1,45 @@
 <table class="table table-striped table-bordered table-hover dataTables-example" >
     <thead>
-        @includeIf('dashboard.globals.table.table__header', [
-            'tableHeaders' => [
-                $translationFromKey ?? null => array_diff($roles['columns'] ?? [], [
-                    'org_name', 'user_name'
-                ]),
-            ],
-        ])
+        <tr>
+            <th>{{ trans('lang.dataTable.thead.sr_no') }}</th>
+            <th>Clinic</th>
+            <th>Details</th>
+            <th>Created By</th>
+            <th>{{ trans('lang.dataTable.thead.actions') }}</th>
+        </tr>
     </thead>
     <tbody>
-        @foreach($roles['items'] ?? [] as $key => $role)
+        @foreach($clinics ?? [] as $key => $clinic)
             <tr>
                 <td>{{ ++$key }}</td>
-                @foreach(array_diff($roles['columns'] ?? [], [
-                     'created_by', 'organization_id'
-                ]) as $dbColumns)
-                    <td>
-                        {{ $role->$dbColumns }}
-                    </td>
-                @endforeach
+                <td>{{ $clinic->name }}</td>
+                <td>{{ $clinic->details }}</td>
+                <td>{{ $clinic->created_by }}</td>
                 <td>
                     <div class="btn-group btn-group-xs">
-                        @if(in_array(($role->role_edit_btn ?? false), ['TRUE', 1], true))
+                        {{--<a
+                            title="{{ $actions['view'] .' '. $resource }}"
+                            class="btn btn-default btn-xs"
+                            href="{{ route('dashboard.clinics.show', $clinic) }}"
+                        >
+                            <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
+                        </a>--}}
+
+                        @if($crud['EDIT_CLINIC']['can'] ?? false)
                             <a
                                 title="{{ $actions['edit'] .' '. $resource }}"
                                 class="btn btn-primary btn-xs"
-                                href="{{ route('setup.roles.edit', $role) }}"
+                                href="{{ route('dashboard.clinics.edit', $clinic) }}"
                             >
                                 <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                             </a>
                         @endif
 
-                        @if(in_array(($role->role_delete_btn ?? false), ['TRUE', 1], true))
+                        @if($crud['DELETE_CLINIC']['can'] ?? false)
                             <form
-                                class="role__delete"
+                                class="clinic__delete"
                                 method="POST"
-                                action="{{ route('setup.roles.destroy', $role) }}"
+                                action="{{ route('dashboard.clinics.destroy', $clinic) }}"
                                 style="display: inline-block;"
                             >
                                 @csrf

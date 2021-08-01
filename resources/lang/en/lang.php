@@ -5,6 +5,8 @@ return [
     'sidebar' => [
         'home' => 'Home',
         'dashboard' => 'Dashboard',
+
+        'permissions_roles'   => 'Permissions Roles',
     ],
 
     'dataTable' => [
