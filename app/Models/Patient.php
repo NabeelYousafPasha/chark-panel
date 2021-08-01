@@ -3,16 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Clinic extends Model
+class Patient extends Model
 {
-
-    use SoftDeletes;
-
     protected $fillable = [
-        'name',
-        'details',
+        'alias',
+        'email',
+        'gender',
+        'dob',
+        'country_id',
         'created_by',
     ];
 
