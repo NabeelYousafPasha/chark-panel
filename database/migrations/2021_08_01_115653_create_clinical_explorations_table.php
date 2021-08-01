@@ -48,9 +48,9 @@ class CreateClinicalExplorationsTable extends Migration
             $table->boolean('overbite');
 
             $table->boolean('total_visibility_of_tonsils_uvula_soft_palate');
-            $table->boolean('visibility_of_hard_and_soft_palate_upper_position_of_tonsils_and_uvula');
-            $table->boolean('visibility_of_hard_and_palate_and_part_of_soft_palate_above_uvula');
-            $table->boolean('visibility_only_of_hard_palate');
+            $table->boolean('hard_and_soft_palate_visibility');
+            $table->boolean('hard_and_palate_and_part_of_soft_palate_visibility');
+            $table->boolean('only_hard_palate_visibility');
 
             $table->longText('assessment_observation')->nullable();
             $table->timestamps();
