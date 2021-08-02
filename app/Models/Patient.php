@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
@@ -20,4 +21,50 @@ class Patient extends Model
         'created_at',
         'updated_at',
     ];
+
+    /*
+     * Accessors & Mutators
+     **/
+    public function getAgeViaDobAttribute()
+    {
+        return Carbon::parse($this->dob)
+            ->diff(now());
+    }
+
+    /**
+     * Scope
+     **/
+    public function scopeCreatedByUser($query, $userId = null)
+    {
+        $query = $query->leftjoin('users', function ($join) use ($userId) {
+            $join->on('patients.created_by', '=', 'users.id');
+
+            if (! is_null($userId)) {
+                $join->where('patients.created_by', '=', $userId);
+            }
+        });
+
+        if (! is_null($userId)) {
+            $query->where('patients.created_by', '=', $userId);
+        }
+
+        return $query;
+    }
+
+    public function scopeCountryJoin($query, $countryId = null)
+    {
+        $query = $query->leftjoin('countries', function ($join) use ($countryId) {
+            $join->on('patients.country_id', '=', 'countries.id');
+
+            if (! is_null($countryId)) {
+                $join->where('patients.country_id', '=', $countryId);
+            }
+        });
+
+        if (! is_null($countryId)) {
+            $query->where('patients.country_id', '=', $countryId);
+        }
+
+        return $query;
+    }
 }

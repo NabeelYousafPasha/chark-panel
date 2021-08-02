@@ -17,11 +17,11 @@
                     <div class="ibox-title">
                         <h5>List of All {{ $page }}</h5>
                         <div class="ibox-tools">
-                            @if($crud['CREATE_MODULE']['can'] ?? false)
+                            @if($crud['CREATE_PATIENT']['can'] ?? false)
                                 <a
                                     title="{{ $actions['add'] .' '. $resource }}"
                                     class="btn btn-primary btn-xs"
-                                    href="{{ $crud['CREATE_MODULE']['route'] ?? 'javascript::void(0)' }}"
+                                    href="{{ $crud['CREATE_PATIENT']['route'] ?? 'javascript::void(0)' }}"
                                 >
                                     <i class="fa-fw fa fa-plus"></i>
                                 </a>
