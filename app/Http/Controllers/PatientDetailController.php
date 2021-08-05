@@ -24,7 +24,7 @@ class PatientDetailController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -81,5 +81,34 @@ class PatientDetailController extends Controller
     public function destroy(PatientDetail $patientDetail)
     {
         //
+    }
+
+    protected function renderView($view, array $withParams = [])
+    {
+        $params = [
+            'page' => 'Patients',
+            'resource' => 'Patient',
+            'translationFromKey' => 'lang.models.patient.fillable',
+            'crud' => [
+                'CREATE_PATIENT' => [
+                    'route' => route('/'),
+                    'can' => ! auth()->user()->cannot('create_patient'),
+                ],
+                'EDIT_PATIENT' => [
+                    'can' => ! auth()->user()->cannot('update_patient'),
+                ],
+                'DELETE_PATIENT' => [
+                    'can' => ! auth()->user()->cannot('delete_patient'),
+                ],
+            ],
+            'breadcrumbs' => array(
+                [
+                    'name' => 'Patients',
+                    'route' => route('dashboard.patients.index'),
+                    'active' => true,
+                ],
+            ),
+        ];
+        return parent::renderView($view, array_merge($withParams, $params));
     }
 }

@@ -37,7 +37,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        return $this->renderView('dashboard.pages.patient.create');
     }
 
     /**
@@ -110,7 +110,7 @@ class PatientController extends Controller
             'translationFromKey' => 'lang.models.patient.fillable',
             'crud' => [
                 'CREATE_PATIENT' => [
-                    'route' => route('/'),
+                    'route' => route('dashboard.patients.create'),
                     'can' => ! auth()->user()->cannot('create_patient'),
                 ],
                 'EDIT_PATIENT' => [
