@@ -39,6 +39,18 @@ class PatientController extends Controller
     {
         return $this->renderView('dashboard.pages.patient.create');
     }
+    public function createstep2()
+    {
+        return $this->renderView('dashboard.pages.patient.create_step2');
+    }
+    public function createstep3()
+    {
+        return $this->renderView('dashboard.pages.patient.create_step3');
+    }
+    public function createstep4()
+    {
+        return $this->renderView('dashboard.pages.patient.create_step4');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -112,6 +124,18 @@ class PatientController extends Controller
                 'CREATE_PATIENT' => [
                     'route' => route('dashboard.patients.create'),
                     'can' => ! auth()->user()->cannot('create_patient'),
+                ],
+                'CREATE_STEP2' => [
+                    'route' => route('dashboard.patients.create'),
+                    'can' => ! auth()->user()->cannot('createstep2_patient'),
+                ],
+                'CREATE_STEP3' => [
+                    'route' => route('dashboard.patients.create'),
+                    'can' => ! auth()->user()->cannot('createstep3_patient'),
+                ],
+                'CREATE_STEP4' => [
+                    'route' => route('dashboard.patients.create'),
+                    'can' => ! auth()->user()->cannot('createstep4_patient'),
                 ],
                 'EDIT_PATIENT' => [
                     'can' => ! auth()->user()->cannot('update_patient'),
