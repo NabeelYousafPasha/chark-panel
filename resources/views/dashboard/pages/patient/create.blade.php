@@ -20,7 +20,6 @@
     background: white;
     border: 0 none;
     border-radius: 0px;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
     padding: 20px 30px;
     box-sizing: border-box;
     width: 80%;
@@ -199,7 +198,7 @@
         </div>
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
+        <div class="row" style="text-align: justify">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
@@ -217,183 +216,186 @@
                                         <li>Clinical Eploration</li>
                                         <li>Diagnostic Tests</li>
                                     </ul>
+                                    <hr>
                                     <!-- fieldsets -->
                                     <fieldset>
+                                        <form action="" method="POST">
                                         <h3 class="fs-subtitle">Obstructive Sleep Apnea symptoms</h3>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Snorting: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                              </label>
-                                                              <label class="form-check-label">
-                                                                  <input type="radio" class="form-check-input" name="optradio">No
-                                                                </label>
-                                                        </div>
-                                                    </div>
-
+                                            
+                                                <div class="col-md-6">
                                                     <div class="form-check-inline">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <label for="snorting">Apnea: </label>
+                                                                <label for="snorting">Snorting: </label>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
+                                                                    <input type="radio" class="form-check-input" name="optradio">Yes
                                                                 </label>
                                                                 <label class="form-check-label">
                                                                     <input type="radio" class="form-check-input" name="optradio">No
-                                                                </label>
+                                                                    </label>
                                                             </div>
                                                         </div>
-                                                        
-                                                    </div>
 
-                                                    <div class="form-check-inline">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="snorting">Shortness of breath while sleeping: </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="form-check-label">
+                                                        <div class="form-check-inline">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="snorting">Apnea: </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-check-label">
                                                                     <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                  </label>
-                                                                  <label class="form-check-label">
-                                                                      <input type="radio" class="form-check-input" name="optradio">No
                                                                     </label>
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">No
+                                                                    </label>
+                                                                </div>
                                                             </div>
+                                                            
                                                         </div>
-                                                    </div>
 
-                                                    <div class="form-check-inline">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="snorting">Average Step Duration: </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <input type="text" name="average" id="" class="form-control">
+                                                        <div class="form-check-inline">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="snorting">Shortness of breath while sleeping: </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
+                                                                    </label>
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">No
+                                                                        </label>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        
-                                                        
-                                                    </div>
 
-                                                    <div class="form-check-inline">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="snorting">Fragmented Sleep: </label>
+                                                        <div class="form-check-inline">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="snorting">Average Step Duration: </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" name="average" id="" class="form-control">
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                  </label>
-                                                                  <label class="form-check-label">
-                                                                      <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                            </div>
+                                                            
+                                                            
                                                         </div>
-                                                    </div>
-                                                    <div class="form-check-inline">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="snorting">Nocturia: </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                  </label>
-                                                                  <label class="form-check-label">
-                                                                      <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-check-inline">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="snorting">Tired during the day: </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                  </label>
-                                                                  <label class="form-check-label">
-                                                                      <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                            </div>
-                                                        </div>
-                                                     </div>
 
-                                                     <div class="form-check-inline">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="snorting">Headache in the morning: </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                  </label>
-                                                                  <label class="form-check-label">
-                                                                      <input type="radio" class="form-check-input" name="optradio">No
+                                                        <div class="form-check-inline">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="snorting">Fragmented Sleep: </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
                                                                     </label>
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">No
+                                                                        </label>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                     </div>
+                                                        <div class="form-check-inline">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="snorting">Nocturia: </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
+                                                                    </label>
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">No
+                                                                        </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-check-inline">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="snorting">Tired during the day: </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
+                                                                    </label>
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">No
+                                                                        </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                                     <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="exampleFormControlSelect1">Do you nap? </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                                    <option>1</option>
-                                                                    <option>2</option>
-                                                                    <option>3</option>
-                                                                    <option>4</option>
-                                                                    <option>5</option>
-                                                                    </select>
+                                                        <div class="form-check-inline">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="snorting">Headache in the morning: </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
+                                                                    </label>
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">No
+                                                                        </label>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                     </div>
 
-                                                     <div class="form-check-inline">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="snorting">Sleepiness during the day: </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                  </label>
-                                                                  <label class="form-check-label">
-                                                                      <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                            </div>
-                                                        </div>
-                                                     </div>
-                                                     <div class="form-check-inline">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="snorting">Loss of concentration: </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                  </label>
-                                                                  <label class="form-check-label">
-                                                                      <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="exampleFormControlSelect1">Do you nap? </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <select class="form-control" id="exampleFormControlSelect1">
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                        <option>4</option>
+                                                                        <option>5</option>
+                                                                        </select>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                     </div>
-                                                    </div></div>
-                                            <div class="col-md-6">
+
+                                                        <div class="form-check-inline">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="snorting">Sleepiness during the day: </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
+                                                                    </label>
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">No
+                                                                        </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-check-inline">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="snorting">Loss of concentration: </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
+                                                                    </label>
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" name="optradio">No
+                                                                        </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        </div></div>
+                                                <div class="col-md-6">
                                                 <p>Epworth test</p>
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                                 Take Epworth test
@@ -402,722 +404,17 @@
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
                                                 Take Snorting Scale Test
                                                 </button>
+                                                
+                                            
 
                                             </div>
                                         </div>
-                                        <input type="button" name="next" class="next action-button" value="Next"/>
-                                    </fieldset>
-                                    <fieldset>
+                                        <a href="{{route('dashboard.patient.create.step2')}}" class="btn btn-primary" type="submit">Step 2</a>
+                                    </form>
                                         
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h3 class="fs-subtitle">Habits</h3>
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Smoker: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                                </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-        
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Drinks alcoholic beaverges with dinner or before bed: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                                </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-        
-                                                <h3 class="fs-subtitle">Medical History</h3>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">High Blood Pressure: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-        
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Myocardical Infraction: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-        
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Coronary Artery Disease: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Arrythmia: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Heart Failure: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Diabetes: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Depression: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Dimentia: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Stroke: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Lung Disease: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Hypothyroidism: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">Other Diseases: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <input type="text" name="" id="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                               <label for="">Anxiolytics</label>
-                                               <input type="text" name="" id="">
-                                               <label for="">Antidopressants</label>
-                                               <input type="text" name="" id="">
-                                               <label for="">Other medication to help induce sleep:</label>
-                                               <input type="text" name="" id="">
-                                               <label for="">Other medication:</label>
-                                               <input type="text" name="" id="">
-                                            </div>
-                                        </div>
-                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                                        <input type="button" name="next" class="next action-button" value="Next"/>
                                     </fieldset>
-                                    <fieldset>
-                                        <h3 class="fs-title">Previous Treatments:</h3>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">CPAP: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Mundibular Advancement: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Positional Therapy: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Upper Airway surgery: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                                    <label class="form-check-label" for="exampleCheck1">Nasal</label>
-                                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                                    <label class="form-check-label" for="exampleCheck1">Palatal</label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                                    <label class="form-check-label" for="exampleCheck1">Lingual</label>
-                                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                                    <label class="form-check-label" for="exampleCheck1">Muscular advancement</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Other upper airway surgery: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" name="" id="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Bariatric surgery (weightloss surgery): </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Other treatments for sleep apnea or snorting: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" name="" id="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="">Height(cm)</label>
-                                                    <input type="text" name="" id="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Weight(kg)</label>
-                                                    <input type="text" name="" id="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Body Mass Index(BMI)</label>
-                                                    <input type="text" name="" id="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Neck Circumference(cm)</label>
-                                                    <input type="text" name="" id="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Beats per minute</label>
-                                                    <input type="text" name="" id="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Systolic Blood Pressure</label>
-                                                    <input type="text" name="" id="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">diasystolic Blood Pressure</label>
-                                                    <input type="text" name="" id="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h3 class="fs-subtitle"></h3>
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Signs of Bruxism: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Pointed hard palate: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Noise when moving the TMJ: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">TMJ pain when mouth is open for one minute: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Bilateral crossbite: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Lateral Crossbite: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-
-
-                                            <div class="col-md-6">
-                                                <h3 class="fs-subheading"> Mondular Morphology according to facial Profile</h3>
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Normognathic: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Retrognathico: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Prognathic: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <h3 class="fs-subheading">Type of bite</h3>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Edge to edge bite: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Anterior crossbite: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-check-inline">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="snorting">Overbite: </label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">Yes
-                                                            </label>
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" name="optradio">No
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="col-md-4">
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">I Total visibilty of tonsils, uvula, and soft palate: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">II Total visibilty of hard and soft palate, upper portion of tonsils and uvula: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">III Total visibilty of hard palate and part of soft palate above the uvula: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-check-inline">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="snorting">IV Viibility of only hard palate: </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">Yes
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input" name="optradio">No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div class="col-md-6">
-                                                    <label for="">Assessment</label>
-                                                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                                        <input type="button" name="next" class="next action-button" value="Next"/>
-                                    </fieldset>
-                                    <fieldset>
-                                        <h2 class="fs-title">Upload document here</h2>
-                                        <div class="row">
-                                            <div class="col-md-6 shadow">
-                                               <div class="row">
-                                                <label for="">Polygraph</label>
-                                                <input type="file" name="" id="">
-                                                <label for="">Polychemography</label>
-                                                <input type="file" name="" id="">
-                                               </div>
-                                               <div class="row">
-                                                <label for="">IAH</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">IA</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">IH</label>
-                                                <input type="text" name="" id="">
-                                               </div>
-                                               <div class="row">
-                                                <label for="">SAT 02min (%)</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">CT 90 (%)</label>
-                                                <input type="text" name="" id="">
-                                               </div>
-
-                                               <label for="">Average duration of apnea(sec):</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">Maximum duration of apnea(sec):</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">Assessment Observation:</label>
-                                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                            </div>
-
-
-                                            <div class="col-md-6 shadow">
-                                               <h2>I do not have previous assessment</h2>
-                                            </div>
-                                        </div>
-                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                                        <input type="submit" name="submit" class="submit action-button" value="Submit"/>
-                                    </fieldset>
+                                    
                                 </form>
-                                <!-- link to designify.me code snippets -->
-                                <div class="dme_link">
-                                    <p><a href="http://designify.me/code-snippets-js/" target="_blank">More Code Snippets</a></p>
-                                </div>
-                                <!-- /.link to designify.me code snippets -->
                             </div>
                         </div>
                         <!-- /.MultiStep Form -->
