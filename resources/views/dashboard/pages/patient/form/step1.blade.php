@@ -31,7 +31,9 @@
 
                                         <div class="col-md-6">
 
-                                            <h4 class="">Obstructive Sleep Apnea Symptoms</h4>
+                                            <h3 class="">Obstructive Sleep Apnea Symptoms</h3>
+
+                                            <br>
 
                                             <div class="row form-group">
                                                 <div class="col-md-6">
@@ -241,7 +243,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="row form-group text-right">
                                         <a
                                             href="{{route('dashboard.patients.create.step', ['step' => 'step2'])}}"
                                             class="btn btn-primary"
