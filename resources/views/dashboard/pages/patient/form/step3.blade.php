@@ -19,7 +19,7 @@
                     </div>
                     <div class="ibox-content">
 
-                        @include('dashboard.pages.patient.form.progress', ['step' => 'step2',])
+                        @include('dashboard.pages.patient.form.progress', ['step' => 'step3',])
 
                         <!-- MultiStep Form -->
                         <div class="row">
