@@ -25,6 +25,8 @@ class CreateSymptomsTable extends Migration
             $table->boolean('tired_during_day');
             $table->boolean('morning_headache');
             $table->boolean('nap');
+            $table->boolean('sleepiness_during_day');
+            $table->boolean('loss_of_concentration');
             $table->enum('night_snoring_experience', array_keys(config('constants.night_snoring_experience')));
             $table->timestamps();
         });

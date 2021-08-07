@@ -68,11 +68,8 @@ Route::group([
             Route::resource('/clinics', 'ClinicController');
 
             // Patient
+            Route::get('/patients/create/{step}', 'PatientController@create')->name('patients.create.step');
             Route::resource('/patients', 'PatientController');
-            Route::get('/patients/create/step2', 'PatientController@createstep2')->name('patient.create.step2');
-            Route::get('/patients/create/step3', 'PatientController@createstep3')->name('patient.create.step3');
-            Route::get('/patients/create/step4', 'PatientController@createstep4')->name('patient.create.step4');
-
         });
 
     });
