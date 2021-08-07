@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class CountrySeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+
         DB::table('countries')->truncate();
 
         $countries = [
@@ -267,5 +270,7 @@ class CountrySeeder extends Seeder
         ];
 
         DB::table('countries')->insert($countries);
+
+        Schema::enableForeignKeyConstraints();
     }
 }

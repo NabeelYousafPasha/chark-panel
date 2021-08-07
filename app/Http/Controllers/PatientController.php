@@ -33,11 +33,16 @@ class PatientController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request, $step = 'step1')
     {
-        return $this->renderView('dashboard.pages.patient.create');
+        abort_if((! in_array($step, ['step1', 'step2', 'step3', 'step4'])
+            ||
+            ! view()->exists('dashboard.pages.patient.form.'.$step))
+        , 404);
+
+        return $this->renderView('dashboard.pages.patient.form.'.$step);
     }
 
     /**
