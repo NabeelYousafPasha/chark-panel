@@ -232,13 +232,22 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <p>Epworth test</p>
+                                            <h3>
+                                                Epworth Test
+                                            </h3>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal__epworth_test">
-                                            Take Epworth test
+                                                Take Epworth Test
                                             </button>
-                                            <p>Snorting experiencing during night</p>
+
+                                            <br>
+                                            <br>
+                                            <br>
+
+                                            <h3>
+                                                Snoring experienced during the night
+                                            </h3>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal__snoring_scale_test">
-                                            Take Snorting Scale Test
+                                                Take Snoring Scale Test
                                             </button>
                                         </div>
                                     </div>
@@ -246,9 +255,9 @@
                                     <div class="row form-group text-right">
                                         <a
                                             href="{{route('dashboard.patients.create.step', ['step' => 'step2'])}}"
-                                            class="btn btn-primary"
+                                            class="btn btn-primary m-r"
                                         >
-                                            Step 2
+                                            Next
                                         </a>
                                     </div>
                                 </form>
@@ -260,174 +269,252 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal__epworth_test" tabindex="-1" role="dialog" aria-labelledby="modal__epworth_test_Label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title" id="exampleModalLabel">
-                      Epworth Sleepiness scale
-                  </h1>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <h2>Select the chance of you dozing or falling asleep in these situations:</h2>
-                  <div class="row">
-                      <div class="col-md-4"></div>
-                      <div class="col-md-2"><b>Never</b></div>
-                      <div class="col-md-2"><b>Mild</b></div>
-                      <div class="col-md-2"><b>Moderate</b></div>
-                      <div class="col-md-2"><b>High</b></div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4">Sitting and Reading</div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">Watching the Television</div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">Sitting inactive in a public place(cinema,theatre..)</div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">Being a passenger in a vehicle for an hour or more</div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">Lying down in the afternoon</div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">Sitting and talking to someone</div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">Sitting quietly after lunch(no alcohol)</div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">Stopped for a few minutes in traffic while dring</div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                    <div class="col-md-2"><input type="radio" class="form-check-input" name="optradio"></div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-          </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="modal__snoring_scale_test" tabindex="-1" role="dialog" aria-labelledby="modal__snoring_scale_test_Label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+    <div
+        class="modal inmodal "
+        id="modal__epworth_test"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modal__epworth_test_Label"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-lg" role="dialog">
+            <div class="modal-content animated flipInY">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Snorting Scale text</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
+                    <h2 class="modal-title" id="modal__epworth_test_Label">
+                        Epworth Sleepiness scale
+                    </h2>
                 </div>
-                <h3>Snorting experienced during the night</h3>
-                <div class="modal-body">
-                    <form action="" method="post">
-                        <div class="row text-left">
-                            <input class="form-check-input text-left" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label text-left" for="gridRadios1">
-                                0 - Normal Breathing
-                            </label>
+
+                <div class="modal-body table-responsive">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <h3>Select the chance of you dozing or falling asleep in these situations:</h3>
+
+                            <table class="table" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="40%"></th>
+                                @foreach(config('constants.sleepiness_scale_options') as $option)
+                                    <th class="text-center">{{ ucfirst($option) }}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Sitting and Reading
+                                </td>
+                                @foreach(config('constants.sleepiness_scale_options') as $option)
+                                    <th class="text-center">
+                                        <input
+                                            id="while_sitting_and_reading_{{ $option }}"
+                                            name="while_sitting_and_reading"
+                                            type="radio"
+                                            class=""
+                                            value="{{ $option }}"
+                                            required
+                                        >
+                                    </th>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>
+                                    Watching the Television
+                                </td>
+                                @foreach(config('constants.sleepiness_scale_options') as $option)
+                                    <th class="text-center">
+                                        <input
+                                            id="while_watching_television_{{ $option }}"
+                                            name="while_watching_television"
+                                            type="radio"
+                                            class=""
+                                            value="{{ $option }}"
+                                            required
+                                        >
+                                    </th>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sitting inactive in a public place (cinema, theatre, ...)
+                                </td>
+                                @foreach(config('constants.sleepiness_scale_options') as $option)
+                                    <th class="text-center">
+                                        <input
+                                            id="while_inactive_in_public_place_{{ $option }}"
+                                            name="while_inactive_in_public_place"
+                                            type="radio"
+                                            class=""
+                                            value="{{ $option }}"
+                                            required
+                                        >
+                                    </th>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>
+                                    Being a passenger in a vehicle for an hour or more
+                                </td>
+                                @foreach(config('constants.sleepiness_scale_options') as $option)
+                                    <th class="text-center">
+                                        <input
+                                            id="while_travelling_{{ $option }}"
+                                            name="while_travelling"
+                                            type="radio"
+                                            class=""
+                                            value="{{ $option }}"
+                                            required
+                                        >
+                                    </th>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>
+                                    Laying down in the afternoon
+                                </td>
+                                @foreach(config('constants.sleepiness_scale_options') as $option)
+                                    <th class="text-center">
+                                        <input
+                                            id="while_laying_down_in_afternoon_{{ $option }}"
+                                            name="while_laying_down_in_afternoon"
+                                            type="radio"
+                                            class=""
+                                            value="{{ $option }}"
+                                            required
+                                        >
+                                    </th>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sitting and talking to someone
+                                </td>
+                                @foreach(config('constants.sleepiness_scale_options') as $option)
+                                    <th class="text-center">
+                                        <input
+                                            id="while_talking_{{ $option }}"
+                                            name="while_talking"
+                                            type="radio"
+                                            class=""
+                                            value="{{ $option }}"
+                                            required
+                                        >
+                                    </th>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sitting quietly after lunch (no alcohol)
+                                </td>
+                                @foreach(config('constants.sleepiness_scale_options') as $option)
+                                    <th class="text-center">
+                                        <input
+                                            id="while_sitting_after_lunch_{{ $option }}"
+                                            name="while_sitting_after_lunch"
+                                            type="radio"
+                                            class=""
+                                            value="{{ $option }}"
+                                            required
+                                        >
+                                    </th>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                <td>
+                                    Stopped for a few minutes in traffic while driving
+                                </td>
+                                @foreach(config('constants.sleepiness_scale_options') as $option)
+                                    <th class="text-center">
+                                        <input
+                                            id="while_driving_{{ $option }}"
+                                            name="while_driving"
+                                            type="radio"
+                                            class=""
+                                            value="{{ $option }}"
+                                            required
+                                        >
+                                    </th>
+                                @endforeach
+                            </tr>
+                        </tbody>
+                    </table>
+
+                            <h4 class="help-block">
+                                Select the chance of dozing or falling asleep in all of the situations.
+                            </h4>
                         </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                1 - Slightly heavy breathing
-                            </label>
-                        </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                2 - Heavy breathing
-                            </label>
-                        </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                3 - Very heavy breathing
-                            </label>
-                        </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                4 - Very slight snoring
-                            </label>
-                        </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                5 - Slight Snoring
-                            </label>
-                        </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                6 - Moderate snoring
-                            </label>
-                        </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                7 - Loud Snoring
-                            </label>
-                        </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                8 - Very loud Snoring
-                            </label>
-                        </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                9 - Unbearable snoring
-                            </label>
-                        </div>
-                        <div class="row text-left">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                            <label class="form-check-label" for="gridRadios1">
-                                10 - Unbearable
-                            </label>
-                        </div>
-                    </form>
+                    </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div
+        class="modal inmodal "
+        id="modal__snoring_scale_test"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modal__snoring_scale_test_Label"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog" role="dialog">
+            <div class="modal-content animated flipInY">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h2 class="modal-title" id="modal__snoring_scale_test_Label">
+                        Snorting Scale text
+                    </h2>
+                </div>
+
+                <div class="modal-body table-responsive">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Snorting experienced during the night</h3>
+
+                            <table class="table" width="100%">
+                                <tbody>
+                                    @foreach(config('constants.night_snoring_experience') as $nightSnoreKey => $nightSnore)
+                                        <tr>
+                                            <td>
+                                                <label
+                                                    for="night_snoring_experience_{{ $nightSnoreKey }}"
+                                                >
+                                                <input
+                                                    id="night_snoring_experience_{{ $nightSnoreKey }}"
+                                                    name="night_snoring_experience"
+                                                    type="radio"
+                                                    class=""
+                                                    value="{{ $nightSnoreKey }}"
+                                                    required
+                                                >
+                                                    {{ $nightSnore }}
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
