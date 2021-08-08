@@ -5,6 +5,7 @@
             <th>Patient ID / Alias</th>
             <th>Gender</th>
             <th>DOB / Age</th>
+            <th>Clinic</th>
             <th>Country</th>
             <th>Created By</th>
             <th>{{ trans('lang.dataTable.thead.actions') }}</th>
@@ -16,7 +17,8 @@
                 <td>{{ ++$key }}</td>
                 <td>{{ $patient->alias }}</td>
                 <td>{{ ucfirst($patient->gender) }}</td>
-                <td>{{ $patient->dob }} {{ $patient->age_via_dob->format('%y years, %m months and %d days') }}</td>
+                <td>{{ $patient->dob }} <span class="badge">{{ $patient->age_via_dob->format('%y years') }}</span></td>
+                <td>{{ $patient->clinic_name }}</td>
                 <td>{{ $patient->country_name }}</td>
                 <td>{{ $patient->username }}</td>
                 <td>
@@ -25,6 +27,14 @@
                             title="{{ $actions['view'] .' '. $resource }}"
                             class="btn btn-default btn-xs"
                             href="{{ route('dashboard.patients.show', $patient) }}"
+                        >
+                            <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
+                        </a>
+
+                        <a
+                            title="Assessment"
+                            class="btn btn-info btn-xs"
+                            href="{{ route('dashboard.assessment.index', ['patient' => $patient]) }}"
                         >
                             <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
                         </a>

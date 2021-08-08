@@ -20,7 +20,7 @@
 
                     <div class="ibox-content">
 
-                        @include('dashboard.pages.patient.form.progress', ['step' => 'step1',])
+                        @include('dashboard.pages.assessment.form.progress', ['step' => 'step1',])
 
                         <div class="row">
                             <div class="col-md-12">
@@ -253,7 +253,7 @@
 
                                     <div class="row form-group text-right">
                                         <a
-                                            href="{{route('dashboard.patients.create.step', ['step' => 'step2'])}}"
+                                            href="{{ route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step2']) }}"
                                             class="btn btn-primary m-r"
                                         >
                                             Next

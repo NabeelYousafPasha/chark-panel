@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\{
-    HomeController,
-    PatientInformationController
+    AssessmentController,
+    HomeController
 };
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
@@ -68,8 +68,11 @@ Route::group([
             Route::resource('/clinics', 'ClinicController');
 
             // Patient
-            Route::get('/patients/create/{step}', 'PatientController@create')->name('patients.create.step');
             Route::resource('/patients', 'PatientController');
+
+            // Assessment
+            Route::get('/patients/{patient}/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
+            Route::get('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'create'])->name('assessment.create.step');
         });
 
     });

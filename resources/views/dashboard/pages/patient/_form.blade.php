@@ -1,56 +1,140 @@
-<div class="form-group @error('industry_id') has-error @enderror">
-    <label class="control-label">{{ trans($translationFromKey.'.'.'industry_id') }} *</label>
+<div class="form-group @error('clinic_id') has-error @enderror">
+    <label class="control-label" for="clinic_id">Bill to *</label>
     <select
-        id="industry_id"
-        name="industry_id"
+        id="clinic_id"
+        name="clinic_id"
         class="form-control select2"
         required
     >
         <option value=""></option>
-        @foreach($industries ?? [] as $industryId => $industry)
+        @foreach($clinics ?? [] as $clinicId => $clinic)
             <option
-                value="{{ $industryId }}"
-                {{ ($module->industry_id ?? '') == $industryId ? 'selected' : '' }}
-                {{ old('industry_id') == $industryId ? 'selected' : '' }}
+                value="{{ $clinicId }}"
+                {{ ($module->clinic_id ?? '') == $clinicId ? 'selected' : '' }}
+                {{ old('clinic_id') == $clinicId ? 'selected' : '' }}
             >
-                {{ $industry }}
+                {{ $clinic }}
             </option>
         @endforeach
     </select>
-    @error('industry_id')
+    @error('clinic_id')
         <span class="help-block has-error">
             <strong>{{ $message }}</strong>
         </span>
     @enderror
 </div>
 
-<div class="form-group @error('name') has-error @enderror">
-    <label class="control-label">{{ trans($translationFromKey.'.'.'name') }} *</label>
+<div class="form-group @error('email') has-error @enderror">
+    <label class="control-label" for="email">Email *</label>
+    <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Email Address"
+        value="{{ $module->email ?? old('email') }}"
+        required
+    >
+    @error('email')
+        <span class="help-block has-error">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
+
+<div class="form-group @error('alias') has-error @enderror">
+    <label class="control-label" for="alias">Patient / ID / Alias *</label>
     <input
         type="text"
         class="form-control"
-        name="name"
-        placeholder="{{ trans($translationFromKey.'.'.'name') }}"
-        value="{{ $module->name ?? old('name') }}"
+        id="alias"
+        name="alias"
+        placeholder="Patient"
+        value="{{ $module->alias ?? old('alias') }}"
         required
     >
-    @error('name')
+    @error('alias')
         <span class="help-block has-error">
             <strong>{{ $message }}</strong>
         </span>
     @enderror
 </div>
 
-<div class="form-group @error('description') has-error @enderror">
-    <label class="control-label">{{ trans($translationFromKey.'.'.'description') }} *</label>
-    <textarea
+<div class="form-group @error('gender') has-error @enderror">
+    <label class="control-label" for="gender">Gender *</label>
+    <br>
+
+    <label class="m-r">
+        <input
+            id="gender_male"
+            name="gender"
+            type="radio"
+            class="@error('gender') has-error @enderror"
+            value="{{ strtolower(config('constants.gender.male')) ?? old('gender') }}"
+            {{ old('gender') == strtolower(config('constants.gender.male')) ? 'checked' : '' }}
+            required
+        >
+        <span>{{ config('constants.gender.male') }}</span>
+    </label>
+
+    <label class="m-r">
+        <input
+            id="gender_female"
+            name="gender"
+            type="radio"
+            class="@error('gender') has-error @enderror"
+            value="{{ strtolower(config('constants.gender.female')) ?? old('gender') }}"
+            {{ old('gender') == strtolower(config('constants.gender.female')) ? 'checked' : '' }}
+            required
+        >
+        <span>{{ config('constants.gender.female') }}</span>
+    </label>
+
+    @error('gender')
+        <span class="help-block has-error">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
+
+<div class="form-group @error('dob') has-error @enderror">
+    <label class="control-label" for="dob">Date of Birth *</label>
+    <input
+        type="date"
         class="form-control"
-        name="description"
-        placeholder="{{ trans($translationFromKey.'.'.'description') }}"
-        rows="5"
+        id="dob"
+        name="dob"
+        placeholder=""
+        value="{{ $module->dob ?? old('dob') }}"
         required
-    >{{ $module->description ?? old('description') }}</textarea>
-    @error('description')
+    >
+    @error('dob')
+        <span class="help-block has-error">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
+
+<div class="form-group @error('country_id') has-error @enderror">
+    <label class="control-label" for="country_id">Bill to *</label>
+    <select
+        id="country_id"
+        name="country_id"
+        class="form-control select2"
+        required
+    >
+        <option value=""></option>
+        @foreach($countries ?? [] as $countryId => $country)
+            <option
+                value="{{ $countryId }}"
+                {{ ($module->country_id ?? '') == $countryId ? 'selected' : '' }}
+                {{ old('country_id') == $countryId ? 'selected' : '' }}
+            >
+                {{ $country }}
+            </option>
+        @endforeach
+    </select>
+    @error('country_id')
         <span class="help-block has-error">
             <strong>{{ $message }}</strong>
         </span>
