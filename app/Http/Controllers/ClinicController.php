@@ -38,6 +38,7 @@ class ClinicController extends Controller
             'form_id' => 'create_form__clinic',
             'form_name' => 'create_form__clinic',
         ]);
+
         return $this->renderView('dashboard.pages.clinic.form', [
             'form' => $form,
         ]);

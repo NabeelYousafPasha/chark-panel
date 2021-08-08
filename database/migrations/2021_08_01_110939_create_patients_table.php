@@ -19,6 +19,7 @@ class CreatePatientsTable extends Migration
             $table->string('email')->unique();
             $table->enum('gender', array_keys(config('constants.gender')));
             $table->date('dob');
+            $table->foreignId('clinic_id')->constrained('clinics');
             $table->foreignId('country_id')->constrained('countries');
             $table->foreignId('created_by')->constrained('users');
             $table->softDeletes();

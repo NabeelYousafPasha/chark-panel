@@ -20,12 +20,21 @@
 
                     <div class="ibox-content">
 
-                        @include('dashboard.pages.patient.form.progress', ['step' => 'step3',])
+                        @include('dashboard.pages.assessment.form.progress', ['step' => 'step3',])
 
                         <div class="row">
                             <div class="col-md-12">
 
-                                <form action="">
+                                <form
+                                    action="{{ route('dashboard.assessment.store.step', [
+                                        'patient' => $patient, 'step' => 'step3',
+                                        ]) }}"
+                                    method="POST"
+                                    id="step3"
+                                    name="step3"
+                                    class="step3"
+                                >
+                                    @csrf
 
                                     <div class="row">
                                         <div class="col-md-6">
@@ -107,9 +116,10 @@
                                                         <label class="m-r">
                                                             <input
                                                                 type="checkbox"
-                                                                name="upper_airway_surgery"
+                                                                name="upper_airway_surgery[]"
                                                                 id="upper_airway_surgery_{{ $upperAirwaySurgeryKey }}"
                                                                 class=""
+                                                                value="{{ $upperAirwaySurgeryKey }}"
                                                                 required
                                                             >
                                                             <span>{{ $upperAirwaySurgery }}</span>
@@ -771,17 +781,18 @@
 
                                     <div class="row form-group text-right">
                                         <a
-                                            href="{{route('dashboard.patients.create.step', ['step' => 'step2'])}}"
+                                            href="{{ route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step2']) }}"
                                             class="btn btn-default m-r"
                                         >
                                             Back
                                         </a>
-                                        <a
-                                            href="{{route('dashboard.patients.create.step', ['step' => 'step4'])}}"
+                                        <button
+                                            id="button_step3"
+                                            type="submit"
                                             class="btn btn-primary m-r"
                                         >
                                             Next
-                                        </a>
+                                        </button>
                                     </div>
                                 </form>
 
@@ -794,6 +805,68 @@
     </div>
 @endsection
 
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            let bmiInput = $('#bmi')
+
+            let heightInput = $('#height')
+            let weightInput = $('#weight')
+
+            heightInput.on('keyup', function () {
+                let w = weightInput.val()
+                let h = $(this).val()
+
+                let options = ['', 0];
+
+                if (options.includes(h) || options.includes(w)) {
+                    bmiInput.val(0);
+
+                    return;
+                }
+
+                let bmi = calculateBmi(w, h)
+
+                bmiInput.val(bmi)
+
+
+            });
+
+            weightInput.on('keyup', function () {
+                let h = heightInput.val()
+                let w = $(this).val()
+
+                let options = ['', 0];
+
+                if (options.includes(h) || options.includes(w)) {
+                    bmiInput.val(0);
+
+                    return;
+                }
+
+                let bmi = calculateBmi(w, h)
+
+                bmiInput.val(bmi)
+            });
+        });
+
+        function calculateBmi(w, h) {
+            // calculate bmi
+            let height = h;
+            let weight = w;
+
+            // feet to meter
+            height = parseFloat(height) * parseFloat({{ config('constants.si_units.foot_to_meter') }})
+
+            // lb to kg
+            weight = parseFloat(weight) * parseFloat({{ config('constants.si_units.lbs_to_kgs') }})
+
+            let bmi = weight / (height * height)
+
+            return parseFloat(bmi).toFixed(2)
+        }
+    </script>
+@endsection
 
 
 

@@ -39,8 +39,13 @@
     <script>
         $(document).ready(function () {
             // select2
-            $("#industry_id").select2({
-                placeholder: "Select a Industry",
+            $("#clinic_id").select2({
+                placeholder: "Select a Clinic",
+                allowClear: true,
+            });
+
+            $("#country_id").select2({
+                placeholder: "Select Country",
                 allowClear: true,
             });
         });
