@@ -24,7 +24,17 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                <form action="">
+                                <form
+                                    action="{{ route('dashboard.assessment.store.step', [
+                                        'patient' => $patient, 'step' => 'step2',
+                                        ]) }}"
+                                    method="POST"
+                                    id="step2"
+                                    name="step2"
+                                    class="step2"
+                                >
+                                    @csrf
+
                                     <div class="row">
 
                                         <div class="col-md-6">
@@ -408,12 +418,13 @@
                                         >
                                             Back
                                         </a>
-                                        <a
-                                            href="{{ route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step3']) }}"
+                                        <button
+                                            id="button_step2"
+                                            type="submit"
                                             class="btn btn-primary m-r"
                                         >
                                             Next
-                                        </a>
+                                        </button>
                                     </div>
                                 </form>
 

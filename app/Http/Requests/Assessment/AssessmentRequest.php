@@ -23,7 +23,7 @@ class AssessmentRequest extends FormRequest
      */
     public function rules()
     {
-        $project = $this->route('patient');
+        $patient = $this->route('patient');
         $step = $this->route('step');
 
         $rules = [
@@ -53,6 +53,27 @@ class AssessmentRequest extends FormRequest
                 "while_talking" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
                 "while_sitting_after_lunch" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
                 "while_driving" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
+            ],
+
+            'step2' => [
+                "smoker" => ['required', 'boolean',],
+                "alcohol_with_dinner" => ['required', 'boolean',],
+                "high_blood_pressure" => ['required', 'boolean',],
+                "myocardial_infarction" => ['required', 'boolean',],
+                "coronary_artery_disease" => ['required', 'boolean',],
+                "arrhythmia" => ['required', 'boolean',],
+                "heart_failure" => ['required', 'boolean',],
+                "diabetes" => ['required', 'boolean',],
+                "depression" => ['required', 'boolean',],
+                "dementia" => ['required', 'boolean',],
+                "stroke" => ['required', 'boolean',],
+                "lung_disease" => ['required', 'boolean',],
+                "hypothyroidism" => ['required', 'boolean',],
+                "other_medical_history" => ['required', 'string', 'max:255',],
+                "anxiolytics" => ['required', 'string', 'max:255',],
+                "antidepressants" => ['required', 'string', 'max:255',],
+                "induce_sleep_medication" => ['required', 'string', 'max:255',],
+                "other_medications" => ['required', 'string', 'max:255',],
             ],
         ];
 

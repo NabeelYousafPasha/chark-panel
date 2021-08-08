@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Assessment\AssessmentRequest;
 use App\Models\Assessment;
+use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Models\SleepinessScale;
 use App\Models\Symptom;
@@ -62,6 +63,8 @@ class AssessmentController extends Controller
      */
     public function store(AssessmentRequest $request, Patient $patient, $step)
     {
+        // dd($request->all());
+
         if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
 
@@ -88,6 +91,18 @@ class AssessmentController extends Controller
                     : $this->message('successMessage', 'Success: Step 1 saved');
 
                 $step = 'step2';
+                break;
+            }
+            case 'step2': {
+                $data['medicalHistory'] = $medicalHistory = MedicalHistory::create([
+                        'assessment_id' => $assessment->id,
+                    ] + $request->validated());
+
+                (!$medicalHistory)
+                    ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 2')
+                    : $this->message('successMessage', 'Success: Step 2 saved');
+
+                $step = 'step3';
                 break;
             }
         }
