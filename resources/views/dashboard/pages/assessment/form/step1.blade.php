@@ -337,8 +337,8 @@
 
                                     <div class="row form-group text-right">
                                         <button
+                                            id="button_step1"
                                             type="submit"
-                                            id="form__step1"
                                             class="btn btn-primary m-r"
                                         >
                                             Next
@@ -707,7 +707,7 @@
     <script>
         $(document).ready(function() {
 
-            $('#form__step1').on("click", function (event) {
+            $('#button_step1').on("click", function (event) {
 
                 event.preventDefault();
 

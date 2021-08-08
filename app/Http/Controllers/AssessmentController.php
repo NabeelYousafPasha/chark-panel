@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Assessment\AssessmentRequest;
 use App\Models\Assessment;
+use App\Models\ClinicalExploration;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Models\SleepinessScale;
@@ -63,7 +64,7 @@ class AssessmentController extends Controller
      */
     public function store(AssessmentRequest $request, Patient $patient, $step)
     {
-        // dd($request->all());
+         // dd($request->all());
 
         if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
@@ -103,6 +104,18 @@ class AssessmentController extends Controller
                     : $this->message('successMessage', 'Success: Step 2 saved');
 
                 $step = 'step3';
+                break;
+            }
+            case 'step3': {
+                $data['clinicalExploration'] = $clinicalExploration = ClinicalExploration::create(array_merge($request->validated(), [
+                        'assessment_id' => $assessment->id,
+                    ], ['upper_airway_surgery' => implode(', ', $request->input('upper_airway_surgery'))]));
+
+                (!$clinicalExploration)
+                    ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 3')
+                    : $this->message('successMessage', 'Success: Step 3 saved');
+
+                $step = 'step4';
                 break;
             }
         }

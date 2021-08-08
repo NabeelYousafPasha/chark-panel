@@ -33,6 +33,13 @@ return [
         'no' => 'no',
     ],
 
+    'si_units' => [
+        'lbs_to_kgs' => '0.453',
+        'kgs_to_lbs' => '2.204',
+
+        'foot_to_meter' => '0.3048',
+    ],
+
     'upper_airway_surgery' => [
         'nasal' => 'Nasal',
         'palatial' => 'Palatial',
