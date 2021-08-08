@@ -21,190 +21,240 @@
 
                         @include('dashboard.pages.patient.form.progress', ['step' => 'step4',])
 
-                        <!-- MultiStep Form -->
                         <div class="row">
                             <div class="col-md-12">
-                                <form id="msform">
-                                    <fieldset>
-                                        <form action="">
-                                            <div class="row">
-                                            
-                                                    <h2 class="fs-title">Upload document here</h2>
-                                                    <div class="row" style="text-align: justify">
-                                                        <div class="col-md-6">
-                                                        <div class="">
-                                                            <div class="row form-group">
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        for="polygraph"
-                                                                        class="col-form-label text-md-left"
-                                                                    >
-                                                                        Polygraph:
-                                                                    </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="m-r">
-                                                                        <input type="file" name="polygraph" id="polygraph">
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row form-group">
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        for="polychemography"
-                                                                        class="col-form-label text-md-left"
-                                                                    >
-                                                                        Polychemography:
-                                                                    </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="m-r">
-                                                                        <input type="file" name="polychemography" id="polychemography">
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="">
-                                                            <div class="row form-group">
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        for="iah"
-                                                                        class="col-form-label text-md-left"
-                                                                    >
-                                                                        IAH:
-                                                                    </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="m-r">
-                                                                        <input type="text" name="iah" id="iah">
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row form-group">
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        for="ia"
-                                                                        class="col-form-label text-md-left"
-                                                                    >
-                                                                        IA:
-                                                                    </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="m-r">
-                                                                        <input type="text" name="ia" id="ia">
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row form-group">
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        for="ih"
-                                                                        class="col-form-label text-md-left"
-                                                                    >
-                                                                        IH:
-                                                                    </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="m-r">
-                                                                        <input type="text" name="ih" id="ih">
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="">
-                                                            <div class="row form-group">
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        for="sat_2_min"
-                                                                        class="col-form-label text-md-left"
-                                                                    >
-                                                                        SAT 02min %:
-                                                                    </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="m-r">
-                                                                        <input type="text" name="sat_2_min" id="sat_2_min">
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row form-group">
-                                                                <div class="col-md-6">
-                                                                    <label
-                                                                        for="ct90"
-                                                                        class="col-form-label text-md-left"
-                                                                    >
-                                                                        CT 90%:
-                                                                    </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="m-r">
-                                                                        <input type="text" name="ct90" id="ct90">
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
-                                                        <div class="row form-group">
-                                                            <div class="col-md-6">
-                                                                <label
-                                                                    for="avg_duration_of_apnea"
-                                                                    class="col-form-label text-md-left"
-                                                                >
-                                                                    Average duration of apnea (sec):
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="m-r">
-                                                                    <input type="text" name="avg_duration_of_apnea" id="avg_duration_of_apnea">
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row form-group">
-                                                            <div class="col-md-6">
-                                                                <label
-                                                                    for="max_duration_of_apnea"
-                                                                    class="col-form-label text-md-left"
-                                                                >
-                                                                Maximum duration of apnea(sec):
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="m-r">
-                                                                    <input type="text" name="max_duration_of_apnea" id="max_duration_of_apnea">
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row form-group">
-                                                            <div class="col-md-6">
-                                                                <label
-                                                                    for="max_duration_of_apnea"
-                                                                    class="col-form-label text-md-left"
-                                                                >
-                                                                Assessment Observation
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="m-r">
-                                                                    <textarea name="assessments_observation" id="assessments_observation" cols="30" rows="10"></textarea>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        </div>
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h2>Upload document here</h2>
+                                            <br>
 
-                                                        <div class="col-md-6 shadow">
-                                                        <button class="btn btn-primary">I do not have previous assessment</button>
-                                                        </div>
-                                                    </div>
-                                                    <input type="submit" name="submit" class="submit action-button" value="Submit"/>
-                                                
-
-
-                                                    </form>
-                                                    
-                                                    
-                                                </fieldset>
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="polygraph"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Polygraph:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="file"
+                                                        name="polygraph"
+                                                        id="polygraph"
+                                                        class="form-control"
+                                                    >
+                                                </div>
                                             </div>
-                                        </form>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="polychemography"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Polychemography:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="file"
+                                                        name="polychemography"
+                                                        id="polychemography"
+                                                        class="form-control"
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="iah"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        IAH:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="iah"
+                                                        id="iah"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="ia"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        IA:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="ia"
+                                                        id="ia"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="ih"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        IH:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="ih"
+                                                        id="ih"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="sat_2_min"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        SAT 02min %:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="sat_2_min"
+                                                        id="sat_2_min"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="ct90"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        CT 90%:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="ct90"
+                                                        id="ct90"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="avg_duration_of_apnea"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Average duration of apnea (sec):
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="number"
+                                                        name="avg_duration_of_apnea"
+                                                        id="avg_duration_of_apnea"
+                                                        class="form-control"
+                                                        min="0"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="max_duration_of_apnea"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Maximum duration of apnea(sec):
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="number"
+                                                        name="max_duration_of_apnea"
+                                                        id="max_duration_of_apnea"
+                                                        class="form-control"
+                                                        min="0"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <label
+                                                        for="assessments_observation"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Assessment Observation
+                                                    </label>
+                                                    <textarea
+                                                        name="assessments_observation"
+                                                        id="assessments_observation"
+                                                        rows="10"
+                                                        class="form-control"
+                                                    ></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary"
+                                            >
+                                                I do not have previous assessment
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group text-right">
+                                        <a
+                                            href="{{route('dashboard.patients.create.step', ['step' => 'step3'])}}"
+                                            class="btn btn-default m-r"
+                                        >
+                                            Back
+                                        </a>
+                                        <a
+                                            href="{{route('dashboard.patients.create.step', ['step' => 'step4'])}}"
+                                            class="btn btn-primary m-r"
+                                        >
+                                            Save
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
