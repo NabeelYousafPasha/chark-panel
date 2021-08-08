@@ -694,6 +694,10 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="col-md-12">
+                                                    <br>
+                                                </div>
+
                                                 <div class="col-md-6 text-md-center">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.hard_and_palate_and_part_of_soft_palate_visibility.image')) }}"
