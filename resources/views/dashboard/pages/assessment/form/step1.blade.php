@@ -25,7 +25,16 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                <form action="" method="POST">
+                                <form
+                                    action="{{ route('dashboard.assessment.store.step', [
+                                        'patient' => $patient, 'step' => 'step1',
+                                        ]) }}"
+                                    method="POST"
+                                    id="step1"
+                                    name="step1"
+                                    class="step1"
+                                >
+                                    @csrf
 
                                     <div class="row">
 
@@ -34,12 +43,9 @@
                                             <h2>Obstructive Sleep Apnea Symptoms</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('snore') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label
-                                                        for="snore"
-                                                        class="col-form-label text-md-left"
-                                                    >
+                                                    <label for="snore" class="control-label">
                                                         Snoring:
                                                     </label>
                                                 </div>
@@ -52,12 +58,18 @@
                                                         <input id="snore_no" name="snore" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('snore')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('apnea') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="apnea" class="col-form-label text-md-left">
+                                                    <label for="apnea" class="control-label">
                                                         Apnea:
                                                     </label>
                                                 </div>
@@ -70,12 +82,18 @@
                                                         <input id="apnea_no" name="apnea" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('apnea')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('breathing_shortness') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="breathing_shortness" class="col-form-label text-md-left">
+                                                    <label for="breathing_shortness" class="control-label">
                                                         Shortness of Breath while sleeping:
                                                     </label>
                                                 </div>
@@ -88,23 +106,35 @@
                                                         <input id="breathing_shortness_no" name="breathing_shortness" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('breathing_shortness')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('average_sleep') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="average_sleep" class="col-form-label text-md-left">
+                                                    <label for="average_sleep" class="control-label">
                                                         Average sleep duration (hours):
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input id="average_sleep" name="average_sleep" type="number" class="form-control" min="0" value="" required="">
+
+                                                    @error('average_sleep')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('fragmented_sleep') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="fragmented_sleep" class="col-form-label text-md-left">
+                                                    <label for="fragmented_sleep" class="control-label">
                                                         Fragmented Sleep:
                                                     </label>
                                                 </div>
@@ -117,12 +147,18 @@
                                                         <input id="fragmented_sleep_no" name="fragmented_sleep" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('fragmented_sleep')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('nocturia') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="nocturia" class="col-form-label text-md-left">
+                                                    <label for="nocturia" class="control-label">
                                                         Nocturia:
                                                         <span class="badge badge-light" title="a condition in which you wake up during the night because you have to urinate.">?</span>
                                                     </label>
@@ -136,12 +172,18 @@
                                                         <input id="nocturia_no" name="nocturia" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('nocturia')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('tired_during_day') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="tired_during_day" class="col-form-label text-md-left">
+                                                    <label for="tired_during_day" class="control-label">
                                                         Tired during the day:
                                                     </label>
                                                 </div>
@@ -154,12 +196,18 @@
                                                         <input id="tired_during_day_no" name="tired_during_day" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('tired_during_day')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('morning_headache') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="morning_headache" class="col-form-label text-md-left">
+                                                    <label for="morning_headache" class="control-label">
                                                         Headache in the mornings:
                                                     </label>
                                                 </div>
@@ -172,12 +220,18 @@
                                                         <input id="morning_headache_no" name="morning_headache" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('morning_headache')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('nap') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="nap" class="col-form-label text-md-left">
+                                                    <label for="nap" class="control-label">
                                                         Do you nap?:
                                                     </label>
                                                 </div>
@@ -190,12 +244,18 @@
                                                         <input id="nap_no" name="nap" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('nap')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('sleepiness_during_day') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="sleepiness_during_day" class="col-form-label text-md-left">
+                                                    <label for="sleepiness_during_day" class="control-label">
                                                         Sleepiness during the day:
                                                     </label>
                                                 </div>
@@ -208,12 +268,18 @@
                                                         <input id="sleepiness_during_day_no" name="sleepiness_during_day" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('sleepiness_during_day')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('loss_of_concentration') has-error @enderror">
                                                 <div class="col-md-6">
-                                                    <label for="loss_of_concentration" class="col-form-label text-md-left">
+                                                    <label for="loss_of_concentration" class="control-label">
                                                         Loss of concentration:
                                                     </label>
                                                 </div>
@@ -226,14 +292,20 @@
                                                         <input id="loss_of_concentration_no" name="loss_of_concentration" type="radio" class="" value="0" required="">
                                                         <span>No</span>
                                                     </label>
+
+                                                    @error('loss_of_concentration')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <h3>
+                                            <h2>
                                                 Epworth Test
-                                            </h3>
+                                            </h2>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal__epworth_test">
                                                 Take Epworth Test
                                             </button>
@@ -242,9 +314,9 @@
                                             <br>
                                             <br>
 
-                                            <h3>
+                                            <h2>
                                                 Snoring experienced during the night
-                                            </h3>
+                                            </h2>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal__snoring_scale_test">
                                                 Take Snoring Scale Test
                                             </button>
@@ -252,12 +324,13 @@
                                     </div>
 
                                     <div class="row form-group text-right">
-                                        <a
-                                            href="{{ route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step2']) }}"
+                                        <button
+                                            type="submit"
+                                            id="form__step1"
                                             class="btn btn-primary m-r"
                                         >
                                             Next
-                                        </a>
+                                        </button>
                                     </div>
                                 </form>
 
@@ -296,153 +369,241 @@
                             <h3>Select the chance of you dozing or falling asleep in these situations:</h3>
 
                             <table class="table" width="100%">
-                        <thead>
-                            <tr>
-                                <th width="40%"></th>
-                                @foreach(config('constants.sleepiness_scale_options') as $option)
-                                    <th class="text-center">{{ ucfirst($option) }}</th>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Sitting and Reading
-                                </td>
-                                @foreach(config('constants.sleepiness_scale_options') as $option)
-                                    <th class="text-center">
-                                        <input
-                                            id="while_sitting_and_reading_{{ $option }}"
-                                            name="while_sitting_and_reading"
-                                            type="radio"
-                                            class=""
-                                            value="{{ $option }}"
-                                            required
-                                        >
-                                    </th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <td>
-                                    Watching the Television
-                                </td>
-                                @foreach(config('constants.sleepiness_scale_options') as $option)
-                                    <th class="text-center">
-                                        <input
-                                            id="while_watching_television_{{ $option }}"
-                                            name="while_watching_television"
-                                            type="radio"
-                                            class=""
-                                            value="{{ $option }}"
-                                            required
-                                        >
-                                    </th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <td>
-                                    Sitting inactive in a public place (cinema, theatre, ...)
-                                </td>
-                                @foreach(config('constants.sleepiness_scale_options') as $option)
-                                    <th class="text-center">
-                                        <input
-                                            id="while_inactive_in_public_place_{{ $option }}"
-                                            name="while_inactive_in_public_place"
-                                            type="radio"
-                                            class=""
-                                            value="{{ $option }}"
-                                            required
-                                        >
-                                    </th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <td>
-                                    Being a passenger in a vehicle for an hour or more
-                                </td>
-                                @foreach(config('constants.sleepiness_scale_options') as $option)
-                                    <th class="text-center">
-                                        <input
-                                            id="while_travelling_{{ $option }}"
-                                            name="while_travelling"
-                                            type="radio"
-                                            class=""
-                                            value="{{ $option }}"
-                                            required
-                                        >
-                                    </th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <td>
-                                    Laying down in the afternoon
-                                </td>
-                                @foreach(config('constants.sleepiness_scale_options') as $option)
-                                    <th class="text-center">
-                                        <input
-                                            id="while_laying_down_in_afternoon_{{ $option }}"
-                                            name="while_laying_down_in_afternoon"
-                                            type="radio"
-                                            class=""
-                                            value="{{ $option }}"
-                                            required
-                                        >
-                                    </th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <td>
-                                    Sitting and talking to someone
-                                </td>
-                                @foreach(config('constants.sleepiness_scale_options') as $option)
-                                    <th class="text-center">
-                                        <input
-                                            id="while_talking_{{ $option }}"
-                                            name="while_talking"
-                                            type="radio"
-                                            class=""
-                                            value="{{ $option }}"
-                                            required
-                                        >
-                                    </th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <td>
-                                    Sitting quietly after lunch (no alcohol)
-                                </td>
-                                @foreach(config('constants.sleepiness_scale_options') as $option)
-                                    <th class="text-center">
-                                        <input
-                                            id="while_sitting_after_lunch_{{ $option }}"
-                                            name="while_sitting_after_lunch"
-                                            type="radio"
-                                            class=""
-                                            value="{{ $option }}"
-                                            required
-                                        >
-                                    </th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <td>
-                                    Stopped for a few minutes in traffic while driving
-                                </td>
-                                @foreach(config('constants.sleepiness_scale_options') as $option)
-                                    <th class="text-center">
-                                        <input
-                                            id="while_driving_{{ $option }}"
-                                            name="while_driving"
-                                            type="radio"
-                                            class=""
-                                            value="{{ $option }}"
-                                            required
-                                        >
-                                    </th>
-                                @endforeach
-                            </tr>
-                        </tbody>
-                    </table>
+                                <thead>
+                                    <tr>
+                                        <th width="40%"></th>
+                                        @foreach(config('constants.sleepiness_scale_options') as $option)
+                                            <th class="text-center">{{ ucfirst($option) }}</th>
+                                        @endforeach
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group @error('while_sitting_and_reading') has-error @enderror">
+                                                <label for="while_sitting_and_reading" class="control-label">
+                                                    Sitting and Reading
+                                                </label>
+
+                                                @error('while_sitting_and_reading')
+                                                    <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        @foreach(config('constants.sleepiness_scale_options') as $option)
+                                            <th class="text-center">
+                                                <input
+                                                    id="while_sitting_and_reading_{{ $option }}"
+                                                    name="while_sitting_and_reading"
+                                                    type="radio"
+                                                    class=""
+                                                    value="{{ $option }}"
+                                                    required
+                                                    form="step1"
+                                                >
+                                            </th>
+                                        @endforeach
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group @error('while_watching_television') has-error @enderror">
+                                                <label for="while_watching_television" class="control-label">
+                                                    Watching the Television
+                                                </label>
+
+                                                @error('while_watching_television')
+                                                <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        @foreach(config('constants.sleepiness_scale_options') as $option)
+                                            <th class="text-center">
+                                                <input
+                                                    id="while_watching_television_{{ $option }}"
+                                                    name="while_watching_television"
+                                                    type="radio"
+                                                    class=""
+                                                    value="{{ $option }}"
+                                                    required
+                                                    form="step1"
+                                                >
+                                            </th>
+                                        @endforeach
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group @error('while_inactive_in_public_place') has-error @enderror">
+                                                <label for="while_inactive_in_public_place" class="control-label">
+                                                    Sitting inactive in a public place (cinema, theatre, ...)
+                                                </label>
+
+                                                @error('while_inactive_in_public_place')
+                                                <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        @foreach(config('constants.sleepiness_scale_options') as $option)
+                                            <th class="text-center">
+                                                <input
+                                                    id="while_inactive_in_public_place_{{ $option }}"
+                                                    name="while_inactive_in_public_place"
+                                                    type="radio"
+                                                    class=""
+                                                    value="{{ $option }}"
+                                                    required
+                                                    form="step1"
+                                                >
+                                            </th>
+                                        @endforeach
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group @error('while_travelling') has-error @enderror">
+                                                <label for="while_travelling" class="control-label">
+                                                    Being a passenger in a vehicle for an hour or more
+                                                </label>
+
+                                                @error('while_travelling')
+                                                <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        @foreach(config('constants.sleepiness_scale_options') as $option)
+                                            <th class="text-center">
+                                                <input
+                                                    id="while_travelling_{{ $option }}"
+                                                    name="while_travelling"
+                                                    type="radio"
+                                                    class=""
+                                                    value="{{ $option }}"
+                                                    required
+                                                    form="step1"
+                                                >
+                                            </th>
+                                        @endforeach
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group @error('while_laying_down_in_afternoon') has-error @enderror">
+                                                <label for="while_laying_down_in_afternoon" class="control-label">
+                                                    Laying down in the afternoon
+                                                </label>
+
+                                                @error('while_laying_down_in_afternoon')
+                                                <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        @foreach(config('constants.sleepiness_scale_options') as $option)
+                                            <th class="text-center">
+                                                <input
+                                                    id="while_laying_down_in_afternoon_{{ $option }}"
+                                                    name="while_laying_down_in_afternoon"
+                                                    type="radio"
+                                                    class=""
+                                                    value="{{ $option }}"
+                                                    required
+                                                    form="step1"
+                                                >
+                                            </th>
+                                        @endforeach
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group @error('while_talking') has-error @enderror">
+                                                <label for="while_talking" class="control-label">
+                                                    Sitting and talking to someone
+                                                </label>
+
+                                                @error('while_talking')
+                                                <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        @foreach(config('constants.sleepiness_scale_options') as $option)
+                                            <th class="text-center">
+                                                <input
+                                                    id="while_talking_{{ $option }}"
+                                                    name="while_talking"
+                                                    type="radio"
+                                                    class=""
+                                                    value="{{ $option }}"
+                                                    required
+                                                    form="step1"
+                                                >
+                                            </th>
+                                        @endforeach
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group @error('while_sitting_after_lunch') has-error @enderror">
+                                                <label for="while_sitting_after_lunch" class="control-label">
+                                                    Sitting quietly after lunch (no alcohol)
+                                                </label>
+
+                                                @error('while_sitting_after_lunch')
+                                                <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        @foreach(config('constants.sleepiness_scale_options') as $option)
+                                            <th class="text-center">
+                                                <input
+                                                    id="while_sitting_after_lunch_{{ $option }}"
+                                                    name="while_sitting_after_lunch"
+                                                    type="radio"
+                                                    class=""
+                                                    value="{{ $option }}"
+                                                    required
+                                                    form="step1"
+                                                >
+                                            </th>
+                                        @endforeach
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group @error('while_driving') has-error @enderror">
+                                                <label for="while_driving" class="control-label">
+                                                    Stopped for a few minutes in traffic while driving
+                                                </label>
+
+                                                @error('while_driving')
+                                                <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        @foreach(config('constants.sleepiness_scale_options') as $option)
+                                            <th class="text-center">
+                                                <input
+                                                    id="while_driving_{{ $option }}"
+                                                    name="while_driving"
+                                                    type="radio"
+                                                    class=""
+                                                    value="{{ $option }}"
+                                                    required
+                                                    form="step1"
+                                                >
+                                            </th>
+                                        @endforeach
+                                    </tr>
+                                </tbody>
+                            </table>
 
                             <h4 class="help-block">
                                 Select the chance of dozing or falling asleep in all of the situations.
@@ -452,8 +613,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
@@ -484,6 +644,14 @@
                         <div class="col-md-12">
                             <h3>Snorting experienced during the night</h3>
 
+                            <div class="form-group @error('night_snoring_experience') has-error @enderror">
+                                @error('night_snoring_experience')
+                                <span class="help-block has-error">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
                             <table class="table" width="100%">
                                 <tbody>
                                     @foreach(config('constants.night_snoring_experience') as $nightSnoreKey => $nightSnore)
@@ -491,6 +659,7 @@
                                             <td>
                                                 <label
                                                     for="night_snoring_experience_{{ $nightSnoreKey }}"
+                                                    class="control-label"
                                                 >
                                                 <input
                                                     id="night_snoring_experience_{{ $nightSnoreKey }}"
@@ -499,6 +668,7 @@
                                                     class=""
                                                     value="{{ $nightSnoreKey }}"
                                                     required
+                                                    form="step1"
                                                 >
                                                     {{ $nightSnore }}
                                                 </label>
@@ -513,8 +683,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
@@ -522,5 +691,38 @@
 
 @endsection
 
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+
+            $('#form__step1').on("click", function (event) {
+
+                event.preventDefault();
+
+                // form
+                let $form = $("#step1");
+
+                // modal
+                let modal2 = $('input[name="night_snoring_experience"]:checked').val();
+
+                if ([undefined, "", null,].includes(modal2)) {
+                    $('#modal__snoring_scale_test').modal('show');
+
+                    return;
+                }
+
+                // Whatever other form processing stuff goes here.
+                $form.submit();
+            });
+
+            let error_nightSnoringExperience = false
+            @error('night_snoring_experience') error_nightSnoringExperience = true @enderror
+
+            if (["true", true, 1].includes(error_nightSnoringExperience)) {
+                $('#modal__snoring_scale_test').modal('show');
+            }
+        });
+    </script>
+@endsection
 
 

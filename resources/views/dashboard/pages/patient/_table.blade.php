@@ -36,7 +36,7 @@
                             class="btn btn-info btn-xs"
                             href="{{ route('dashboard.assessment.index', ['patient' => $patient]) }}"
                         >
-                            <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
+                            <i class="fa fa-commenting-o fa-fw" aria-hidden="true"></i>
                         </a>
 
                         {{--@if($crud['EDIT_MODULE']['can'] ?? false)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Assessment\AssessmentRequest;
 use App\Models\Assessment;
 use App\Models\Patient;
 use Illuminate\Http\Request;
@@ -11,10 +12,13 @@ class AssessmentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function index(Patient $patient)
     {
+        if (auth()->user()->cannot('view_assessment'))
+            return $this->permissionDenied('dashboard.index');
+
         $patientAssessments = Assessment::where('patient_id', '=', $patient->id)
             ->latest()
             ->get();
@@ -28,10 +32,13 @@ class AssessmentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function create(Request $request, Patient $patient, $step = 'step1')
     {
+        if (auth()->user()->cannot('view_assessment'))
+            return $this->permissionDenied('dashboard.index');
+
         abort_if((! in_array($step, ['step1', 'step2', 'step3', 'step4'])
             ||
             ! view()->exists('dashboard.pages.assessment.form.'.$step))
@@ -45,12 +52,17 @@ class AssessmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param AssessmentRequest $request
+     * @param Patient $patient
+     * @param $step
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(AssessmentRequest $request, Patient $patient, $step)
     {
-        //
+        if (auth()->user()->cannot('create_assessment'))
+            return $this->permissionDenied('dashboard.index');
+
+        dd($request->all());
     }
 
     /**
