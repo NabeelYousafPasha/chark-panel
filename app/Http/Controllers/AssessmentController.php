@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Assessment\AssessmentRequest;
 use App\Models\Assessment;
 use App\Models\Patient;
+use App\Models\SleepinessScale;
+use App\Models\Symptom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AssessmentController extends Controller
 {
@@ -62,7 +65,36 @@ class AssessmentController extends Controller
         if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
 
-        dd($request->all());
+        $data = [];
+
+        $data['assessment'] = $assessment = Assessment::firstOrCreate([
+            'patient_id' => $patient->id,
+            'date' => now()->format('Y-m-d'),
+            'created_by' => auth()->id(),
+        ]);
+
+        switch ($step) {
+            case 'step1': {
+                $data['symptom'] = $symptom = Symptom::create([
+                    'assessment_id' => $assessment->id,
+                ] + $request->validated());
+
+                $data['sleepinessScale'] = $sleepinessScale = SleepinessScale::create([
+                        'assessment_id' => $assessment->id,
+                    ] + $request->validated());
+
+                (!$symptom || !$sleepinessScale)
+                    ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 1')
+                    : $this->message('successMessage', 'Success: Step 1 saved');
+
+                $step = 'step2';
+                break;
+            }
+        }
+
+
+
+        return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => $step]);
     }
 
     /**

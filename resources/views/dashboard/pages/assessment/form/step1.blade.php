@@ -122,7 +122,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input id="average_sleep" name="average_sleep" type="number" class="form-control" min="0" value="" required="">
+                                                    <input id="average_sleep" name="average_sleep" type="number" class="form-control" min="0" max="24" value="" required="">
 
                                                     @error('average_sleep')
                                                         <span class="help-block has-error">
@@ -306,7 +306,13 @@
                                             <h2>
                                                 Epworth Test
                                             </h2>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal__epworth_test">
+                                            <button
+                                                id="button__epworth_test"
+                                                type="button"
+                                                class="btn btn-primary"
+                                                data-toggle="modal"
+                                                data-target="#modal__epworth_test"
+                                            >
                                                 Take Epworth Test
                                             </button>
 
@@ -317,7 +323,13 @@
                                             <h2>
                                                 Snoring experienced during the night
                                             </h2>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal__snoring_scale_test">
+                                            <button
+                                                id="button__snoring_scale_test"
+                                                type="button"
+                                                class="btn btn-primary"
+                                                data-toggle="modal"
+                                                data-target="#modal__snoring_scale_test"
+                                            >
                                                 Take Snoring Scale Test
                                             </button>
                                         </div>
@@ -702,10 +714,10 @@
                 // form
                 let $form = $("#step1");
 
-                // modal
-                let modal2 = $('input[name="night_snoring_experience"]:checked').val();
+                // modal2
+                let modal2radio = $('input[name="night_snoring_experience"]:checked').val();
 
-                if ([undefined, "", null,].includes(modal2)) {
+                if ([undefined, "", null,].includes(modal2radio)) {
                     $('#modal__snoring_scale_test').modal('show');
 
                     return;
@@ -715,10 +727,32 @@
                 $form.submit();
             });
 
-            let error_nightSnoringExperience = false
-            @error('night_snoring_experience') error_nightSnoringExperience = true @enderror
+
+            // Modal 1
+            let error_epworthTest = false;
+            @error('while_sitting_and_reading') error_epworthTest = true; @enderror
+            @error('while_watching_television') error_epworthTest = true; @enderror
+            @error('while_inactive_in_public_place') error_epworthTest = true; @enderror
+            @error('while_travelling') error_epworthTest = true; @enderror
+            @error('while_laying_down_in_afternoon') error_epworthTest = true; @enderror
+            @error('while_talking') error_epworthTest = true; @enderror
+            @error('while_sitting_after_lunch') error_epworthTest = true; @enderror
+            @error('while_driving') error_epworthTest = true; @enderror
+
+            if (["true", true, 1].includes(error_epworthTest)) {
+                $('#button__epworth_test').addClass("btn-danger");
+
+                $('#modal__epworth_test').modal('show');
+            }
+
+
+            // Modal 2
+            let error_nightSnoringExperience = false;
+            @error('night_snoring_experience') error_nightSnoringExperience = true; @enderror
 
             if (["true", true, 1].includes(error_nightSnoringExperience)) {
+                $('#button__snoring_scale_test').addClass("btn-danger");
+
                 $('#modal__snoring_scale_test').modal('show');
             }
         });
