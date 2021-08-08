@@ -39,8 +39,8 @@ class CreateClinicalExplorationsTable extends Migration
             $table->decimal('systolic_blood_pressure');
             $table->decimal('diastolic_blood_pressure');
 
-            $table->boolean('normognaithic');
-            $table->boolean('retrognathico');
+            $table->boolean('normognathic');
+            $table->boolean('retrognathic');
             $table->boolean('prognathic');
 
             $table->boolean('edge_to_edge_bite');

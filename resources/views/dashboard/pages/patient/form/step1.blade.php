@@ -31,8 +31,7 @@
 
                                         <div class="col-md-6">
 
-                                            <h3 class="">Obstructive Sleep Apnea Symptoms</h3>
-
+                                            <h2>Obstructive Sleep Apnea Symptoms</h2>
                                             <br>
 
                                             <div class="row form-group">
@@ -261,6 +260,7 @@
                                         </a>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>

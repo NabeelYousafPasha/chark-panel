@@ -1,193 +1,6 @@
 @extends('dashboard.layout.app')
 
 @section('stylesheets')
-<style>
-    /*custom font*/
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
-/*basic reset*/
-
-/*form styles*/
-#msform {
-    text-align: center;
-    position: relative;
-    margin-top: 30px;
-    width: 1000px;
-    margin-left: -277px;
-}
-
-#msform fieldset {
-    background: white;
-    border: 0 none;
-    border-radius: 0px;
-    padding: 20px 30px;
-    box-sizing: border-box;
-    width: 80%;
-    margin: 0 10%;
-
-    /*stacking fieldsets above each other*/
-    position: relative;
-}
-
-/*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
-    display: none;
-}
-
-/*inputs*/
-#msform input, #msform textarea {
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    margin-bottom: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 13px;
-}
-
-#msform input:focus, #msform textarea:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #1ab394;
-    outline-width: 0;
-    transition: All 0.5s ease-in;
-    -webkit-transition: All 0.5s ease-in;
-    -moz-transition: All 0.5s ease-in;
-    -o-transition: All 0.5s ease-in;
-}
-
-/*buttons*/
-#msform .action-button {
-    width: 100px;
-    background: #1ab394;0979;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 25px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px;
-}
-
-#msform .action-button:hover, #msform .action-button:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #1ab394;
-}
-
-#msform .action-button-previous {
-    width: 100px;
-    background: #C5C5F1;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 25px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px;
-}
-
-#msform .action-button-previous:hover, #msform .action-button-previous:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
-}
-
-/*headings*/
-.fs-title {
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #2C3E50;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-
-.fs-subtitle {
-    font-weight: normal;
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/*progressbar*/
-#progressbar {
-    margin-bottom: 30px;
-    overflow: hidden;
-    /*CSS counters to number the steps*/
-    counter-reset: step;
-}
-
-#progressbar li {
-    list-style-type: none;
-    color: #000;
-    text-transform: uppercase;
-    font-size: 9px;
-    width: 24.33%;
-    float: left;
-    position: relative;
-    letter-spacing: 1px;
-}
-
-#progressbar li:before {
-    content: counter(step);
-    counter-increment: step;
-    width: 24px;
-    height: 24px;
-    line-height: 26px;
-    display: block;
-    font-size: 12px;
-    color: #333;
-    background: white;
-    border-radius: 25px;
-    margin: 0 auto 10px auto;
-}
-
-/*progressbar connectors*/
-#progressbar li:after {
-    content: '';
-    width: 100%;
-    height: 2px;
-    background: white;
-    position: absolute;
-    left: -50%;
-    top: 9px;
-    z-index: -1; /*put it behind the numbers*/
-}
-
-#progressbar li:first-child:after {
-    /*connector not needed before the first step*/
-    content: none;
-}
-
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-#progressbar li.active:before, #progressbar li.active:after {
-    background: #1ab394;
-    color: white;
-}
-
-
-/* Not relevant to this form */
-.dme_link {
-    margin-top: 30px;
-    text-align: center;
-}
-.dme_link a {
-    background: #FFF;
-    font-weight: bold;
-    color: #1ab394;
-    border: 0 none;
-    border-radius: 25px;
-    cursor: pointer;
-    padding: 5px 25px;
-    font-size: 12px;
-}
-
-.dme_link a:hover, .dme_link a:focus {
-    background: #C5C5F1;
-    text-decoration: none;
-}
-</style>
 @endsection
 
 @section('content')
@@ -198,171 +11,255 @@
         </div>
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
+        <div class="row" style="text-align: justify">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>New {{ $page }}</h5>
                     </div>
                     <div class="ibox-content">
-                        <!-- MultiStep Form -->
-                        <div class="row" >
-                            <div class="col-md-6 col-md-offset-3">
-                                <form id="msform">
-                                    <!-- progressbar -->
-                                    <ul id="progressbar">
-                                        <li class="active">Symptoms</li>
-                                        <li>Medical History</li>
-                                        <li>Clinical Eploration</li>
-                                        <li>Diagnostic Tests</li>
-                                    </ul>
-                                    <hr>
-                                    <!-- fieldsets -->
-                                    <fieldset>
-                                        <form action="" method="post">
-                                
-                                        <h2 class="fs-title">Upload document here</h2>
-                                        <div class="row" style="text-align: justify">
-                                            <div class="col-md-6 shadow">
-                                               <div class="row">
-                                                <label for="">Polygraph</label>
-                                                <input type="file" name="" id="">
-                                                <label for="">Polychemography</label>
-                                                <input type="file" name="" id="">
-                                               </div>
-                                               <div class="row">
-                                                <label for="">IAH</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">IA</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">IH</label>
-                                                <input type="text" name="" id="">
-                                               </div>
-                                               <div class="row">
-                                                <label for="">SAT 02min (%)</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">CT 90 (%)</label>
-                                                <input type="text" name="" id="">
-                                               </div>
 
-                                               <label for="">Average duration of apnea(sec):</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">Maximum duration of apnea(sec):</label>
-                                                <input type="text" name="" id="">
-                                                <label for="">Assessment Observation:</label>
-                                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                        @include('dashboard.pages.patient.form.progress', ['step' => 'step4',])
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h2>Upload document here</h2>
+                                            <br>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="polygraph"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Polygraph:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="file"
+                                                        name="polygraph"
+                                                        id="polygraph"
+                                                        class="form-control"
+                                                    >
+                                                </div>
                                             </div>
 
-                                            <div class="col-md-6 shadow">
-                                               <button class="btn btn-primary">I do not have previous assessment</button>
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="polychemography"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Polychemography:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="file"
+                                                        name="polychemography"
+                                                        id="polychemography"
+                                                        class="form-control"
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="iah"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        IAH:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="iah"
+                                                        id="iah"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="ia"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        IA:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="ia"
+                                                        id="ia"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="ih"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        IH:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="ih"
+                                                        id="ih"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="sat_2_min"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        SAT 02min %:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="sat_2_min"
+                                                        id="sat_2_min"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="ct90"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        CT 90%:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="ct90"
+                                                        id="ct90"
+                                                        class="form-control"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="avg_duration_of_apnea"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Average duration of apnea (sec):
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="number"
+                                                        name="avg_duration_of_apnea"
+                                                        id="avg_duration_of_apnea"
+                                                        class="form-control"
+                                                        min="0"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="max_duration_of_apnea"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Maximum duration of apnea(sec):
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="number"
+                                                        name="max_duration_of_apnea"
+                                                        id="max_duration_of_apnea"
+                                                        class="form-control"
+                                                        min="0"
+                                                        required
+                                                    >
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <label
+                                                        for="assessments_observation"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Assessment Observation
+                                                    </label>
+                                                    <textarea
+                                                        name="assessments_observation"
+                                                        id="assessments_observation"
+                                                        rows="10"
+                                                        class="form-control"
+                                                    ></textarea>
+                                                </div>
                                             </div>
                                         </div>
-                                        <input type="submit" name="submit" class="submit action-button" value="Submit"/>
-                                    
 
+                                        <div class="col-md-6">
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary"
+                                            >
+                                                I do not have previous assessment
+                                            </button>
+                                        </div>
+                                    </div>
 
-                                        </form>
-                                        
-                                        
-                                    </fieldset>
-                                    
+                                    <div class="row form-group text-right">
+                                        <a
+                                            href="{{route('dashboard.patients.create.step', ['step' => 'step3'])}}"
+                                            class="btn btn-default m-r"
+                                        >
+                                            Back
+                                        </a>
+                                        <a
+                                            href="{{route('dashboard.patients.create.step', ['step' => 'step4'])}}"
+                                            class="btn btn-primary m-r"
+                                        >
+                                            Save
+                                        </a>
+                                    </div>
                                 </form>
                             </div>
                         </div>
-                        <!-- /.MultiStep Form -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script>
-    
-
-//jQuery time
-var current_fs, next_fs, previous_fs; //fieldsets
-var left, opacity, scale; //fieldset properties which we will animate
-var animating; //flag to prevent quick multi-click glitches
-
-$(".next").click(function(){
-	if(animating) return false;
-	animating = true;
-	
-	current_fs = $(this).parent();
-	next_fs = $(this).parent().next();
-	
-	//activate next step on progressbar using the index of next_fs
-	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-	
-	//show the next fieldset
-	next_fs.show(); 
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale current_fs down to 80%
-			scale = 1 - (1 - now) * 0.2;
-			//2. bring next_fs from the right(50%)
-			left = (now * 50)+"%";
-			//3. increase opacity of next_fs to 1 as it moves in
-			opacity = 1 - now;
-			current_fs.css({
-        'transform': 'scale('+scale+')',
-        'position': 'absolute'
-      });
-			next_fs.css({'left': left, 'opacity': opacity});
-		}, 
-		duration: 800, 
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		}, 
-		//this comes from the custom easing plugin
-		easing: 'easeInOutBack'
-	});
-});
-
-$(".previous").click(function(){
-	if(animating) return false;
-	animating = true;
-	
-	current_fs = $(this).parent();
-	previous_fs = $(this).parent().prev();
-	
-	//de-activate current step on progressbar
-	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-	
-	//show the previous fieldset
-	previous_fs.show(); 
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale previous_fs from 80% to 100%
-			scale = 0.8 + (1 - now) * 0.2;
-			//2. take current_fs to the right(50%) - from 0%
-			left = ((1-now) * 50)+"%";
-			//3. increase opacity of previous_fs to 1 as it moves in
-			opacity = 1 - now;
-			current_fs.css({'left': left});
-			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-		}, 
-		duration: 800, 
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		}, 
-		//this comes from the custom easing plugin
-		easing: 'easeInOutBack'
-	});
-});
-
-$(".submit").click(function(){
-	return false;
-})
-</script>
 @endsection
 
 
