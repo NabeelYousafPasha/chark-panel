@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Assessment\AssessmentRequest;
 use App\Models\Assessment;
 use App\Models\ClinicalExploration;
+use App\Models\DiagnosticTest;
 use App\Models\MedicalHistory;
 use App\Models\Patient;
 use App\Models\SleepinessScale;
@@ -64,10 +65,15 @@ class AssessmentController extends Controller
      */
     public function store(AssessmentRequest $request, Patient $patient, $step)
     {
-         // dd($request->all());
+        if (! in_array($step, ['step1', 'step2', 'step3', 'step4'])) {
+            $this->message('errorMessage', 'Error: Invalid Step');
+
+            return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step1']);
+        }
 
         if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
+
 
         $data = [];
 
@@ -118,9 +124,22 @@ class AssessmentController extends Controller
                 $step = 'step4';
                 break;
             }
+            case 'step4': {
+                $data['diagnosticTest'] = $diagnosticTest = DiagnosticTest::create(array_merge($request->validated(), [
+                        'assessment_id' => $assessment->id,
+                    ]));
+
+                (!$diagnosticTest)
+                    ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 4')
+                    : $this->message('successMessage', 'Success: Step 4 saved');
+
+                return redirect()->route('dashboard.assessment.index', ['patient' => $patient]);
+            }
+            default : {
+                $this->message('errorMessage', 'Error: Invalid Step');
+                return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step1']);
+            }
         }
-
-
 
         return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => $step]);
     }

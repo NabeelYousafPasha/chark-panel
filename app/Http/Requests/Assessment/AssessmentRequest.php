@@ -26,6 +26,10 @@ class AssessmentRequest extends FormRequest
         $patient = $this->route('patient');
         $step = $this->route('step');
 
+        if (! in_array($step, ['step1', 'step2', 'step3', 'step4'])) {
+            abort(404, 'Step is Invalid');
+        }
+
         $rules = [
             'step1' => [
                 // symptoms
@@ -109,6 +113,17 @@ class AssessmentRequest extends FormRequest
                 "hard_and_palate_and_part_of_soft_palate_visibility" => ['required', 'boolean',],
                 "only_hard_palate_visibility" => ['required', 'boolean',],
                 "assessment_observation" => ['required', 'string', 'max:255',],
+            ],
+
+            'step4' => [
+                "iah" => ['required', 'string', 'max:255',],
+                "ia" => ['required', 'string', 'max:255',],
+                "ih" => ['required', 'string', 'max:255',],
+                "sat_2_min" => ['required', 'string', 'max:255',],
+                "ct90" => ['required', 'string', 'max:255',],
+                "avg_duration_of_apnea" => ['required', 'numeric',],
+                "max_duration_of_apnea" => ['required', 'numeric',],
+                "assessments_observation" => ['required', 'string', 'max:255',],
             ],
         ];
 
