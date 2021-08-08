@@ -19,12 +19,22 @@
                     </div>
                     <div class="ibox-content">
 
-                        @include('dashboard.pages.patient.form.progress', ['step' => 'step2',])
+                        @include('dashboard.pages.assessment.form.progress', ['step' => 'step2',])
 
                         <div class="row">
                             <div class="col-md-12">
 
-                                <form action="">
+                                <form
+                                    action="{{ route('dashboard.assessment.store.step', [
+                                        'patient' => $patient, 'step' => 'step2',
+                                        ]) }}"
+                                    method="POST"
+                                    id="step2"
+                                    name="step2"
+                                    class="step2"
+                                >
+                                    @csrf
+
                                     <div class="row">
 
                                         <div class="col-md-6">
@@ -403,17 +413,18 @@
 
                                     <div class="row form-group text-right">
                                         <a
-                                            href="{{route('dashboard.patients.create.step', ['step' => 'step1'])}}"
+                                            href="{{ route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step1']) }}"
                                             class="btn btn-default m-r"
                                         >
                                             Back
                                         </a>
-                                        <a
-                                            href="{{route('dashboard.patients.create.step', ['step' => 'step3'])}}"
+                                        <button
+                                            id="button_step2"
+                                            type="submit"
                                             class="btn btn-primary m-r"
                                         >
                                             Next
-                                        </a>
+                                        </button>
                                     </div>
                                 </form>
 

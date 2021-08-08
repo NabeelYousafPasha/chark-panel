@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Patient\PatientRequest;
+use App\Models\Clinic;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function index()
     {
@@ -20,8 +23,10 @@ class PatientController extends Controller
         $patients = Patient::addSelect([
                 'patients.*',
                 'users.username',
+                'clinics.name as clinic_name',
                 'countries.name as country_name',
             ])
+            ->clinicJoin()
             ->createdByUser()
             ->countryJoin();
 
@@ -33,27 +38,46 @@ class PatientController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function create(Request $request, $step = 'step1')
+    public function create(Request $request)
     {
-        abort_if((! in_array($step, ['step1', 'step2', 'step3', 'step4'])
-            ||
-            ! view()->exists('dashboard.pages.patient.form.'.$step))
-        , 404);
+        if (auth()->user()->cannot('view_patient'))
+            return $this->permissionDenied('dashboard.index');
 
-        return $this->renderView('dashboard.pages.patient.form.'.$step);
+        $clinics = Clinic::pluck('name', 'id');
+        $countries = DB::table('countries')->pluck('name', 'id');
+
+        $form = $this->setForm(route('dashboard.patients.store'), 'POST', 'dashboard.pages.patient._form', [
+            'form_id' => 'create_form__patient',
+            'form_name' => 'create_form__patient',
+        ]);
+
+        return $this->renderView('dashboard.pages.patient.form', [
+            'clinics' => $clinics,
+            'countries' => $countries,
+            'form' => $form,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param PatientRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
-        //
+        if (auth()->user()->cannot('view_patient'))
+            return $this->permissionDenied('dashboard.index');
+
+        $patient = Patient::create($request->validated() + [
+            'created_by' => auth()->id(),
+        ]);
+
+        (! $patient) ? $this->message('errorMessage') : $this->message('successMessage');
+
+        return redirect()->route('dashboard.patients.index');
     }
 
     /**
@@ -81,7 +105,7 @@ class PatientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
@@ -94,11 +118,17 @@ class PatientController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Patient  $patient
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Patient $patient)
     {
-        //
+        if (auth()->user()->cannot('delete_patient'))
+            return $this->permissionDenied('dashboard.index');
+
+        $delete = $patient->delete();
+        (! $delete) ? $this->message('errorMessage') : $this->message('successMessage', 'Success: Deleted successfully');
+
+        return redirect()->route('dashboard.patients.index');
     }
 
     /**

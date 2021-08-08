@@ -19,6 +19,7 @@ class PermissionSeeder extends Seeder
             'user',
             'clinic',
             'patient',
+            'assessment',
         ];
 
         $permission_iterations = [];

@@ -19,12 +19,22 @@
                     </div>
                     <div class="ibox-content">
 
-                        @include('dashboard.pages.patient.form.progress', ['step' => 'step4',])
+                        @include('dashboard.pages.assessment.form.progress', ['step' => 'step4',])
 
                         <div class="row">
                             <div class="col-md-12">
 
-                                <form action="">
+                                <form
+                                    action="{{ route('dashboard.assessment.store.step', [
+                                        'patient' => $patient, 'step' => 'step4',
+                                        ]) }}"
+                                    method="POST"
+                                    id="step4"
+                                    name="step4"
+                                    class="step4"
+                                >
+                                    @csrf
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h2>Upload document here</h2>
@@ -240,17 +250,18 @@
 
                                     <div class="row form-group text-right">
                                         <a
-                                            href="{{route('dashboard.patients.create.step', ['step' => 'step3'])}}"
+                                            href="{{ route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step3']) }}"
                                             class="btn btn-default m-r"
                                         >
                                             Back
                                         </a>
-                                        <a
-                                            href="{{route('dashboard.patients.create.step', ['step' => 'step4'])}}"
+                                        <button
+                                            id="button_step4"
+                                            type="submit"
                                             class="btn btn-primary m-r"
                                         >
                                             Save
-                                        </a>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
