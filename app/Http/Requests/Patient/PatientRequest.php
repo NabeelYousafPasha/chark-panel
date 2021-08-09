@@ -26,6 +26,8 @@ class PatientRequest extends FormRequest
      */
     public function rules()
     {
+        $patient = $this->route('patient');
+
         $rules = [
             'clinic_id' => ['required', 'numeric', 'exists:'.Clinic::class.',id',],
             'email' => ['required', 'string', 'max:255', 'email', 'unique:'.Patient::class.',email',],
@@ -34,6 +36,25 @@ class PatientRequest extends FormRequest
             'dob' => ['required', 'date',],
             'country_id' => ['required', 'numeric', 'exists:countries,id',],
         ];
+
+        switch($this->method())
+        {
+            case 'GET':
+            case 'DELETE':
+            {
+                $rules = [];
+                break;
+            }
+            case 'POST':
+            {
+                break;
+            }
+            case 'PATCH':
+            case 'PUT': {
+                $rules['email'] = ['required', 'string', 'max:255', 'email', 'unique:'.Patient::class.',email,'.$patient->id,];
+            }
+            default:break;
+        }
 
         return $rules;
     }
