@@ -51,11 +51,27 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="snore_yes" name="snore" type="radio" class="" value="1" required="">
+                                                        <input
+                                                            id="snore_yes"
+                                                            name="snore"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('snore') == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="snore_no" name="snore" type="radio" class="" value="0" required="">
+                                                        <input
+                                                            id="snore_no"
+                                                            name="snore"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('snore') == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -75,11 +91,19 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="apnea_yes" name="apnea" type="radio" class="" value="1" required="">
+                                                        <input
+                                                        id="apnea_yes"
+                                                        name="apnea"
+                                                        type="radio"
+                                                        class=""
+                                                        value="1"
+                                                        required=""
+                                                        {{ old('apnea') == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="apnea_no" name="apnea" type="radio" class="" value="0" required="">
+                                                        <input id="apnea_no" name="apnea" type="radio" class="" value="0" required="" {{ old('apnea') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
 
@@ -99,11 +123,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="breathing_shortness_yes" name="breathing_shortness" type="radio" class="" value="1" required="">
+                                                        <input id="breathing_shortness_yes" name="breathing_shortness" type="radio" class="" value="1" required="" {{ old('breathing_shortness') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="breathing_shortness_no" name="breathing_shortness" type="radio" class="" value="0" required="">
+                                                        <input id="breathing_shortness_no" name="breathing_shortness" type="radio" class="" value="0" required="" {{ old('breathing_shortness') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
 
@@ -122,7 +146,16 @@
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input id="average_sleep" name="average_sleep" type="number" class="form-control" min="0" max="24" value="" required="">
+                                                    <input
+                                                        id="average_sleep"
+                                                        name="average_sleep"
+                                                        type="number"
+                                                        class="form-control"
+                                                        min="0"
+                                                        max="24"
+                                                        value="{{ old('average_sleep') }}"
+                                                        required=""
+                                                    >
 
                                                     @error('average_sleep')
                                                         <span class="help-block has-error">
@@ -140,11 +173,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="fragmented_sleep_yes" name="fragmented_sleep" type="radio" class="" value="1" required="">
+                                                        <input id="fragmented_sleep_yes" name="fragmented_sleep" type="radio" class="" value="1" required="" {{ old('fragmented_sleep') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="fragmented_sleep_no" name="fragmented_sleep" type="radio" class="" value="0" required="">
+                                                        <input id="fragmented_sleep_no" name="fragmented_sleep" type="radio" class="" value="0" required="" {{ old('fragmented_sleep') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
 
@@ -165,11 +198,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="nocturia_yes" name="nocturia" type="radio" class="" value="1" required="">
+                                                        <input id="nocturia_yes" name="nocturia" type="radio" class="" value="1" required="" {{ old('nocturia') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="nocturia_no" name="nocturia" type="radio" class="" value="0" required="">
+                                                        <input id="nocturia_no" name="nocturia" type="radio" class="" value="0" required="" {{ old('nocturia') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
 
@@ -189,11 +222,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="tired_during_day_yes" name="tired_during_day" type="radio" class="" value="1" required="">
+                                                        <input id="tired_during_day_yes" name="tired_during_day" type="radio" class="" value="1" required="" {{ old('tired_during_day') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="tired_during_day_no" name="tired_during_day" type="radio" class="" value="0" required="">
+                                                        <input id="tired_during_day_no" name="tired_during_day" type="radio" class="" value="0" required="" {{ old('tired_during_day') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
 
@@ -213,11 +246,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="morning_headache_yes" name="morning_headache" type="radio" class="" value="1" required="">
+                                                        <input id="morning_headache_yes" name="morning_headache" type="radio" class="" value="1" required="" {{ old('morning_headache') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="morning_headache_no" name="morning_headache" type="radio" class="" value="0" required="">
+                                                        <input id="morning_headache_no" name="morning_headache" type="radio" class="" value="0" required="" {{ old('morning_headache') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
 
@@ -237,11 +270,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="nap_yes" name="nap" type="radio" class="" value="1" required="">
+                                                        <input id="nap_yes" name="nap" type="radio" class="" value="1" required="" {{ old('nap') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="nap_no" name="nap" type="radio" class="" value="0" required="">
+                                                        <input id="nap_no" name="nap" type="radio" class="" value="0" required="" {{ old('nap') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
 
@@ -261,11 +294,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="sleepiness_during_day_yes" name="sleepiness_during_day" type="radio" class="" value="1" required="">
+                                                        <input id="sleepiness_during_day_yes" name="sleepiness_during_day" type="radio" class="" value="1" required="" {{ old('sleepiness_during_day') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="sleepiness_during_day_no" name="sleepiness_during_day" type="radio" class="" value="0" required="">
+                                                        <input id="sleepiness_during_day_no" name="sleepiness_during_day" type="radio" class="" value="0" required="" {{ old('sleepiness_during_day') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
 
@@ -285,11 +318,11 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="loss_of_concentration_yes" name="loss_of_concentration" type="radio" class="" value="1" required="">
+                                                        <input id="loss_of_concentration_yes" name="loss_of_concentration" type="radio" class="" value="1" required="" {{ old('loss_of_concentration') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="loss_of_concentration_no" name="loss_of_concentration" type="radio" class="" value="0" required="">
+                                                        <input id="loss_of_concentration_no" name="loss_of_concentration" type="radio" class="" value="0" required="" {{ old('loss_of_concentration') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
 
