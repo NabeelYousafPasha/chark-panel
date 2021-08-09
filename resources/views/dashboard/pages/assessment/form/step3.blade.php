@@ -134,8 +134,9 @@
                                                                 name="upper_airway_surgery[]"
                                                                 id="upper_airway_surgery_{{ $upperAirwaySurgeryKey }}"
                                                                 class=""
-                                                                value="{{ $upperAirwaySurgeryKey }}"                                            
-                                                                >
+                                                                value="{{ $upperAirwaySurgeryKey }}"
+                                                                {{ in_array($upperAirwaySurgeryKey, old('upper_airway_surgery') ?? []) ? 'checked' : '' }}
+                                                            >
                                                             <span>{{ $upperAirwaySurgery }}</span>
                                                         </label>
                                                         <br>
@@ -164,7 +165,7 @@
                                                         id="other_upper_airway_surgery"
                                                         class="form-control"
                                                         required=""
-                                                        value="{{ old('other_upper_airway_surgery')}}" 
+                                                        value="{{ old('other_upper_airway_surgery')}}"
                                                     >
                                                     @error('other_upper_airway_surgery')
                                                         <span class="help-block has-error">
@@ -515,7 +516,7 @@
                                                         <input id="tmj_pain_yes" name="tmj_pain" type="radio" class="" value="1" required="" {{ old('tmj_pain') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
-                                                    <label class="m-r"> 
+                                                    <label class="m-r">
                                                         <input id="tmj_pain_no" name="tmj_pain" type="radio" class="" value="0" required="" {{ old('tmj_pain') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
