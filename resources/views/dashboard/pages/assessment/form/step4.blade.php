@@ -40,7 +40,7 @@
                                             <h2>Upload document here</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('polygraph') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="polygraph"
@@ -55,11 +55,17 @@
                                                         name="polygraph"
                                                         id="polygraph"
                                                         class="form-control"
+                                                        value="{{ old('polygraph') }}"
                                                     >
+                                                    @error('polygraph')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('polychemography') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="polychemography"
@@ -74,11 +80,17 @@
                                                         name="polychemography"
                                                         id="polychemography"
                                                         class="form-control"
+                                                        value="{{ old('polychemography') }}"
                                                     >
+                                                    @error('polychemography')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('iah') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="iah"
@@ -93,12 +105,18 @@
                                                         name="iah"
                                                         id="iah"
                                                         class="form-control"
-                                                        required
+                                                        required=""
+                                                        value="{{ old('iah') }}"
                                                     >
+                                                    @error('iah')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('ia') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="ia"
@@ -113,12 +131,18 @@
                                                         name="ia"
                                                         id="ia"
                                                         class="form-control"
+                                                        value="{{ old('ia') }}"
                                                         required
                                                     >
+                                                    @error('ia')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('ih') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="ih"
@@ -133,12 +157,18 @@
                                                         name="ih"
                                                         id="ih"
                                                         class="form-control"
+                                                        value="{{ old('ih') }}"
                                                         required
                                                     >
+                                                    @error('ih')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('sat_2_min') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="sat_2_min"
@@ -150,15 +180,21 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
+                                                        value="{{ old('sat_2_min') }}"
                                                         name="sat_2_min"
                                                         id="sat_2_min"
                                                         class="form-control"
                                                         required
                                                     >
+                                                    @error('sat_2_min')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('ct90') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="ct90"
@@ -172,13 +208,20 @@
                                                         type="text"
                                                         name="ct90"
                                                         id="ct90"
+                                                        value="{{ old('ct90') }}"
                                                         class="form-control"
-                                                        required
+                                                        required=""
+                                                        
                                                     >
+                                                    @error('ct90')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('avg_duration_of_apnea') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="avg_duration_of_apnea"
@@ -191,15 +234,21 @@
                                                     <input
                                                         type="number"
                                                         name="avg_duration_of_apnea"
+                                                        value="{{ old('avg_duration_of_apnea') }}"
                                                         id="avg_duration_of_apnea"
                                                         class="form-control"
                                                         min="0"
                                                         required
                                                     >
+                                                    @error('avg_duration_of_apnea')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('max_duration_of_apnea') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="max_duration_of_apnea"
@@ -213,14 +262,20 @@
                                                         type="number"
                                                         name="max_duration_of_apnea"
                                                         id="max_duration_of_apnea"
+                                                        value="{{ old('max_duration_of_apnea') }}"
                                                         class="form-control"
                                                         min="0"
                                                         required
                                                     >
+                                                    @error('max_duration_of_apnea')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('assessments_observation') has-error @enderror">
                                                 <div class="col-md-12">
                                                     <label
                                                         for="assessments_observation"
@@ -232,8 +287,14 @@
                                                         name="assessments_observation"
                                                         id="assessments_observation"
                                                         rows="10"
+                                                        value="{{ old('assessments_observation') }}"
                                                         class="form-control"
                                                     ></textarea>
+                                                    @error('assessments_observation')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

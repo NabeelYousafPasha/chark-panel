@@ -134,9 +134,7 @@
                                                                 name="upper_airway_surgery[]"
                                                                 id="upper_airway_surgery_{{ $upperAirwaySurgeryKey }}"
                                                                 class=""
-                                                                value="{{ $upperAirwaySurgeryKey }}"
-                                                                required=""
-                                                                value="{{ old('upper_airway_surgery') }}"                                            
+                                                                value="{{ $upperAirwaySurgeryKey }}"                                            
                                                                 >
                                                             <span>{{ $upperAirwaySurgery }}</span>
                                                         </label>
