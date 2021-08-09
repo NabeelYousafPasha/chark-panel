@@ -42,7 +42,7 @@
                                             <h2>Previous Treatments</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('cpap') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="cpap"
@@ -53,16 +53,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="cpap_yes" name="cpap" type="radio" class="" value="1" required="">
+                                                        <input id="cpap_yes" name="cpap" type="radio" class="" value="1" required="" {{ old('cpap') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="cpap_no" name="cpap" type="radio" class="" value="0" required="">
+                                                        <input id="cpap_no" name="cpap" type="radio" class="" value="0" required="" {{ old('cpap') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('cpap')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('mandibular_advancement_device') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="mandibular_advancement_device"
@@ -73,16 +78,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="mandibular_advancement_device_yes" name="mandibular_advancement_device" type="radio" class="" value="1" required="">
+                                                        <input id="mandibular_advancement_device_yes" name="mandibular_advancement_device" type="radio" class="" value="1" required="" {{ old('mandibular_advancement_device') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="mandibular_advancement_device_no" name="mandibular_advancement_device" type="radio" class="" value="0" required="">
+                                                        <input id="mandibular_advancement_device_no" name="mandibular_advancement_device" type="radio" class="" value="0" required="" {{ old('mandibular_advancement_device') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('mandibular_advancement_device')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('positional_therapy') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="positional_therapy"
@@ -93,16 +103,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="positional_therapy_yes" name="positional_therapy" type="radio" class="" value="1" required="">
+                                                        <input id="positional_therapy_yes" name="positional_therapy" type="radio" class="" value="1" required="" {{ old('positional_therapy') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="positional_therapy_no" name="positional_therapy" type="radio" class="" value="0" required="">
+                                                        <input id="positional_therapy_no" name="positional_therapy" type="radio" class="" value="0" required="" {{ old('positional_therapy') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('positional_therapy')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group  @error('upper_airway_surgery') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="positional_therapy"
@@ -119,17 +134,21 @@
                                                                 name="upper_airway_surgery[]"
                                                                 id="upper_airway_surgery_{{ $upperAirwaySurgeryKey }}"
                                                                 class=""
-                                                                value="{{ $upperAirwaySurgeryKey }}"
-                                                                required
-                                                            >
+                                                                value="{{ $upperAirwaySurgeryKey }}"                                            
+                                                                >
                                                             <span>{{ $upperAirwaySurgery }}</span>
                                                         </label>
                                                         <br>
                                                     @endforeach
+                                                    @error('upper_airway_surgery')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('other_upper_airway_surgery') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="other_upper_airway_surgery"
@@ -144,12 +163,18 @@
                                                         name="other_upper_airway_surgery"
                                                         id="other_upper_airway_surgery"
                                                         class="form-control"
-                                                        required
+                                                        required=""
+                                                        value="{{ old('other_upper_airway_surgery')}}" 
                                                     >
+                                                    @error('other_upper_airway_surgery')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('bariatric_surgery') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="bariatric_surgery"
@@ -160,17 +185,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="bariatric_surgery_yes" name="bariatric_surgery" type="radio" class="" value="1" required="">
+                                                        <input id="bariatric_surgery_yes" name="bariatric_surgery" type="radio" class="" value="1" required="" {{ old('bariatric_surgery') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="bariatric_surgery_no" name="bariatric_surgery" type="radio" class="" value="0" required="">
+                                                        <input id="bariatric_surgery_no" name="bariatric_surgery" type="radio" class="" value="0" required="" {{ old('bariatric_surgery') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('bariatric_surgery')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('other_treatments_for_sleep_apnea') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="other_treatments_for_sleep_apnea"
@@ -185,9 +215,15 @@
                                                             name="other_treatments_for_sleep_apnea"
                                                             id="other_treatments_for_sleep_apnea"
                                                             class="form-control"
-                                                            required
+                                                            required=""
+                                                            value="{{ old('other_treatments_for_sleep_apnea') }}"
                                                         >
                                                 </div>
+                                                @error('other_treatments_for_sleep_apnea')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                             </div>
                                         </div>
 
@@ -196,7 +232,7 @@
                                             <h2>Physical Exam</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('height') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="height"
@@ -212,11 +248,17 @@
                                                         id="height"
                                                         class="form-control"
                                                         min="0"
-                                                        required
+                                                        required=""
+                                                        value="{{ old('height')}}"
                                                     >
+                                                    @error('height')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('weight') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="weight"
@@ -232,11 +274,17 @@
                                                         id="weight"
                                                         class="form-control"
                                                         min="0"
-                                                        required
+                                                        required=""
+                                                        value="{{ old('weight')}}"
                                                     >
+                                                    @error('weight')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('bmi') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="bmi"
@@ -252,10 +300,16 @@
                                                         id="bmi"
                                                         class="form-control"
                                                         readonly
+                                                        value="{{ old('bmi')}}"
                                                     >
+                                                    @error('bmi')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('neck_circumference') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="neck_circumference"
@@ -271,11 +325,17 @@
                                                         id="neck_circumference"
                                                         class="form-control"
                                                         min="0"
-                                                        required
+                                                        required=""
+                                                        value="{{ old('neck_circumference')}}"
                                                     >
+                                                    @error('neck_circumference')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('beats_per_minute') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="beats_per_minute"
@@ -291,11 +351,17 @@
                                                         id="beats_per_minute"
                                                         class="form-control"
                                                         min="0"
-                                                        required
+                                                        required=""
+                                                        value="{{ old('beats_per_minute')}}"
                                                     >
+                                                    @error('beats_per_minute')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('systolic_blood_pressure') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="systolic_blood_pressure"
@@ -311,11 +377,17 @@
                                                         id="systolic_blood_pressure"
                                                         class="form-control"
                                                         min="0"
-                                                        required
+                                                        required=""
+                                                        value="{{ old('systolic_blood_pressure')}}"
                                                     >
+                                                    @error('systolic_blood_pressure')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('diastolic_blood_pressure') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="diastolic_blood_pressure"
@@ -331,8 +403,14 @@
                                                         id="diastolic_blood_pressure"
                                                         class="form-control"
                                                         min="0"
-                                                        required
+                                                        required=""
+                                                        value="{{ old('diastolic_blood_pressure')}}"
                                                     >
+                                                    @error('diastolic_blood_pressure')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -345,7 +423,7 @@
                                             <h2>Oral Exam</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('bruxism') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="bruxism"
@@ -356,17 +434,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="bruxism_yes" name="bruxism" type="radio" class="" value="1" required="">
+                                                        <input id="bruxism_yes" name="bruxism" type="radio" class="" value="1" required="" {{ old('bruxism') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="bruxism_no" name="bruxism" type="radio" class="" value="0" required="">
+                                                        <input id="bruxism_no" name="bruxism" type="radio" class="" value="0" required="" {{ old('bruxism') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('bruxism')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('pointed_hard_palade') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="pointed_hard_palade"
@@ -377,17 +460,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="pointed_hard_palade_yes" name="pointed_hard_palade" type="radio" class="" value="1" required="">
+                                                        <input id="pointed_hard_palade_yes" name="pointed_hard_palade" type="radio" class="" value="1" required="" {{ old('pointed_hard_palade') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="pointed_hard_palade_no" name="pointed_hard_palade" type="radio" class="" value="0" required="">
+                                                        <input id="pointed_hard_palade_no" name="pointed_hard_palade" type="radio" class="" value="0" required="" {{ old('pointed_hard_palade') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('pointed_hard_palade')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('tmj_noise') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="tmj_noise"
@@ -398,17 +486,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="tmj_noise_yes" name="tmj_noise" type="radio" class="" value="1" required="">
+                                                        <input id="tmj_noise_yes" name="tmj_noise" type="radio" class="" value="1" required="" {{ old('tmj_noise') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="tmj_noise_no" name="tmj_noise" type="radio" class="" value="0" required="">
+                                                        <input id="tmj_noise_no" name="tmj_noise" type="radio" class="" value="0" required="" {{ old('tmj_noise') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('tmj_noise')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('tmj_pain') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="tmj_pain"
@@ -419,17 +512,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="tmj_pain_yes" name="tmj_pain" type="radio" class="" value="1" required="">
+                                                        <input id="tmj_pain_yes" name="tmj_pain" type="radio" class="" value="1" required="" {{ old('tmj_pain') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
-                                                    <label class="m-r">
-                                                        <input id="tmj_pain_no" name="tmj_pain" type="radio" class="" value="0" required="">
+                                                    <label class="m-r"> 
+                                                        <input id="tmj_pain_no" name="tmj_pain" type="radio" class="" value="0" required="" {{ old('tmj_pain') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('tmj_pain')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('bilateral_crossbite') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="bilateral_crossbite"
@@ -440,17 +538,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="bilateral_crossbite_yes" name="bilateral_crossbite" type="radio" class="" value="1" required="">
+                                                        <input id="bilateral_crossbite_yes" name="bilateral_crossbite" type="radio" class="" value="1" required="" {{ old('bilateral_crossbite') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="bilateral_crossbite_no" name="bilateral_crossbite" type="radio" class="" value="0" required="">
+                                                        <input id="bilateral_crossbite_no" name="bilateral_crossbite" type="radio" class="" value="0" required="" {{ old('bilateral_crossbite') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('bilateral_crossbite')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('lateral_crossbite') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="lateral_crossbite"
@@ -461,13 +564,18 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="lateral_crossbite_yes" name="lateral_crossbite" type="radio" class="" value="1" required="">
+                                                        <input id="lateral_crossbite_yes" name="lateral_crossbite" type="radio" class="" value="1" required="" {{ old('lateral_crossbite') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="lateral_crossbite_no" name="lateral_crossbite" type="radio" class="" value="0" required="">
+                                                        <input id="lateral_crossbite_no" name="lateral_crossbite" type="radio" class="" value="0" required="" {{ old('lateral_crossbite') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('lateral_crossbite')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -477,7 +585,7 @@
                                             <h2>Mondular Morphology according to facial profile</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('normognathic') has-error @enderror">
                                                 <div class="col-md-4 text-md-center">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.normognathic.image')) }}"
@@ -494,17 +602,22 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="normognathic_yes" name="normognathic" type="radio" class="" value="1" required="">
+                                                            <input id="normognathic_yes" name="normognathic" type="radio" class="" value="1" required="" {{ old('normognathic') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="normognathic_no" name="normognathic" type="radio" class="" value="0" required="">
+                                                            <input id="normognathic_no" name="normognathic" type="radio" class="" value="0" required="" {{ old('normognathic') == '0' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('normognathic')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4 text-md-center">
+                                                <div class="col-md-4 text-md-center  @error('retrognathic') has-error @enderror">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.retrognathic.image')) }}"
                                                         alt="{{ config('constants.clinical_explorations.retrognathic.image') }}"
@@ -520,17 +633,22 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="retrognathic_yes" name="retrognathic" type="radio" class="" value="1" required="">
+                                                            <input id="retrognathic_yes" name="retrognathic" type="radio" class="" value="1" required="" {{ old('retrognathic') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="retrognathic_no" name="retrognathic" type="radio" class="" value="0" required="">
+                                                            <input id="retrognathic_no" name="retrognathic" type="radio" class="" value="0" required="" {{ old('retrognathic') == '0' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('retrognathic')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4 text-md-center">
+                                                <div class="col-md-4 text-md-center @error('prognathic') has-error @enderror">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.prognathic.image')) }}"
                                                         alt="{{ config('constants.clinical_explorations.prognathic.image') }}"
@@ -546,13 +664,18 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="prognathic_yes" name="prognathic" type="radio" class="" value="1" required="">
+                                                            <input id="prognathic_yes" name="prognathic" type="radio" class="" value="1" required="" {{ old('prognathic') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="prognathic_no" name="prognathic" type="radio" class="" value="0" required="">
+                                                            <input id="prognathic_no" name="prognathic" type="radio" class="" value="0" required="" {{ old('prognathic') == '0' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('prognathic')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -561,7 +684,7 @@
                                             <h2>Type of bite</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('edge_to_edge_bite') has-error @enderror">
                                                 <div class="col-md-4 text-md-center">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.edge_to_edge_bite.image')) }}"
@@ -578,17 +701,22 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="edge_to_edge_bite_yes" name="edge_to_edge_bite" type="radio" class="" value="1" required="">
+                                                            <input id="edge_to_edge_bite_yes" name="edge_to_edge_bite" type="radio" class="" value="1" required="" {{ old('edge_to_edge_bite') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="edge_to_edge_bite_no" name="edge_to_edge_bite" type="radio" class="" value="0" required="">
+                                                            <input id="edge_to_edge_bite_no" name="edge_to_edge_bite" type="radio" class="" value="0" required="" {{ old('edge_to_edge_bite') == '0' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('edge_to_edge_bite')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4 text-md-center">
+                                                <div class="col-md-4 text-md-center @error('anterior_crossbite') has-error @enderror">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.anterior_crossbite.image')) }}"
                                                         alt="{{ config('constants.clinical_explorations.anterior_crossbite.image') }}"
@@ -604,17 +732,22 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="anterior_crossbite_yes" name="anterior_crossbite" type="radio" class="" value="1" required="">
+                                                            <input id="anterior_crossbite_yes" name="anterior_crossbite" type="radio" class="" value="1" required="" {{ old('anterior_crossbite') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="anterior_crossbite_no" name="anterior_crossbite" type="radio" class="" value="0" required="">
+                                                            <input id="anterior_crossbite_no" name="anterior_crossbite" type="radio" class="" value="0" required="" {{ old('anterior_crossbite') == '0' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('anterior_crossbite')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4 text-md-center">
+                                                <div class="col-md-4 text-md-center @error('overbite') has-error @enderror">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.overbite.image')) }}"
                                                         alt="{{ config('constants.clinical_explorations.overbite.image') }}"
@@ -630,13 +763,18 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="overbite_yes" name="overbite" type="radio" class="" value="1" required="">
+                                                            <input id="overbite_yes" name="overbite" type="radio" class="" value="1" required="" {{ old('overbite') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="overbite_no" name="overbite" type="radio" class="" value="0" required="">
+                                                            <input id="overbite_no" name="overbite" type="radio" class="" value="0" required="" {{ old('overbite') == '0' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('overbite')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -651,7 +789,7 @@
                                             <h2>Lingual position classification (Friedman Classification)</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('total_visibility_of_tonsils_uvula_soft_palate') has-error @enderror">
                                                 <div class="col-md-6 text-md-center">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.total_visibility_of_tonsils_uvula_soft_palate.image')) }}"
@@ -668,17 +806,22 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="total_visibility_of_tonsils_uvula_soft_palate_yes" name="total_visibility_of_tonsils_uvula_soft_palate" type="radio" class="" value="1" required="">
+                                                            <input id="total_visibility_of_tonsils_uvula_soft_palate_yes" name="total_visibility_of_tonsils_uvula_soft_palate" type="radio" class="" value="1" required="" {{ old('total_visibility_of_tonsils_uvula_soft_palate') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="total_visibility_of_tonsils_uvula_soft_palate_no" name="total_visibility_of_tonsils_uvula_soft_palate" type="radio" class="" value="0" required="">
+                                                            <input id="total_visibility_of_tonsils_uvula_soft_palate_no" name="total_visibility_of_tonsils_uvula_soft_palate" type="radio" class="" value="0" required="" {{ old('total_visibility_of_tonsils_uvula_soft_palate') == '0' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('total_visibility_of_tonsils_uvula_soft_palate')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6 text-md-center">
+                                                <div class="col-md-6 text-md-center @error('hard_and_soft_palate_visibility') has-error @enderror">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.hard_and_soft_palate_visibility.image')) }}"
                                                         alt="{{ config('constants.clinical_explorations.hard_and_soft_palate_visibility.image') }}"
@@ -694,13 +837,18 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="hard_and_soft_palate_visibility_yes" name="hard_and_soft_palate_visibility" type="radio" class="" value="1" required="">
+                                                            <input id="hard_and_soft_palate_visibility_yes" name="hard_and_soft_palate_visibility" type="radio" class="" value="1" required="" {{ old('hard_and_soft_palate_visibility') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="hard_and_soft_palate_visibility_no" name="hard_and_soft_palate_visibility" type="radio" class="" value="0" required="">
+                                                            <input id="hard_and_soft_palate_visibility_no" name="hard_and_soft_palate_visibility" type="radio" class="" value="0" required="" {{ old('hard_and_soft_palate_visibility') == '1' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('hard_and_soft_palate_visibility_no')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                     </div>
                                                 </div>
 
@@ -708,7 +856,7 @@
                                                     <br>
                                                 </div>
 
-                                                <div class="col-md-6 text-md-center">
+                                                <div class="col-md-6 text-md-center @error('sleepiness_during_day') has-error @enderror">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.hard_and_palate_and_part_of_soft_palate_visibility.image')) }}"
                                                         alt="{{ config('constants.clinical_explorations.hard_and_palate_and_part_of_soft_palate_visibility.image') }}"
@@ -724,17 +872,22 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="hard_and_palate_and_part_of_soft_palate_visibility_yes" name="hard_and_palate_and_part_of_soft_palate_visibility" type="radio" class="" value="1" required="">
+                                                            <input id="hard_and_palate_and_part_of_soft_palate_visibility_yes" name="hard_and_palate_and_part_of_soft_palate_visibility" type="radio" class="" value="1" required="" {{ old('hard_and_palate_and_part_of_soft_palate_visibility') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="hard_and_palate_and_part_of_soft_palate_visibility_no" name="hard_and_palate_and_part_of_soft_palate_visibility" type="radio" class="" value="0" required="">
+                                                            <input id="hard_and_palate_and_part_of_soft_palate_visibility_no" name="hard_and_palate_and_part_of_soft_palate_visibility" type="radio" class="" value="0" required="" {{ old('hard_and_palate_and_part_of_soft_palate_visibility') == '0' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('hard_and_palate_and_part_of_soft_palate_visibility')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6 text-md-center">
+                                                <div class="col-md-6 text-md-center @error('only_hard_palate_visibility') has-error @enderror">
                                                     <img
                                                         src="{{ asset(config('constants.clinical_explorations.only_hard_palate_visibility.image')) }}"
                                                         alt="{{ config('constants.clinical_explorations.only_hard_palate_visibility.image') }}"
@@ -750,13 +903,18 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="only_hard_palate_visibility_yes" name="only_hard_palate_visibility" type="radio" class="" value="1" required="">
+                                                            <input id="only_hard_palate_visibility_yes" name="only_hard_palate_visibility" type="radio" class="" value="1" required="" {{ old('only_hard_palate_visibility') == '1' ? 'checked' : '' }}>
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="only_hard_palate_visibility_no" name="only_hard_palate_visibility" type="radio" class="" value="0" required="">
+                                                            <input id="only_hard_palate_visibility_no" name="only_hard_palate_visibility" type="radio" class="" value="0" required="" {{ old('only_hard_palate_visibility') == '0' ? 'checked' : '' }}>
                                                             <span>No</span>
                                                         </label>
+                                                        @error('only_hard_palate_visibility')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -764,7 +922,7 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('assessment_observation') has-error @enderror">
                                                 <div class="col-md-12">
                                                     <label
                                                         for="assessment_observation"
@@ -772,8 +930,13 @@
                                                     >
                                                         Assessment:
                                                     </label>
-                                                    <textarea name="assessment_observation" id="assessment_observation" class="form-control" rows="10"></textarea>
+                                                    <textarea name="assessment_observation" id="assessment_observation" class="form-control" rows="10" value="{{old('assessment_observation')}}"></textarea>
                                                 </div>
+                                                @error('assessment_observation')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
