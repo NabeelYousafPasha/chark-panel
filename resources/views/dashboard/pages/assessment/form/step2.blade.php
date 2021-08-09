@@ -42,7 +42,7 @@
                                             <h2>Habits</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('smoker') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="smoker"
@@ -53,17 +53,23 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="smoker_yes" name="smoker" type="radio" class="" value="1" required="">
+                                                        <input id="smoker_yes" name="smoker" type="radio" class="" value="1" required="" {{ old('smoker') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="smoker_no" name="smoker" type="radio" class="" value="0" required="">
+                                                        <input id="smoker_no" name="smoker" type="radio" class="" value="0" required="" {{ old('smoker') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('smoker')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
+                                                
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('alcohol_with_dinner') has-error @enderror"">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="alcohol_with_dinner"
@@ -74,13 +80,18 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="alcohol_with_dinner_yes" name="alcohol_with_dinner" type="radio" class="" value="1" required="">
+                                                        <input id="alcohol_with_dinner_yes" name="alcohol_with_dinner" type="radio" class="" value="1" required="" {{ old('alcohol_with_dinner') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="alcohol_with_dinner_no" name="alcohol_with_dinner" type="radio" class="" value="0" required="">
+                                                        <input id="alcohol_with_dinner_no" name="alcohol_with_dinner" type="radio" class="" value="0" required="" {{ old('alcohol_with_dinner') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('alcohol_with_dinner')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -88,7 +99,7 @@
                                             <h2>Medical History</h2>
                                             <br>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('high_blood_pressure') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="high_blood_pressure"
@@ -99,17 +110,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="high_blood_pressure_yes" name="high_blood_pressure" type="radio" class="" value="1" required="">
+                                                        <input id="high_blood_pressure_yes" name="high_blood_pressure" type="radio" class="" value="1" required="" {{ old('high_blood_pressure') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="high_blood_pressure_no" name="high_blood_pressure" type="radio" class="" value="0" required="">
+                                                        <input id="high_blood_pressure_no" name="high_blood_pressure" type="radio" class="" value="0" required="" {{ old('high_blood_pressure') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('high_blood_pressure')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('myocardial_infarction') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="myocardial_infarction"
@@ -120,17 +136,22 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="myocardial_infarction_yes" name="myocardial_infarction" type="radio" class="" value="1" required="">
+                                                        <input id="myocardial_infarction_yes" name="myocardial_infarction" type="radio" class="" value="1" required="" {{ old('myocardial_infarction') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="myocardial_infarction_no" name="myocardial_infarction" type="radio" class="" value="0" required="">
+                                                        <input id="myocardial_infarction_no" name="myocardial_infarction" type="radio" class="" value="0" required="" {{ old('myocardial_infarction') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('myocardial_infarction')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('coronary_artery_disease') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="coronary_artery_disease"
@@ -141,16 +162,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="coronary_artery_disease_yes" name="coronary_artery_disease" type="radio" class="" value="1" required="">
+                                                        <input id="coronary_artery_disease_yes" name="coronary_artery_disease" type="radio" class="" value="1" required="" {{ old('coronary_artery_disease') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="coronary_artery_disease_no" name="coronary_artery_disease" type="radio" class="" value="0" required="">
+                                                        <input id="coronary_artery_disease_no" name="coronary_artery_disease" type="radio" class="" value="0" required="" {{ old('coronary_artery_disease') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('coronary_artery_disease')
+                                                    <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('arrhythmia') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="arrhythmia"
@@ -161,16 +187,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="arrhythmia_yes" name="arrhythmia" type="radio" class="" value="1" required="">
+                                                        <input id="arrhythmia_yes" name="arrhythmia" type="radio" class="" value="1" required="" {{ old('arrhythmia') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="arrhythmia_no" name="arrhythmia" type="radio" class="" value="0" required="">
+                                                        <input id="arrhythmia_no" name="arrhythmia" type="radio" class="" value="0" required="" {{ old('arrhythmia') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('arrhythmia')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('heart_failure') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="heart_failure"
@@ -181,16 +212,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="heart_failure_yes" name="heart_failure" type="radio" class="" value="1" required="">
+                                                        <input id="heart_failure_yes" name="heart_failure" type="radio" class="" value="1" required="" {{ old('heart_failure') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="heart_failure_no" name="heart_failure" type="radio" class="" value="0" required="">
+                                                        <input id="heart_failure_no" name="heart_failure" type="radio" class="" value="0" required="" {{ old('heart_failure') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('heart_failure')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('diabetes') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="diabetes"
@@ -201,16 +237,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="diabetes_yes" name="diabetes" type="radio" class="" value="1" required="">
+                                                        <input id="diabetes_yes" name="diabetes" type="radio" class="" value="1" required="" {{ old('diabetes') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="diabetes_no" name="diabetes" type="radio" class="" value="0" required="">
+                                                        <input id="diabetes_no" name="diabetes" type="radio" class="" value="0" required="" {{ old('diabetes') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('diabetes')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group  @error('depression') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="depression"
@@ -221,16 +262,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="depression_yes" name="depression" type="radio" class="" value="1" required="">
+                                                        <input id="depression_yes" name="depression" type="radio" class="" value="1" required="" {{ old('depression') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="depression_no" name="depression" type="radio" class="" value="0" required="">
+                                                        <input id="depression_no" name="depression" type="radio" class="" value="0" required="" {{ old('depression') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('depression')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('dementia') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="dementia"
@@ -241,16 +287,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="dementia_yes" name="dementia" type="radio" class="" value="1" required="">
+                                                        <input id="dementia_yes" name="dementia" type="radio" class="" value="1" required="" {{ old('dementia') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="dementia_no" name="dementia" type="radio" class="" value="0" required="">
+                                                        <input id="dementia_no" name="dementia" type="radio" class="" value="0" required="" {{ old('dementia') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('dementia')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('stroke') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="stroke"
@@ -261,16 +312,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="stroke_yes" name="stroke" type="radio" class="" value="1" required="">
+                                                        <input id="stroke_yes" name="stroke" type="radio" class="" value="1" required="" {{ old('stroke') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="stroke_no" name="stroke" type="radio" class="" value="0" required="">
+                                                        <input id="stroke_no" name="stroke" type="radio" class="" value="0" required="" {{ old('stroke') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('stroke')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('lung_disease') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="lung_disease"
@@ -281,16 +337,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="lung_disease_yes" name="lung_disease" type="radio" class="" value="1" required="">
+                                                        <input id="lung_disease_yes" name="lung_disease" type="radio" class="" value="1" required="" {{ old('lung_disease') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="lung_disease_no" name="lung_disease" type="radio" class="" value="0" required="">
+                                                        <input id="lung_disease_no" name="lung_disease" type="radio" class="" value="0" required="" {{ old('lung_disease') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('lung_disease')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('hypothyroidism') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="hypothyroidism"
@@ -301,16 +362,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="hypothyroidism_yes" name="hypothyroidism" type="radio" class="" value="1" required="">
+                                                        <input id="hypothyroidism_yes" name="hypothyroidism" type="radio" class="" value="1" required="" {{ old('hypothyroidism') == '1' ? 'checked' : '' }}>
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="hypothyroidism_no" name="hypothyroidism" type="radio" class="" value="0" required="">
+                                                        <input id="hypothyroidism_no" name="hypothyroidism" type="radio" class="" value="0" required="" {{ old('hypothyroidism') == '0' ? 'checked' : '' }}>
                                                         <span>No</span>
                                                     </label>
+                                                    @error('hypothyroidism')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            <div class="row form-group @error('other_medical_history') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="other_medical_history"
@@ -318,6 +384,7 @@
                                                     >
                                                         Other Diseases:
                                                     </label>
+                                                    
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input
@@ -325,15 +392,21 @@
                                                         name="other_medical_history"
                                                         id="other_medical_history"
                                                         class="form-control"
-                                                        required
+                                                        required=""
+                                                        value="{{ old('other_medical_history') }}"
                                                     >
                                                 </div>
+                                                    @error('other_medical_history')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="row">
-                                                <div class="row form-group">
+                                                <div class="row form-group @error('anxiolytics') has-error @enderror">
                                                     <div class="col-md-12">
                                                         <label
                                                             for="anxiolytics"
@@ -346,13 +419,19 @@
                                                             name="anxiolytics"
                                                             id="anxiolytics"
                                                             class="form-control"
-                                                            required
+                                                            required=""
+                                                            value="{{ old('anxiolytics') }}"
                                                         >
                                                     </div>
+                                                    @error('anxiolytics')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="row form-group">
+                                                <div class="row form-group @error('antidepressants') has-error @enderror">
                                                     <div class="col-md-12">
                                                         <label
                                                             for="antidepressants"
@@ -365,13 +444,19 @@
                                                             name="antidepressants"
                                                             id="antidepressants"
                                                             class="form-control"
-                                                            required
+                                                            required=""
+                                                            value="{{ old('antidepressants') }}"
                                                         >
                                                     </div>
+                                                    @error('antidepressants')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="row form-group">
+                                                <div class="row form-group @error('induce_sleep_medication') has-error @enderror">
                                                     <div class="col-md-12">
                                                         <label
                                                             for="induce_sleep_medication"
@@ -384,13 +469,19 @@
                                                             name="induce_sleep_medication"
                                                             id="induce_sleep_medication"
                                                             class="form-control"
-                                                            required
+                                                            required=""
+                                                            value="{{ old('induce_sleep_medication') }}"
                                                         >
                                                     </div>
+                                                    @error('induce_sleep_medication')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="row form-group">
+                                                <div class="row form-group @error('other_medications') has-error @enderror">
                                                     <div class="col-md-12">
                                                         <label
                                                             for="other_medications"
@@ -403,9 +494,15 @@
                                                             name="other_medications"
                                                             id="other_medications"
                                                             class="form-control"
-                                                            required
+                                                            required=""
+                                                            value="{{ old('other_medications') }}"
                                                         >
                                                     </div>
+                                                    @error('other_medications')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
