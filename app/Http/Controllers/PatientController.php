@@ -95,23 +95,46 @@ class PatientController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Patient  $patient
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit(Patient $patient)
     {
-        //
+        if (auth()->user()->cannot('update_patient'))
+            return $this->permissionDenied('dashboard.index');
+
+        $clinics = Clinic::pluck('name', 'id');
+        $countries = DB::table('countries')->pluck('name', 'id');
+
+        $form = $this->setForm(route('dashboard.patients.update', ['patient' => $patient]), 'POST', 'dashboard.pages.patient._form', [
+            'form_id' => 'edit_form__patient',
+            'form_name' => 'edit_form__patient',
+        ], 'PATCH');
+
+        return $this->renderView('dashboard.pages.patient.form', [
+            'clinics' => $clinics,
+            'countries' => $countries,
+            'patient' => $patient,
+            'form' => $form,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  \App\Models\Patient  $patient
-     * @return \Illuminate\Http\Response
+     * @param PatientRequest $request
+     * @param \App\Models\Patient $patient
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Patient $patient)
+    public function update(PatientRequest $request, Patient $patient)
     {
-        //
+        if (auth()->user()->cannot('update_patient'))
+            return $this->permissionDenied('dashboard.index');
+
+        $patient = $patient->update($request->validated());
+
+        (! $patient) ? $this->message('errorMessage') : $this->message('successMessage');
+
+        return redirect()->route('dashboard.patients.index');
     }
 
     /**

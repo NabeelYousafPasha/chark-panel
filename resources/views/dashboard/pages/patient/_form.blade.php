@@ -10,7 +10,7 @@
         @foreach($clinics ?? [] as $clinicId => $clinic)
             <option
                 value="{{ $clinicId }}"
-                {{ ($module->clinic_id ?? '') == $clinicId ? 'selected' : '' }}
+                {{ ($patient->clinic_id ?? '') == $clinicId ? 'selected' : '' }}
                 {{ old('clinic_id') == $clinicId ? 'selected' : '' }}
             >
                 {{ $clinic }}
@@ -32,7 +32,7 @@
         id="email"
         name="email"
         placeholder="Email Address"
-        value="{{ $module->email ?? old('email') }}"
+        value="{{ $patient->email ?? old('email') }}"
         required
     >
     @error('email')
@@ -50,7 +50,7 @@
         id="alias"
         name="alias"
         placeholder="Patient"
-        value="{{ $module->alias ?? old('alias') }}"
+        value="{{ $patient->alias ?? old('alias') }}"
         required
     >
     @error('alias')
@@ -72,6 +72,7 @@
             class="@error('gender') has-error @enderror"
             value="{{ strtolower(config('constants.gender.male')) ?? old('gender') }}"
             {{ old('gender') == strtolower(config('constants.gender.male')) ? 'checked' : '' }}
+            {{ $patient->gender == strtolower(config('constants.gender.male')) ? 'checked' : '' }}
             required
         >
         <span>{{ config('constants.gender.male') }}</span>
@@ -85,6 +86,7 @@
             class="@error('gender') has-error @enderror"
             value="{{ strtolower(config('constants.gender.female')) ?? old('gender') }}"
             {{ old('gender') == strtolower(config('constants.gender.female')) ? 'checked' : '' }}
+            {{ $patient->gender == strtolower(config('constants.gender.female')) ? 'checked' : '' }}
             required
         >
         <span>{{ config('constants.gender.female') }}</span>
@@ -105,7 +107,7 @@
         id="dob"
         name="dob"
         placeholder=""
-        value="{{ $module->dob ?? old('dob') }}"
+        value="{{ $patient->dob ?? old('dob') }}"
         required
     >
     @error('dob')
@@ -127,7 +129,7 @@
         @foreach($countries ?? [] as $countryId => $country)
             <option
                 value="{{ $countryId }}"
-                {{ ($module->country_id ?? '') == $countryId ? 'selected' : '' }}
+                {{ ($patient->country_id ?? '') == $countryId ? 'selected' : '' }}
                 {{ old('country_id') == $countryId ? 'selected' : '' }}
             >
                 {{ $country }}
