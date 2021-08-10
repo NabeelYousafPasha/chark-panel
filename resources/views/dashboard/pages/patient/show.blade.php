@@ -19,6 +19,7 @@
             @includeIf('dashboard.globals.breadcrumb.breadcrumbs')
         </div>
     </div>
+
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
@@ -34,61 +35,71 @@
                     <div class="ibox-content">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>Patient Details</h3>
-                                <table class="table table-condensed">
-                                    <tbody>
-                                        <tr>
-                                            <td>Full Name</td>
-                                            <td class="text-right">{{ $patientInformation->alias }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Birthdate</td>
-                                            <td class="text-right">{{ $patientInformation->dob }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Age</td>
-                                            <td class="text-right">{{ $patientInformation->age_via_dob->format('%y years, %m months and %d days') }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gender</td>
-                                            <td class="text-right">{{ ucfirst($patientInformation->gender) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Clinic</td>
-                                            <td class="text-right">{{ $patientInformation->clinic->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Country</td>
-                                            <td class="text-right">{{ $patientInformation->country_name }}</td>
-                                        </tr>
-                                        @if ($patientDetail)
-                                        <tr>
-                                            <td>Profession</td>
-                                            <td class="text-right">{{ $patientDetail->profession }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Contact</td>
-                                            <td class="text-right">{{ $patientDetail->contact }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Address</td>
-                                            <td class="text-right">{{ $patientDetail->address }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Postal Code</td>
-                                            <td class="text-right">{{ $patientDetail->postal_code }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>City</td>
-                                            <td class="text-right">{{ $patientDetail->city }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Province</td>
-                                            <td class="text-right">{{ $patientDetail->province }}</td>
-                                        </tr>
-                                        @endif
-                                    </tbody>
-                                </table>
+
+                                <div class="table-responsive">
+                                    <table class="table table-condensed">
+                                        <tbody>
+                                            <tr>
+                                                <td>Full Name</td>
+                                                <td class="text-right">{{ $patient->alias }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Birthdate</td>
+                                                <td class="text-right">{{ $patient->dob }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Age</td>
+                                                <td class="text-right">{{ $patient->age_via_dob->format('%y years') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gender</td>
+                                                <td class="text-right">{{ ucfirst($patient->gender) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Clinic</td>
+                                                <td class="text-right">{{ $patient->clinic->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Country</td>
+                                                <td class="text-right">{{ $patient->country_name }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                @if($patientDetail ?? false)
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Profession</td>
+                                                    <td class="text-right">{{ $patientDetail->profession }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Contact</td>
+                                                    <td class="text-right">{{ $patientDetail->contact }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Address</td>
+                                                    <td class="text-right">{{ $patientDetail->address }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Postal Code</td>
+                                                    <td class="text-right">{{ $patientDetail->postal_code }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>City</td>
+                                                    <td class="text-right">{{ $patientDetail->city }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Province</td>
+                                                    <td class="text-right">{{ $patientDetail->province }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -21,8 +21,10 @@ class Clinic extends Model
         'updated_at',
     ];
 
-
-    public function patient() {
+    /**
+     * Relationships
+     */
+    public function patients() {
         return $this->hasMany(Patient::class);
     }
 }

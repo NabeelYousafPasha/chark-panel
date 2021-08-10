@@ -15,7 +15,7 @@
     @includeIf($form['include_view'] ?? null)
 
     @if($submit_button['display'] ?? true)
-        <div class="form-group">
+        <div class="form-group text-right m-r">
             <button
                 type="submit"
                 class="btn btn-primary"

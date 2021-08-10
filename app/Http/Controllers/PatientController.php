@@ -85,20 +85,27 @@ class PatientController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Patient  $patient
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show(Patient $patient)
-{
-        
-       $patientInformation = $patient->addSelect(['patients.*', 'countries.name as country_name', 
-       'clinics.name as clinic_name',])
-       ->clinicJoin($patient->clinic_id)->countryJoin($patient->country_id)
-       ->where('patients.id', '=', $patient->id)->first();
+    {
+       $patient = $patient->addSelect([
+           'patients.*',
+           'countries.name as country_name',
+           'clinics.name as clinic_name',
+           ])
+           ->clinicJoin($patient->clinic_id)
+           ->countryJoin($patient->country_id)
+           ->where('patients.id', '=', $patient->id)
+           ->first();
 
-       $patientDetail = PatientDetail::with('patient')->where('patient_id' ,'=', $patient->id)->get(); 
-        return $this->renderView('dashboard.pages.patient.show', [
-            'patientInformation' => $patientInformation,
-            'patientDetail' => $patientDetail
+       $patientDetail = PatientDetail::where('patient_id' ,'=', $patient->id)
+                        ->latest()
+                        ->first();
+
+       return $this->renderView('dashboard.pages.patient.show', [
+            'patient' => $patient,
+            'patientDetail' => $patientDetail,
         ]);
     }
 

@@ -44,6 +44,7 @@ class Patient extends Model
     {
         return $this->hasOne(PatientDetail::class);
     }
+
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
@@ -103,5 +104,5 @@ class Patient extends Model
         return $query;
     }
 
-    
+
 }

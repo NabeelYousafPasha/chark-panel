@@ -24,40 +24,45 @@ class PatientDetailController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function create(Patient $patient)
     {
         if (auth()->user()->cannot('view_patient'))
             return $this->permissionDenied('dashboard.index');
 
+        $patientDetail = PatientDetail::where('patient_id', '=', $patient->id)
+            ->latest()
+            ->first();
+
         $form = $this->setForm(route('dashboard.patient-details.store', ['patient' => $patient]), 'POST', 'dashboard.pages.patient_detail._form', [
             'form_id' => 'create_form__patient_detail',
             'form_name' => 'create_form__patient_detail',
         ]);
-        
+
         return $this->renderView('dashboard.pages.patient_detail.form', [
-            'patient' => $patient, 
+            'patient' => $patient,
             'form' => $form,
+            'patientDetail' => $patientDetail,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param PatientDetailRequest $patientDetailRequest
+     * @param $patient
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(PatientDetailRequest $request, $patient)
+    public function store(PatientDetailRequest $patientDetailRequest, Patient $patient)
     {
-        $patient_detail = PatientDetail::create($request->validated() + [
-             'patient_id' => $patient,
-            'created_by' => auth()->id(),
-        ]);
+        $patient_detail = PatientDetail::updateOrCreate([
+             'patient_id' => $patient->id,
+        ], $patientDetailRequest->validated());
 
         (! $patient_detail) ? $this->message('errorMessage') : $this->message('successMessage');
 
-        return redirect()->route('dashboard.patients.index');
+        return redirect()->route('dashboard.patients.show', ['patient' => $patient]);
     }
 
     /**
@@ -68,7 +73,7 @@ class PatientDetailController extends Controller
      */
     public function show(PatientDetail $patientDetail)
     {
-        
+
     }
 
     /**
@@ -108,18 +113,18 @@ class PatientDetailController extends Controller
     protected function renderView($view, array $withParams = [])
     {
         $params = [
-            'page' => 'Patients',
-            'resource' => 'Patient',
-            'translationFromKey' => 'lang.models.patient.fillable',
+            'page' => 'Patient Details',
+            'resource' => 'Patient Details',
+            'translationFromKey' => 'lang.models.patient_details.fillable',
             'crud' => [
-                'CREATE_PATIENT' => [
-                    'route' => route('/'),
+                'CREATE_PATIENT_DETAIL' => [
+                    'route' => 'javascript:void(0)',
                     'can' => ! auth()->user()->cannot('create_patient'),
                 ],
-                'EDIT_PATIENT' => [
+                'EDIT_PATIENT_DETAIL' => [
                     'can' => ! auth()->user()->cannot('update_patient'),
                 ],
-                'DELETE_PATIENT' => [
+                'DELETE_PATIENT_DETAIL' => [
                     'can' => ! auth()->user()->cannot('delete_patient'),
                 ],
             ],
@@ -127,6 +132,11 @@ class PatientDetailController extends Controller
                 [
                     'name' => 'Patients',
                     'route' => route('dashboard.patients.index'),
+                    'active' => false,
+                ],
+                [
+                    'name' => 'Patient Details',
+                    'route' => 'javascript:void(0)',
                     'active' => true,
                 ],
             ),
