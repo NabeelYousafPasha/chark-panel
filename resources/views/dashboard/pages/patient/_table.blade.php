@@ -32,6 +32,14 @@
                         </a>
 
                         <a
+                            title="Patient Details"
+                            class="btn btn-success btn-xs"
+                            href="{{ route('dashboard.patient-details.create', $patient) }}"
+                        >
+                            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+                        </a>
+
+                        <a
                             title="Assessment"
                             class="btn btn-info btn-xs"
                             href="{{ route('dashboard.assessment.index', ['patient' => $patient]) }}"
