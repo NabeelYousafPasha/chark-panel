@@ -8,6 +8,7 @@
             <th>Clinic</th>
             <th>Country</th>
             <th>Created By</th>
+            <th>Assessments</th>
             <th>{{ trans('lang.dataTable.thead.actions') }}</th>
         </tr>
     </thead>
@@ -24,13 +25,24 @@
                 <td>
                     <div class="btn-group btn-group-xs">
                         <a
+                            title="Assessment"
+                            class="btn btn-info btn-xs"
+                            href="{{ route('dashboard.assessment.index', ['patient' => $patient]) }}"
+                        >
+                            <i class="fa fa-commenting-o fa-fw" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-xs">
+                        <a
                             title="{{ $actions['view'] .' '. $resource }}"
                             class="btn btn-default btn-xs"
                             href="{{ route('dashboard.patients.show', $patient) }}"
                         >
                             <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
                         </a>
-
+                        
                         <a
                             title="Patient Details"
                             class="btn btn-success btn-xs"
@@ -39,29 +51,21 @@
                             <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
                         </a>
 
-                        <a
-                            title="Assessment"
-                            class="btn btn-info btn-xs"
-                            href="{{ route('dashboard.assessment.index', ['patient' => $patient]) }}"
-                        >
-                            <i class="fa fa-commenting-o fa-fw" aria-hidden="true"></i>
-                        </a>
-
-                        {{--@if($crud['EDIT_MODULE']['can'] ?? false)
+                        @if($crud['EDIT_PATIENT']['can'] ?? false)
                             <a
                                 title="{{ $actions['edit'] .' '. $resource }}"
                                 class="btn btn-primary btn-xs"
-                                href="{{ route('modules.edit', $patient) }}"
+                                href="{{ route('dashboard.patients.edit', ['patient' => $patient]) }}"
                             >
                                 <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                             </a>
-                        @endif--}}
+                        @endif
 
                         @if($crud['DELETE_PATIENT']['can'] ?? false)
                             <form
                                 class="patient__delete"
                                 method="POST"
-                                action="{{ route('dashboard.patients.destroy', $patient) }}"
+                                action="{{ route('dashboard.patients.destroy', ['patient' => $patient]) }}"
                                 style="display: inline-block;"
                             >
                                 @csrf
