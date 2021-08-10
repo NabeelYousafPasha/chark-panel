@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PatientDetail;
+use App\Models\{
+    PatientDetail,
+    Patient
+};
 use Illuminate\Http\Request;
 
 class PatientDetailController extends Controller
@@ -22,9 +25,20 @@ class PatientDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Patient $patient)
     {
+        if (auth()->user()->cannot('view_patient'))
+            return $this->permissionDenied('dashboard.index');
+
+        $form = $this->setForm(route('dashboard.patient-details.store', ['patient' => $patient]), 'POST', 'dashboard.pages.patient_detail._form', [
+            'form_id' => 'create_form__patient_detail',
+            'form_name' => 'create_form__patient_detail',
+        ]);
         
+        return $this->renderView('dashboard.pages.patient_detail.form', [
+            'patient' => $patient, 
+            'form' => $form,
+        ]);
     }
 
     /**

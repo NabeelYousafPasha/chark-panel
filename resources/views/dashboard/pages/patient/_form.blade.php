@@ -72,7 +72,7 @@
             class="@error('gender') has-error @enderror"
             value="{{ strtolower(config('constants.gender.male')) ?? old('gender') }}"
             {{ old('gender') == strtolower(config('constants.gender.male')) ? 'checked' : '' }}
-            {{ $patient->gender == strtolower(config('constants.gender.male')) ? 'checked' : '' }}
+            {{ (($patient->gender ?? '') == strtolower(config('constants.gender.male'))) ? 'checked' : '' }}
             required
         >
         <span>{{ config('constants.gender.male') }}</span>
@@ -86,7 +86,7 @@
             class="@error('gender') has-error @enderror"
             value="{{ strtolower(config('constants.gender.female')) ?? old('gender') }}"
             {{ old('gender') == strtolower(config('constants.gender.female')) ? 'checked' : '' }}
-            {{ $patient->gender == strtolower(config('constants.gender.female')) ? 'checked' : '' }}
+            {{ (($patient->gender ?? '') == strtolower(config('constants.gender.female'))) ? 'checked' : '' }}
             required
         >
         <span>{{ config('constants.gender.female') }}</span>
@@ -118,7 +118,7 @@
 </div>
 
 <div class="form-group @error('country_id') has-error @enderror">
-    <label class="control-label" for="country_id">Bill to *</label>
+    <label class="control-label" for="country_id">Country *</label>
     <select
         id="country_id"
         name="country_id"

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\PatientDetail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patient extends Model
@@ -33,6 +34,14 @@ class Patient extends Model
     {
         return Carbon::parse($this->dob)
             ->diff(now());
+    }
+
+    /**
+     * Relationships
+     */
+    public function patient_details()
+    {
+        return $this->hasMany(PatientDetail::class,'foreign_key', 'local_key');
     }
 
     /**
@@ -88,4 +97,6 @@ class Patient extends Model
 
         return $query;
     }
+
+    
 }
