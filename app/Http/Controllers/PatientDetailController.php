@@ -68,7 +68,7 @@ class PatientDetailController extends Controller
      */
     public function show(PatientDetail $patientDetail)
     {
-        //
+        
     }
 
     /**

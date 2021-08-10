@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Patient\PatientRequest;
 use App\Models\Clinic;
 use App\Models\Patient;
+use App\Models\PatientDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -87,8 +88,18 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Patient $patient)
-    {
-        //
+{
+        
+       $patientInformation = $patient->addSelect(['patients.*', 'countries.name as country_name', 
+       'clinics.name as clinic_name',])
+       ->clinicJoin($patient->clinic_id)->countryJoin($patient->country_id)
+       ->where('patients.id', '=', $patient->id)->first();
+
+       $patientDetail = PatientDetail::with('patient')->where('patient_id' ,'=', $patient->id)->get(); 
+        return $this->renderView('dashboard.pages.patient.show', [
+            'patientInformation' => $patientInformation,
+            'patientDetail' => $patientDetail
+        ]);
     }
 
     /**
