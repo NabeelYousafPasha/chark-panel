@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Patient;
 
 class PatientDetail extends Model
 {
@@ -21,4 +22,7 @@ class PatientDetail extends Model
         'created_at',
         'updated_at',
     ];
+    public function patient() {
+        return $this->belongsTo(Patient::class);
+    }
 }
