@@ -7,6 +7,7 @@ use App\Models\{
     Patient
 };
 use Illuminate\Http\Request;
+use App\Http\Requests\PatientDetail\PatientDetailRequest;
 
 class PatientDetailController extends Controller
 {
@@ -47,9 +48,16 @@ class PatientDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientDetailRequest $request, $patient)
     {
-        //
+        $patient_detail = PatientDetail::create($request->validated() + [
+             'patient_id' => $patient,
+            'created_by' => auth()->id(),
+        ]);
+
+        (! $patient_detail) ? $this->message('errorMessage') : $this->message('successMessage');
+
+        return redirect()->route('dashboard.patients.index');
     }
 
     /**
