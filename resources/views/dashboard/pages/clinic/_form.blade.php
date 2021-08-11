@@ -6,7 +6,7 @@
         name="name"
         class="form-control"
         placeholder="Name of Clinic"
-        value="{{ $module->name ?? old('name') }}"
+        value="{{ $clinic->name ?? old('name') }}"
         required
     >
 
@@ -26,7 +26,7 @@
         placeholder="Details"
         rows="5"
         required
-    >{{ $module->details ?? old('details') }}</textarea>
+    >{{ $clinic->details ?? old('details') }}</textarea>
 
     @error('details')
         <span class="help-block has-error">

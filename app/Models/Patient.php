@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PatientDetail;
+use App\Models\Clinic;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patient extends Model
@@ -39,9 +40,14 @@ class Patient extends Model
     /**
      * Relationships
      */
-    public function patient_details()
+    public function patient_detail()
     {
-        return $this->hasMany(PatientDetail::class,'foreign_key', 'local_key');
+        return $this->hasOne(PatientDetail::class);
+    }
+
+    public function clinic()
+    {
+        return $this->belongsTo(Clinic::class);
     }
 
     /**
@@ -98,5 +104,5 @@ class Patient extends Model
         return $query;
     }
 
-    
+
 }
