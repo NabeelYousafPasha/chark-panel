@@ -75,6 +75,9 @@ Route::group([
             Route::get('/patients/{patient}/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
             Route::get('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'create'])->name('assessment.create.step');
             Route::post('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'store'])->name('assessment.store.step');
+            
+            Route::get('/patients/assessment/{assessment}/edit/{step}', [AssessmentController::class, 'edit'])->name('assessment.edit.step');
+            Route::post('/patients/{patient}/assessment', [AssessmentController::class, 'update'])->name('assessment.update.step');
 
             // Patient Details
             Route::get('patient-details/{patient}/create', [PatientDetailController::class, 'create'])->name('patient-details.create');

@@ -161,9 +161,26 @@ class AssessmentController extends Controller
      * @param  \App\Models\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Assessment $assessment)
-    {
-        //
+    public function edit(Assessment $assessment, $step = 'step1')
+    { 
+        $clinicalExploration = ClinicalExploration::where('assessment_id', $assessment->id)->first();
+        $diagnosticTest = DiagnosticTest::where('assessment_id', $assessment->id)->first();
+        $medicalHistory = MedicalHistory::where('assessment_id', $assessment->id)->first();
+        $sleepinessScale = SleepinessScale::where('assessment_id', $assessment->id)->first();
+        $symptom = Symptom::where('assessment_id', $assessment->id)->first();
+
+        return $this->renderView('dashboard.pages.assessment.form.'.$step, [
+            'assessment' => $assessment,
+            'step' => $step,
+            'clinicalExploration' => $clinicalExploration,
+            'diagnosticTest' => $diagnosticTest,
+            'medicalHistory' => $medicalHistory,
+            'sleepinessScale' => $sleepinessScale,
+            'symptom' => $symptom,
+            'patient' => Patient::where('id', '=', $assessment->patient_id)->firstOrFail(),
+        ]);
+
+
     }
 
     /**
@@ -209,6 +226,7 @@ class AssessmentController extends Controller
                     'can' => ! auth()->user()->cannot('create_assessment'),
                 ],
                 'EDIT_ASSESSMENT' => [
+                    // 'route' => route('dashboard.assessment.edit.step', ['patient' => $patient, 'step' => 'step1']),
                     'can' => ! auth()->user()->cannot('update_assessment'),
                 ],
                 'DELETE_ASSESSMENT' => [
