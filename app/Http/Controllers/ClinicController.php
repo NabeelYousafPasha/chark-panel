@@ -84,14 +84,14 @@ class ClinicController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Clinic  $clinic
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit(Clinic $clinic)
     {
         if (auth()->user()->cannot('update_clinic'))
             return $this->permissionDenied('dashboard.index');
 
-        $form = $this->setForm(route('dashboard.clinics.store', $clinic), 'POST', 'dashboard.pages.clinic._form', [
+        $form = $this->setForm(route('dashboard.clinics.update', $clinic), 'POST', 'dashboard.pages.clinic._form', [
             'form_id'     => 'edit_form__clinic',
             'form_name'   => 'edit_form__clinic',
             'crud_action' => trans('lang.actions.edit'),

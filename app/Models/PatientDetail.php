@@ -22,6 +22,10 @@ class PatientDetail extends Model
         'created_at',
         'updated_at',
     ];
+
+    /*
+     * Relationships
+     */
     public function patient() {
         return $this->belongsTo(Patient::class);
     }

@@ -5,6 +5,8 @@
         id="profession"
         name="profession"
         class="form-control"
+        placeholder="Profession"
+        value="{{ $patientDetail->profession ?? old('profession') }}"
         required
     >
     @error('profession')
@@ -21,6 +23,8 @@
         id="personal_id"
         name="personal_id"
         class="form-control"
+        placeholder="Personal ID"
+        value="{{ $patientDetail->personal_id ?? old('personal_id') }}"
         required
     >
     @error('personal_id')
@@ -37,6 +41,8 @@
         id="contact"
         name="contact"
         class="form-control"
+        placeholder="Telephone Number"
+        value="{{ $patientDetail->contact ?? old('contact') }}"
         required
     >
     @error('contact')
@@ -48,12 +54,13 @@
 
 <div class="form-group @error('address') has-error @enderror">
     <label class="control-label" for="address">Address *</label>
-    <textarea 
-        name="address" 
-        id="address" 
+    <textarea
+        name="address"
+        id="address"
         rows="4"
         class="form-control"
-    ></textarea>
+        placeholder="Address"
+    >{{ $patientDetail->address ?? old('address') }}</textarea>
     @error('address')
         <span class="help-block has-error">
             <strong>{{ $message }}</strong>
@@ -68,6 +75,8 @@
         id="postal_code"
         name="postal_code"
         class="form-control"
+        placeholder="Postal Code"
+        value="{{ $patientDetail->postal_code ?? old('postal_code') }}"
         required
     >
     @error('postal_code')
@@ -76,6 +85,7 @@
         </span>
     @enderror
 </div>
+
 <div class="form-group @error('city') has-error @enderror">
     <label class="control-label" for="city">City *</label>
     <input
@@ -83,6 +93,8 @@
         id="city"
         name="city"
         class="form-control"
+        placeholder="City"
+        value="{{ $patientDetail->city ?? old('city') }}"
         required
     >
     @error('city')
@@ -91,6 +103,7 @@
         </span>
     @enderror
 </div>
+
 <div class="form-group @error('province') has-error @enderror">
     <label class="control-label" for="province">Province *</label>
     <input
@@ -98,6 +111,8 @@
         id="province"
         name="province"
         class="form-control"
+        placeholder="Province"
+        value="{{ $patientDetail->province ?? old('province') }}"
         required
     >
     @error('province')
