@@ -19,9 +19,18 @@
                 <td></td>
                 <td></td>
                 <td>{{ $patientAssessment->created_by }}</td>
-                <td>
-                    <div class="btn-group btn-group-xs">
-                    </div>
+                <td> 
+                    
+                    <a
+                        title="{{ $actions['edit'] .' '. $resource }}"
+                        class="btn btn-primary btn-xs"
+                        href="{{ route('dashboard.assessment.edit.step', [
+                            'assessment' => $patientAssessment,
+                            'step' => 'step1']) }}"
+                    >
+                        <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
+                    </a>
+                    
                 </td>
             </tr>
         @endforeach
