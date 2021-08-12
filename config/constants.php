@@ -47,6 +47,8 @@ return [
         'mandibular_advancement' => 'Mandibular Advancement',
     ],
 
+    'upper_airway_surgery_separator' => ', ',
+
     'clinical_explorations' => [
         'normognathic' => [
             'image' => 'frontend-assets/images/logo.png',

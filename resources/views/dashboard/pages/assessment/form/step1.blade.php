@@ -59,6 +59,7 @@
                                                             value="1"
                                                             required=""
                                                             {{ old('snore') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->snore ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
                                                     </label>
@@ -71,6 +72,7 @@
                                                             value="0"
                                                             required=""
                                                             {{ old('snore') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->snore ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
                                                     </label>
@@ -92,18 +94,28 @@
                                                 <div class="col-md-6">
                                                     <label class="m-r">
                                                         <input
-                                                        id="apnea_yes"
-                                                        name="apnea"
-                                                        type="radio"
-                                                        class=""
-                                                        value="1"
-                                                        required=""
-                                                        {{ old('apnea') == '1' ? 'checked' : '' }}
+                                                            id="apnea_yes"
+                                                            name="apnea"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('apnea') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->apnea ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="apnea_no" name="apnea" type="radio" class="" value="0" required="" {{ old('apnea') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="apnea_no"
+                                                            name="apnea"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('apnea') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->apnea ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -123,11 +135,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="breathing_shortness_yes" name="breathing_shortness" type="radio" class="" value="1" required="" {{ old('breathing_shortness') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="breathing_shortness_yes"
+                                                            name="breathing_shortness"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('breathing_shortness') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->breathing_shortness ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="breathing_shortness_no" name="breathing_shortness" type="radio" class="" value="0" required="" {{ old('breathing_shortness') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="breathing_shortness_no"
+                                                            name="breathing_shortness"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('breathing_shortness') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->breathing_shortness ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -153,7 +183,7 @@
                                                         class="form-control"
                                                         min="0"
                                                         max="24"
-                                                        value="{{ old('average_sleep') }}"
+                                                        value="{{ $symptom->average_sleep ?? old('average_sleep') }}"
                                                         required=""
                                                     >
 
@@ -173,11 +203,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="fragmented_sleep_yes" name="fragmented_sleep" type="radio" class="" value="1" required="" {{ old('fragmented_sleep') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="fragmented_sleep_yes"
+                                                            name="fragmented_sleep"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('fragmented_sleep') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->fragmented_sleep ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="fragmented_sleep_no" name="fragmented_sleep" type="radio" class="" value="0" required="" {{ old('fragmented_sleep') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="fragmented_sleep_no"
+                                                            name="fragmented_sleep"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('fragmented_sleep') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->breathing_shortness ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -198,11 +246,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="nocturia_yes" name="nocturia" type="radio" class="" value="1" required="" {{ old('nocturia') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="nocturia_yes"
+                                                            name="nocturia"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('nocturia') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->nocturia ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="nocturia_no" name="nocturia" type="radio" class="" value="0" required="" {{ old('nocturia') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="nocturia_no"
+                                                            name="nocturia"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('nocturia') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->nocturia ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -222,11 +288,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="tired_during_day_yes" name="tired_during_day" type="radio" class="" value="1" required="" {{ old('tired_during_day') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="tired_during_day_yes"
+                                                            name="tired_during_day"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('tired_during_day') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->tired_during_day ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="tired_during_day_no" name="tired_during_day" type="radio" class="" value="0" required="" {{ old('tired_during_day') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="tired_during_day_no"
+                                                            name="tired_during_day"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('tired_during_day') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->tired_during_day ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -246,11 +330,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="morning_headache_yes" name="morning_headache" type="radio" class="" value="1" required="" {{ old('morning_headache') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="morning_headache_yes"
+                                                            name="morning_headache"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('morning_headache') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->morning_headache ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="morning_headache_no" name="morning_headache" type="radio" class="" value="0" required="" {{ old('morning_headache') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="morning_headache_no"
+                                                            name="morning_headache"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('morning_headache') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->morning_headache ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -270,11 +372,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="nap_yes" name="nap" type="radio" class="" value="1" required="" {{ old('nap') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="nap_yes"
+                                                            name="nap"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('nap') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->nap ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="nap_no" name="nap" type="radio" class="" value="0" required="" {{ old('nap') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="nap_no"
+                                                            name="nap"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('nap') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->nap ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -294,11 +414,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="sleepiness_during_day_yes" name="sleepiness_during_day" type="radio" class="" value="1" required="" {{ old('sleepiness_during_day') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="sleepiness_during_day_yes"
+                                                            name="sleepiness_during_day"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('sleepiness_during_day') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->sleepiness_during_day ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="sleepiness_during_day_no" name="sleepiness_during_day" type="radio" class="" value="0" required="" {{ old('sleepiness_during_day') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="sleepiness_during_day_no"
+                                                            name="sleepiness_during_day"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('sleepiness_during_day') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->sleepiness_during_day ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -318,11 +456,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="loss_of_concentration_yes" name="loss_of_concentration" type="radio" class="" value="1" required="" {{ old('loss_of_concentration') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="loss_of_concentration_yes"
+                                                            name="loss_of_concentration"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('loss_of_concentration') == '1' ? 'checked' : '' }}
+                                                            {{ ($symptom->loss_of_concentration ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="loss_of_concentration_no" name="loss_of_concentration" type="radio" class="" value="0" required="" {{ old('loss_of_concentration') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="loss_of_concentration_no"
+                                                            name="loss_of_concentration"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('loss_of_concentration') == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->loss_of_concentration ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
 
@@ -439,6 +595,7 @@
                                         </td>
                                         @foreach(config('constants.sleepiness_scale_options') as $option)
                                             <th class="text-center">
+                                                <label for="while_sitting_and_reading_{{ $option }}">
                                                 <input
                                                     id="while_sitting_and_reading_{{ $option }}"
                                                     name="while_sitting_and_reading"
@@ -447,7 +604,10 @@
                                                     value="{{ $option }}"
                                                     required
                                                     form="step1"
+                                                    {{ old('while_sitting_and_reading') == $option ? 'checked' : '' }}
+                                                    {{ ($sleepinessScale->while_sitting_and_reading ?? null) == $option ? 'checked' : '' }}
                                                 >
+                                                </label>
                                             </th>
                                         @endforeach
                                     </tr>
@@ -475,6 +635,8 @@
                                                     value="{{ $option }}"
                                                     required
                                                     form="step1"
+                                                    {{ old('while_watching_television') == $option ? 'checked' : '' }}
+                                                    {{ ($sleepinessScale->while_watching_television ?? null) == $option ? 'checked' : '' }}
                                                 >
                                             </th>
                                         @endforeach
@@ -503,6 +665,8 @@
                                                     value="{{ $option }}"
                                                     required
                                                     form="step1"
+                                                    {{ old('while_inactive_in_public_place') == $option ? 'checked' : '' }}
+                                                    {{ ($sleepinessScale->while_inactive_in_public_place ?? null) == $option ? 'checked' : '' }}
                                                 >
                                             </th>
                                         @endforeach
@@ -531,6 +695,8 @@
                                                     value="{{ $option }}"
                                                     required
                                                     form="step1"
+                                                    {{ old('while_travelling') == $option ? 'checked' : '' }}
+                                                    {{ ($sleepinessScale->while_travelling ?? null) == $option ? 'checked' : '' }}
                                                 >
                                             </th>
                                         @endforeach
@@ -559,6 +725,8 @@
                                                     value="{{ $option }}"
                                                     required
                                                     form="step1"
+                                                    {{ old('while_laying_down_in_afternoon') == $option ? 'checked' : '' }}
+                                                    {{ ($sleepinessScale->while_laying_down_in_afternoon ?? null) == $option ? 'checked' : '' }}
                                                 >
                                             </th>
                                         @endforeach
@@ -587,6 +755,8 @@
                                                     value="{{ $option }}"
                                                     required
                                                     form="step1"
+                                                    {{ old('while_talking') == $option ? 'checked' : '' }}
+                                                    {{ ($sleepinessScale->while_talking ?? null) == $option ? 'checked' : '' }}
                                                 >
                                             </th>
                                         @endforeach
@@ -615,6 +785,8 @@
                                                     value="{{ $option }}"
                                                     required
                                                     form="step1"
+                                                    {{ old('while_sitting_after_lunch') == $option ? 'checked' : '' }}
+                                                    {{ ($sleepinessScale->while_sitting_after_lunch ?? null) == $option ? 'checked' : '' }}
                                                 >
                                             </th>
                                         @endforeach
@@ -643,6 +815,8 @@
                                                     value="{{ $option }}"
                                                     required
                                                     form="step1"
+                                                    {{ old('while_driving') == $option ? 'checked' : '' }}
+                                                    {{ ($sleepinessScale->while_driving ?? null) == $option ? 'checked' : '' }}
                                                 >
                                             </th>
                                         @endforeach
@@ -714,6 +888,8 @@
                                                     value="{{ $nightSnoreKey }}"
                                                     required
                                                     form="step1"
+                                                    {{ (old('night_snoring_experience') ?? null) == $nightSnoreKey ? 'checked' : '' }}
+                                                    {{ ($symptom->night_snoring_experience ?? null) == $nightSnoreKey ? 'checked' : '' }}
                                                 >
                                                     {{ $nightSnore }}
                                                 </label>
