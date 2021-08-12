@@ -53,11 +53,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="smoker_yes" name="smoker" type="radio" class="" value="1" required="" {{ old('smoker') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="smoker_yes"
+                                                            name="smoker"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('smoker') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->smoker ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="smoker_no" name="smoker" type="radio" class="" value="0" required="" {{ old('smoker') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="smoker_no"
+                                                            name="smoker"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('smoker') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->smoker ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('smoker')
@@ -66,7 +84,7 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="row form-group @error('alcohol_with_dinner') has-error @enderror"">
@@ -80,11 +98,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="alcohol_with_dinner_yes" name="alcohol_with_dinner" type="radio" class="" value="1" required="" {{ old('alcohol_with_dinner') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="alcohol_with_dinner_yes"
+                                                            name="alcohol_with_dinner"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('alcohol_with_dinner') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->alcohol_with_dinner ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="alcohol_with_dinner_no" name="alcohol_with_dinner" type="radio" class="" value="0" required="" {{ old('alcohol_with_dinner') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="alcohol_with_dinner_no"
+                                                            name="alcohol_with_dinner"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('alcohol_with_dinner') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->alcohol_with_dinner ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('alcohol_with_dinner')
@@ -110,11 +146,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="high_blood_pressure_yes" name="high_blood_pressure" type="radio" class="" value="1" required="" {{ old('high_blood_pressure') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="high_blood_pressure_yes"
+                                                            name="high_blood_pressure"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('high_blood_pressure') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->high_blood_pressure ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="high_blood_pressure_no" name="high_blood_pressure" type="radio" class="" value="0" required="" {{ old('high_blood_pressure') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="high_blood_pressure_no"
+                                                            name="high_blood_pressure"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('high_blood_pressure') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->high_blood_pressure ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('high_blood_pressure')
@@ -136,11 +190,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="myocardial_infarction_yes" name="myocardial_infarction" type="radio" class="" value="1" required="" {{ old('myocardial_infarction') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="myocardial_infarction_yes"
+                                                            name="myocardial_infarction"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('myocardial_infarction') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->myocardial_infarction ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="myocardial_infarction_no" name="myocardial_infarction" type="radio" class="" value="0" required="" {{ old('myocardial_infarction') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="myocardial_infarction_no"
+                                                            name="myocardial_infarction"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('myocardial_infarction') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->myocardial_infarction ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('myocardial_infarction')
@@ -162,11 +234,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="coronary_artery_disease_yes" name="coronary_artery_disease" type="radio" class="" value="1" required="" {{ old('coronary_artery_disease') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="coronary_artery_disease_yes"
+                                                            name="coronary_artery_disease"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('coronary_artery_disease') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->coronary_artery_disease ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="coronary_artery_disease_no" name="coronary_artery_disease" type="radio" class="" value="0" required="" {{ old('coronary_artery_disease') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="coronary_artery_disease_no"
+                                                            name="coronary_artery_disease"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('coronary_artery_disease') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->coronary_artery_disease ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('coronary_artery_disease')
@@ -187,11 +277,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="arrhythmia_yes" name="arrhythmia" type="radio" class="" value="1" required="" {{ old('arrhythmia') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="arrhythmia_yes"
+                                                            name="arrhythmia"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('arrhythmia') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->arrhythmia ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="arrhythmia_no" name="arrhythmia" type="radio" class="" value="0" required="" {{ old('arrhythmia') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="arrhythmia_no"
+                                                            name="arrhythmia"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('arrhythmia') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->arrhythmia ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('arrhythmia')
@@ -212,11 +320,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="heart_failure_yes" name="heart_failure" type="radio" class="" value="1" required="" {{ old('heart_failure') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="heart_failure_yes"
+                                                            name="heart_failure"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('heart_failure') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->heart_failure ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="heart_failure_no" name="heart_failure" type="radio" class="" value="0" required="" {{ old('heart_failure') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="heart_failure_no"
+                                                            name="heart_failure"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('heart_failure') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->heart_failure ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('heart_failure')
@@ -237,11 +363,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="diabetes_yes" name="diabetes" type="radio" class="" value="1" required="" {{ old('diabetes') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="diabetes_yes"
+                                                            name="diabetes"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('diabetes') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->diabetes ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="diabetes_no" name="diabetes" type="radio" class="" value="0" required="" {{ old('diabetes') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="diabetes_no"
+                                                            name="diabetes"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('diabetes') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->diabetes ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('diabetes')
@@ -262,11 +406,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="depression_yes" name="depression" type="radio" class="" value="1" required="" {{ old('depression') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="depression_yes"
+                                                            name="depression"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('depression') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->depression ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="depression_no" name="depression" type="radio" class="" value="0" required="" {{ old('depression') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="depression_no"
+                                                            name="depression"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('depression') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->depression ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('depression')
@@ -287,11 +449,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="dementia_yes" name="dementia" type="radio" class="" value="1" required="" {{ old('dementia') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="dementia_yes"
+                                                            name="dementia"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('dementia') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->dementia ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="dementia_no" name="dementia" type="radio" class="" value="0" required="" {{ old('dementia') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="dementia_no"
+                                                            name="dementia"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('dementia') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->dementia ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('dementia')
@@ -312,11 +492,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="stroke_yes" name="stroke" type="radio" class="" value="1" required="" {{ old('stroke') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="stroke_yes"
+                                                            name="stroke"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('stroke') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->stroke ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="stroke_no" name="stroke" type="radio" class="" value="0" required="" {{ old('stroke') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="stroke_no"
+                                                            name="stroke"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('stroke') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->stroke ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('stroke')
@@ -337,11 +535,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="lung_disease_yes" name="lung_disease" type="radio" class="" value="1" required="" {{ old('lung_disease') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="lung_disease_yes"
+                                                            name="lung_disease"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('lung_disease') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->lung_disease ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="lung_disease_no" name="lung_disease" type="radio" class="" value="0" required="" {{ old('lung_disease') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="lung_disease_no"
+                                                            name="lung_disease"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('lung_disease') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->lung_disease ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('lung_disease')
@@ -362,11 +578,29 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="hypothyroidism_yes" name="hypothyroidism" type="radio" class="" value="1" required="" {{ old('hypothyroidism') == '1' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="hypothyroidism_yes"
+                                                            name="hypothyroidism"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('hypothyroidism') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->hypothyroidism ?? null) == '1' ? 'checked' : '' }}
+                                                        >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="hypothyroidism_no" name="hypothyroidism" type="radio" class="" value="0" required="" {{ old('hypothyroidism') == '0' ? 'checked' : '' }}>
+                                                        <input
+                                                            id="hypothyroidism_no"
+                                                            name="hypothyroidism"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('hypothyroidism') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->hypothyroidism ?? null) == '0' ? 'checked' : '' }}
+                                                        >
                                                         <span>No</span>
                                                     </label>
                                                     @error('hypothyroidism')
@@ -384,7 +618,7 @@
                                                     >
                                                         Other Diseases:
                                                     </label>
-                                                    
+
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input
@@ -393,7 +627,7 @@
                                                         id="other_medical_history"
                                                         class="form-control"
                                                         required=""
-                                                        value="{{ old('other_medical_history') }}"
+                                                        value="{{ $medicalHistory->other_medical_history ?? old('other_medical_history') }}"
                                                     >
                                                 </div>
                                                     @error('other_medical_history')
@@ -420,7 +654,7 @@
                                                             id="anxiolytics"
                                                             class="form-control"
                                                             required=""
-                                                            value="{{ old('anxiolytics') }}"
+                                                            value="{{ $medicalHistory->anxiolytics ?? old('anxiolytics') }}"
                                                         >
                                                     </div>
                                                     @error('anxiolytics')
@@ -445,7 +679,7 @@
                                                             id="antidepressants"
                                                             class="form-control"
                                                             required=""
-                                                            value="{{ old('antidepressants') }}"
+                                                            value="{{ $medicalHistory->antidepressants ?? old('antidepressants') }}"
                                                         >
                                                     </div>
                                                     @error('antidepressants')
@@ -470,7 +704,7 @@
                                                             id="induce_sleep_medication"
                                                             class="form-control"
                                                             required=""
-                                                            value="{{ old('induce_sleep_medication') }}"
+                                                            value="{{ $medicalHistory->induce_sleep_medication ?? old('induce_sleep_medication') }}"
                                                         >
                                                     </div>
                                                     @error('induce_sleep_medication')
@@ -495,7 +729,7 @@
                                                             id="other_medications"
                                                             class="form-control"
                                                             required=""
-                                                            value="{{ old('other_medications') }}"
+                                                            value="{{ $medicalHistory->other_medications ?? old('other_medications') }}"
                                                         >
                                                     </div>
                                                     @error('other_medications')

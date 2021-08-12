@@ -52,8 +52,8 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="file"
-                                                        name="polygraph"
                                                         id="polygraph"
+                                                        name="polygraph"
                                                         class="form-control"
                                                         value="{{ old('polygraph') }}"
                                                     >
@@ -77,8 +77,8 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="file"
-                                                        name="polychemography"
                                                         id="polychemography"
+                                                        name="polychemography"
                                                         class="form-control"
                                                         value="{{ old('polychemography') }}"
                                                     >
@@ -102,11 +102,11 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
-                                                        name="iah"
                                                         id="iah"
+                                                        name="iah"
                                                         class="form-control"
                                                         required=""
-                                                        value="{{ old('iah') }}"
+                                                        value="{{ $diagnosticTest->iah ?? old('iah') }}"
                                                     >
                                                     @error('iah')
                                                         <span class="help-block has-error">
@@ -128,11 +128,11 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
-                                                        name="ia"
                                                         id="ia"
+                                                        name="ia"
                                                         class="form-control"
-                                                        value="{{ old('ia') }}"
-                                                        required
+                                                        required=""
+                                                        value="{{ $diagnosticTest->iah ?? old('ia') }}"
                                                     >
                                                     @error('ia')
                                                         <span class="help-block has-error">
@@ -154,11 +154,11 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
-                                                        name="ih"
                                                         id="ih"
+                                                        name="ih"
                                                         class="form-control"
-                                                        value="{{ old('ih') }}"
-                                                        required
+                                                        required=""
+                                                        value="{{ $diagnosticTest->iah ?? old('ih') }}"
                                                     >
                                                     @error('ih')
                                                         <span class="help-block has-error">
@@ -180,11 +180,11 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
-                                                        value="{{ old('sat_2_min') }}"
-                                                        name="sat_2_min"
                                                         id="sat_2_min"
+                                                        name="sat_2_min"
                                                         class="form-control"
-                                                        required
+                                                        required=""
+                                                        value="{{ $diagnosticTest->sat_2_min ?? old('sat_2_min') }}"
                                                     >
                                                     @error('sat_2_min')
                                                         <span class="help-block has-error">
@@ -208,10 +208,9 @@
                                                         type="text"
                                                         name="ct90"
                                                         id="ct90"
-                                                        value="{{ old('ct90') }}"
                                                         class="form-control"
                                                         required=""
-                                                        
+                                                        value="{{ $diagnosticTest->ct90 ?? old('ct90') }}"
                                                     >
                                                     @error('ct90')
                                                         <span class="help-block has-error">
@@ -233,12 +232,12 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="number"
-                                                        name="avg_duration_of_apnea"
-                                                        value="{{ old('avg_duration_of_apnea') }}"
                                                         id="avg_duration_of_apnea"
+                                                        name="avg_duration_of_apnea"
                                                         class="form-control"
                                                         min="0"
-                                                        required
+                                                        required=""
+                                                        value="{{ $diagnosticTest->avg_duration_of_apnea ?? old('avg_duration_of_apnea') }}"
                                                     >
                                                     @error('avg_duration_of_apnea')
                                                         <span class="help-block has-error">
@@ -260,12 +259,12 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="number"
-                                                        name="max_duration_of_apnea"
                                                         id="max_duration_of_apnea"
-                                                        value="{{ old('max_duration_of_apnea') }}"
+                                                        name="max_duration_of_apnea"
                                                         class="form-control"
                                                         min="0"
-                                                        required
+                                                        required=""
+                                                        value="{{ $diagnosticTest->max_duration_of_apnea ?? old('max_duration_of_apnea') }}"
                                                     >
                                                     @error('max_duration_of_apnea')
                                                         <span class="help-block has-error">
@@ -284,12 +283,12 @@
                                                         Assessment Observation
                                                     </label>
                                                     <textarea
-                                                        name="assessments_observation"
                                                         id="assessments_observation"
-                                                        rows="10"
-                                                        value="{{ old('assessments_observation') }}"
+                                                        name="assessments_observation"
                                                         class="form-control"
-                                                    ></textarea>
+                                                        rows="10"
+                                                        required=""
+                                                    >{{ $diagnosticTest->assessments_observation ?? old('assessments_observation') }}</textarea>
                                                     @error('assessments_observation')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
