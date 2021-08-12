@@ -159,24 +159,26 @@ class AssessmentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Assessment  $assessment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit(Assessment $assessment, $step = 'step1')
-    { 
-        $clinicalExploration = ClinicalExploration::where('assessment_id', $assessment->id)->first();
-        $diagnosticTest = DiagnosticTest::where('assessment_id', $assessment->id)->first();
-        $medicalHistory = MedicalHistory::where('assessment_id', $assessment->id)->first();
-        $sleepinessScale = SleepinessScale::where('assessment_id', $assessment->id)->first();
-        $symptom = Symptom::where('assessment_id', $assessment->id)->first();
+    {
+        $symptom = Symptom::where('assessment_id', '=', $assessment->id)->first();
+        $sleepinessScale = SleepinessScale::where('assessment_id', '=', $assessment->id)->first();
+        $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)->first();
+        $diagnosticTest = DiagnosticTest::where('assessment_id', '=', $assessment->id)->first();
+        $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)->first();
 
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'assessment' => $assessment,
             'step' => $step,
-            'clinicalExploration' => $clinicalExploration,
-            'diagnosticTest' => $diagnosticTest,
-            'medicalHistory' => $medicalHistory,
-            'sleepinessScale' => $sleepinessScale,
+
             'symptom' => $symptom,
+            'sleepinessScale' => $sleepinessScale,
+            'medicalHistory' => $medicalHistory,
+            'diagnosticTest' => $diagnosticTest,
+            'clinicalExploration' => $clinicalExploration,
+
             'patient' => Patient::where('id', '=', $assessment->patient_id)->firstOrFail(),
         ]);
 
