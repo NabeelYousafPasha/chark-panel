@@ -106,7 +106,7 @@
                                                         id="iah"
                                                         class="form-control"
                                                         required=""
-                                                        value="{{ old('iah') }}"
+                                                        value="{{ $diagnosticTest->iah ?? old('iah') }}"
                                                     >
                                                     @error('iah')
                                                         <span class="help-block has-error">
@@ -131,7 +131,7 @@
                                                         name="ia"
                                                         id="ia"
                                                         class="form-control"
-                                                        value="{{ old('ia') }}"
+                                                        value="{{ $diagnosticTest->iah ?? old('ia') }}"
                                                         required
                                                     >
                                                     @error('ia')
@@ -157,7 +157,7 @@
                                                         name="ih"
                                                         id="ih"
                                                         class="form-control"
-                                                        value="{{ old('ih') }}"
+                                                        value="{{ $diagnosticTest->iah ?? old('ih') }}"
                                                         required
                                                     >
                                                     @error('ih')
@@ -180,7 +180,7 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
-                                                        value="{{ old('sat_2_min') }}"
+                                                        value="{{ $diagnosticTest->sat_2_min ?? old('sat_2_min') }}"
                                                         name="sat_2_min"
                                                         id="sat_2_min"
                                                         class="form-control"
@@ -208,7 +208,7 @@
                                                         type="text"
                                                         name="ct90"
                                                         id="ct90"
-                                                        value="{{ old('ct90') }}"
+                                                        value="{{ $diagnosticTest->ct90 ?? old('ct90') }}"
                                                         class="form-control"
                                                         required=""
                                                         
@@ -234,7 +234,7 @@
                                                     <input
                                                         type="number"
                                                         name="avg_duration_of_apnea"
-                                                        value="{{ old('avg_duration_of_apnea') }}"
+                                                        value="{{ $diagnosticTest->avg_duration_of_apnea ?? old('avg_duration_of_apnea') }}"
                                                         id="avg_duration_of_apnea"
                                                         class="form-control"
                                                         min="0"
@@ -262,7 +262,7 @@
                                                         type="number"
                                                         name="max_duration_of_apnea"
                                                         id="max_duration_of_apnea"
-                                                        value="{{ old('max_duration_of_apnea') }}"
+                                                        value="{{ $diagnosticTest->max_duration_of_apnea ?? old('max_duration_of_apnea') }}"
                                                         class="form-control"
                                                         min="0"
                                                         required
@@ -287,7 +287,7 @@
                                                         name="assessments_observation"
                                                         id="assessments_observation"
                                                         rows="10"
-                                                        value="{{ old('assessments_observation') }}"
+                                                        value="{{ $diagnosticTest->assessments_observation ?? old('assessments_observation') }}"
                                                         class="form-control"
                                                     ></textarea>
                                                     @error('assessments_observation')
