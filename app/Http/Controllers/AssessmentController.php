@@ -115,7 +115,7 @@ class AssessmentController extends Controller
             case 'step3': {
                 $data['clinicalExploration'] = $clinicalExploration = ClinicalExploration::create(array_merge($request->validated(), [
                         'assessment_id' => $assessment->id,
-                    ], ['upper_airway_surgery' => implode(', ', $request->input('upper_airway_surgery'))]));
+                    ], ['upper_airway_surgery' => implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery'))]));
 
                 (!$clinicalExploration)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 3')
