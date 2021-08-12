@@ -553,13 +553,26 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="pointed_hard_palade_yes" name="pointed_hard_palade" type="radio" class="" value="1" required="" {{ old('pointed_hard_palade') == '1' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="pointed_hard_palade_yes" 
+                                                            name="pointed_hard_palade" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="1" 
+                                                            required="" {{ old('pointed_hard_palade') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->pointed_hard_palade ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="pointed_hard_palade_no" name="pointed_hard_palade" type="radio" class="" value="0" required="" {{ old('pointed_hard_palade') == '0' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="pointed_hard_palade_no" 
+                                                            name="pointed_hard_palade" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="0" 
+                                                            required="" 
+                                                            {{ old('pointed_hard_palade') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->pointed_hard_palade ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
@@ -583,13 +596,26 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="tmj_noise_yes" name="tmj_noise" type="radio" class="" value="1" required="" {{ old('tmj_noise') == '1' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="tmj_noise_yes" 
+                                                            name="tmj_noise" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="1" 
+                                                            required="" 
+                                                            {{ old('tmj_noise') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->tmj_noise ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="tmj_noise_no" name="tmj_noise" type="radio" class="" value="0" required="" {{ old('tmj_noise') == '0' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="tmj_noise_no" 
+                                                            name="tmj_noise" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="0" 
+                                                            required="" {{ old('tmj_noise') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->tmj_noise ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
@@ -613,13 +639,25 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="tmj_pain_yes" name="tmj_pain" type="radio" class="" value="1" required="" {{ old('tmj_pain') == '1' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="tmj_pain_yes" 
+                                                            name="tmj_pain" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="1" 
+                                                            required="" {{ old('tmj_pain') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->tmj_pain ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="tmj_pain_no" name="tmj_pain" type="radio" class="" value="0" required="" {{ old('tmj_pain') == '0' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="tmj_pain_no" 
+                                                            name="tmj_pain" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="0" 
+                                                            required="" {{ old('tmj_pain') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->tmj_pain ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
@@ -643,13 +681,25 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="bilateral_crossbite_yes" name="bilateral_crossbite" type="radio" class="" value="1" required="" {{ old('bilateral_crossbite') == '1' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="bilateral_crossbite_yes" 
+                                                            name="bilateral_crossbite" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="1" 
+                                                            required="" {{ old('bilateral_crossbite') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->bilateral_crossbite ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="bilateral_crossbite_no" name="bilateral_crossbite" type="radio" class="" value="0" required="" {{ old('bilateral_crossbite') == '0' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="bilateral_crossbite_no" 
+                                                            name="bilateral_crossbite" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="0" 
+                                                            required="" {{ old('bilateral_crossbite') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->bilateral_crossbite ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
@@ -673,13 +723,26 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="m-r">
-                                                        <input id="lateral_crossbite_yes" name="lateral_crossbite" type="radio" class="" value="1" required="" {{ old('lateral_crossbite') == '1' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="lateral_crossbite_yes" 
+                                                            name="lateral_crossbite" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="1" 
+                                                            required="" {{ old('lateral_crossbite') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->lateral_crossbite ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
                                                     </label>
                                                     <label class="m-r">
-                                                        <input id="lateral_crossbite_no" name="lateral_crossbite" type="radio" class="" value="0" required="" {{ old('lateral_crossbite') == '0' ? 'checked' : '' }}
+                                                        <input 
+                                                            id="lateral_crossbite_no" 
+                                                            name="lateral_crossbite" 
+                                                            type="radio" 
+                                                            class="" 
+                                                            value="0" 
+                                                            required="" 
+                                                            {{ old('lateral_crossbite') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->lateral_crossbite ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
@@ -715,13 +778,27 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="normognathic_yes" name="normognathic" type="radio" class="" value="1" required="" {{ old('normognathic') == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="normognathic_yes" 
+                                                                name="normognathic" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="1" 
+                                                                required="" 
+                                                                {{ old('normognathic') == '1' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->normognathic ?? null) == '1' ? 'checked' : '' }}
                                                             >
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="normognathic_no" name="normognathic" type="radio" class="" value="0" required="" {{ old('normognathic') == '0' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="normognathic_no" 
+                                                                name="normognathic" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="0" 
+                                                                required="" 
+                                                                {{ old('normognathic') == '0' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->normognathic ?? null) == '0' ? 'checked' : '' }}
                                                             >
                                                             <span>No</span>
@@ -750,13 +827,25 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="retrognathic_yes" name="retrognathic" type="radio" class="" value="1" required="" {{ old('retrognathic') == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="retrognathic_yes" 
+                                                                name="retrognathic" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="1" 
+                                                                required="" {{ old('retrognathic') == '1' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->retrognathic ?? null) == '1' ? 'checked' : '' }}
                                                             >
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="retrognathic_no" name="retrognathic" type="radio" class="" value="0" required="" {{ old('retrognathic') == '0' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="retrognathic_no" 
+                                                                name="retrognathic" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="0" 
+                                                                required="" {{ old('retrognathic') == '0' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->retrognathic ?? null) == '0' ? 'checked' : '' }}
                                                             >
                                                             <span>No</span>
@@ -785,13 +874,25 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="prognathic_yes" name="prognathic" type="radio" class="" value="1" required="" {{ old('prognathic') == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="prognathic_yes" 
+                                                                name="prognathic" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="1" 
+                                                                required="" {{ old('prognathic') == '1' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->prognathic ?? null) == '1' ? 'checked' : '' }}
                                                             >
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="prognathic_no" name="prognathic" type="radio" class="" value="0" required="" {{ old('prognathic') == '0' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="prognathic_no" 
+                                                                name="prognathic" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="0" 
+                                                                required="" {{ old('prognathic') == '0' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->prognathic ?? null) == '0' ? 'checked' : '' }}
                                                             >
                                                             <span>No</span>
@@ -826,13 +927,25 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="edge_to_edge_bite_yes" name="edge_to_edge_bite" type="radio" class="" value="1" required="" {{ old('edge_to_edge_bite') == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="edge_to_edge_bite_yes" 
+                                                                name="edge_to_edge_bite" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="1" 
+                                                                required="" {{ old('edge_to_edge_bite') == '1' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->edge_to_edge_bite ?? null) == '1' ? 'checked' : '' }}
                                                             >
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="edge_to_edge_bite_no" name="edge_to_edge_bite" type="radio" class="" value="0" required="" {{ old('edge_to_edge_bite') == '0' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="edge_to_edge_bite_no" 
+                                                                name="edge_to_edge_bite" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="0" 
+                                                                required="" {{ old('edge_to_edge_bite') == '0' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->edge_to_edge_bite ?? null) == '0' ? 'checked' : '' }}
                                                             >
                                                             <span>No</span>
@@ -861,13 +974,25 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="anterior_crossbite_yes" name="anterior_crossbite" type="radio" class="" value="1" required="" {{ old('anterior_crossbite') == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="anterior_crossbite_yes" 
+                                                                name="anterior_crossbite" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="1" 
+                                                                required="" {{ old('anterior_crossbite') == '1' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->anterior_crossbite ?? null) == '0' ? 'checked' : '' }}
                                                             >
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="anterior_crossbite_no" name="anterior_crossbite" type="radio" class="" value="0" required="" {{ old('anterior_crossbite') == '0' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="anterior_crossbite_no" 
+                                                                name="anterior_crossbite" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="0" 
+                                                                required="" {{ old('anterior_crossbite') == '0' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->anterior_crossbite ?? null) == '1' ? 'checked' : '' }}
                                                             >
                                                             <span>No</span>
@@ -896,13 +1021,25 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="overbite_yes" name="overbite" type="radio" class="" value="1" required="" {{ old('overbite') == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="overbite_yes" 
+                                                                name="overbite" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="1" 
+                                                                required="" {{ old('overbite') == '1' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->overbite ?? null) == '1' ? 'checked' : '' }}
                                                             >
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="overbite_no" name="overbite" type="radio" class="" value="0" required="" {{ old('overbite') == '0' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="overbite_no" 
+                                                                name="overbite" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="0" 
+                                                                required="" {{ old('overbite') == '0' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->overbite ?? null) == '0' ? 'checked' : '' }}
                                                             >
                                                             <span>No</span>
@@ -943,13 +1080,25 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="total_visibility_of_tonsils_uvula_soft_palate_yes" name="total_visibility_of_tonsils_uvula_soft_palate" type="radio" class="" value="1" required="" {{ old('total_visibility_of_tonsils_uvula_soft_palate') == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="total_visibility_of_tonsils_uvula_soft_palate_yes" 
+                                                                name="total_visibility_of_tonsils_uvula_soft_palate" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="1" 
+                                                                required="" {{ old('total_visibility_of_tonsils_uvula_soft_palate') == '1' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->total_visibility_of_tonsils_uvula_soft_palate ?? null) == '1' ? 'checked' : '' }}
                                                             >
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="total_visibility_of_tonsils_uvula_soft_palate_no" name="total_visibility_of_tonsils_uvula_soft_palate" type="radio" class="" value="0" required="" {{ old('total_visibility_of_tonsils_uvula_soft_palate') == '0' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="total_visibility_of_tonsils_uvula_soft_palate_no" 
+                                                                name="total_visibility_of_tonsils_uvula_soft_palate" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="0" 
+                                                                required="" {{ old('total_visibility_of_tonsils_uvula_soft_palate') == '0' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->total_visibility_of_tonsils_uvula_soft_palate ?? null) == '0' ? 'checked' : '' }}
                                                             >
                                                             <span>No</span>
@@ -978,13 +1127,25 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="hard_and_soft_palate_visibility_yes" name="hard_and_soft_palate_visibility" type="radio" class="" value="1" required="" {{ old('hard_and_soft_palate_visibility') == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="hard_and_soft_palate_visibility_yes" 
+                                                                name="hard_and_soft_palate_visibility" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="1" 
+                                                                required="" {{ old('hard_and_soft_palate_visibility') == '1' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->hard_and_soft_palate_visibility ?? null) == '1' ? 'checked' : '' }}
                                                             >
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="hard_and_soft_palate_visibility_no" name="hard_and_soft_palate_visibility" type="radio" class="" value="0" required="" {{ old('hard_and_soft_palate_visibility') == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="hard_and_soft_palate_visibility_no" 
+                                                                name="hard_and_soft_palate_visibility" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="0" 
+                                                                required="" {{ old('hard_and_soft_palate_visibility') == '1' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->hard_and_soft_palate_visibility ?? null) == '0' ? 'checked' : '' }}
                                                             >
                                                             <span>No</span>
@@ -1017,13 +1178,25 @@
 
                                                     <div class="text-md-center">
                                                         <label class="m-r">
-                                                            <input id="hard_and_palate_and_part_of_soft_palate_visibility_yes" name="hard_and_palate_and_part_of_soft_palate_visibility" type="radio" class="" value="1" required="" {{ old('hard_and_palate_and_part_of_soft_palate_visibility') == '1' ? 'checked' : '' }}
-                                                                {{ ($clinicalExploration->hard_and_palate_and_part_of_soft_palate_visibility ?? null) == '1' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="hard_and_palate_and_part_of_soft_palate_visibility_yes" 
+                                                                name="hard_and_palate_and_part_of_soft_palate_visibility" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="1" 
+                                                                required="" {{ old('hard_and_palate_and_part_of_soft_palate_visibility') == '1' ? 'checked' : '' }}
+                                                            {{ ($clinicalExploration->hard_and_palate_and_part_of_soft_palate_visibility ?? null) == '1' ? 'checked' : '' }}
                                                             >
                                                             <span>Yes</span>
                                                         </label>
                                                         <label class="m-r">
-                                                            <input id="hard_and_palate_and_part_of_soft_palate_visibility_no" name="hard_and_palate_and_part_of_soft_palate_visibility" type="radio" class="" value="0" required="" {{ old('hard_and_palate_and_part_of_soft_palate_visibility') == '0' ? 'checked' : '' }}
+                                                            <input 
+                                                                id="hard_and_palate_and_part_of_soft_palate_visibility_no" 
+                                                                name="hard_and_palate_and_part_of_soft_palate_visibility" 
+                                                                type="radio" 
+                                                                class="" 
+                                                                value="0" 
+                                                                required="" {{ old('hard_and_palate_and_part_of_soft_palate_visibility') == '0' ? 'checked' : '' }}
                                                                 {{ ($clinicalExploration->hard_and_palate_and_part_of_soft_palate_visibility ?? null) == '0' ? 'checked' : '' }}
                                                             >
                                                             <span>No</span>
