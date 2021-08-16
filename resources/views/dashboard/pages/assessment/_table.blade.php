@@ -30,6 +30,15 @@
                     >
                         <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                     </a>
+                    <a
+                        class="btn btn-primary btn-xs"
+                        href="{{ route('dashboard.comment.index', [
+                            'assessment' => $patientAssessment,
+                            'patient' => $patientAssessment->patient_id
+                            ]) }}"
+                    >
+                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+                    </a>
                     
                 </td>
             </tr>

@@ -17,4 +17,7 @@ class Assessment extends Model
         'created_at',
         'updated_at',
     ];
+    public function comments(){
+        return $this->hasMany(Coment::class);
+    }
 }

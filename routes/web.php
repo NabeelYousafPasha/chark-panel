@@ -3,7 +3,8 @@
 use App\Http\Controllers\{
     AssessmentController,
     HomeController,
-    PatientDetailController
+    PatientDetailController,
+    CommentController
 };
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,11 @@ Route::group([
             // Patient Details
             Route::get('patient-details/{patient}/create', [PatientDetailController::class, 'create'])->name('patient-details.create');
             Route::post('patient-details/{patient}', [PatientDetailController::class, 'store'])->name('patient-details.store');
+
+            // Comments
+            Route::get('/patients/{patient}/assessment/{assessment}/comments', [CommentController::class, 'index'])->name('comment.index');
+            Route::get('/patients/{patient}/assessment/{assessment}/comments/create', [CommentController::class, 'create'])->name('comment.create');
+            Route::post('/patients/{patient}/assessment/{assessment}/comments/create', [CommentController::class, 'store'])->name('comment.store');
 
         });
 

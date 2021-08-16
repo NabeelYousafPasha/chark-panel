@@ -50,6 +50,10 @@ class Patient extends Model
         return $this->belongsTo(Clinic::class);
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
     /**
      * Scope
      **/
