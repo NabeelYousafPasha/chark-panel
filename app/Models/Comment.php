@@ -24,15 +24,13 @@ class Comment extends Model
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return 
+        $this->belongsTo(Patient::class);
     }
     public function assessment()
     {
-        return $this->belongsTo(Assessment::class);
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return 
+        $this->belongsTo(Assessment::class);
     }
 
     

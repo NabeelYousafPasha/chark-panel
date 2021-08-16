@@ -26,7 +26,7 @@
                                 <form
                                 action="{{ route('dashboard.comment.store', [
                                     'assessment' => $assessment,
-                                    'patient' => $patient
+                                    'patient' => $assessment->patient_id
                                     ]) }}"
                                     method="POST"
                                     id="step1"

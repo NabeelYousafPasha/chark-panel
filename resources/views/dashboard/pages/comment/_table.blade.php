@@ -16,7 +16,7 @@
                 <td>{{ ++$key }}</td>
                 <td>{{ $comment->created_at }}</td>
                 <td>{{$comment->patient->alias}}</td>
-                <td>{{$comment->assessment->id}}</td>
+                <td>{{$comment->assessment_id}}</td>
                 <td>{{$comment->comment}}</td>
                 <td>{{ $comment->created_by }}</td>
                 <td> 

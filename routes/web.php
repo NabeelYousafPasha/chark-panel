@@ -85,9 +85,9 @@ Route::group([
             Route::post('patient-details/{patient}', [PatientDetailController::class, 'store'])->name('patient-details.store');
 
             // Comments
-            Route::get('/patients/{patient}/assessment/{assessment}/comments', [CommentController::class, 'index'])->name('comment.index');
-            Route::get('/patients/{patient}/assessment/{assessment}/comments/create', [CommentController::class, 'create'])->name('comment.create');
-            Route::post('/patients/{patient}/assessment/{assessment}/comments/create', [CommentController::class, 'store'])->name('comment.store');
+            Route::get('/patients/assessment/{assessment}/comments', [CommentController::class, 'index'])->name('comment.index');
+            Route::get('/patients/assessment/{assessment}/comments/create', [CommentController::class, 'create'])->name('comment.create');
+            Route::post('/patients/assessment/{assessment}/comments/create', [CommentController::class, 'store'])->name('comment.store');
 
         });
 

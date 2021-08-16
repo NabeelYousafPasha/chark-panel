@@ -42,16 +42,19 @@ class Patient extends Model
      */
     public function patient_detail()
     {
-        return $this->hasOne(PatientDetail::class);
+        return 
+        $this->hasOne(PatientDetail::class);
     }
 
     public function clinic()
     {
-        return $this->belongsTo(Clinic::class);
+        return 
+        $this->belongsTo(Clinic::class);
     }
 
     public function comments(){
-        return $this->hasMany(Comment::class);
+        return 
+        $this->hasMany(Comment::class);
     }
 
     /**

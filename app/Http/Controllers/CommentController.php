@@ -14,16 +14,15 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Patient $patient, Assessment $assessment)
+    public function index(Assessment $assessment)
     {
         $comments = Comment::where('assessment_id', '=', $assessment->id)
-        ->where('patient_id', '=', $patient->id)
-        ->latest()->get();
-
-        return $this->renderView('dashboard.pages.comments.index', [
+        ->where('patient_id', '=', $assessment->patient_id)
+        ->latest()->get();  
+        return $this->renderView('dashboard.pages.comment.index', [
             'comments' => $comments,
             'assessment' => $assessment,
-            'patient' => $patient,
+            'patient' => $assessment->patient_id,
         ]);
     }
 
@@ -32,11 +31,11 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Patient $patient, Assessment $assessment)
+    public function create(Assessment $assessment)
     {
-        return $this->renderView('dashboard.pages.comments.form', [
+        return $this->renderView('dashboard.pages.comment.form', [
             'assessment' => $assessment,
-            'patient' => $patient
+            'patient' => $assessment->patient_id
         ]);
     }
 
@@ -46,7 +45,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Patient $patient,Assessment $assessment )
+    public function store(Request $request,Assessment $assessment )
     {
         $this->validate($request, [
             'comment' => ['required', 'string', ],
@@ -55,12 +54,12 @@ class CommentController extends Controller
         $comment = Comment::create(array_merge($request->all(), [
             'created_by' => auth()->id(),
             'assessment_id' => $assessment->id,
-            'patient_id' => $patient->id
+            'patient_id' => $assessment->patient_id
         ]));
 
         (! $comment) ? $this->message('errorMessage') : $this->message('successMessage');
 
-        return redirect()->route('dashboard.comment.index', ['patient' => $patient, 'assessment' => $assessment]);
+        return redirect()->route('dashboard.comment.index', ['patient' => $assessment->patient_id, 'assessment' => $assessment]);
     }
 
     /**
@@ -116,14 +115,14 @@ class CommentController extends Controller
             'translationFromKey' => 'lang.models.comments.fillable',
             'crud' => [
                 'CREATE_COMMENT' => [
-        
+                    'can' => ! auth()->user()->cannot('create_comment'),
                 ],
                 'EDIT_ASSESSMENT' => [
                     // 'route' => route('dashboard.assessment.edit.step', ['patient' => $patient, 'step' => 'step1']),
-                    'can' => ! auth()->user()->cannot('update_assessment'),
+                    'can' => ! auth()->user()->cannot('update_comment'),
                 ],
                 'DELETE_ASSESSMENT' => [
-                    'can' => ! auth()->user()->cannot('delete_assessment'),
+                    'can' => ! auth()->user()->cannot('delete_comment'),
                 ],
             ],
             'breadcrumbs' => array(

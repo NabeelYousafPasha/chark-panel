@@ -21,7 +21,7 @@
                                 <a
                                     title="{{ $actions['add'] .' '. $resource }}"
                                     class="btn btn-primary btn-xs"
-                                    href="{{ route('dashboard.comment.create', ['assessment' => $assessment->id, 'patient' => $patient->id]) }}"
+                                    href="{{ route('dashboard.comment.create', ['assessment' => $assessment->id, 'patient' => $assessment->patient_id]) }}"
                                 >
                                     <i class="fa-fw fa fa-plus"></i>
                                 </a>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="ibox-content">
                         <div class="table-responsive">
-                            @includeIf('dashboard.pages.comments._table')
+                            @includeIf('dashboard.pages.comment._table')
                         </div>
                     </div>
                 </div>
