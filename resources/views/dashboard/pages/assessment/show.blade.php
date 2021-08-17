@@ -68,7 +68,7 @@
                                                 <td class="text-right">
                                                     {{ config('constants.bool.'.$symptom->breathing_shortness, 'null') }}
                                                 </td>
-                                            </tr>
+                                             </tr>
                                             <tr>
                                                 <td>
                                                     <b>
