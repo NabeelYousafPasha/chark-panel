@@ -22,16 +22,18 @@ class Comment extends Model
         'updated_at',
     ];
 
+
+    /*
+     * Relationships
+     **/
     public function patient()
     {
-        return 
-        $this->belongsTo(Patient::class);
-    }
-    public function assessment()
-    {
-        return 
-        $this->belongsTo(Assessment::class);
+        return $this->belongsTo(Patient::class);
     }
 
-    
+    public function assessment()
+    {
+        return $this->belongsTo(Assessment::class);
+    }
+
 }

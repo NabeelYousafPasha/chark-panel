@@ -18,7 +18,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{ $patientAssessment->created_by }}</td>
+                <td>{{ $patientAssessment->full_name }}</td>
                 <td>
                     <div class="button-group btn-group-xs">
                         <a

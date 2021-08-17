@@ -25,13 +25,17 @@ class AssessmentController extends Controller
         if (auth()->user()->cannot('view_assessment'))
             return $this->permissionDenied('dashboard.index');
 
-        $patientAssessments = Assessment::where('patient_id', '=', $patient->id)
-            ->latest()
-            ->get();
+        $patientAssessments = Assessment::addSelect([
+                'assessments.*',
+                DB::raw('CONCAT(users.first_name, " ", users.last_name) as full_name'),
+            ])
+            ->createdByUserJoin()
+            ->where('patient_id', '=', $patient->id)
+            ->latest();
 
         return $this->renderView('dashboard.pages.assessment.index', [
             'patient' => $patient,
-            'patientAssessments' => $patientAssessments,
+            'patientAssessments' => $patientAssessments->get(),
         ]);
     }
 
