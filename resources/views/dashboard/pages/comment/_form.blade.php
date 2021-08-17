@@ -1,5 +1,5 @@
 <div class="form-group @error('comment') has-error @enderror">
-    <label class="control-label" for="comment">comment *</label>
+    <label class="control-label" for="comment">Comments *</label>
     <textarea
         class="form-control"
         id="comment"
