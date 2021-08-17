@@ -110,6 +110,12 @@ class PatientDetailController extends Controller
         //
     }
 
+    /**
+     * @param mixed $view
+     * @param array $withParams
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     protected function renderView($view, array $withParams = [])
     {
         $params = [
