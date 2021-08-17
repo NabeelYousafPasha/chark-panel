@@ -19,45 +19,9 @@
                     </div>
 
                     <div class="ibox-content">
-
                         <div class="row">
                             <div class="col-md-12">
-
-                                <form
-                                action="{{ route('dashboard.comment.store', [
-                                    'assessment' => $assessment,
-                                    'patient' => $assessment->patient_id
-                                    ]) }}"
-                                    method="POST"
-                                    id="step1"
-                                    name="step1"
-                                    class="step1"
-                                >
-                                    @csrf
-                                    <div 
-                                    class="form-group"
-                                    >
-                                        <label 
-                                            for="comment"
-                                        >
-                                        Comment:
-                                        </label>
-                                        <textarea 
-                                        name="comment" 
-                                        class="form-control" 
-                                        id="comment" 
-                                        rows="10"></textarea>
-                                    </div>
-                                    <button
-                                            id="button_submit"
-                                            type="submit"
-                                            class="btn btn-primary m-r"
-                                        >
-                                            Save
-                                        </button>
-
-                                </form>
-
+                                @include('dashboard.globals.form.form')
                             </div>
                         </div>
                     </div>

@@ -76,7 +76,7 @@ Route::group([
             Route::get('/patients/{patient}/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
             Route::get('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'create'])->name('assessment.create.step');
             Route::post('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'store'])->name('assessment.store.step');
-            
+
             Route::get('/patients/assessment/{assessment}/edit/{step}', [AssessmentController::class, 'edit'])->name('assessment.edit.step');
             Route::post('/patients/{patient}/assessment', [AssessmentController::class, 'update'])->name('assessment.update.step');
 
@@ -85,9 +85,9 @@ Route::group([
             Route::post('patient-details/{patient}', [PatientDetailController::class, 'store'])->name('patient-details.store');
 
             // Comments
-            Route::get('/patients/assessment/{assessment}/comments', [CommentController::class, 'index'])->name('comment.index');
-            Route::get('/patients/assessment/{assessment}/comments/create', [CommentController::class, 'create'])->name('comment.create');
-            Route::post('/patients/assessment/{assessment}/comments/create', [CommentController::class, 'store'])->name('comment.store');
+            Route::get('/assessment/{assessment}/comments', [CommentController::class, 'index'])->name('comment.index');
+            Route::get('/assessment/{assessment}/comments/create', [CommentController::class, 'create'])->name('comment.create');
+            Route::post('/assessment/{assessment}/comments', [CommentController::class, 'store'])->name('comment.store');
 
         });
 

@@ -12,30 +12,36 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index(Assessment $assessment)
     {
         $comments = Comment::where('assessment_id', '=', $assessment->id)
-        ->where('patient_id', '=', $assessment->patient_id)
-        ->latest()->get();  
+                    ->where('patient_id', '=', $assessment->patient_id)
+                    ->latest()
+                    ->get();
+
         return $this->renderView('dashboard.pages.comment.index', [
             'comments' => $comments,
             'assessment' => $assessment,
-            'patient' => $assessment->patient_id,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create(Assessment $assessment)
     {
+        $form = $this->setForm(route('dashboard.comment.store', ['assessment' => $assessment,]), 'POST', 'dashboard.pages.comment._form', [
+            'form_id' => 'create_form__comment',
+            'form_name' => 'create_form__comment',
+        ]);
+
         return $this->renderView('dashboard.pages.comment.form', [
             'assessment' => $assessment,
-            'patient' => $assessment->patient_id
+            'form' => $form,
         ]);
     }
 
@@ -43,7 +49,7 @@ class CommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request,Assessment $assessment )
     {
@@ -59,7 +65,7 @@ class CommentController extends Controller
 
         (! $comment) ? $this->message('errorMessage') : $this->message('successMessage');
 
-        return redirect()->route('dashboard.comment.index', ['patient' => $assessment->patient_id, 'assessment' => $assessment]);
+        return redirect()->route('dashboard.comment.index', ['assessment' => $assessment]);
     }
 
     /**
@@ -106,11 +112,18 @@ class CommentController extends Controller
     {
         //
     }
+
+
+    /**
+     * @param mixed $view
+     * @param array $withParams
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     protected function renderView($view, array $withParams = [])
     {
-
         $params = [
-            'page' => 'Patient Comments',
+            'page' => 'Comments',
             'resource' => 'Comments',
             'translationFromKey' => 'lang.models.comments.fillable',
             'crud' => [
@@ -118,7 +131,6 @@ class CommentController extends Controller
                     'can' => ! auth()->user()->cannot('create_comment'),
                 ],
                 'EDIT_ASSESSMENT' => [
-                    // 'route' => route('dashboard.assessment.edit.step', ['patient' => $patient, 'step' => 'step1']),
                     'can' => ! auth()->user()->cannot('update_comment'),
                 ],
                 'DELETE_ASSESSMENT' => [
@@ -133,6 +145,11 @@ class CommentController extends Controller
                 ],
                 [
                     'name' => 'Assessment',
+                    'route' => 'javascript:void(0)',
+                    'active' => false,
+                ],
+                [
+                    'name' => 'Comments',
                     'route' => 'javascript:void(0)',
                     'active' => true,
                 ],

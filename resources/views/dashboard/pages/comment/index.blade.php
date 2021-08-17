@@ -17,17 +17,14 @@
                     <div class="ibox-title">
                         <h5>{{ $page }}</h5>
                         <div class="ibox-tools">
-                            
-                                <a
-                                    title="{{ $actions['add'] .' '. $resource }}"
-                                    class="btn btn-primary btn-xs"
-                                    href="{{ route('dashboard.comment.create', ['assessment' => $assessment->id, 'patient' => $assessment->patient_id]) }}"
-                                >
-                                    <i class="fa-fw fa fa-plus"></i>
-                                </a>
-                            
+                            <a
+                                title="{{ $actions['add'] .' '. $resource }}"
+                                class="btn btn-primary btn-xs"
+                                href="{{ route('dashboard.comment.create', ['assessment' => $assessment,]) }}"
+                            >
+                                <i class="fa-fw fa fa-plus"></i>
+                            </a>
                             <a class="collapse-link">
-
                                 <i class="fa fa-chevron-up"></i>
                             </a>
                         </div>
@@ -78,7 +75,7 @@
 
         {{-- ***************** action *************** --}}
 
-        $('.assessment__delete').on('click', function(e){
+        $('.comment__delete').on('click', function(e){
             e.preventDefault();
             let $form = $(this);
             $('#modal__global_delete').modal({ backdrop: 'static', keyboard: false })
