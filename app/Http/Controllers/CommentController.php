@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Assessment;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
@@ -16,13 +17,17 @@ class CommentController extends Controller
      */
     public function index(Assessment $assessment)
     {
-        $comments = Comment::where('assessment_id', '=', $assessment->id)
+        $comments = Comment::addSelect([
+                        'comments.*',
+                        DB::raw('CONCAT(users.first_name, " ", users.last_name) as full_name'),
+                    ])
+                    ->join('users', 'comments.created_by', '=', 'users.id')
+                    ->where('assessment_id', '=', $assessment->id)
                     ->where('patient_id', '=', $assessment->patient_id)
-                    ->latest()
-                    ->get();
+                    ->latest();
 
         return $this->renderView('dashboard.pages.comment.index', [
-            'comments' => $comments,
+            'comments' => $comments->get(),
             'assessment' => $assessment,
         ]);
     }

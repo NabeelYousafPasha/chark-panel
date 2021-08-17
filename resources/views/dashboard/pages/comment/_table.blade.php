@@ -4,7 +4,7 @@
             <th>{{ trans('lang.dataTable.thead.sr_no') }}</th>
             <th>Creation Date</th>
             <th>Comment</th>
-            <th>Created By</th>
+            <th>By</th>
         </tr>
     </thead>
     <tbody>
@@ -13,7 +13,7 @@
                 <td>{{ ++$key }}</td>
                 <td>{{ $comment->created_at }}</td>
                 <td>{{ $comment->comment }}</td>
-                <td>{{ $comment->created_by }}</td>
+                <td>{{ $comment->full_name }}</td>
             </tr>
         @endforeach
     </tbody>
