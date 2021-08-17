@@ -38,6 +38,13 @@
                         >
                             <i class="fa fa-comment fa-fw" aria-hidden="true"></i>
                         </a>
+                        <a
+                           
+                            class="btn btn-success btn-xs"
+                            href="{{ route('dashboard.assessment.show', ['assessment' => $patientAssessment,]) }}"
+                        >
+                            <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </td>
             </tr>

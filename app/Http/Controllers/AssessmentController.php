@@ -156,7 +156,24 @@ class AssessmentController extends Controller
      */
     public function show(Assessment $assessment)
     {
-        //
+        $symptom = Symptom::where('assessment_id', '=', $assessment->id)->first();
+        $sleepinessScale = SleepinessScale::where('assessment_id', '=', $assessment->id)->first();
+        $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)->first();
+        $diagnosticTest = DiagnosticTest::where('assessment_id', '=', $assessment->id)->first();
+        $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)->first();
+
+        return $this->renderView('dashboard.pages.assessment.show', [
+            'assessment' => $assessment,
+
+            'symptom' => $symptom,
+            'sleepinessScale' => $sleepinessScale,
+            'medicalHistory' => $medicalHistory,
+            'diagnosticTest' => $diagnosticTest,
+            'clinicalExploration' => $clinicalExploration,
+
+            'patient' => Patient::where('id', '=', $assessment->patient_id)->firstOrFail(),
+        ]);
+        
     }
 
     /**

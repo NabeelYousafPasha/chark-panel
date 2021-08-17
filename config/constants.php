@@ -31,6 +31,8 @@ return [
     'bool' => [
         'yes' => 'yes',
         'no' => 'no',
+        '1' => 'Yes',
+        '0' => 'No',
     ],
 
     'si_units' => [
