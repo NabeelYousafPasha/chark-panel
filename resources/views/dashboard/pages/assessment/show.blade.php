@@ -46,7 +46,7 @@
                                                     </b>
                                                 </td>
                                                 <td class="text-right">
-                                                    {{ config('constants.bool.'.$symptom->snore, 'null') }}
+                                                    {{ config('constants.bool.'.$symptom->snore , 'null') }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -56,7 +56,7 @@
                                                     </b>
                                                 </td>
                                                 <td class="text-right">
-                                                    {{ config('constants.bool.'.$symptom->apnea, 'null') }}
+                                                    {{ config('constants.bool.'.$symptom->apnea , 'null') }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -66,7 +66,7 @@
                                                     </b>
                                                 </td>
                                                 <td class="text-right">
-                                                    {{ config('constants.bool.'.$symptom->breathing_shortness, 'null') }}
+                                                    {{ config('constants.bool.'.$symptom->breathing_shortness , 'null') }}
                                                 </td>
                                              </tr>
                                             <tr>
@@ -76,7 +76,7 @@
                                                     </b>
                                                 </td>
                                                 <td class="text-right">
-                                                    {{ config('constants.bool.'.$symptom->average_sleep, 'null') }}
+                                                    {{ $symptom->average_sleep }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -86,7 +86,7 @@
                                                     </b>
                                                 </td>
                                                 <td class="text-right">
-                                                    {{ config('constants.bool.'.$symptom->fragmented_sleep, 'null') }}
+                                                    {{ config('constants.bool.'.$symptom->fragmented_sleep , 'null') }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -96,7 +96,7 @@
                                                     </b>
                                                 </td>
                                                 <td class="text-right">
-                                                    {{ config('constants.bool.'.$symptom->nocturia, 'null') }}
+                                                    {{ config('constants.bool.'.$symptom->nocturia , 'null') }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -106,11 +106,15 @@
                                                     </b>
                                                 </td>
                                                 <td class="text-right">
-                                                    {{ config('constants.bool.'.$symptom->tired_during_day, 'null') }}
+                                                    {{ config('constants.bool.'.$symptom->tired_during_day , 'null') }}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td><b>Headache in the mornings:</b></td>
+                                                <td>
+                                                    <b>
+                                                        Headache in the mornings:
+                                                    </b>
+                                                </td>
                                                 <td class="text-right">{{ config('constants.bool.'.$symptom->morning_headache, 'null') }}</td>
                                             </tr>
                                             <tr>
@@ -284,7 +288,7 @@
                                                     </b>
                                                 </td>
                                                 <td class="text-right">
-                                                    {{ config('constants.bool.'.$medicalHistory->arrythmia, 'null') }}
+                                                    {{ config('constants.bool.'.$medicalHistory->arrhythmia, 'null') }}
                                                 </td>
                                             </tr>
                                             <tr>
