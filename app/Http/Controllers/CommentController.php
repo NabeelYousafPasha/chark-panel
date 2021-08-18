@@ -135,6 +135,9 @@ class CommentController extends Controller
                 'CREATE_COMMENT' => [
                     'can' => ! auth()->user()->cannot('create_comment'),
                 ],
+                'SHOW_COMMENT' => [
+                    'can' => ! auth()->user()->cannot('show_comment'),
+                ],
                 'EDIT_ASSESSMENT' => [
                     'can' => ! auth()->user()->cannot('update_comment'),
                 ],
