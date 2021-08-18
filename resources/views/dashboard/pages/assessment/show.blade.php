@@ -442,10 +442,422 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h2>Step 3</h2>
+                                        <div class="table-responsive">
+                                            <table class="table-condensed" width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                CPAP:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->cpap, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Mundibular Advancement device:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->mandibular_advancement_device, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Positional Therapy:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->positional_therapy, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Upper Airway surgery:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->upper_airway_surgery, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Other upper airway surgery:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $clinicalExploration->other_upper_airway_surgery }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Bariatric surgery (Weight-loss surgery)
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->bariatric_surgery, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Other treatments for sleep apnea or snorting:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                           {{ $clinicalExploration->other_treatments_for_sleep_apnea }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Bariatric surgery (Weight-loss surgery)
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->bariatric_surgery, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Signs of Bruxism:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->bruxism, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Pointed hard palate:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->pointed_hard_palade, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Noise when moving the TMJ:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->tmj_noise, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                TMJ pain when mouth is open for one minute:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->tmj_pain, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Bilateral Crossbite:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->bilateral_crossbite, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Lateral Crossbite:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->lateral_crossbite, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Height (cm):
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $clinicalExploration->height }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Weight (kg):
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $clinicalExploration->weight }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Body Mass Index (BMI):
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $clinicalExploration->bmi }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Neck circumference (cm):
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $clinicalExploration->neck_circumference }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Beats per minute:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $clinicalExploration->beats_per_minute }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Systolic Blood Pressure:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $clinicalExploration->systolic_blood_pressure }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Diastolic Blood Pressure:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $clinicalExploration->diastolic_blood_pressure }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Normognathic:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->normognathic, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Retrognathic:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->retrognathic, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Prognathic:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->prognathic, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Edge to edge bite:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->edge_to_edge_bite, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Anterior crossbite:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->anterior_crossbite, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Overbite:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->overbite, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Total visibility of tonsils, uvula and soft palate:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->total_visibility_of_tonsils_uvula_soft_palate, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Visibility of hard and soft palate, upper portionof tonsils and uvula:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->hard_and_soft_palate_visibility, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Visibility of hard palate and part of soft palate above the uvula:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->hard_and_palate_and_part_of_soft_palate_visibility, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Visibility only of hard palate:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ config('constants.bool.'.$clinicalExploration->only_hard_palate_visibility, 'null') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Assessment:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $clinicalExploration->assessment }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-
+                                    
                                     <div class="col-md-6">
                                         <h2>Step 4</h2>
+                                        <div class="table-responsive">
+                                            <table class="table-condensed" width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                IAH:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $diagnosticTest->iah }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                IA:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $diagnosticTest->ia }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                IH:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $diagnosticTest->ih }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                SAT 02min %:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $diagnosticTest->sat_2_min }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                CT 90%:
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $diagnosticTest->ct90 }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Average duration of apnea (sec):
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $diagnosticTest->avg_duration_of_apnea }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Maximum duration of apnea(sec):
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $diagnosticTest->max_duration_of_apnea }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Assessment Observation
+                                                            </b>
+                                                        </td>
+                                                        <td>
+                                                            {{ $diagnosticTest->assessments_observation }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                         </div>
