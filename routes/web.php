@@ -79,6 +79,8 @@ Route::group([
 
             Route::get('/patients/assessment/{assessment}/edit/{step}', [AssessmentController::class, 'edit'])->name('assessment.edit.step');
             Route::post('/patients/{patient}/assessment', [AssessmentController::class, 'update'])->name('assessment.update.step');
+            Route::get('/patients/assessment/{assessment}/show', [AssessmentController::class, 'show'])->name('assessment.show');
+
 
             // Patient Details
             Route::get('patient-details/{patient}/create', [PatientDetailController::class, 'create'])->name('patient-details.create');
@@ -88,6 +90,7 @@ Route::group([
             Route::get('/assessment/{assessment}/comments', [CommentController::class, 'index'])->name('comment.index');
             Route::get('/assessment/{assessment}/comments/create', [CommentController::class, 'create'])->name('comment.create');
             Route::post('/assessment/{assessment}/comments', [CommentController::class, 'store'])->name('comment.store');
+            
 
         });
 

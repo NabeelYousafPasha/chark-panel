@@ -224,7 +224,7 @@
                                                             value="0"
                                                             required=""
                                                             {{ old('fragmented_sleep') == '0' ? 'checked' : '' }}
-                                                            {{ ($symptom->breathing_shortness ?? null) == '0' ? 'checked' : '' }}
+                                                            {{ ($symptom->fragmented_sleep ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
                                                     </label>
