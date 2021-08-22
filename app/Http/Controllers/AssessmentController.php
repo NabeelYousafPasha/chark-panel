@@ -12,6 +12,8 @@ use App\Models\SleepinessScale;
 use App\Models\Symptom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class AssessmentController extends Controller
 {
@@ -129,6 +131,26 @@ class AssessmentController extends Controller
                 break;
             }
             case 'step4': {
+                if($request->hasfile('polygraph'))
+                {
+                    $file = $request->file('polygraph');
+                    $polygraph=time().$file->getClientOriginalName();
+                    Storage::disk('local')->put('/public/polygraphs/files/'.$polygraph, File::get($file));
+                    // Storage::cloud()->put('/public/polygraphs/files/'.$recordingfile, File::get($file));
+                }else{
+                    
+                    $polygraph=""; 
+                }
+                if($request->hasfile('polychemography'))
+                {
+                    $file = $request->file('polychemography');
+                    $polychemography=time().$file->getClientOriginalName();
+                    Storage::disk('local')->put('/public/polychemography/files/'.$polychemography, File::get($file));
+                    // Storage::cloud()->put('/public/polychemography/files/'.$recordingfile, File::get($file));
+                }else{
+                    
+                    $polychemography=""; 
+                }
                 $data['diagnosticTest'] = $diagnosticTest = DiagnosticTest::create(array_merge($request->validated(), [
                         'assessment_id' => $assessment->id,
                     ]));

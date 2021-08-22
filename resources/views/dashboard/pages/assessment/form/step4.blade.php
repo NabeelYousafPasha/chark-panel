@@ -29,6 +29,7 @@
                                         'patient' => $patient, 'step' => 'step4',
                                         ]) }}"
                                     method="POST"
+                                    enctype='multipart/form-data'
                                     id="step4"
                                     name="step4"
                                     class="step4"

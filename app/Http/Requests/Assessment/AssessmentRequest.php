@@ -116,6 +116,8 @@ class AssessmentRequest extends FormRequest
             ],
 
             'step4' => [
+                "polygraph" => ['required'],
+                "polychemography" => ['required'],
                 "iah" => ['required', 'string', 'max:255',],
                 "ia" => ['required', 'string', 'max:255',],
                 "ih" => ['required', 'string', 'max:255',],
