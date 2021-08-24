@@ -46,7 +46,7 @@ class AssessmentController extends Controller
      */
     public function create(Request $request, Patient $patient, $step = 'step1')
     {
-        if (auth()->user()->cannot('view_assessment'))
+        if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
 
         abort_if((! in_array($step, ['step1', 'step2', 'step3', 'step4'])
@@ -54,8 +54,67 @@ class AssessmentController extends Controller
             ! view()->exists('dashboard.pages.assessment.form.'.$step))
             , 404);
 
+        if (! in_array($step, ['step1', 'step2', 'step3', 'step4'])) {
+            $this->message('errorMessage', 'Error: Invalid Step');
+
+            return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step1']);
+        }
+
+        $error = false;
+        if (! in_array($step, ['step1'])) {
+            $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->first();
+            switch ($step) {
+                case 'step2': {
+                    $symptom = Symptom::where('assessment_id', '=', $assessment->id)->first();
+                    $sleepinessScale = SleepinessScale::where('assessment_id', '=', $assessment->id)->first();
+
+                    if (is_null($symptom) || is_null($sleepinessScale)) {
+                        $error = true;
+                        $this->message('errorMessage', 'Error: Please fill Previous Step.');
+                        break;
+                    }
+                }
+                case 'step3': {
+                    $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)->first();
+
+                    if (is_null($medicalHistory)) {
+                        $error = true;
+                        $this->message('errorMessage', 'Error: Please fill Previous Step.');
+                        break;
+                    }
+                }
+                case 'step4': {
+                    $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)->first();
+
+                    if (is_null($clinicalExploration)) {
+                        $error = true;
+                        $this->message('errorMessage', 'Error: Please fill Previous Step.');
+                        break;
+                    }
+                }
+            }
+            // error
+            if ($error) {
+                $step = 'step'.((int) str_replace('step', '', $step)  - 1);
+                if (! in_array($step, ['step1', 'step2', 'step3', 'step4',])) {
+                    $step = 'step1';
+                }
+
+                return redirect()->route('dashboard.assessment.create.step', [
+                    'patient' => $patient,
+                    'step' => $step,
+                ]);
+            }
+        }
+
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'patient' => $patient,
+
+            'form' => 'create',
+            '_method' => 'POST',
+            'route' => route('dashboard.assessment.store.step', [
+                'patient' => $patient, 'step' => $step,
+            ]),
         ]);
     }
 
@@ -69,15 +128,14 @@ class AssessmentController extends Controller
      */
     public function store(AssessmentRequest $request, Patient $patient, $step)
     {
+        if (auth()->user()->cannot('create_assessment'))
+            return $this->permissionDenied('dashboard.index');
+
         if (! in_array($step, ['step1', 'step2', 'step3', 'step4'])) {
             $this->message('errorMessage', 'Error: Invalid Step');
 
             return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step1']);
         }
-
-        if (auth()->user()->cannot('create_assessment'))
-            return $this->permissionDenied('dashboard.index');
-
 
         $data = [];
 
@@ -152,15 +210,28 @@ class AssessmentController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Assessment  $assessment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function show(Assessment $assessment)
     {
-        $symptom = Symptom::where('assessment_id', '=', $assessment->id)->firstOrFail();
-        $sleepinessScale = SleepinessScale::where('assessment_id', '=', $assessment->id)->firstOrFail();
-        $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)->firstOrFail();
-        $diagnosticTest = DiagnosticTest::where('assessment_id', '=', $assessment->id)->firstOrFail();
-        $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)->firstOrFail();
+        if (auth()->user()->cannot('view_assessment'))
+            return $this->permissionDenied('dashboard.index');
+
+        $symptom = Symptom::where('assessment_id', '=', $assessment->id)
+                    ->latest()
+                    ->first();
+        $sleepinessScale = SleepinessScale::where('assessment_id', '=', $assessment->id)
+                    ->latest()
+                    ->first();
+        $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)
+                    ->latest()
+                    ->first();
+        $diagnosticTest = DiagnosticTest::where('assessment_id', '=', $assessment->id)
+                    ->latest()
+                    ->first();
+        $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)
+                    ->latest()
+                    ->first();
 
         return $this->renderView('dashboard.pages.assessment.show', [
             'assessment' => $assessment,
@@ -171,24 +242,44 @@ class AssessmentController extends Controller
             'diagnosticTest' => $diagnosticTest,
             'clinicalExploration' => $clinicalExploration,
 
-            'patient' => Patient::where('id', '=', $assessment->patient_id)->firstOrFail(),
+            'patient' => Patient::where('id', '=', $assessment->patient_id)->first(),
         ]);
-        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Assessment  $assessment
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit(Assessment $assessment, $step = 'step1')
     {
-        $symptom = Symptom::where('assessment_id', '=', $assessment->id)->first();
-        $sleepinessScale = SleepinessScale::where('assessment_id', '=', $assessment->id)->first();
-        $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)->first();
-        $diagnosticTest = DiagnosticTest::where('assessment_id', '=', $assessment->id)->first();
-        $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)->first();
+        if (auth()->user()->cannot('update_assessment'))
+            return $this->permissionDenied('dashboard.index');
+
+        abort_if((! in_array($step, ['step1', 'step2', 'step3', 'step4'])
+            ||
+            ! view()->exists('dashboard.pages.assessment.form.'.$step))
+            , 404);
+
+        $patient = Patient::where('id', '=', $assessment->patient_id)->first();
+
+        if (! in_array($step, ['step1', 'step2', 'step3', 'step4'])) {
+            $this->message('errorMessage', 'Error: Invalid Step');
+
+            return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step1']);
+        }
+
+        $symptom = Symptom::where('assessment_id', '=', $assessment->id)->latest()
+                    ->first();
+        $sleepinessScale = SleepinessScale::where('assessment_id', '=', $assessment->id)->latest()
+                    ->first();
+        $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)->latest()
+                    ->first();
+        $diagnosticTest = DiagnosticTest::where('assessment_id', '=', $assessment->id)->latest()
+                    ->first();
+        $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)->latest()
+                    ->first();
 
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'assessment' => $assessment,
@@ -200,7 +291,15 @@ class AssessmentController extends Controller
             'diagnosticTest' => $diagnosticTest,
             'clinicalExploration' => $clinicalExploration,
 
-            'patient' => Patient::where('id', '=', $assessment->patient_id)->firstOrFail(),
+            'patient' => $patient,
+
+            'form' => 'create',
+            '_method' => 'PATCH',
+            'route' => route('dashboard.assessment.update.step', [
+                'assessment' => $assessment,
+                'step' => $step,
+                'patient' => $patient,
+            ]),
         ]);
 
 
@@ -213,9 +312,12 @@ class AssessmentController extends Controller
      * @param  \App\Models\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Assessment $assessment)
+    public function update(AssessmentRequest $request, Assessment $assessment)
     {
-        //
+        if (auth()->user()->cannot('update_assessment'))
+            return $this->permissionDenied('dashboard.index');
+
+        dd($request->all());
     }
 
     /**
@@ -249,7 +351,6 @@ class AssessmentController extends Controller
                     'can' => ! auth()->user()->cannot('create_assessment'),
                 ],
                 'EDIT_ASSESSMENT' => [
-                    // 'route' => route('dashboard.assessment.edit.step', ['patient' => $patient, 'step' => 'step1']),
                     'can' => ! auth()->user()->cannot('update_assessment'),
                 ],
                 'DELETE_ASSESSMENT' => [
