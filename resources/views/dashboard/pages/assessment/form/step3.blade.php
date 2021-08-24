@@ -26,15 +26,14 @@
                             <div class="col-md-12">
 
                                 <form
-                                    action="{{ route('dashboard.assessment.store.step', [
-                                        'patient' => $patient, 'step' => 'step3',
-                                        ]) }}"
+                                    action="{{ $route }}"
                                     method="POST"
                                     id="step3"
                                     name="step3"
                                     class="step3"
                                 >
                                     @csrf
+                                    @method($_method)
 
                                     <div class="row">
                                         <div class="col-md-6">
