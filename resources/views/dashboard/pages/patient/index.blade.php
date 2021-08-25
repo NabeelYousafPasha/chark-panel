@@ -19,10 +19,10 @@
                         <div class="ibox-tools">
                             @if($crud['CREATE_PATIENT']['can'] ?? false)
                                 <a
-                                    data-toggle="modal" 
-                                    data-target="#myModal"
+                                    data-toggle="modal"
+                                    data-target="#modal__createPatient"
                                     class="btn btn-primary btn-xs"
-                                   
+                                    title="{{ $actions['add'] .' '. $resource }}"
                                 >
                                     <i class="fa-fw fa fa-plus"></i>
                                 </a>
@@ -42,43 +42,37 @@
         </div>
     </div>
 
-    <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <!-- modal header  -->
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Bootstrap 3 Modal Header</h4>
-        </div>
-        <div class="modal-body">
-        <!-- begin modal body content  -->
-          <section class="stage">
-            <figure class="ball"><span class="shadow"></span></figure>
-          </section>
-        <!-- end modal body content  -->
-        </div>
-        <div class="modal-footer">
-          <!-- modal footer  -->
-          
-          <a  
-          title="{{ $actions['add'] .' '. $resource }}"
-          href="{{ $crud['CREATE_PATIENT']['route'] ?? 'javascript::void(0)' }}"
-          class="btn btn-primary"
-          >
-           Agree
-          </a>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-<!-- </div> -->
-
     {{-- start modals --}}
+    <div
+        class="modal inmodal "
+        id="modal__createPatient"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content animated flipInY">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2 class="modal-title">Terms & Agreements</h2>
+                </div>
+                <div class="modal-body">
+                    <p>You are confirming all Terms & Conditions?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">I Disagree</button>
+                    <a
+                        title="{{ $actions['add'] .' '. $resource }}"
+                        href="{{ $crud['CREATE_PATIENT']['route'] ?? 'javascript::void(0)' }}"
+                        class="btn btn-primary"
+                    >
+                        I Agree
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @includeIf($modalDelete, ['resource' => $resource ?? ''])
     {{-- end modals --}}
 @endsection
@@ -113,7 +107,6 @@
         });
 
         {{-- ****** action ****** --}}
-
         $('.patient__delete').on('click', function(e){
             e.preventDefault();
             let $form = $(this);
