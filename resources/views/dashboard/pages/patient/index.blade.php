@@ -19,9 +19,10 @@
                         <div class="ibox-tools">
                             @if($crud['CREATE_PATIENT']['can'] ?? false)
                                 <a
-                                    title="{{ $actions['add'] .' '. $resource }}"
+                                    data-toggle="modal"
+                                    data-target="#modal__createPatient"
                                     class="btn btn-primary btn-xs"
-                                    href="{{ $crud['CREATE_PATIENT']['route'] ?? 'javascript::void(0)' }}"
+                                    title="{{ $actions['add'] .' '. $resource }}"
                                 >
                                     <i class="fa-fw fa fa-plus"></i>
                                 </a>
@@ -42,13 +43,43 @@
     </div>
 
     {{-- start modals --}}
+    <div
+        class="modal inmodal "
+        id="modal__createPatient"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content animated flipInY">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2 class="modal-title">Terms & Agreements</h2>
+                </div>
+                <div class="modal-body">
+                    <p>You are confirming all Terms & Conditions?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">I Disagree</button>
+                    <a
+                        title="{{ $actions['add'] .' '. $resource }}"
+                        href="{{ $crud['CREATE_PATIENT']['route'] ?? 'javascript::void(0)' }}"
+                        class="btn btn-primary"
+                    >
+                        I Agree
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @includeIf($modalDelete, ['resource' => $resource ?? ''])
     {{-- end modals --}}
 @endsection
 
 @section('scripts')
     <script>
-        {{-- ***************** datatable *************** --}}
+        {{-- ****** datatable ****** --}}
         $(document).ready(function(){
             $('.dataTables-example').DataTable({
                 pageLength: 25,
@@ -75,8 +106,7 @@
 
         });
 
-        {{-- ***************** action *************** --}}
-
+        {{-- ****** action ****** --}}
         $('.patient__delete').on('click', function(e){
             e.preventDefault();
             let $form = $(this);
