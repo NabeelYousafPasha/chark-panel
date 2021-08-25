@@ -85,7 +85,7 @@
 
 @section('scripts')
     <script>
-        {{-- ***************** datatable *************** --}}
+        {{-- ****** datatable ****** --}}
         $(document).ready(function(){
             $('.dataTables-example').DataTable({
                 pageLength: 25,
@@ -112,7 +112,7 @@
 
         });
 
-        {{-- ***************** action *************** --}}
+        {{-- ****** action ****** --}}
 
         $('.patient__delete').on('click', function(e){
             e.preventDefault();
