@@ -46,7 +46,7 @@ Route::group([
         })->name('sleep-test.store');
 
         // Back End
-        // user => change Password
+        // User => change Password
         Route::get('users/password/{forceChange?}/{user?}', 'UserController@changePassword')->name('users.password.create');
         Route::patch('users/password/{forceChange?}/{user?}', 'UserController@changePassword')->name('users.password.update');
 
@@ -58,7 +58,7 @@ Route::group([
                 return view('dashboard.index');
             })->name('index');
 
-            // setup
+            // Setup
             Route::group([
                 'prefix' => 'setup',
                 'as' => 'setup.',
@@ -80,7 +80,6 @@ Route::group([
             Route::get('/patients/assessment/{assessment}/edit/{step}', [AssessmentController::class, 'edit'])->name('assessment.edit.step');
             Route::patch('/patients/assessment/{assessment}/{step}', [AssessmentController::class, 'update'])->name('assessment.update.step');
             Route::get('/patients/assessment/{assessment}/show', [AssessmentController::class, 'show'])->name('assessment.show');
-
 
             // Patient Details
             Route::get('patient-details/{patient}/create', [PatientDetailController::class, 'create'])->name('patient-details.create');

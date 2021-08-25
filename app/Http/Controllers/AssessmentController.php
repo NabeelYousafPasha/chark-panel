@@ -61,8 +61,9 @@ class AssessmentController extends Controller
         }
 
         $error = false;
-        if (! in_array($step, ['step1'])) {
+        if ($step != 'step1') {
             $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->first();
+
             switch ($step) {
                 case 'step2': {
                     $symptom = Symptom::where('assessment_id', '=', $assessment->id)->first();
@@ -71,8 +72,8 @@ class AssessmentController extends Controller
                     if (is_null($symptom) || is_null($sleepinessScale)) {
                         $error = true;
                         $this->message('errorMessage', 'Error: Please fill Previous Step.');
-                        break;
                     }
+                    break;
                 }
                 case 'step3': {
                     $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)->first();
@@ -80,8 +81,8 @@ class AssessmentController extends Controller
                     if (is_null($medicalHistory)) {
                         $error = true;
                         $this->message('errorMessage', 'Error: Please fill Previous Step.');
-                        break;
                     }
+                    break;
                 }
                 case 'step4': {
                     $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)->first();
@@ -89,10 +90,11 @@ class AssessmentController extends Controller
                     if (is_null($clinicalExploration)) {
                         $error = true;
                         $this->message('errorMessage', 'Error: Please fill Previous Step.');
-                        break;
                     }
+                    break;
                 }
             }
+
             // error
             if ($error) {
                 $step = 'step'.((int) str_replace('step', '', $step)  - 1);
@@ -195,7 +197,7 @@ class AssessmentController extends Controller
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 4')
                     : $this->message('successMessage', 'Success: Step 4 saved');
 
-                return redirect()->route('dashboard.assessment.index', ['patient' => $patient]);
+                return redirect()->route('dashboard.assessment.show', ['assessment' => $assessment]);
             }
             default : {
                 $this->message('errorMessage', 'Error: Invalid Step');
@@ -308,16 +310,91 @@ class AssessmentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Assessment  $assessment
-     * @return \Illuminate\Http\Response
+     * @param AssessmentRequest $request
+     * @param \App\Models\Assessment $assessment
+     * @param string $step
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(AssessmentRequest $request, Assessment $assessment)
+    public function update(AssessmentRequest $request, Assessment $assessment, $step = 'step1')
     {
         if (auth()->user()->cannot('update_assessment'))
             return $this->permissionDenied('dashboard.index');
 
-        dd($request->all());
+        abort_if((! in_array($step, ['step1', 'step2', 'step3', 'step4'])
+            ||
+            ! view()->exists('dashboard.pages.assessment.form.'.$step))
+            , 404);
+
+        $patient = Patient::where('id', '=', $assessment->patient_id)->first();
+
+        if (! in_array($step, ['step1', 'step2', 'step3', 'step4'])) {
+            $this->message('errorMessage', 'Error: Invalid Step');
+
+            return redirect()->route('dashboard.assessment.edit.step', ['assessment' => $assessment, 'step' => 'step1', 'patient' => $patient,]);
+        }
+
+        switch ($step) {
+            case 'step1': {
+                $data['symptom'] = $symptom = Symptom::updateOrcreate([
+                        'assessment_id' => $assessment->id,
+                    ], $request->validated());
+
+                $data['sleepinessScale'] = $sleepinessScale = SleepinessScale::updateOrcreate([
+                        'assessment_id' => $assessment->id,
+                    ], $request->validated());
+
+                (!$symptom || !$sleepinessScale)
+                    ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 1')
+                    : $this->message('successMessage', 'Success: Step 1 saved');
+
+                $step = 'step2';
+                break;
+            }
+            case 'step2': {
+                $data['medicalHistory'] = $medicalHistory = MedicalHistory::updateOrcreate([
+                        'assessment_id' => $assessment->id,
+                    ], $request->validated());
+
+                (!$medicalHistory)
+                    ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 2')
+                    : $this->message('successMessage', 'Success: Step 2 saved');
+
+                $step = 'step3';
+                break;
+            }
+            case 'step3': {
+                $data['clinicalExploration'] = $clinicalExploration = ClinicalExploration::updateOrcreate([
+                        'assessment_id' => $assessment->id,
+                    ], array_merge($request->validated(), [
+                        'upper_airway_surgery' => implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery'))
+                    ])
+                );
+
+                (!$clinicalExploration)
+                    ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 3')
+                    : $this->message('successMessage', 'Success: Step 3 saved');
+
+                $step = 'step4';
+                break;
+            }
+            case 'step4': {
+                $data['diagnosticTest'] = $diagnosticTest = DiagnosticTest::updateOrcreate([
+                    'assessment_id' => $assessment->id,
+                ], $request->validated());
+
+                (!$diagnosticTest)
+                    ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 4')
+                    : $this->message('successMessage', 'Success: Step 4 saved');
+
+                return redirect()->route('dashboard.assessment.show', ['assessment' => $assessment]);
+            }
+            default : {
+                $this->message('errorMessage', 'Error: Invalid Step');
+                return redirect()->route('dashboard.assessment.edit.step', ['assessment' => $assessment, 'step' => 'step1', 'patient' => $patient,]);
+            }
+        }
+
+        return redirect()->route('dashboard.assessment.edit.step', ['assessment' => $assessment, 'step' => $step, 'patient' => $patient,]);
     }
 
     /**
