@@ -19,9 +19,10 @@
                         <div class="ibox-tools">
                             @if($crud['CREATE_PATIENT']['can'] ?? false)
                                 <a
-                                    title="{{ $actions['add'] .' '. $resource }}"
+                                    data-toggle="modal" 
+                                    data-target="#myModal"
                                     class="btn btn-primary btn-xs"
-                                    href="{{ $crud['CREATE_PATIENT']['route'] ?? 'javascript::void(0)' }}"
+                                   
                                 >
                                     <i class="fa-fw fa fa-plus"></i>
                                 </a>
@@ -40,6 +41,42 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- modal header  -->
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Bootstrap 3 Modal Header</h4>
+        </div>
+        <div class="modal-body">
+        <!-- begin modal body content  -->
+          <section class="stage">
+            <figure class="ball"><span class="shadow"></span></figure>
+          </section>
+        <!-- end modal body content  -->
+        </div>
+        <div class="modal-footer">
+          <!-- modal footer  -->
+          
+          <a  
+          title="{{ $actions['add'] .' '. $resource }}"
+          href="{{ $crud['CREATE_PATIENT']['route'] ?? 'javascript::void(0)' }}"
+          class="btn btn-primary"
+          >
+           Agree
+          </a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- </div> -->
 
     {{-- start modals --}}
     @includeIf($modalDelete, ['resource' => $resource ?? ''])
