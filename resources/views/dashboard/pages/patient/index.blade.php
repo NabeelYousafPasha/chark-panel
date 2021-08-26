@@ -25,6 +25,7 @@
                                     title="{{ $actions['add'] .' '. $resource }}"
                                 >
                                     <i class="fa-fw fa fa-plus"></i>
+                                    Add New Patient
                                 </a>
                             @endif
                             <a class="collapse-link">

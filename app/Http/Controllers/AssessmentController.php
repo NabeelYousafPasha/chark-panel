@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Assessment\AssessmentRequest;
-use App\Models\Assessment;
-use App\Models\ClinicalExploration;
-use App\Models\DiagnosticTest;
-use App\Models\MedicalHistory;
-use App\Models\Patient;
-use App\Models\SleepinessScale;
-use App\Models\Symptom;
+use App\Models\{
+    Assessment,
+    ClinicalExploration,
+    DiagnosticTest,
+    MedicalHistory,
+    Patient,
+    SleepinessScale,
+    Symptom
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
