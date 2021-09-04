@@ -86,7 +86,8 @@
 
                                             </div>
 
-                                            <div class="row form-group @error('alcohol_with_dinner') has-error @enderror"">
+                                            <div class="row form-group @error('alcohol_with_dinner') has-error @enderror">
+                                                
                                                 <div class="col-md-6">
                                                     <label
                                                         for="alcohol_with_dinner"
@@ -122,12 +123,39 @@
                                                         >
                                                         <span>No</span>
                                                     </label>
+                                                    
+                                                    
                                                     @error('alcohol_with_dinner')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
+                                            </div>
+                                            <div class="row form-group @error('optional') has-error @enderror" id="optionals">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="optional"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                    How many days/week do you have 1 drink or more?
+                                                    </label>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="optional"
+                                                        id="optional"
+                                                        class="form-control"
+                                                        value="{{ $medicalHistory->optional ?? old('optional') }}"
+                                                    >
+                                                </div>
+                                                    @error('optional')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                             </div>
 
                                             <br>
@@ -765,6 +793,24 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
+    $('#optionals').hide();
+    $('input[name="alcohol_with_dinner"]').click(function(e) {
+    if(e.target.value === '1') {
+    
+        $('#optionals').show();
+    } else {
+        $('#optionals').hide();
+    }
+    })
+    
+
+
+</script>
 @endsection
 
 

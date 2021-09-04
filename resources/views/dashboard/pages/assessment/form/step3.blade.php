@@ -170,7 +170,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group  @error('upper_airway_surgery') has-error @enderror">
+                                            <div class="row form-group @error('upper_airway_surgery') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="positional_therapy"
@@ -180,21 +180,32 @@
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    @foreach(config('constants.upper_airway_surgery') as $upperAirwaySurgeryKey => $upperAirwaySurgery)
-                                                        <label class="m-r">
-                                                            <input
-                                                                type="checkbox"
-                                                                name="upper_airway_surgery[]"
-                                                                id="upper_airway_surgery_{{ $upperAirwaySurgeryKey }}"
-                                                                class=""
-                                                                value="{{ $upperAirwaySurgeryKey }}"
-                                                                {{ in_array($upperAirwaySurgeryKey, old('upper_airway_surgery') ?? []) ? 'checked' : '' }}
-                                                                {{ in_array($upperAirwaySurgeryKey, explode(config('constants.upper_airway_surgery_separator'), $clinicalExploration->upper_airway_surgery ?? '')) ? 'checked' : '' }}
-                                                            >
-                                                            <span>{{ $upperAirwaySurgery }}</span>
-                                                        </label>
-                                                        <br>
-                                                    @endforeach
+                                                    <label class="m-r">
+                                                        <input
+                                                            id="upper_airway_surgery_yes"
+                                                            name="upper_airway_surgery"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
+                                                            required=""
+                                                            {{ old('upper_airway_surgery') == '1' ? 'checked' : '' }}
+                                                            {{ ($clinicalExploration->upper_airway_surgery ?? null) == '1' ? 'checked' : '' }}
+                                                        >
+                                                        <span>Yes</span>
+                                                    </label>
+                                                    <label class="m-r">
+                                                        <input
+                                                            id="upper_airway_surgery_no"
+                                                            name="upper_airway_surgery"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('upper_airway_surgery') == '0' ? 'checked' : '' }}
+                                                            {{ ($clinicalExploration->positional_therapy ?? null) == '0' ? 'checked' : '' }}
+                                                        >
+                                                        <span>No</span>
+                                                    </label>
                                                     @error('upper_airway_surgery')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -202,9 +213,25 @@
                                                     @enderror
                                                 </div>
                                             </div>
-
-                                            <div class="row form-group @error('other_upper_airway_surgery') has-error @enderror">
-                                                <div class="col-md-6">
+                                            <div class="col-md-6" id="upper_airway_surgery_options">
+                                                @foreach(config('constants.upper_airway_surgery') as $upperAirwaySurgeryKey => $upperAirwaySurgery)
+                                                    <label class="m-r">
+                                                        <input
+                                                            type="checkbox"
+                                                            name="upper_airway_surgery[]"
+                                                            id="upper_airway_surgery_{{ $upperAirwaySurgeryKey }}"
+                                                            class=""
+                                                            value="{{ $upperAirwaySurgeryKey }}"
+                                                            {{ in_array($upperAirwaySurgeryKey, old('upper_airway_surgery') ?? []) ? 'checked' : '' }}
+                                                            {{ in_array($upperAirwaySurgeryKey, explode(config('constants.upper_airway_surgery_separator'), $clinicalExploration->upper_airway_surgery ?? '')) ? 'checked' : '' }}
+                                                        >
+                                                        <span>{{ $upperAirwaySurgery }}</span>
+                                                    </label>
+                                                    <br>
+                                                @endforeach
+                                            </div>
+                                            <div class="row form-group @error('other_upper_airway_surgery') has-error @enderror" id="other_upper_airway_surgery_1">
+                                                <div class="col-md-6" >
                                                     <label
                                                         for="other_upper_airway_surgery"
                                                         class="col-form-label text-md-left"
@@ -229,6 +256,9 @@
                                                     @enderror
                                                 </div>
                                             </div>
+
+
+                                            
 
                                             <div class="row form-group @error('bariatric_surgery') has-error @enderror">
                                                 <div class="col-md-6">
@@ -312,7 +342,7 @@
                                                         for="height"
                                                         class="col-form-label text-md-left"
                                                     >
-                                                        Height (cm):
+                                                        Height (feet and inches):
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -338,7 +368,7 @@
                                                         for="weight"
                                                         class="col-form-label text-md-left"
                                                     >
-                                                        Weight (kg):
+                                                        Weight (pounds):
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -403,84 +433,6 @@
                                                         value="{{ $clinicalExploration->neck_circumference ?? old('neck_circumference') }}"
                                                     >
                                                     @error('neck_circumference')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="row form-group @error('beats_per_minute') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="beats_per_minute"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        Beats per minute:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="number"
-                                                        name="beats_per_minute"
-                                                        id="beats_per_minute"
-                                                        class="form-control"
-                                                        min="0"
-                                                        required=""
-                                                        value="{{ $clinicalExploration->beats_per_minute ?? old('beats_per_minute') }}"
-                                                    >
-                                                    @error('beats_per_minute')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="row form-group @error('systolic_blood_pressure') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="systolic_blood_pressure"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        Systolic Blood Pressure:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="number"
-                                                        name="systolic_blood_pressure"
-                                                        id="systolic_blood_pressure"
-                                                        class="form-control"
-                                                        min="0"
-                                                        required=""
-                                                        value="{{ $clinicalExploration->systolic_blood_pressure ?? old('systolic_blood_pressure') }}"
-                                                    >
-                                                    @error('systolic_blood_pressure')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="row form-group @error('diastolic_blood_pressure') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="diastolic_blood_pressure"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        Diastolic Blood Pressure:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="number"
-                                                        name="diastolic_blood_pressure"
-                                                        id="diastolic_blood_pressure"
-                                                        class="form-control"
-                                                        min="0"
-                                                        required=""
-                                                        value="{{ $clinicalExploration->diastolic_blood_pressure ?? old('diastolic_blood_pressure') }}"
-                                                    >
-                                                    @error('diastolic_blood_pressure')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -1263,24 +1215,8 @@
                                         <div class="col-md-6">
                                             <div class="row form-group @error('assessment_observation') has-error @enderror">
                                                 <div class="col-md-12">
-                                                    <label
-                                                        for="assessment_observation"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        Assessment:
-                                                    </label>
-                                                    <textarea
-                                                        name="assessment_observation"
-                                                        id="assessment_observation"
-                                                        class="form-control"
-                                                        rows="10"
-                                                    >{{ $clinicalExploration->assessment_observation ?? old('assessment_observation') }}</textarea>
+                                                    <img src="{{asset('frontend-assets/images/teeth.jpeg')}}" alt="" class="img-responsive">
                                                 </div>
-                                                @error('assessment_observation')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -1313,6 +1249,7 @@
 @endsection
 
 @section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
             let bmiInput = $('#bmi')
@@ -1372,6 +1309,27 @@
 
             return parseFloat(bmi).toFixed(2)
         }
+        
+        $('#upper_airway_surgery_options').hide();
+        $('input[name="upper_airway_surgery"]').click(function(e) {
+        if(e.target.value === '1') {
+        
+            $('#upper_airway_surgery_options').show();
+        } else {
+            $('#upper_airway_surgery_options').hide();
+        }
+        })
+        $('#other_upper_airway_surgery_1').hide();
+        $('input[name="upper_airway_surgery"]').click(function(e) {
+        if(e.target.value === '1') {
+        
+            $('#other_upper_airway_surgery_1').show();
+        } else {
+            $('#other_upper_airway_surgery_1').hide();
+        }
+        })
+        
+
     </script>
 @endsection
 

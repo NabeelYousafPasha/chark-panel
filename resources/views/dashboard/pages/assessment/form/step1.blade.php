@@ -566,7 +566,7 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            <h3>Select the chance of you dozing or falling asleep in these situations:</h3>
+                            <h3>How likely are you to doze off in the following situations?</h3>
 
                             <table class="table" width="100%">
                                 <thead>
@@ -823,9 +823,7 @@
                                 </tbody>
                             </table>
 
-                            <h4 class="help-block">
-                                Select the chance of dozing or falling asleep in all of the situations.
-                            </h4>
+        
                         </div>
                     </div>
                 </div>
@@ -853,14 +851,14 @@
                         <span aria-hidden="true">×</span>
                     </button>
                     <h2 class="modal-title" id="modal__snoring_scale_test_Label">
-                        Snorting Scale text
+                        Snoring Scale
                     </h2>
                 </div>
 
                 <div class="modal-body table-responsive">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3>Snorting experienced during the night</h3>
+                            <h3>Snoring Scale</h3>
 
                             <div class="form-group @error('night_snoring_experience') has-error @enderror">
                                 @error('night_snoring_experience')

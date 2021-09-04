@@ -93,9 +93,6 @@ class AssessmentRequest extends FormRequest
                 "weight" => ['required', 'numeric',],
                 "bmi" => ['required', 'numeric',],
                 "neck_circumference" => ['required', 'numeric',],
-                "beats_per_minute" => ['required', 'numeric',],
-                "systolic_blood_pressure" => ['required', 'numeric',],
-                "diastolic_blood_pressure" => ['required', 'numeric',],
                 "bruxism" => ['required', 'boolean',],
                 "pointed_hard_palade" => ['required', 'boolean',],
                 "tmj_noise" => ['required', 'boolean',],
@@ -112,7 +109,6 @@ class AssessmentRequest extends FormRequest
                 "hard_and_soft_palate_visibility" => ['required', 'boolean',],
                 "hard_and_palate_and_part_of_soft_palate_visibility" => ['required', 'boolean',],
                 "only_hard_palate_visibility" => ['required', 'boolean',],
-                "assessment_observation" => ['required', 'string', 'max:255',],
             ],
 
             'step4' => [

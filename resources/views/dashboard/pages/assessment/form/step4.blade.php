@@ -36,7 +36,7 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h2>Upload document here</h2>
+                                            <h2>Uploads:</h2>
                                             <br>
 
                                             <div class="row form-group @error('polygraph') has-error @enderror">
@@ -45,7 +45,7 @@
                                                         for="polygraph"
                                                         class="col-form-label text-md-left"
                                                     >
-                                                        Polygraph:
+                                                        X-Ray:
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -70,7 +70,57 @@
                                                         for="polychemography"
                                                         class="col-form-label text-md-left"
                                                     >
-                                                        Polychemography:
+                                                    Sleep Study:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="file"
+                                                        id="polychemography"
+                                                        name="polychemography"
+                                                        class="form-control"
+                                                        value="{{ old('polychemography') }}"
+                                                    >
+                                                    @error('polychemography')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group @error('polygraph') has-error @enderror">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="polygraph"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Photos:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="file"
+                                                        id="polygraph"
+                                                        name="polygraph"
+                                                        class="form-control"
+                                                        value="{{ old('polygraph') }}"
+                                                    >
+                                                    @error('polygraph')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group @error('polychemography') has-error @enderror">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="polychemography"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                    CBCT:
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -95,7 +145,7 @@
                                                         for="iah"
                                                         class="col-form-label text-md-left"
                                                     >
-                                                        IAH:
+                                                        AHI:
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -121,7 +171,7 @@
                                                         for="ia"
                                                         class="col-form-label text-md-left"
                                                     >
-                                                        IA:
+                                                        RDI:
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -147,7 +197,7 @@
                                                         for="ih"
                                                         class="col-form-label text-md-left"
                                                     >
-                                                        IH:
+                                                        NADIR:
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -173,7 +223,7 @@
                                                         for="sat_2_min"
                                                         class="col-form-label text-md-left"
                                                     >
-                                                        SAT 02min %:
+                                                        ODI:
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -186,32 +236,6 @@
                                                         value="{{ $diagnosticTest->sat_2_min ?? old('sat_2_min') }}"
                                                     >
                                                     @error('sat_2_min')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group @error('ct90') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="ct90"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        CT 90%:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="text"
-                                                        name="ct90"
-                                                        id="ct90"
-                                                        class="form-control"
-                                                        required=""
-                                                        value="{{ $diagnosticTest->ct90 ?? old('ct90') }}"
-                                                    >
-                                                    @error('ct90')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
