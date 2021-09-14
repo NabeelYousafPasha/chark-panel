@@ -35,24 +35,20 @@ class CreateClinicalExplorationsTable extends Migration
             $table->decimal('weight');
             $table->decimal('bmi');
             $table->decimal('neck_circumference');
-            $table->decimal('beats_per_minute');
-            $table->decimal('systolic_blood_pressure');
-            $table->decimal('diastolic_blood_pressure');
 
-            $table->boolean('normognathic');
-            $table->boolean('retrognathic');
-            $table->boolean('prognathic');
+//            $table->boolean('normognathic');
+//            $table->boolean('retrognathic');
+//            $table->boolean('prognathic');
+//
+//            $table->boolean('edge_to_edge_bite');
+//            $table->boolean('anterior_crossbite');
+//            $table->boolean('overbite');
+//
+//            $table->boolean('total_visibility_of_tonsils_uvula_soft_palate');
+//            $table->boolean('hard_and_soft_palate_visibility');
+//            $table->boolean('hard_and_palate_and_part_of_soft_palate_visibility');
+//            $table->boolean('only_hard_palate_visibility');
 
-            $table->boolean('edge_to_edge_bite');
-            $table->boolean('anterior_crossbite');
-            $table->boolean('overbite');
-
-            $table->boolean('total_visibility_of_tonsils_uvula_soft_palate');
-            $table->boolean('hard_and_soft_palate_visibility');
-            $table->boolean('hard_and_palate_and_part_of_soft_palate_visibility');
-            $table->boolean('only_hard_palate_visibility');
-
-            $table->longText('assessment_observation')->nullable();
             $table->timestamps();
         });
     }

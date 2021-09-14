@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Assessment;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AssessmentRequest extends FormRequest
 {
@@ -76,21 +77,22 @@ class AssessmentRequest extends FormRequest
                 "hypothyroidism" => ['required', 'boolean',],
                 "other_medical_history" => ['required', 'string', 'max:255',],
                 "anxiolytics" => ['required', 'boolean',],
-                "anxiolytics_value" => ['sometimes', 'required_if:anxiolytics,1',],
+                "anxiolytics_value" => ['nullable', 'required_if:anxiolytics,1', 'string', 'max:255',],
                 "antidepressants" => ['required', 'boolean',],
-                "antidepressants_value" => ['sometimes', 'required_if:antidepressants,1',],
+                "antidepressants_value" => ['nullable', 'required_if:antidepressants,1', 'string', 'max:255',],
                 "induce_sleep_medication" => ['required', 'boolean',],
-                "induce_sleep_medication_value" => ['sometimes', 'required_if:induce_sleep_medication,1',],
+                "induce_sleep_medication_value" => ['nullable', 'required_if:induce_sleep_medication,1', 'string', 'max:255',],
                 "other_medications" => ['required', 'boolean',],
-                "other_medications_value" => ['sometimes', 'required_if:other_medications,1',],
+                "other_medications_value" => ['nullable', 'required_if:other_medications,1', 'string', 'max:255',],
             ],
 
             'step3' => [
                 "cpap" => ['required', 'boolean',],
                 "mandibular_advancement_device" => ['required', 'boolean',],
                 "positional_therapy" => ['required', 'boolean',],
-                "upper_airway_surgery" => ['required', 'array',],
-                "upper_airway_surgery.*" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.upper_airway_surgery')))],
+                "upper_airway_surgery" => ['required', 'boolean',],
+                "upper_airway_surgery_value" => ['nullable', 'required_if:upper_airway_surgery,1', 'array',],
+                "upper_airway_surgery_value.*" => ['nullable', 'required_if:upper_airway_surgery,1', 'string', 'in:'.implode(",", array_keys(config('constants.upper_airway_surgery')))],
                 "other_upper_airway_surgery" => ['nullable', 'string', 'max:255',],
                 "bariatric_surgery" => ['required', 'boolean',],
                 "other_treatments_for_sleep_apnea" => ['nullable', 'string', 'max:255',],
@@ -104,16 +106,18 @@ class AssessmentRequest extends FormRequest
                 "tmj_pain" => ['required', 'boolean',],
                 "bilateral_crossbite" => ['required', 'boolean',],
                 "lateral_crossbite" => ['required', 'boolean',],
-                "normognathic" => ['required', 'boolean',],
-                "retrognathic" => ['required', 'boolean',],
-                "prognathic" => ['required', 'boolean',],
-                "edge_to_edge_bite" => ['required', 'boolean',],
-                "anterior_crossbite" => ['required', 'boolean',],
-                "overbite" => ['required', 'boolean',],
-                "total_visibility_of_tonsils_uvula_soft_palate" => ['required', 'boolean',],
-                "hard_and_soft_palate_visibility" => ['required', 'boolean',],
-                "hard_and_palate_and_part_of_soft_palate_visibility" => ['required', 'boolean',],
-                "only_hard_palate_visibility" => ['required', 'boolean',],
+//                "normognathic" => ['required', 'boolean',],
+//                "retrognathic" => ['required', 'boolean',],
+//                "prognathic" => ['required', 'boolean',],
+//                "edge_to_edge_bite" => ['required', 'boolean',],
+//                "anterior_crossbite" => ['required', 'boolean',],
+//                "overbite" => ['required', 'boolean',],
+//                "total_visibility_of_tonsils_uvula_soft_palate" => ['required', 'boolean',],
+//                "hard_and_soft_palate_visibility" => ['required', 'boolean',],
+//                "hard_and_palate_and_part_of_soft_palate_visibility" => ['required', 'boolean',],
+//                "only_hard_palate_visibility" => ['required', 'boolean',],
+                "mallampati_classification" => ['required', 'string', Rule::in(config('constants.clinical_explorations.mallampati_classification')),],
+                "tonsil_classification" => ['required', 'string', Rule::in(config('constants.clinical_explorations.tonsil_classification')),],
             ],
 
             'step4' => [

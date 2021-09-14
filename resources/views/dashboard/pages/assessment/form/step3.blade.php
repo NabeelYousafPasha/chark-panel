@@ -1,6 +1,28 @@
 @extends('dashboard.layout.app')
 
 @section('stylesheets')
+    <style>
+        /*.input-hidden {*/
+        /*    position: absolute;*/
+        /*    opacity: 0;*/
+        /*    width: 0;*/
+        /*    height: 0;*/
+        /*}*/
+
+        /*label > input[type=radio]:checked + img {*/
+        /*    border: 1px solid #fff;*/
+        /*    box-shadow: 0 0 1px 2px #FF5959;*/
+        /*}*/
+
+        .mallampati-image {
+            width: 90px;
+            height: 80px;
+        }
+
+        .tonsil-image {
+            width: 100px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -170,17 +192,18 @@
                                                     @enderror
                                                 </div>
                                             </div>
+
                                             <div class="row form-group @error('upper_airway_surgery') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
-                                                        for="positional_therapy"
+                                                        for="upper_airway_surgery"
                                                         class="col-form-label text-md-left"
                                                     >
                                                     Upper Airway surgery:
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="m-r">
+                                                    <label class="m-r" for="upper_airway_surgery_yes">
                                                         <input
                                                             id="upper_airway_surgery_yes"
                                                             name="upper_airway_surgery"
@@ -193,7 +216,7 @@
                                                         >
                                                         <span>Yes</span>
                                                     </label>
-                                                    <label class="m-r">
+                                                    <label class="m-r" for="upper_airway_surgery_no">
                                                         <input
                                                             id="upper_airway_surgery_no"
                                                             name="upper_airway_surgery"
@@ -206,6 +229,7 @@
                                                         >
                                                         <span>No</span>
                                                     </label>
+
                                                     @error('upper_airway_surgery')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -214,25 +238,29 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6" id="upper_airway_surgery_options">
-                                                @foreach(config('constants.upper_airway_surgery') as $upperAirwaySurgeryKey => $upperAirwaySurgery)
-                                                    <label class="m-r">
-                                                        <input
-                                                            type="checkbox"
-                                                            name="upper_airway_surgery[]"
-                                                            id="upper_airway_surgery_{{ $upperAirwaySurgeryKey }}"
-                                                            class=""
-                                                            value="{{ $upperAirwaySurgeryKey }}"
-                                                            {{ in_array($upperAirwaySurgeryKey, old('upper_airway_surgery') ?? []) ? 'checked' : '' }}
-                                                            {{ in_array($upperAirwaySurgeryKey, explode(config('constants.upper_airway_surgery_separator'), $clinicalExploration->upper_airway_surgery ?? '')) ? 'checked' : '' }}
-                                                        >
-                                                        <span>{{ $upperAirwaySurgery }}</span>
-                                                    </label>
-                                                    <br>
-                                                @endforeach
+                                            <div class="row form-group @error('upper_airway_surgery_value') has-error @enderror" id="upper_airway_surgery_value__div">
+                                                <div class="col-md-6"></div>
+                                                <div class="col-md-6">
+                                                    @foreach(config('constants.upper_airway_surgery') as $upperAirwaySurgeryKey => $upperAirwaySurgery)
+                                                        <label class="m-r">
+                                                            <input
+                                                                type="checkbox"
+                                                                name="upper_airway_surgery_value[]"
+                                                                id="upper_airway_surgery_value_{{ $upperAirwaySurgeryKey }}"
+                                                                class=""
+                                                                value="{{ $upperAirwaySurgeryKey }}"
+                                                                {{ in_array($upperAirwaySurgeryKey, old('upper_airway_surgery_value') ?? []) ? 'checked' : '' }}
+                                                                {{ in_array($upperAirwaySurgeryKey, explode(config('constants.upper_airway_surgery_separator'), $clinicalExploration->upper_airway_surgery ?? '')) ? 'checked' : '' }}
+                                                            >
+                                                            <span>{{ $upperAirwaySurgery }}</span>
+                                                        </label>
+                                                        <br>
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                            <div class="row form-group @error('other_upper_airway_surgery') has-error @enderror" id="other_upper_airway_surgery_1">
-                                                <div class="col-md-6" >
+
+                                            <div class="row form-group @error('other_upper_airway_surgery') has-error @enderror" id="other_upper_airway_surgery__div">
+                                                <div class="col-md-6">
                                                     <label
                                                         for="other_upper_airway_surgery"
                                                         class="col-form-label text-md-left"
@@ -246,7 +274,6 @@
                                                         name="other_upper_airway_surgery"
                                                         id="other_upper_airway_surgery"
                                                         class="form-control"
-                                                        required=""
                                                         value="{{ $clinicalExploration->other_upper_airway_surgery ?? old('other_upper_airway_surgery') }}"
 
                                                     >
@@ -257,8 +284,6 @@
                                                     @enderror
                                                 </div>
                                             </div>
-
-
 
 
                                             <div class="row form-group @error('bariatric_surgery') has-error @enderror">
@@ -311,7 +336,7 @@
                                                         for="other_treatments_for_sleep_apnea"
                                                         class="col-form-label text-md-left"
                                                     >
-                                                        Other treatments for sleep apnea or snorting:
+                                                        Other treatments for sleep apnea or snoring:
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -710,6 +735,98 @@
                                         </div>
 
                                         <div class="col-md-6">
+
+                                            <h2>{{ __('Mallampati Classification') }}</h2>
+                                            <br>
+
+                                            <div class="row form-group @error('mallampati_classification') has-error @enderror">
+                                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                                    <label class="text-center" for="mallampati_classification_class_1">
+                                                        <input
+                                                            type="radio"
+                                                            id="mallampati_classification_class_1"
+                                                            name="mallampati_classification"
+                                                            value="class-1"
+                                                            class="input-hidden"
+                                                            {{ old('mallampati_classification') == 'class-1' ? 'checked' : '' }}
+                                                        >
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/class-1.png') }}"
+                                                            alt="frontend-assets/images/class-1.png"
+                                                            class="img-responsive mallampati-image"
+                                                        >
+                                                        Class I
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                                    <label class="text-center" for="mallampati_classification_class_2">
+                                                        <input
+                                                            type="radio"
+                                                            id="mallampati_classification_class_2"
+                                                            name="mallampati_classification"
+                                                            value="class-2"
+                                                            class="input-hidden"
+                                                            {{ old('mallampati_classification') == 'class-2' ? 'checked' : '' }}
+                                                        >
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/class-2.png') }}"
+                                                            alt="frontend-assets/images/class-2.png"
+                                                            class="img-responsive mallampati-image"
+                                                        >
+                                                        Class II
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                                    <label class="text-center" for="mallampati_classification_class_3">
+                                                        <input
+                                                            type="radio"
+                                                            id="mallampati_classification_class_3"
+                                                            name="mallampati_classification"
+                                                            value="class-3"
+                                                            class="input-hidden"
+                                                            {{ old('mallampati_classification') == 'class-3' ? 'checked' : '' }}
+                                                        >
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/class-3.png') }}"
+                                                            alt="frontend-assets/images/class-3.png"
+                                                            class="img-responsive mallampati-image"
+                                                        >
+                                                        Class III
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                                    <label class="text-center" for="mallampati_classification_class_4">
+                                                        <input
+                                                            type="radio"
+                                                            id="mallampati_classification_class_4"
+                                                            name="mallampati_classification"
+                                                            value="class-4"
+                                                            class="input-hidden"
+                                                            {{ old('mallampati_classification') == 'class-4' ? 'checked' : '' }}
+                                                        >
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/class-4.png') }}"
+                                                            alt="frontend-assets/images/class-4.png"
+                                                            class="img-responsive mallampati-image"
+                                                        >
+                                                        Class IV
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    @error('mallampati_classification')
+                                                        <span class="help-block has-error" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{--<div class="col-md-6">
                                             <h2>Mondular Morphology according to facial profile</h2>
                                             <br>
 
@@ -1004,13 +1121,139 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>--}}
                                     </div>
 
                                     <hr>
 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
+
+                                            <h2>{{ __('Tonsil Classification') }}</h2>
+                                            <br>
+
+                                            <div class="row form-group text-center @error('tonsil_classification') has-error @enderror">
+
+                                                <div class="col-md-1"></div>
+
+                                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <label class="text-center" for="tonsil_classification_0">
+                                                        <input
+                                                            type="radio"
+                                                            id="tonsil_classification_0"
+                                                            name="tonsil_classification"
+                                                            value="tonsil-0"
+                                                            class="input-hidden"
+                                                            {{ old('tonsil_classification') == 'tonsil-0' ? 'checked' : '' }}
+                                                        >
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/tonsil-0.png') }}"
+                                                            alt="frontend-assets/images/tonsil-0.png"
+                                                            class="img-responsive tonsil-image"
+                                                        >
+                                                        0
+                                                        <br>
+                                                        <small class="help">Surgically removed Tonsils</small>
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <label class="text-center" for="tonsil_classification_1">
+                                                        <input
+                                                            type="radio"
+                                                            id="tonsil_classification_1"
+                                                            name="tonsil_classification"
+                                                            value="tonsil-1"
+                                                            class="input-hidden"
+                                                            {{ old('tonsil_classification') == 'tonsil-1' ? 'checked' : '' }}
+                                                        >
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/tonsil-1.png') }}"
+                                                            alt="frontend-assets/images/tonsil-1.png"
+                                                            class="img-responsive tonsil-image"
+                                                        >
+                                                        1
+                                                        <br>
+                                                        <small>Tonsils hidden within tonsil pillars</small>
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <label class="text-center" for="tonsil_classification_2">
+                                                        <input
+                                                            type="radio"
+                                                            id="tonsil_classification_2"
+                                                            name="tonsil_classification"
+                                                            value="tonsil-2"
+                                                            class="input-hidden"
+                                                            {{ old('tonsil_classification') == 'tonsil-2' ? 'checked' : '' }}
+                                                        >
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/tonsil-2.png') }}"
+                                                            alt="frontend-assets/images/tonsil-2.png"
+                                                            class="img-responsive tonsil-image"
+                                                        >
+                                                        2
+                                                        <br>
+                                                        <small>Tonsils extending to the pillars</small>
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <label class="text-center" for="tonsil_classification_3">
+                                                        <input
+                                                            type="radio"
+                                                            id="tonsil_classification_3"
+                                                            name="tonsil_classification"
+                                                            value="tonsil-3"
+                                                            class="input-hidden"
+                                                            {{ old('tonsil_classification') == 'tonsil-3' ? 'checked' : '' }}
+                                                        >
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/tonsil-3.png') }}"
+                                                            alt="frontend-assets/images/tonsil-3.png"
+                                                            class="img-responsive tonsil-image"
+                                                        >
+                                                        3
+                                                        <br>
+                                                        <small>Tonsils are beyond the pillars</small>
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <label class="text-center" for="tonsil_classification_4">
+                                                        <input
+                                                            type="radio"
+                                                            id="tonsil_classification_4"
+                                                            name="tonsil_classification"
+                                                            value="tonsil-4"
+                                                            class="input-hidden"
+                                                            {{ old('tonsil_classification') == 'tonsil-4' ? 'checked' : '' }}
+                                                        >
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/tonsil-4.png') }}"
+                                                            alt="frontend-assets/images/tonsil-4.png"
+                                                            class="img-responsive tonsil-image"
+                                                        >
+                                                        4
+                                                        <br>
+                                                        <small>Tonsils extend to midline</small>
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-md-1"></div>
+
+                                                <div class="col-md-12">
+                                                    @error('tonsil_classification')
+                                                    <span class="help-block has-error" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{--<div class="col-md-6">
 
                                             <h2>Lingual position classification (Friedman Classification)</h2>
                                             <br>
@@ -1211,9 +1454,16 @@
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        </div>--}}
+                                    </div>
 
-                                        <div class="col-md-6">
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h2>{{ __('Teeth') }}</h2>
+                                            <br>
+
                                             <div class="row form-group @error('assessment_observation') has-error @enderror">
                                                 <div class="col-md-12">
                                                     <img src="{{asset('frontend-assets/images/teeth.jpeg')}}" alt="" class="img-responsive">
@@ -1311,25 +1561,19 @@
             return parseFloat(bmi).toFixed(2)
         }
 
-        $('#upper_airway_surgery_options').hide();
+        let upper_airway_surgery_value__div = $('#upper_airway_surgery_value__div').hide();
+        let other_upper_airway_surgery__div = $('#other_upper_airway_surgery__div').hide();
 
         $('input[name="upper_airway_surgery"]').click(function(e) {
-            if(e.target.value === '1') {
-                $('#upper_airway_surgery_options').show();
+            if (e.target.value === '1') {
+                upper_airway_surgery_value__div.show();
+                other_upper_airway_surgery__div.show();
+
             } else {
-                $('#upper_airway_surgery_options').hide();
+                upper_airway_surgery_value__div.hide();
+                other_upper_airway_surgery__div.hide();
             }
         });
-
-        $('#other_upper_airway_surgery_1').hide();
-        $('input[name="upper_airway_surgery"]').click(function(e) {
-        if(e.target.value === '1') {
-
-            $('#other_upper_airway_surgery_1').show();
-        } else {
-            $('#other_upper_airway_surgery_1').hide();
-        }
-        })
 
 
     </script>
