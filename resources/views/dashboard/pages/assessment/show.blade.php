@@ -43,7 +43,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
 
-                                        <h2 class="text-center">Step 1</h2>
+                                        <h2 class="text-center">Symptoms</h2>
 
                                         @if(is_null($symptom ?? null))
                                             <div class="no-data text-center">
@@ -253,7 +253,7 @@
 
                                     <div class="col-md-6">
 
-                                        <h2 class="text-center">Step 2</h2>
+                                        <h2 class="text-center">Medical History</h2>
 
                                         @if(is_null($medicalHistory ?? null))
                                             <div class="no-data text-center">
@@ -458,7 +458,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
 
-                                        <h2 class="text-center">Step 3</h2>
+                                        <h2 class="text-center">Clinical Eploration</h2>
 
                                         @if(is_null($clinicalExploration ?? null))
                                             <div class="no-data text-center">
@@ -796,7 +796,7 @@
 
                                     <div class="col-md-6">
 
-                                        <h2 class="text-center">Step 4</h2>
+                                        <h2 class="text-center">Diagnostic Tests</h2>
 
                                         @if(is_null($diagnosticTest ?? null))
                                             <div class="no-data text-center">
