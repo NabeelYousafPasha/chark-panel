@@ -240,7 +240,13 @@
                                                 <div class="col-md-6">
                                                     <label for="nocturia" class="control-label">
                                                         Nocturia:
-                                                        <span class="badge badge-light" title="a condition in which you wake up during the night because you have to urinate.">?</span>
+                                                        <span
+                                                            id="nocturia_help"
+                                                            class="badge badge-light"
+                                                            title="a condition in which you wake up during the night because you have to urinate."
+                                                        >
+                                                            ?
+                                                        </span>
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -823,7 +829,7 @@
                                 </tbody>
                             </table>
 
-        
+
                         </div>
                     </div>
                 </div>

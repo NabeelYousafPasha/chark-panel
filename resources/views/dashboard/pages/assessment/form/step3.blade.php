@@ -213,6 +213,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6" id="upper_airway_surgery_options">
                                                 @foreach(config('constants.upper_airway_surgery') as $upperAirwaySurgeryKey => $upperAirwaySurgery)
                                                     <label class="m-r">
@@ -258,7 +259,7 @@
                                             </div>
 
 
-                                            
+
 
                                             <div class="row form-group @error('bariatric_surgery') has-error @enderror">
                                                 <div class="col-md-6">
@@ -1309,26 +1310,27 @@
 
             return parseFloat(bmi).toFixed(2)
         }
-        
+
         $('#upper_airway_surgery_options').hide();
+
         $('input[name="upper_airway_surgery"]').click(function(e) {
-        if(e.target.value === '1') {
-        
-            $('#upper_airway_surgery_options').show();
-        } else {
-            $('#upper_airway_surgery_options').hide();
-        }
-        })
+            if(e.target.value === '1') {
+                $('#upper_airway_surgery_options').show();
+            } else {
+                $('#upper_airway_surgery_options').hide();
+            }
+        });
+
         $('#other_upper_airway_surgery_1').hide();
         $('input[name="upper_airway_surgery"]').click(function(e) {
         if(e.target.value === '1') {
-        
+
             $('#other_upper_airway_surgery_1').show();
         } else {
             $('#other_upper_airway_surgery_1').hide();
         }
         })
-        
+
 
     </script>
 @endsection

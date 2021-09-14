@@ -62,6 +62,7 @@ class AssessmentRequest extends FormRequest
             'step2' => [
                 "smoker" => ['required', 'boolean',],
                 "alcohol_with_dinner" => ['required', 'boolean',],
+                "alcohol_with_dinner_quantity" => ['required_if:alcohol_with_dinner,1', 'numeric',],
                 "high_blood_pressure" => ['required', 'boolean',],
                 "myocardial_infarction" => ['required', 'boolean',],
                 "coronary_artery_disease" => ['required', 'boolean',],
@@ -74,10 +75,14 @@ class AssessmentRequest extends FormRequest
                 "lung_disease" => ['required', 'boolean',],
                 "hypothyroidism" => ['required', 'boolean',],
                 "other_medical_history" => ['required', 'string', 'max:255',],
-                "anxiolytics" => ['required', 'string', 'max:255',],
-                "antidepressants" => ['required', 'string', 'max:255',],
-                "induce_sleep_medication" => ['required', 'string', 'max:255',],
-                "other_medications" => ['required', 'string', 'max:255',],
+                "anxiolytics" => ['required', 'boolean',],
+                "anxiolytics_value" => ['sometimes', 'required_if:anxiolytics,1',],
+                "antidepressants" => ['required', 'boolean',],
+                "antidepressants_value" => ['sometimes', 'required_if:antidepressants,1',],
+                "induce_sleep_medication" => ['required', 'boolean',],
+                "induce_sleep_medication_value" => ['sometimes', 'required_if:induce_sleep_medication,1',],
+                "other_medications" => ['required', 'boolean',],
+                "other_medications_value" => ['sometimes', 'required_if:other_medications,1',],
             ],
 
             'step3' => [
