@@ -225,7 +225,7 @@
                                                             value="0"
                                                             required=""
                                                             {{ old('upper_airway_surgery') == '0' ? 'checked' : '' }}
-                                                            {{ ($clinicalExploration->positional_therapy ?? null) == '0' ? 'checked' : '' }}
+                                                            {{ ($clinicalExploration->upper_airway_surgery ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
                                                     </label>
@@ -250,7 +250,7 @@
                                                                 class=""
                                                                 value="{{ $upperAirwaySurgeryKey }}"
                                                                 {{ in_array($upperAirwaySurgeryKey, old('upper_airway_surgery_value') ?? []) ? 'checked' : '' }}
-                                                                {{ in_array($upperAirwaySurgeryKey, explode(config('constants.upper_airway_surgery_separator'), $clinicalExploration->upper_airway_surgery ?? '')) ? 'checked' : '' }}
+                                                                {{ in_array($upperAirwaySurgeryKey, explode(config('constants.upper_airway_surgery_separator'), $clinicalExploration->upper_airway_surgery_value ?? '')) ? 'checked' : '' }}
                                                             >
                                                             <span>{{ $upperAirwaySurgery }}</span>
                                                         </label>
@@ -749,6 +749,7 @@
                                                             value="class-1"
                                                             class="input-hidden"
                                                             {{ old('mallampati_classification') == 'class-1' ? 'checked' : '' }}
+                                                            {{ $clinicalExploration->mallampati_classification == 'class-1' ? 'checked' : '' }}
                                                         >
                                                         <img
                                                             src="{{ asset('frontend-assets/images/class-1.png') }}"
@@ -768,6 +769,7 @@
                                                             value="class-2"
                                                             class="input-hidden"
                                                             {{ old('mallampati_classification') == 'class-2' ? 'checked' : '' }}
+                                                            {{ $clinicalExploration->mallampati_classification == 'class-2' ? 'checked' : '' }}
                                                         >
                                                         <img
                                                             src="{{ asset('frontend-assets/images/class-2.png') }}"
@@ -787,6 +789,7 @@
                                                             value="class-3"
                                                             class="input-hidden"
                                                             {{ old('mallampati_classification') == 'class-3' ? 'checked' : '' }}
+                                                            {{ $clinicalExploration->mallampati_classification == 'class-3' ? 'checked' : '' }}
                                                         >
                                                         <img
                                                             src="{{ asset('frontend-assets/images/class-3.png') }}"
@@ -806,6 +809,7 @@
                                                             value="class-4"
                                                             class="input-hidden"
                                                             {{ old('mallampati_classification') == 'class-4' ? 'checked' : '' }}
+                                                            {{ $clinicalExploration->mallampati_classification == 'class-4' ? 'checked' : '' }}
                                                         >
                                                         <img
                                                             src="{{ asset('frontend-assets/images/class-4.png') }}"
@@ -1145,6 +1149,7 @@
                                                             value="tonsil-0"
                                                             class="input-hidden"
                                                             {{ old('tonsil_classification') == 'tonsil-0' ? 'checked' : '' }}
+                                                            {{ $clinicalExploration->tonsil_classification == 'tonsil-0' ? 'checked' : '' }}
                                                         >
                                                         <img
                                                             src="{{ asset('frontend-assets/images/tonsil-0.png') }}"
@@ -1166,6 +1171,7 @@
                                                             value="tonsil-1"
                                                             class="input-hidden"
                                                             {{ old('tonsil_classification') == 'tonsil-1' ? 'checked' : '' }}
+                                                            {{ $clinicalExploration->tonsil_classification == 'tonsil-1' ? 'checked' : '' }}
                                                         >
                                                         <img
                                                             src="{{ asset('frontend-assets/images/tonsil-1.png') }}"
@@ -1187,6 +1193,7 @@
                                                             value="tonsil-2"
                                                             class="input-hidden"
                                                             {{ old('tonsil_classification') == 'tonsil-2' ? 'checked' : '' }}
+                                                            {{ $clinicalExploration->tonsil_classification == 'tonsil-2' ? 'checked' : '' }}
                                                         >
                                                         <img
                                                             src="{{ asset('frontend-assets/images/tonsil-2.png') }}"
@@ -1208,6 +1215,7 @@
                                                             value="tonsil-3"
                                                             class="input-hidden"
                                                             {{ old('tonsil_classification') == 'tonsil-3' ? 'checked' : '' }}
+                                                            {{ $clinicalExploration->tonsil_classification == 'tonsil-3' ? 'checked' : '' }}
                                                         >
                                                         <img
                                                             src="{{ asset('frontend-assets/images/tonsil-3.png') }}"
@@ -1229,6 +1237,7 @@
                                                             value="tonsil-4"
                                                             class="input-hidden"
                                                             {{ old('tonsil_classification') == 'tonsil-4' ? 'checked' : '' }}
+                                                            {{ $clinicalExploration->tonsil_classification == 'tonsil-4' ? 'checked' : '' }}
                                                         >
                                                         <img
                                                             src="{{ asset('frontend-assets/images/tonsil-4.png') }}"

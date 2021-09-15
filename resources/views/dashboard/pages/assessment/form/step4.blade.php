@@ -35,14 +35,66 @@
                                     @method($_method)
 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <h2>Uploads:</h2>
                                             <br>
 
-                                            <div class="row form-group @error('polygraph') has-error @enderror">
+                                        </div>
+
+                                        <div class="col-md-12">
+
+                                            <div class="row form-group @error('cbct') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
-                                                        for="polygraph"
+                                                        for="cbct"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        CBCT:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="file"
+                                                        id="cbct"
+                                                        name="cbct"
+                                                        class="form-control"
+                                                    >
+                                                    @error('cbct')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group @error('photos') has-error @enderror">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="photos"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                    Photos:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="file"
+                                                        id="photos"
+                                                        name="photos"
+                                                        class="form-control"
+                                                    >
+                                                    @error('photos')
+                                                        <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group @error('xray') has-error @enderror">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="xray"
                                                         class="col-form-label text-md-left"
                                                     >
                                                         X-Ray:
@@ -51,12 +103,11 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="file"
-                                                        id="polygraph"
-                                                        name="polygraph"
+                                                        id="xray"
+                                                        name="xray"
                                                         class="form-control"
-                                                        value="{{ old('polygraph') }}"
                                                     >
-                                                    @error('polygraph')
+                                                    @error('xray')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -64,10 +115,10 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group @error('polychemography') has-error @enderror">
+                                            <div class="row form-group @error('sleep_study') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
-                                                        for="polychemography"
+                                                        for="sleep_study"
                                                         class="col-form-label text-md-left"
                                                     >
                                                     Sleep Study:
@@ -76,12 +127,11 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="file"
-                                                        id="polychemography"
-                                                        name="polychemography"
+                                                        id="sleep_study"
+                                                        name="sleep_study"
                                                         class="form-control"
-                                                        value="{{ old('polychemography') }}"
                                                     >
-                                                    @error('polychemography')
+                                                    @error('sleep_study')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -89,60 +139,13 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group @error('polygraph') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="polygraph"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        Photos:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="file"
-                                                        id="polygraph"
-                                                        name="polygraph"
-                                                        class="form-control"
-                                                        value="{{ old('polygraph') }}"
-                                                    >
-                                                    @error('polygraph')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                        </div>
 
-                                            <div class="row form-group @error('polychemography') has-error @enderror">
+                                        <div class="col-md-12">
+                                            <div class="row form-group @error('ahi') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
-                                                        for="polychemography"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                    CBCT:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="file"
-                                                        id="polychemography"
-                                                        name="polychemography"
-                                                        class="form-control"
-                                                        value="{{ old('polychemography') }}"
-                                                    >
-                                                    @error('polychemography')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group @error('iah') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="iah"
+                                                        for="ahi"
                                                         class="col-form-label text-md-left"
                                                     >
                                                         AHI:
@@ -151,13 +154,13 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
-                                                        id="iah"
-                                                        name="iah"
+                                                        id="ahi"
+                                                        name="ahi"
                                                         class="form-control"
                                                         required=""
-                                                        value="{{ $diagnosticTest->iah ?? old('iah') }}"
+                                                        value="{{ $diagnosticTest->ahi ?? old('ahi') }}"
                                                     >
-                                                    @error('iah')
+                                                    @error('ahi')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -165,10 +168,10 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group @error('ia') has-error @enderror">
+                                            <div class="row form-group @error('rdi') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
-                                                        for="ia"
+                                                        for="rdi"
                                                         class="col-form-label text-md-left"
                                                     >
                                                         RDI:
@@ -177,13 +180,13 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
-                                                        id="ia"
-                                                        name="ia"
+                                                        id="rdi"
+                                                        name="rdi"
                                                         class="form-control"
                                                         required=""
-                                                        value="{{ $diagnosticTest->iah ?? old('ia') }}"
+                                                        value="{{ $diagnosticTest->rdi ?? old('rdi') }}"
                                                     >
-                                                    @error('ia')
+                                                    @error('rdi')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -191,10 +194,10 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group @error('ih') has-error @enderror">
+                                            <div class="row form-group @error('nadir') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
-                                                        for="ih"
+                                                        for="nadir"
                                                         class="col-form-label text-md-left"
                                                     >
                                                         NADIR:
@@ -203,13 +206,13 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
-                                                        id="ih"
-                                                        name="ih"
+                                                        id="nadir"
+                                                        name="nadir"
                                                         class="form-control"
                                                         required=""
-                                                        value="{{ $diagnosticTest->iah ?? old('ih') }}"
+                                                        value="{{ $diagnosticTest->nadir ?? old('nadir') }}"
                                                     >
-                                                    @error('ih')
+                                                    @error('nadir')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -217,10 +220,10 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group @error('sat_2_min') has-error @enderror">
+                                            <div class="row form-group @error('odi') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
-                                                        for="sat_2_min"
+                                                        for="odi"
                                                         class="col-form-label text-md-left"
                                                     >
                                                         ODI:
@@ -229,13 +232,13 @@
                                                 <div class="col-md-6">
                                                     <input
                                                         type="text"
-                                                        id="sat_2_min"
-                                                        name="sat_2_min"
+                                                        id="odi"
+                                                        name="odi"
                                                         class="form-control"
                                                         required=""
-                                                        value="{{ $diagnosticTest->sat_2_min ?? old('sat_2_min') }}"
+                                                        value="{{ $diagnosticTest->odi ?? old('odi') }}"
                                                     >
-                                                    @error('sat_2_min')
+                                                    @error('odi')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -321,14 +324,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <button
-                                                type="button"
-                                                class="btn btn-primary"
-                                            >
-                                                I do not have previous assessment
-                                            </button>
-                                        </div>
                                     </div>
 
                                     <div class="row form-group text-right">

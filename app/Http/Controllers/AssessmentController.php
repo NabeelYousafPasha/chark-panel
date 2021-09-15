@@ -64,7 +64,7 @@ class AssessmentController extends Controller
 
         $error = false;
         if ($step != 'step1') {
-            $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->first();
+            $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->firstOrFail();
 
             switch ($step) {
                 case 'step2': {

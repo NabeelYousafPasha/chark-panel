@@ -173,7 +173,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td><b>While Sitting and Reading:</b></td>
-                                                        <td class="text-right">{{ $sleepinessScale->while_sitting_and_reading }}</td>
+                                                        <td class="text-right">{{ ucfirst($sleepinessScale->while_sitting_and_reading) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>
@@ -182,7 +182,7 @@
                                                             </b>
                                                         </td>
                                                         <td class="text-right">
-                                                            {{ $sleepinessScale->while_watching_television }}
+                                                            {{ ucfirst($sleepinessScale->while_watching_television) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -192,7 +192,7 @@
                                                             </b>
                                                         </td>
                                                         <td class="text-right">
-                                                            {{ $sleepinessScale->while_inactive_in_public_place }}
+                                                            {{ ucfirst($sleepinessScale->while_inactive_in_public_place) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -202,7 +202,7 @@
                                                             </b>
                                                         </td>
                                                         <td class="text-right">
-                                                            {{ $sleepinessScale->while_travelling }}
+                                                            {{ ucfirst($sleepinessScale->while_travelling) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -212,7 +212,7 @@
                                                             </b>
                                                         </td>
                                                         <td class="text-right">
-                                                            {{ $sleepinessScale->while_laying_down_in_afternoon }}
+                                                            {{ ucfirst($sleepinessScale->while_laying_down_in_afternoon) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -222,7 +222,7 @@
                                                             </b>
                                                         </td>
                                                         <td class="text-right">
-                                                            {{ $sleepinessScale->while_talking }}
+                                                            {{ ucfirst($sleepinessScale->while_talking) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -232,7 +232,7 @@
                                                             </b>
                                                         </td>
                                                         <td class="text-right">
-                                                            {{ $sleepinessScale->while_sitting_after_lunch }}
+                                                            {{ ucfirst($sleepinessScale->while_sitting_after_lunch) }}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -242,7 +242,7 @@
                                                             </b>
                                                         </td>
                                                         <td class="text-right">
-                                                            {{ $sleepinessScale->while_driving }}
+                                                            {{ ucfirst($sleepinessScale->while_driving) }}
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -281,6 +281,18 @@
                                                                 {{ config('constants.bool.'.$medicalHistory->alcohol_with_dinner, 'null') }}
                                                             </td>
                                                         </tr>
+                                                        @if($medicalHistory->alcohol_with_dinner)
+                                                        <tr>
+                                                            <td>
+                                                                <b>
+                                                                    How many days/week do you have 1 drink or more?
+                                                                </b>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                {{ $medicalHistory->alcohol_with_dinner_quantity }}
+                                                            </td>
+                                                        </tr>
+                                                        @endif
                                                         <tr>
                                                             <td>
                                                                 <b>
@@ -408,9 +420,21 @@
                                                                 </b>
                                                             </td>
                                                             <td class="text-right">
-                                                                {{ $medicalHistory->anxiolytics }}
+                                                                {{ config('constants.bool.'.$medicalHistory->anxiolytics, 'null') }}
                                                             </td>
                                                         </tr>
+                                                        @if($medicalHistory->anxiolytics)
+                                                        <tr>
+                                                            <td>
+                                                                <b>
+                                                                    Anxiolytics:
+                                                                </b>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                {{ $medicalHistory->anxiolytics_value }}
+                                                            </td>
+                                                        </tr>
+                                                        @endif
                                                         <tr>
                                                             <td>
                                                                 <b>
@@ -418,9 +442,21 @@
                                                                 </b>
                                                             </td>
                                                             <td class="text-right">
-                                                                {{ $medicalHistory->antidepressants }}
+                                                                {{ config('constants.bool.'.$medicalHistory->antidepressants, 'null') }}
                                                             </td>
                                                         </tr>
+                                                        @if($medicalHistory->antidepressants)
+                                                        <tr>
+                                                            <td>
+                                                                <b>
+                                                                    Antidepressants:
+                                                                </b>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                {{ $medicalHistory->antidepressants_value }}
+                                                            </td>
+                                                        </tr>
+                                                        @endif
                                                         <tr>
                                                             <td>
                                                                 <b>
@@ -428,9 +464,21 @@
                                                                 </b>
                                                             </td>
                                                             <td class="text-right">
-                                                                {{ $medicalHistory->induce_sleep_medication }}
+                                                                {{ config('constants.bool.'.$medicalHistory->induce_sleep_medication, 'null') }}
                                                             </td>
                                                         </tr>
+                                                        @if($medicalHistory->induce_sleep_medication)
+                                                        <tr>
+                                                            <td>
+                                                                <b>
+                                                                    Other medication to help induce sleep:
+                                                                </b>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                {{ $medicalHistory->induce_sleep_medication_value }}
+                                                            </td>
+                                                        </tr>
+                                                        @endif
                                                         <tr>
                                                             <td>
                                                                 <b>
@@ -438,9 +486,21 @@
                                                                 </b>
                                                             </td>
                                                             <td class="text-right">
-                                                                {{ $medicalHistory->other_medications }}
+                                                                {{ config('constants.bool.'.$medicalHistory->other_medications, 'null') }}
                                                             </td>
                                                         </tr>
+                                                        @if($medicalHistory->other_medications)
+                                                        <tr>
+                                                            <td>
+                                                                <b>
+                                                                    Other medications:
+                                                                </b>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                {{ $medicalHistory->other_medications_value }}
+                                                            </td>
+                                                        </tr>
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -508,6 +568,18 @@
                                                                 {{ config('constants.bool.'.$clinicalExploration->upper_airway_surgery, 'null') }}
                                                             </td>
                                                         </tr>
+                                                        @if($clinicalExploration->upper_airway_surgery)
+                                                        <tr>
+                                                            <td>
+                                                                <b>
+                                                                    Upper Airway surgery:
+                                                                </b>
+                                                            </td>
+                                                            <td>
+                                                                {{ $clinicalExploration->upper_airway_surgery_value }}
+                                                            </td>
+                                                        </tr>
+                                                        @endif
                                                         <tr>
                                                             <td>
                                                                 <b>
@@ -611,7 +683,7 @@
                                                         <tr>
                                                             <td>
                                                                 <b>
-                                                                    Height (cm):
+                                                                    Height (feet and inches):
                                                                 </b>
                                                             </td>
                                                             <td>
@@ -621,7 +693,7 @@
                                                         <tr>
                                                             <td>
                                                                 <b>
-                                                                    Weight (kg):
+                                                                    Weight (pounds):
                                                                 </b>
                                                             </td>
                                                             <td>
@@ -651,34 +723,24 @@
                                                         <tr>
                                                             <td>
                                                                 <b>
-                                                                    Beats per minute:
+                                                                    Mallampati Classification:
                                                                 </b>
                                                             </td>
                                                             <td>
-                                                                {{ $clinicalExploration->beats_per_minute }}
+                                                                {{ $clinicalExploration->mallampati_classification }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
                                                                 <b>
-                                                                    Systolic Blood Pressure:
+                                                                    Tonsil Classification:
                                                                 </b>
                                                             </td>
                                                             <td>
-                                                                {{ $clinicalExploration->systolic_blood_pressure }}
+                                                                {{ $clinicalExploration->tonsil_classification }}
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <b>
-                                                                    Diastolic Blood Pressure:
-                                                                </b>
-                                                            </td>
-                                                            <td>
-                                                                {{ $clinicalExploration->diastolic_blood_pressure }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
+                                                        {{--<tr>
                                                             <td>
                                                                 <b>
                                                                     Normognathic:
@@ -777,17 +839,7 @@
                                                             <td>
                                                                 {{ config('constants.bool.'.$clinicalExploration->only_hard_palate_visibility, 'null') }}
                                                             </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <b>
-                                                                    Assessment:
-                                                                </b>
-                                                            </td>
-                                                            <td>
-                                                                {{ $clinicalExploration->assessment }}
-                                                            </td>
-                                                        </tr>
+                                                        </tr>--}}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -809,51 +861,41 @@
                                                         <tr>
                                                             <td>
                                                                 <b>
-                                                                    IAH:
+                                                                    AHI:
                                                                 </b>
                                                             </td>
                                                             <td>
-                                                                {{ $diagnosticTest->iah }}
+                                                                {{ $diagnosticTest->ahi }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
                                                                 <b>
-                                                                    IA:
+                                                                    RDI:
                                                                 </b>
                                                             </td>
                                                             <td>
-                                                                {{ $diagnosticTest->ia }}
+                                                                {{ $diagnosticTest->rdi }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
                                                                 <b>
-                                                                    IH:
+                                                                    NADIR:
                                                                 </b>
                                                             </td>
                                                             <td>
-                                                                {{ $diagnosticTest->ih }}
+                                                                {{ $diagnosticTest->nadir }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
                                                                 <b>
-                                                                    SAT 02min %:
+                                                                    ODI:
                                                                 </b>
                                                             </td>
                                                             <td>
-                                                                {{ $diagnosticTest->sat_2_min }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <b>
-                                                                    CT 90%:
-                                                                </b>
-                                                            </td>
-                                                            <td>
-                                                                {{ $diagnosticTest->ct90 }}
+                                                                {{ $diagnosticTest->odi }}
                                                             </td>
                                                         </tr>
                                                         <tr>

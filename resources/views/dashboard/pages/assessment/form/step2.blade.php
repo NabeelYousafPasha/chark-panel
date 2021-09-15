@@ -989,7 +989,6 @@
             $('#alcohol_with_dinner_quantity').attr('required', true);
             alcohol_with_dinner_quantity__div.show();
         } else {
-            $('#alcohol_with_dinner_quantity').val(0);
             $('#alcohol_with_dinner_quantity').attr('required', false);
             alcohol_with_dinner_quantity__div.hide();
         }
@@ -1000,7 +999,6 @@
             $('#anxiolytics_value').attr('required', true);
             anxiolytics_value__div.show();
         } else {
-            $('#anxiolytics_value').val('');
             $('#anxiolytics_value').attr('required', false);
             anxiolytics_value__div.hide();
         }
@@ -1011,7 +1009,6 @@
             $('#antidepressants_value').attr('required', true);
             antidepressants_value__div.show();
         } else {
-            $('#antidepressants_value').val('');
             $('#antidepressants_value').attr('required', false);
             antidepressants_value__div.hide();
         }
@@ -1022,7 +1019,6 @@
             $('#induce_sleep_medication_value').attr('required', true);
             induce_sleep_medication_value__div.show();
         } else {
-            $('#induce_sleep_medication_value').val('');
             $('#induce_sleep_medication_value').attr('required', false);
             induce_sleep_medication_value__div.hide();
         }
@@ -1033,7 +1029,6 @@
             $('#other_medications_value').attr('required', true);
             other_medications_value__div.show();
         } else {
-            $('#other_medications_value').val('');
             $('#other_medications_value').attr('required', false);
             other_medications_value__div.hide();
         }
