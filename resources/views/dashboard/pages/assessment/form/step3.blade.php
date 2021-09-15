@@ -1575,7 +1575,6 @@
             }
         });
 
-
     </script>
 @endsection
 
