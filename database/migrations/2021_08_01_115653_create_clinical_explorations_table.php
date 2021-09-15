@@ -19,7 +19,8 @@ class CreateClinicalExplorationsTable extends Migration
             $table->boolean('cpap');
             $table->boolean('mandibular_advancement_device');
             $table->boolean('positional_therapy');
-            $table->string('upper_airway_surgery');
+            $table->boolean('upper_airway_surgery');
+            $table->string('upper_airway_surgery_value');
             $table->string('other_upper_airway_surgery')->nullable();
             $table->boolean('bariatric_surgery');
             $table->string('other_treatments_for_sleep_apnea')->nullable();

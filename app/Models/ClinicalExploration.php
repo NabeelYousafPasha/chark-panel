@@ -12,6 +12,7 @@ class ClinicalExploration extends Model
         "mandibular_advancement_device",
         "positional_therapy",
         "upper_airway_surgery",
+        "upper_airway_surgery_value",
         "other_upper_airway_surgery",
         "bariatric_surgery",
         "other_treatments_for_sleep_apnea",
