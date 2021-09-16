@@ -30,6 +30,7 @@
                                     id="step4"
                                     name="step4"
                                     class="step4"
+                                    enctype="multipart/form-data"
                                 >
                                     @csrf
                                     @method($_method)
