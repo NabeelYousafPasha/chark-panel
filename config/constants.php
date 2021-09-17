@@ -52,38 +52,45 @@ return [
     'upper_airway_surgery_separator' => ', ',
 
     'clinical_explorations' => [
-        'normognathic' => [
-            'image' => 'frontend-assets/images/logo.png',
-        ],
-        'retrognathic' => [
-            'image' => 'frontend-assets/images/logo.png',
-        ],
-        'prognathic' => [
-            'image' => 'frontend-assets/images/logo.png',
+//        'normognathic' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+//        'retrognathic' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+//        'prognathic' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+//
+//        'edge_to_edge_bite' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+//        'anterior_crossbite' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+//        'overbite' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+//
+//        'total_visibility_of_tonsils_uvula_soft_palate' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+//        'hard_and_soft_palate_visibility' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+//        'hard_and_palate_and_part_of_soft_palate_visibility' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+//        'only_hard_palate_visibility' => [
+//            'image' => 'frontend-assets/images/logo.png',
+//        ],
+
+        'mallampati_classification' => [
+            'class-1', 'class-2', 'class-3', 'class-4',
         ],
 
-
-        'edge_to_edge_bite' => [
-            'image' => 'frontend-assets/images/logo.png',
-        ],
-        'anterior_crossbite' => [
-            'image' => 'frontend-assets/images/logo.png',
-        ],
-        'overbite' => [
-            'image' => 'frontend-assets/images/logo.png',
-        ],
-
-        'total_visibility_of_tonsils_uvula_soft_palate' => [
-            'image' => 'frontend-assets/images/logo.png',
-        ],
-        'hard_and_soft_palate_visibility' => [
-            'image' => 'frontend-assets/images/logo.png',
-        ],
-        'hard_and_palate_and_part_of_soft_palate_visibility' => [
-            'image' => 'frontend-assets/images/logo.png',
-        ],
-        'only_hard_palate_visibility' => [
-            'image' => 'frontend-assets/images/logo.png',
+        'tonsil_classification' => [
+            'tonsil-0', 'tonsil-1', 'tonsil-2', 'tonsil-3', 'tonsil-4',
         ],
     ],
 

@@ -10,6 +10,7 @@ class MedicalHistory extends Model
         'assessment_id',
         'smoker',
         'alcohol_with_dinner',
+        'alcohol_with_dinner_quantity',
         'high_blood_pressure',
         'myocardial_infarction',
         'coronary_artery_disease',
@@ -23,9 +24,13 @@ class MedicalHistory extends Model
         'hypothyroidism',
         'other_medical_history',
         'anxiolytics',
+        'anxiolytics_value',
         'antidepressants',
+        'antidepressants_value',
         'induce_sleep_medication',
+        'induce_sleep_medication_value',
         'other_medications',
+        'other_medications_value',
     ];
 
     protected $dates = [

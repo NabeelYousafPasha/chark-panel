@@ -14,6 +14,8 @@ use App\Models\{
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class AssessmentController extends Controller
 {
@@ -64,7 +66,7 @@ class AssessmentController extends Controller
 
         $error = false;
         if ($step != 'step1') {
-            $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->first();
+            $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->firstOrFail();
 
             switch ($step) {
                 case 'step2': {
@@ -181,7 +183,7 @@ class AssessmentController extends Controller
             case 'step3': {
                 $data['clinicalExploration'] = $clinicalExploration = ClinicalExploration::create(array_merge($request->validated(), [
                         'assessment_id' => $assessment->id,
-                    ], ['upper_airway_surgery' => implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery'))]));
+                    ], ['upper_airway_surgery_value' => implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery_value') ?? [])]));
 
                 (!$clinicalExploration)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 3')
@@ -191,6 +193,43 @@ class AssessmentController extends Controller
                 break;
             }
             case 'step4': {
+                if($request->hasfile('cbct'))
+                {
+                    $file = $request->file('cbct');
+                    $cbctFile=time().$file->getClientOriginalName();
+                    Storage::disk('local')->put('/public/cbctFile/'.$cbctFile, File::get($file));
+                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
+                }else{
+                    $cbctFile="";
+                }
+                if($request->hasfile('photos'))
+                {
+                    $file = $request->file('photos');
+                    $photoFile=time().$file->getClientOriginalName();
+                    Storage::disk('local')->put('/public/photoFile/'.$photoFile, File::get($file));
+                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
+                }else{
+                    $photoFile="";
+                }
+                if($request->hasfile('xray'))
+                {
+                    $file = $request->file('xray');
+                    $xrayFile=time().$file->getClientOriginalName();
+                    Storage::disk('local')->put('/public/xrayFile/'.$xrayFile, File::get($file));
+                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
+                }else{
+                    $xrayFile="";
+                }
+                if($request->hasfile('sleep_study'))
+                {
+                    $file = $request->file('sleep_study');
+                    $sleep_studyFile=time().$file->getClientOriginalName();
+                    Storage::disk('local')->put('/public/sleep_studyFile/'.$sleep_studyFile, File::get($file));
+                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
+                }else{
+                    $sleep_studyFile="";
+                }
+                
                 $data['diagnosticTest'] = $diagnosticTest = DiagnosticTest::create(array_merge($request->validated(), [
                         'assessment_id' => $assessment->id,
                     ]));
@@ -368,7 +407,7 @@ class AssessmentController extends Controller
                 $data['clinicalExploration'] = $clinicalExploration = ClinicalExploration::updateOrcreate([
                         'assessment_id' => $assessment->id,
                     ], array_merge($request->validated(), [
-                        'upper_airway_surgery' => implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery'))
+                        'upper_airway_surgery_value' => implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery_value') ?? [])
                     ])
                 );
 
