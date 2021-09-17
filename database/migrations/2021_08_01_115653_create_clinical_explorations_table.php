@@ -19,7 +19,8 @@ class CreateClinicalExplorationsTable extends Migration
             $table->boolean('cpap');
             $table->boolean('mandibular_advancement_device');
             $table->boolean('positional_therapy');
-            $table->string('upper_airway_surgery');
+            $table->boolean('upper_airway_surgery');
+            $table->string('upper_airway_surgery_value')->nullable();
             $table->string('other_upper_airway_surgery')->nullable();
             $table->boolean('bariatric_surgery');
             $table->string('other_treatments_for_sleep_apnea')->nullable();
@@ -35,24 +36,20 @@ class CreateClinicalExplorationsTable extends Migration
             $table->decimal('weight');
             $table->decimal('bmi');
             $table->decimal('neck_circumference');
-            $table->decimal('beats_per_minute');
-            $table->decimal('systolic_blood_pressure');
-            $table->decimal('diastolic_blood_pressure');
 
-            $table->boolean('normognathic');
-            $table->boolean('retrognathic');
-            $table->boolean('prognathic');
+//            $table->boolean('normognathic');
+//            $table->boolean('retrognathic');
+//            $table->boolean('prognathic');
+//
+//            $table->boolean('edge_to_edge_bite');
+//            $table->boolean('anterior_crossbite');
+//            $table->boolean('overbite');
+//
+//            $table->boolean('total_visibility_of_tonsils_uvula_soft_palate');
+//            $table->boolean('hard_and_soft_palate_visibility');
+//            $table->boolean('hard_and_palate_and_part_of_soft_palate_visibility');
+//            $table->boolean('only_hard_palate_visibility');
 
-            $table->boolean('edge_to_edge_bite');
-            $table->boolean('anterior_crossbite');
-            $table->boolean('overbite');
-
-            $table->boolean('total_visibility_of_tonsils_uvula_soft_palate');
-            $table->boolean('hard_and_soft_palate_visibility');
-            $table->boolean('hard_and_palate_and_part_of_soft_palate_visibility');
-            $table->boolean('only_hard_palate_visibility');
-
-            $table->longText('assessment_observation')->nullable();
             $table->timestamps();
         });
     }

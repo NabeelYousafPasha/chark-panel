@@ -32,10 +32,10 @@ class CreateMedicalHistoriesTable extends Migration
             $table->boolean('hypothyroidism');
             $table->string('other_medical_history')->nullable();
 
-            $table->string('anxiolytics');
-            $table->string('antidepressants');
-            $table->string('induce_sleep_medication');
-            $table->string('other_medications');
+            $table->boolean('anxiolytics');
+            $table->boolean('antidepressants');
+            $table->boolean('induce_sleep_medication');
+            $table->boolean('other_medications');
 
             $table->timestamps();
         });

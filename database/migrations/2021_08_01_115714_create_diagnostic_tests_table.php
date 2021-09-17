@@ -16,11 +16,10 @@ class CreateDiagnosticTestsTable extends Migration
         Schema::create('diagnostic_tests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('assessment_id')->constrained('assessments');
-            $table->string('iah');
-            $table->string('ia');
-            $table->string('ih');
-            $table->string('sat_2_min');
-            $table->string('ct90');
+            $table->string('ahi');
+            $table->string('rdi');
+            $table->string('nadir');
+            $table->string('odi');
             $table->decimal('avg_duration_of_apnea');
             $table->decimal('max_duration_of_apnea');
             $table->longText('assessments_observation')->nullable();

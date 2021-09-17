@@ -86,7 +86,8 @@
 
                                             </div>
 
-                                            <div class="row form-group @error('alcohol_with_dinner') has-error @enderror"">
+                                            <div class="row form-group @error('alcohol_with_dinner') has-error @enderror">
+
                                                 <div class="col-md-6">
                                                     <label
                                                         for="alcohol_with_dinner"
@@ -122,12 +123,41 @@
                                                         >
                                                         <span>No</span>
                                                     </label>
+
+
                                                     @error('alcohol_with_dinner')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
+                                            </div>
+
+                                            <div class="row form-group @error('alcohol_with_dinner_quantity') has-error @enderror" id="alcohol_with_dinner_quantity__div">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="alcohol_with_dinner_quantity"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                    How many days/week do you have 1 drink or more?
+                                                    </label>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="number"
+                                                        name="alcohol_with_dinner_quantity"
+                                                        id="alcohol_with_dinner_quantity"
+                                                        class="form-control"
+                                                        min="0"
+                                                        value="{{ $medicalHistory->alcohol_with_dinner_quantity ?? old('alcohol_with_dinner_quantity') }}"
+                                                    >
+                                                </div>
+                                                @error('alcohol_with_dinner_quantity')
+                                                    <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
 
                                             <br>
@@ -638,24 +668,46 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="row form-group @error('anxiolytics') has-error @enderror">
-                                                    <div class="col-md-12">
-                                                        <label
-                                                            for="anxiolytics"
-                                                            class="col-form-label text-md-left"
-                                                        >
-                                                            Anxiolytics:
-                                                        </label>
+
+                                            <div class="row form-group @error('anxiolytics') has-error @enderror">
+
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="anxiolytics"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Anxiolytics:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="m-r" for="anxiolytics_yes">
                                                         <input
-                                                            type="text"
+                                                            id="anxiolytics_yes"
                                                             name="anxiolytics"
-                                                            id="anxiolytics"
-                                                            class="form-control"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
                                                             required=""
-                                                            value="{{ $medicalHistory->anxiolytics ?? old('anxiolytics') }}"
+                                                            {{ old('anxiolytics') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->anxiolytics ?? null) == '1' ? 'checked' : '' }}
                                                         >
-                                                    </div>
+                                                        <span>Yes</span>
+                                                    </label>
+                                                    <label class="m-r" for="anxiolytics_no">
+                                                        <input
+                                                            id="anxiolytics_no"
+                                                            name="anxiolytics"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('anxiolytics') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->anxiolytics ?? null) == '0' ? 'checked' : '' }}
+                                                        >
+                                                        <span>No</span>
+                                                    </label>
+
+
                                                     @error('anxiolytics')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -663,80 +715,236 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="row form-group @error('antidepressants') has-error @enderror">
-                                                    <div class="col-md-12">
-                                                        <label
-                                                            for="antidepressants"
-                                                            class="col-form-label text-md-left"
-                                                        >
-                                                            Antidepressants:
-                                                        </label>
+                                            <div class="row form-group @error('anxiolytics_value') has-error @enderror" id="anxiolytics_value__div">
+                                                <div class="col-md-12">
+                                                    <label
+                                                        for="anxiolytics_value"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Anxiolytics:
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        name="anxiolytics_value"
+                                                        id="anxiolytics_value"
+                                                        class="form-control"
+                                                        value="{{ $medicalHistory->anxiolytics_value ?? old('anxiolytics_value') }}"
+                                                    >
+                                                </div>
+                                                @error('anxiolytics_value')
+                                                    <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+
+                                            <div class="row form-group @error('antidepressants') has-error @enderror">
+
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="antidepressants"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Antidepressants:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="m-r" for="antidepressants_yes">
                                                         <input
-                                                            type="text"
+                                                            id="antidepressants_yes"
                                                             name="antidepressants"
-                                                            id="antidepressants"
-                                                            class="form-control"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
                                                             required=""
-                                                            value="{{ $medicalHistory->antidepressants ?? old('antidepressants') }}"
+                                                            {{ old('antidepressants') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->antidepressants ?? null) == '1' ? 'checked' : '' }}
                                                         >
-                                                    </div>
+                                                        <span>Yes</span>
+                                                    </label>
+                                                    <label class="m-r" for="antidepressants_no">
+                                                        <input
+                                                            id="antidepressants_no"
+                                                            name="antidepressants"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('antidepressants') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->antidepressants ?? null) == '0' ? 'checked' : '' }}
+                                                        >
+                                                        <span>No</span>
+                                                    </label>
+
+
                                                     @error('antidepressants')
-                                                        <span class="help-block has-error">
+                                                    <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="row form-group @error('induce_sleep_medication') has-error @enderror">
-                                                    <div class="col-md-12">
-                                                        <label
-                                                            for="induce_sleep_medication"
-                                                            class="col-form-label text-md-left"
-                                                        >
+                                            <div class="row form-group @error('antidepressants_value') has-error @enderror" id="antidepressants_value__div">
+                                                <div class="col-md-12">
+                                                    <label
+                                                        for="antidepressants_value"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Antidepressants:
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        name="antidepressants_value"
+                                                        id="antidepressants_value"
+                                                        class="form-control"
+                                                        value="{{ $medicalHistory->antidepressants_value ?? old('antidepressants_value') }}"
+                                                    >
+                                                </div>
+                                                @error('antidepressants_value')
+                                                    <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+
+                                            <div class="row form-group @error('induce_sleep_medication') has-error @enderror">
+
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="induce_sleep_medication"
+                                                        class="col-form-label text-md-left"
+                                                    >
                                                         Other medication to help induce sleep:
-                                                        </label>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="m-r" for="induce_sleep_medication_yes">
                                                         <input
-                                                            type="text"
+                                                            id="induce_sleep_medication_yes"
                                                             name="induce_sleep_medication"
-                                                            id="induce_sleep_medication"
-                                                            class="form-control"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
                                                             required=""
-                                                            value="{{ $medicalHistory->induce_sleep_medication ?? old('induce_sleep_medication') }}"
+                                                            {{ old('induce_sleep_medication') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->induce_sleep_medication ?? null) == '1' ? 'checked' : '' }}
                                                         >
-                                                    </div>
+                                                        <span>Yes</span>
+                                                    </label>
+                                                    <label class="m-r" for="induce_sleep_medication_no">
+                                                        <input
+                                                            id="induce_sleep_medication_no"
+                                                            name="induce_sleep_medication"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('induce_sleep_medication') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->induce_sleep_medication ?? null) == '0' ? 'checked' : '' }}
+                                                        >
+                                                        <span>No</span>
+                                                    </label>
+
+
                                                     @error('induce_sleep_medication')
-                                                        <span class="help-block has-error">
+                                                    <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="row form-group @error('other_medications') has-error @enderror">
-                                                    <div class="col-md-12">
-                                                        <label
-                                                            for="other_medications"
-                                                            class="col-form-label text-md-left"
-                                                        >
+                                            <div class="row form-group @error('induce_sleep_medication_value') has-error @enderror" id="induce_sleep_medication_value__div">
+                                                <div class="col-md-12">
+                                                    <label
+                                                        for="induce_sleep_medication_value"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                    Other medication to help induce sleep:
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        name="induce_sleep_medication_value"
+                                                        id="induce_sleep_medication_value"
+                                                        class="form-control"
+                                                        value="{{ $medicalHistory->induce_sleep_medication_value ?? old('induce_sleep_medication_value') }}"
+                                                    >
+                                                </div>
+                                                @error('induce_sleep_medication_value')
+                                                    <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="row form-group @error('other_medications') has-error @enderror">
+
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="other_medications"
+                                                        class="col-form-label text-md-left"
+                                                    >
                                                         Other medications:
-                                                        </label>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="m-r" for="other_medications_yes">
                                                         <input
-                                                            type="text"
+                                                            id="other_medications_yes"
                                                             name="other_medications"
-                                                            id="other_medications"
-                                                            class="form-control"
+                                                            type="radio"
+                                                            class=""
+                                                            value="1"
                                                             required=""
-                                                            value="{{ $medicalHistory->other_medications ?? old('other_medications') }}"
+                                                            {{ old('other_medications') == '1' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->other_medications ?? null) == '1' ? 'checked' : '' }}
                                                         >
-                                                    </div>
+                                                        <span>Yes</span>
+                                                    </label>
+                                                    <label class="m-r" for="other_medications_no">
+                                                        <input
+                                                            id="other_medications_no"
+                                                            name="other_medications"
+                                                            type="radio"
+                                                            class=""
+                                                            value="0"
+                                                            required=""
+                                                            {{ old('other_medications') == '0' ? 'checked' : '' }}
+                                                            {{ ($medicalHistory->other_medications ?? null) == '0' ? 'checked' : '' }}
+                                                        >
+                                                        <span>No</span>
+                                                    </label>
+
+
                                                     @error('other_medications')
-                                                        <span class="help-block has-error">
+                                                    <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
+                                            </div>
+                                            <div class="row form-group @error('other_medications_value') has-error @enderror" id="other_medications_value__div">
+                                                <div class="col-md-12">
+                                                    <label
+                                                        for="other_medications_value"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                    Other medications:
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        name="other_medications_value"
+                                                        id="other_medications_value"
+                                                        class="form-control"
+                                                        value="{{ $medicalHistory->other_medications_value ?? old('other_medications_value') }}"
+                                                    >
+                                                </div>
+                                                @error('other_medications_value')
+                                                    <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -765,6 +973,101 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
+    let alcohol_with_dinner_quantity__div = $('#alcohol_with_dinner_quantity__div').hide();
+    let anxiolytics_value__div = $('#anxiolytics_value__div').hide();
+    let antidepressants_value__div = $('#antidepressants_value__div').hide();
+    let induce_sleep_medication_value__div = $('#induce_sleep_medication_value__div').hide();
+    let other_medications_value__div = $('#other_medications_value__div').hide();
+
+    $('input[name="alcohol_with_dinner"]').click(function(e) {
+        if(e.target.value === '1') {
+            $('#alcohol_with_dinner_quantity').attr('required', true);
+            alcohol_with_dinner_quantity__div.show();
+        } else {
+            $('#alcohol_with_dinner_quantity').attr('required', false);
+            alcohol_with_dinner_quantity__div.hide();
+        }
+    });
+
+    $('input[name="anxiolytics"]').click(function(e) {
+        if(e.target.value === '1') {
+            $('#anxiolytics_value').attr('required', true);
+            anxiolytics_value__div.show();
+        } else {
+            $('#anxiolytics_value').attr('required', false);
+            anxiolytics_value__div.hide();
+        }
+    });
+
+    $('input[name="antidepressants"]').click(function(e) {
+        if(e.target.value === '1') {
+            $('#antidepressants_value').attr('required', true);
+            antidepressants_value__div.show();
+        } else {
+            $('#antidepressants_value').attr('required', false);
+            antidepressants_value__div.hide();
+        }
+    });
+
+    $('input[name="induce_sleep_medication"]').click(function(e) {
+        if(e.target.value === '1') {
+            $('#induce_sleep_medication_value').attr('required', true);
+            induce_sleep_medication_value__div.show();
+        } else {
+            $('#induce_sleep_medication_value').attr('required', false);
+            induce_sleep_medication_value__div.hide();
+        }
+    });
+
+    $('input[name="other_medications"]').click(function(e) {
+        if(e.target.value === '1') {
+            $('#other_medications_value').attr('required', true);
+            other_medications_value__div.show();
+        } else {
+            $('#other_medications_value').attr('required', false);
+            other_medications_value__div.hide();
+        }
+    });
+
+    // Error handling
+    let error_alcohol_with_dinner_quantity = false;
+    let error_anxiolytics_value = false;
+    let error_antidepressants_value = false;
+    let error_induce_sleep_medication_value = false;
+    let error_other_medications_value = false;
+
+    @error('alcohol_with_dinner_quantity') error_alcohol_with_dinner_quantity = true; @enderror
+    @error('anxiolytics_value') error_anxiolytics_value = true; @enderror
+    @error('antidepressants_value') error_antidepressants_value = true; @enderror
+    @error('induce_sleep_medication_value') error_induce_sleep_medication_value = true; @enderror
+    @error('other_medications_value') error_other_medications_value = true; @enderror
+
+    if (["true", true, 1].includes(error_alcohol_with_dinner_quantity)) {
+        alcohol_with_dinner_quantity__div.show();
+    }
+
+    if (["true", true, 1].includes(error_anxiolytics_value)) {
+        anxiolytics_value__div.show();
+    }
+
+    if (["true", true, 1].includes(error_antidepressants_value)) {
+        antidepressants_value__div.show();
+    }
+
+    if (["true", true, 1].includes(error_induce_sleep_medication_value)) {
+        induce_sleep_medication_value__div.show();
+    }
+
+    if (["true", true, 1].includes(error_other_medications_value)) {
+        other_medications_value__div.show();
+    }
+
+</script>
 @endsection
 
 
