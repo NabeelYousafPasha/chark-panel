@@ -193,15 +193,7 @@ class AssessmentController extends Controller
                 break;
             }
             case 'step4': {
-                if($request->hasfile('cbct'))
-                {
-                    $file = $request->file('cbct');
-                    $cbctFile=time().$file->getClientOriginalName();
-                    Storage::disk('local')->put('/public/cbctFile/'.$cbctFile, File::get($file));
-                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
-                }else{
-                    $cbctFile="";
-                }
+                
                 if($request->hasfile('photos'))
                 {
                     $file = $request->file('photos');
@@ -229,10 +221,20 @@ class AssessmentController extends Controller
                 }else{
                     $sleep_studyFile="";
                 }
+
+                $data = new DiagnosticTest();
                 
                 $data['diagnosticTest'] = $diagnosticTest = DiagnosticTest::create(array_merge($request->validated(), [
                         'assessment_id' => $assessment->id,
                     ]));
+                    if($request->hasfile('cbct'))
+                    {
+                        $data->addMedia($request->input('cbct'))->toMediaCollection('cbct', 'local');
+                        // $file = $request->file('cbct');
+                        // $cbctFile=time().$file->getClientOriginalName();
+                        // Storage::disk('local')->put('/public/cbctFile/'.$cbctFile, File::get($file));
+                        //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
+                    }
 
                 (!$diagnosticTest)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 4')
