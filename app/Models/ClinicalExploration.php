@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class ClinicalExploration extends Model implements HasMedia
+class ClinicalExploration extends Model
 {
-    use HasMediaTrait;
     protected $fillable = [
         "assessment_id",
         "cpap",

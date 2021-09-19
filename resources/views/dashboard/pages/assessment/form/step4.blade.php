@@ -60,6 +60,9 @@
                                                         name="cbct"
                                                         class="form-control"
                                                     >
+                                                    <span class="help-block small">
+                                                        Allowed: only one Zip file
+                                                    </span>
                                                     @error('cbct')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -81,9 +84,14 @@
                                                     <input
                                                         type="file"
                                                         id="photos"
-                                                        name="photos"
+                                                        name="photos[]"
                                                         class="form-control"
+                                                        accept="image/*"
+                                                        multiple
                                                     >
+                                                    <span class="help-block small">
+                                                        Allowed: multiple files of type png, jpg, jpeg
+                                                    </span>
                                                     @error('photos')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -105,9 +113,14 @@
                                                     <input
                                                         type="file"
                                                         id="xray"
-                                                        name="xray"
+                                                        name="xray[]"
                                                         class="form-control"
+                                                        accept="image/*"
+                                                        multiple
                                                     >
+                                                    <span class="help-block small">
+                                                        Allowed: multiple files of type png, jpg, jpeg
+                                                    </span>
                                                     @error('xray')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -132,6 +145,9 @@
                                                         name="sleep_study"
                                                         class="form-control"
                                                     >
+                                                    <span class="help-block small">
+                                                        Allowed: one file of type png, jpg, jpeg, docx, pdf
+                                                    </span>
                                                     @error('sleep_study')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
