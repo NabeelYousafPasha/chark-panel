@@ -204,10 +204,11 @@ class AssessmentController extends Controller
                 ]));
 
                 if ($request->hasfile('cbct')) {
-
-                    uploadFile($diagnosticTest, 'cbct', 'local');
+                    $image_url = env('AWS_URL') . $this->saveFile("user/profile", $request->cbct);
+//                    uploadFile($diagnosticTest, 'cbct', 'local');
                     $diagnosticTest->addMedia($request->file('cbct'))->toMediaCollection('cbct', 'local');
-                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
+
+
                 }
 
                 dd($diagnosticTest);
@@ -225,6 +226,11 @@ class AssessmentController extends Controller
         }
 
         return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => $step]);
+    }
+
+    public function saveFile($path, $image)
+    {
+       return Storage::disk('s3')->put($path, $image,'public');
     }
 
     /**
