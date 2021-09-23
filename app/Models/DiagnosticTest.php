@@ -3,13 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class DiagnosticTest extends Model implements HasMedia
+class DiagnosticTest extends Model
 {
-    use HasMediaTrait;
-
     protected $fillable = [
         'assessment_id',
         'ahi',

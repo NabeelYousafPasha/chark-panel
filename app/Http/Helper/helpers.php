@@ -56,7 +56,11 @@ if ( ! function_exists('uploadFile') ) {
     function uploadFile($modelType, $fileField, $disk = null)
     {
         try {
-            $upload = $modelType->addMediaFromRequest($fileField)->toMediaCollection($fileField, $disk ?? config('filesystems.default'));
+            $upload = $modelType->addMediaFromRequest($fileField)
+                ->toMediaCollection(
+                    $fileField,
+                    $disk ?? config('filesystems.default')
+                );
 
             return [
                 'success' => true,

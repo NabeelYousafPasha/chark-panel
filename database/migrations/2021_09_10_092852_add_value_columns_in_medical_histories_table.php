@@ -14,7 +14,7 @@ class AddValueColumnsInMedicalHistoriesTable extends Migration
     public function up()
     {
         Schema::table('medical_histories', function (Blueprint $table) {
-            $table->unsignedInteger('alcohol_with_dinner_quantity')->after('alcohol_with_dinner')->default(0);
+            $table->unsignedInteger('alcohol_with_dinner_quantity')->after('alcohol_with_dinner')->default(0)->nullable();
 
             $table->string('anxiolytics_value')->after('anxiolytics')->nullable();
             $table->string('antidepressants_value')->after('antidepressants')->nullable();

@@ -66,6 +66,7 @@ class AssessmentController extends Controller
 
         $error = false;
         if ($step != 'step1') {
+            // only occur first time
             $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->firstOrFail();
 
             switch ($step) {
@@ -203,15 +204,50 @@ class AssessmentController extends Controller
                         'assessment_id' => $assessment->id,
                 ]));
 
+                $errorMessages = [];
+
                 if ($request->hasfile('cbct')) {
-                    $image_url = env('AWS_URL') . $this->saveFile("user/profile", $request->cbct);
-//                    uploadFile($diagnosticTest, 'cbct', 'local');
-                    $diagnosticTest->addMedia($request->file('cbct'))->toMediaCollection('cbct', 'local');
+                    $uploadViaHelper = uploadFile($assessment, 'cbct', 's3');
 
-
+                    // if not uploaded, set error message
+                    if (!$uploadViaHelper['success'] ?? true) {
+                        $errorMessages[] = 'CBCT: Error uploading CBCT.';
+                    }
                 }
 
-                dd($diagnosticTest);
+                if ($request->hasFile('photos')) {
+                    $uploadViaHelper = uploadFile($assessment, 'photos', 's3');
+
+                    // if not uploaded, set error message
+                    if (!$uploadViaHelper['success'] ?? true) {
+                        $errorMessages[] = 'Photos: Error uploading Photos.';
+                        break;
+                    }
+                }
+
+                if ($request->hasFile('xray')) {
+                    $uploadViaHelper = uploadFile($assessment, 'xray', 's3');
+
+                    // if not uploaded, set error message
+                    if (!$uploadViaHelper['success'] ?? true) {
+                        $errorMessages[] = 'X-Ray: Error uploading xray.';
+                        break;
+                    }
+                }
+
+                if ($request->hasfile('sleep_study')) {
+                    $uploadViaHelper = uploadFile($assessment, 'sleep_study', 's3');
+
+                    // if not uploaded, set error message
+                    if (!$uploadViaHelper['success'] ?? true) {
+                        $errorMessages[] = 'Sleep Study: Error uploading Sleep Study.';
+                    }
+                }
+
+                if (! empty($errorMessages)) {
+                    $this->message('errorMessage', 'Data was saved but errors in uploading files. Details: '.implode('.', $errorMessages));
+                    return redirect()->route('dashboard.assessment.show', ['assessment' => $assessment]);
+                }
 
                 (!$diagnosticTest)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 4')
@@ -226,11 +262,6 @@ class AssessmentController extends Controller
         }
 
         return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => $step]);
-    }
-
-    public function saveFile($path, $image)
-    {
-       return Storage::disk('s3')->put($path, $image,'public');
     }
 
     /**
@@ -259,6 +290,8 @@ class AssessmentController extends Controller
         $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)
                     ->latest()
                     ->first();
+
+        $assessment = $assessment->with('media')->where('id', '=', $assessment->id)->first();
 
         return $this->renderView('dashboard.pages.assessment.show', [
             'assessment' => $assessment,
