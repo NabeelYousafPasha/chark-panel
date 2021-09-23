@@ -241,6 +241,11 @@
                                             <div class="row form-group @error('upper_airway_surgery_value') has-error @enderror" id="upper_airway_surgery_value__div">
                                                 <div class="col-md-6"></div>
                                                 <div class="col-md-6">
+                                                    <input
+                                                        type="hidden"
+                                                        name="upper_airway_surgery_value"
+                                                        value=""
+                                                    >
                                                     @foreach(config('constants.upper_airway_surgery') as $upperAirwaySurgeryKey => $upperAirwaySurgery)
                                                         <label class="m-r">
                                                             <input

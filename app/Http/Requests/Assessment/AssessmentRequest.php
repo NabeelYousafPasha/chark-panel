@@ -121,10 +121,12 @@ class AssessmentRequest extends FormRequest
             ],
 
             'step4' => [
-                "cbct" => ['required'],
-                "photos" => ['required'],
-                "xray" => ['required'],
-                "sleep_study" => ['required'],
+                "cbct" => ['required', 'file',],
+//                "photos.*" => ['required', 'array',],
+                "photos" => ['required', 'file', 'image',],
+//                "xray.*" => ['required', 'array',],
+                "xray" => ['required', 'file', 'image',],
+                "sleep_study" => ['required', 'file',],
                 "ahi" => ['required', 'string', 'max:255',],
                 "rdi" => ['required', 'string', 'max:255',],
                 "nadir" => ['required', 'string', 'max:255',],

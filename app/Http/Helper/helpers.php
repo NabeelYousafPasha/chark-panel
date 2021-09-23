@@ -50,3 +50,30 @@ if ( ! function_exists( 'humanDiffBoolen' ) ) {
         return strtoupper($bool);
     }
 }
+
+if ( ! function_exists('uploadFile') ) {
+
+    function uploadFile($modelType, $fileField, $disk = null)
+    {
+        try {
+            $upload = $modelType->addMediaFromRequest($fileField)
+                ->toMediaCollection(
+                    $fileField,
+                    $disk ?? config('filesystems.default')
+                );
+
+            return [
+                'success' => true,
+                'message' => 'File uploaded',
+                'uploaded' => $upload,
+            ];
+        }
+        catch (Exception $exception) {
+            return [
+                'success' => false,
+                'message' => $exception->getMessage(),
+            ];
+            // dd($exception->getMessage());
+        }
+    }
+}

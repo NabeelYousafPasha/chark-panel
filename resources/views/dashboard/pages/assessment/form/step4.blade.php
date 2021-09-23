@@ -60,6 +60,9 @@
                                                         name="cbct"
                                                         class="form-control"
                                                     >
+                                                    <span class="help-block small">
+                                                        Allowed: Zip file
+                                                    </span>
                                                     @error('cbct')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -83,7 +86,11 @@
                                                         id="photos"
                                                         name="photos"
                                                         class="form-control"
+                                                        accept="image/*"
                                                     >
+                                                    <span class="help-block small">
+                                                        Allowed: png, jpg, jpeg
+                                                    </span>
                                                     @error('photos')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -107,7 +114,11 @@
                                                         id="xray"
                                                         name="xray"
                                                         class="form-control"
+                                                        accept="image/*"
                                                     >
+                                                    <span class="help-block small">
+                                                        Allowed: png, jpg, jpeg
+                                                    </span>
                                                     @error('xray')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -132,6 +143,9 @@
                                                         name="sleep_study"
                                                         class="form-control"
                                                     >
+                                                    <span class="help-block small">
+                                                        Allowed: png, jpg, jpeg, docx, pdf
+                                                    </span>
                                                     @error('sleep_study')
                                                         <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
