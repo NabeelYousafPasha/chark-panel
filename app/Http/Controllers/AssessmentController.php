@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Assessment\AssessmentRequest;
+use App\Http\Requests\Upload\FileUploadRequest;
 use App\Models\{
     Assessment,
     ClinicalExploration,
@@ -456,6 +457,12 @@ class AssessmentController extends Controller
         }
 
         return redirect()->route('dashboard.assessment.edit.step', ['assessment' => $assessment, 'step' => $step, 'patient' => $patient,]);
+    }
+
+
+    public function storeMedia(FileUploadRequest $request, Assessment $assessment, $mediaType)
+    {
+        dd($request->all(), $assessment, $mediaType);
     }
 
     /**
