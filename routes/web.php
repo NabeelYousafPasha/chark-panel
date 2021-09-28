@@ -74,7 +74,7 @@ Route::group([
 
             // Assessment
             Route::get('/patients/{patient}/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
-            Route::get('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'create'])->name('assessment.create.step');
+            Route::get('/patients/{patient}/assessment/{step}/{assessmentPerformed?}', [AssessmentController::class, 'create'])->name('assessment.create.step');
             Route::post('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'store'])->name('assessment.store.step');
 
             Route::post('/patients/assessment/{assessment}/{mediaType}', [AssessmentController::class, 'storeMedia'])->name('assessment.store.media');

@@ -49,7 +49,7 @@ class AssessmentController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function create(Request $request, Patient $patient, $step = 'step1')
+    public function create(Request $request, Patient $patient, $step = 'step1', ?Assessment $assessmentPerformed = null)
     {
         if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
@@ -68,7 +68,12 @@ class AssessmentController extends Controller
         $error = false;
         if ($step != 'step1') {
             // only occur first time
-            $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->firstOrFail();
+            $assessment = Assessment::where('patient_id', '=', $patient->id);
+
+            if($assessmentPerformed) {
+                $assessment = $assessment->where('id', '=', $assessment->id); 
+            }
+            $assessment = $assessment->latest()->firstOrFail();
 
             switch ($step) {
                 case 'step2': {
@@ -117,6 +122,8 @@ class AssessmentController extends Controller
 
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'patient' => $patient,
+            
+            'assessment' => $assessment ?? null,
 
             'form' => 'create',
             '_method' => 'POST',
@@ -262,7 +269,11 @@ class AssessmentController extends Controller
             }
         }
 
-        return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => $step]);
+        return redirect()->route('dashboard.assessment.create.step', [
+            'patient' => $patient, 
+            'step' => $step,
+            'assessmentPerformed' => $assessment,
+        ]);
     }
 
     /**
