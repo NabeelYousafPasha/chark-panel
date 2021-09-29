@@ -355,7 +355,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                             <button
-                                type="button"
+                                type="submit"
                                 class="btn btn-primary"
                                 id="modal__btn_cbct"
                             >
@@ -380,7 +380,7 @@
                     <form
                         id="form__cbct"
                         method="POST"
-                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}"
+                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'photo']) }}"
                         enctype="multipart/form-data"
                     >
                         @csrf
@@ -416,7 +416,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                             <button
-                                type="button"
+                                type="submit"
                                 class="btn btn-primary"
                                 id="modal__btn_photo"
                             >
@@ -440,7 +440,7 @@
                     <form
                         id="form__cbct"
                         method="POST"
-                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}"
+                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'xray']) }}"
                         enctype="multipart/form-data"
                     >
                         @csrf
@@ -476,7 +476,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                             <button
-                                type="button"
+                                type="submit"
                                 class="btn btn-primary"
                                 id="modal__btn_xray"
                             >
@@ -500,7 +500,7 @@
                     <form
                         id="form__cbct"
                         method="POST"
-                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}"
+                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'sleep_study']) }}"
                         enctype="multipart/form-data"
                     >
                         @csrf
@@ -535,7 +535,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                             <button
-                                type="button"
+                                type="submit"
                                 class="btn btn-primary"
                                 id="modal__btn_sleep_study"
                             >

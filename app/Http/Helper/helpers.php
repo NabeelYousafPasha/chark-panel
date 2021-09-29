@@ -73,7 +73,32 @@ if ( ! function_exists('uploadFile') ) {
                 'success' => false,
                 'message' => $exception->getMessage(),
             ];
-            // dd($exception->getMessage());
+        }
+    }
+}
+
+if ( ! function_exists('uploadAsyncFile') ) {
+
+    function uploadAsyncFile($fileName, $modelType, $fileField, $disk = null)
+    {
+        try {
+            $upload = $modelType->addMedia($fileName)
+                ->toMediaCollection(
+                    $fileField,
+                    $disk ?? config('filesystems.default')
+                );
+
+            return [
+                'success' => true,
+                'message' => 'File uploaded',
+                'uploaded' => $upload,
+            ];
+        }
+        catch (Exception $exception) {
+            return [
+                'success' => false,
+                'message' => $exception->getMessage(),
+            ];
         }
     }
 }

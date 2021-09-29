@@ -72,7 +72,7 @@ class AssessmentController extends Controller
             $assessment = Assessment::where('patient_id', '=', $patient->id);
 
             if($assessmentPerformed) {
-                $assessment = $assessment->where('id', '=', $assessment->id); 
+                $assessment = $assessment->where('id', '=', $assessment->id);
             }
             $assessment = $assessment->latest()->firstOrFail();
 
@@ -123,7 +123,7 @@ class AssessmentController extends Controller
 
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'patient' => $patient,
-            
+
             'assessment' => $assessment ?? null,
 
             'form' => 'create',
@@ -271,7 +271,7 @@ class AssessmentController extends Controller
         }
 
         return redirect()->route('dashboard.assessment.create.step', [
-            'patient' => $patient, 
+            'patient' => $patient,
             'step' => $step,
             'assessmentPerformed' => $assessment,
         ]);
@@ -473,10 +473,29 @@ class AssessmentController extends Controller
 
 
     public function storeMedia(FileUploadRequest $request, Assessment $assessment, $mediaType)
-    {   
-        $disk = 's3';
+    {
+        try {
+            $file = $request->file($mediaType);
+            $fileName = $assessment->id.'-'.time().'-'.uniqid('assessment-' . $assessment->id).'-'.$file->getClientOriginalName();
+            $fileName = strtolower(preg_replace('/\s+/', '-', $fileName));
 
-        FileUpload::dispatch($assessment, $mediaType, $disk); 
+            $movedFile = $file->storeAs('temporary_assessments', $fileName, 'public');
+
+            // dispatching job
+            FileUpload::dispatch($movedFile, $assessment, $mediaType, 's3');
+
+            $this->message('successMessage', 'File is queued to be processed.');
+
+            return redirect()->back();
+
+
+        } catch (\Exception $exception) {
+
+            $this->message('errorMessage', 'Error: '.$exception->getMessage());
+            return redirect()->back()->with([
+                'errors' => $exception->getCode().' - '.$exception->getMessage(),
+            ]);
+        }
     }
 
     /**

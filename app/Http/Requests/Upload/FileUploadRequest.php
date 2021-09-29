@@ -16,6 +16,14 @@ class FileUploadRequest extends FormRequest
         return true;
     }
 
+    public function all($keys = null)
+    {
+        $data = parent::all($keys);
+        $data['media_type'] = $this->route('mediaType');
+
+        return $data;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,21 +31,40 @@ class FileUploadRequest extends FormRequest
      */
     public function rules()
     {
+        $media = $this->route('mediaType');
+
         $mediaType = [
-            "cbct",
-            "photo",
-            "xray",
-            "sleep_study",
+            'cbct', 'photo', 'xray', 'sleep_study',
         ];
 
         $rules = [
-            "cbct" => ['required', 'file',],
-            "photo" => ['required', 'file', 'image',],
-            "xray" => ['required', 'file', 'image',],
-            "sleep_study" => ['required', 'file',],
+            "media_type" => ['required', 'in:'.implode(',', $mediaType)],
+            "cbct" => ['required', 'file', 'max:5000'],
+            "photo" => ['required', 'file', 'image', 'max:5000'],
+            "xray" => ['required', 'file', 'image', 'max:5000'],
+            "sleep_study" => ['required', 'file', 'max:5000'],
         ];
 
-        dd($this);
+        switch ($media) {
+            case 'cbct': {
+                unset($rules['photo'], $rules['xray'], $rules['sleep_study']);
+                break;
+            }
+            case 'photo': {
+                unset($rules['cbct'], $rules['xray'], $rules['sleep_study']);
+                break;
+            }
+            case 'xray': {
+                unset($rules['cbct'], $rules['photo'], $rules['sleep_study']);
+                break;
+            }
+            case 'sleep_study': {
+                unset($rules['cbct'], $rules['photo'], $rules['xray']);
+                break;
+            }
+            default:
+                break;
+        }
 
         return $rules;
     }

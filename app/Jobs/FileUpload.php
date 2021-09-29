@@ -2,18 +2,19 @@
 
 namespace App\Jobs;
 
-use App\Models\Assessment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Http\Requests\Upload\FileUploadRequest;
+use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class FileUpload implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    protected $file;
 
     protected $assessment;
     protected $mediaType;
@@ -24,12 +25,12 @@ class FileUpload implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($assessment, $mediaType, $disk)
+    public function __construct($file, $assessment, $mediaType, $disk)
     {
+        $this->file = $file;
         $this->assessment   = $assessment;
         $this->mediaType    = $mediaType;
         $this->disk         = $disk;
-        
     }
 
     /**
@@ -38,8 +39,36 @@ class FileUpload implements ShouldQueue
      * @return void
      */
     public function handle()
-    {  
-        $uploadViaHelper = uploadFile($this->assessment, $this->mediaType, $this->disk);
+    {
+        info('FileUpload');
 
+        $file = storage_path().'/app/public/'.$this->file;
+
+        try {
+            $uploadViaHelper = uploadAsyncFile(
+                $file,
+                $this->assessment,
+                $this->mediaType,
+                $this->disk
+            );
+
+            // error
+            if (($uploadViaHelper['success'] ?? false) == false) {
+                $this->fail();
+
+                return;
+            }
+
+            // delete local file
+            Storage::delete($file);
+
+            return;
+
+        } catch (Exception $exception) {
+            info('Job Error:'. $exception->getCode().' - '.$exception->getMessage());
+            $this->fail($exception);
+
+            return;
+        }
     }
 }
