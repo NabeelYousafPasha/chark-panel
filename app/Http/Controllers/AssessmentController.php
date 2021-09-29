@@ -213,51 +213,6 @@ class AssessmentController extends Controller
                         'assessment_id' => $assessment->id,
                 ]));
 
-                $errorMessages = [];
-
-                if ($request->hasfile('cbct')) {
-                    $uploadViaHelper = uploadFile($assessment, 'cbct', 's3');
-
-                    // if not uploaded, set error message
-                    if (!$uploadViaHelper['success'] ?? true) {
-                        $errorMessages[] = 'CBCT: Error uploading CBCT.';
-                    }
-                }
-
-                if ($request->hasFile('photos')) {
-                    $uploadViaHelper = uploadFile($assessment, 'photos', 's3');
-
-                    // if not uploaded, set error message
-                    if (!$uploadViaHelper['success'] ?? true) {
-                        $errorMessages[] = 'Photos: Error uploading Photos.';
-                        break;
-                    }
-                }
-
-                if ($request->hasFile('xray')) {
-                    $uploadViaHelper = uploadFile($assessment, 'xray', 's3');
-
-                    // if not uploaded, set error message
-                    if (!$uploadViaHelper['success'] ?? true) {
-                        $errorMessages[] = 'X-Ray: Error uploading xray.';
-                        break;
-                    }
-                }
-
-                if ($request->hasfile('sleep_study')) {
-                    $uploadViaHelper = uploadFile($assessment, 'sleep_study', 's3');
-
-                    // if not uploaded, set error message
-                    if (!$uploadViaHelper['success'] ?? true) {
-                        $errorMessages[] = 'Sleep Study: Error uploading Sleep Study.';
-                    }
-                }
-
-                if (! empty($errorMessages)) {
-                    $this->message('errorMessage', 'Data was saved but errors in uploading files. Details: '.implode('.', $errorMessages));
-                    return redirect()->route('dashboard.assessment.show', ['assessment' => $assessment]);
-                }
-
                 (!$diagnosticTest)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 4')
                     : $this->message('successMessage', 'Success: Step 4 saved');
