@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Assessment\AssessmentRequest;
 use App\Http\Requests\Upload\FileUploadRequest;
+use App\Jobs\FileUpload;
 use App\Models\{
     Assessment,
     ClinicalExploration,
@@ -472,8 +473,10 @@ class AssessmentController extends Controller
 
 
     public function storeMedia(FileUploadRequest $request, Assessment $assessment, $mediaType)
-    {
-        dd($request->all(), $assessment, $mediaType);
+    {   
+        $disk = 's3';
+
+        FileUpload::dispatch($assessment, $mediaType, $disk); 
     }
 
     /**
