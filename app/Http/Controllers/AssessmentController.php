@@ -72,7 +72,7 @@ class AssessmentController extends Controller
             $assessment = Assessment::where('patient_id', '=', $patient->id);
 
             if($assessmentPerformed) {
-                $assessment = $assessment->where('id', '=', $assessment->id);
+                $assessment = $assessment->where('id', '=', $assessmentPerformed->id);
             }
             $assessment = $assessment->latest()->firstOrFail();
 
