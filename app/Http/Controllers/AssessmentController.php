@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Assessment\AssessmentRequest;
+use App\Http\Requests\Upload\FileUploadRequest;
+use App\Jobs\FileUpload;
 use App\Models\{
     Assessment,
     ClinicalExploration,
@@ -48,7 +50,7 @@ class AssessmentController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function create(Request $request, Patient $patient, $step = 'step1')
+    public function create(Request $request, Patient $patient, $step = 'step1', ?Assessment $assessmentPerformed = null)
     {
         if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
@@ -67,7 +69,12 @@ class AssessmentController extends Controller
         $error = false;
         if ($step != 'step1') {
             // only occur first time
-            $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->firstOrFail();
+            $assessment = Assessment::where('patient_id', '=', $patient->id);
+
+            if($assessmentPerformed) {
+                $assessment = $assessment->where('id', '=', $assessmentPerformed->id);
+            }
+            $assessment = $assessment->latest()->firstOrFail();
 
             switch ($step) {
                 case 'step2': {
@@ -116,6 +123,8 @@ class AssessmentController extends Controller
 
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'patient' => $patient,
+
+            'assessment' => $assessment ?? null,
 
             'form' => 'create',
             '_method' => 'POST',
@@ -204,51 +213,6 @@ class AssessmentController extends Controller
                         'assessment_id' => $assessment->id,
                 ]));
 
-                $errorMessages = [];
-
-                if ($request->hasfile('cbct')) {
-                    $uploadViaHelper = uploadFile($assessment, 'cbct', 's3');
-
-                    // if not uploaded, set error message
-                    if (!$uploadViaHelper['success'] ?? true) {
-                        $errorMessages[] = 'CBCT: Error uploading CBCT.';
-                    }
-                }
-
-                if ($request->hasFile('photos')) {
-                    $uploadViaHelper = uploadFile($assessment, 'photos', 's3');
-
-                    // if not uploaded, set error message
-                    if (!$uploadViaHelper['success'] ?? true) {
-                        $errorMessages[] = 'Photos: Error uploading Photos.';
-                        break;
-                    }
-                }
-
-                if ($request->hasFile('xray')) {
-                    $uploadViaHelper = uploadFile($assessment, 'xray', 's3');
-
-                    // if not uploaded, set error message
-                    if (!$uploadViaHelper['success'] ?? true) {
-                        $errorMessages[] = 'X-Ray: Error uploading xray.';
-                        break;
-                    }
-                }
-
-                if ($request->hasfile('sleep_study')) {
-                    $uploadViaHelper = uploadFile($assessment, 'sleep_study', 's3');
-
-                    // if not uploaded, set error message
-                    if (!$uploadViaHelper['success'] ?? true) {
-                        $errorMessages[] = 'Sleep Study: Error uploading Sleep Study.';
-                    }
-                }
-
-                if (! empty($errorMessages)) {
-                    $this->message('errorMessage', 'Data was saved but errors in uploading files. Details: '.implode('.', $errorMessages));
-                    return redirect()->route('dashboard.assessment.show', ['assessment' => $assessment]);
-                }
-
                 (!$diagnosticTest)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 4')
                     : $this->message('successMessage', 'Success: Step 4 saved');
@@ -261,7 +225,11 @@ class AssessmentController extends Controller
             }
         }
 
-        return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => $step]);
+        return redirect()->route('dashboard.assessment.create.step', [
+            'patient' => $patient,
+            'step' => $step,
+            'assessmentPerformed' => $assessment,
+        ]);
     }
 
     /**
@@ -456,6 +424,33 @@ class AssessmentController extends Controller
         }
 
         return redirect()->route('dashboard.assessment.edit.step', ['assessment' => $assessment, 'step' => $step, 'patient' => $patient,]);
+    }
+
+
+    public function storeMedia(FileUploadRequest $request, Assessment $assessment, $mediaType)
+    {
+        try {
+            $file = $request->file($mediaType);
+            $fileName = $assessment->id.'-'.time().'-'.uniqid('assessment-' . $assessment->id).'-'.$file->getClientOriginalName();
+            $fileName = strtolower(preg_replace('/\s+/', '-', $fileName));
+
+            $movedFile = $file->storeAs('temporary_assessments', $fileName, 'public');
+
+            // dispatching job
+            FileUpload::dispatch($movedFile, $assessment, $mediaType, 's3');
+
+            $this->message('successMessage', 'File is queued to be processed.');
+
+            return redirect()->back();
+
+
+        } catch (\Exception $exception) {
+
+            $this->message('errorMessage', 'Error: '.$exception->getMessage());
+            return redirect()->back()->with([
+                'errors' => $exception->getCode().' - '.$exception->getMessage(),
+            ]);
+        }
     }
 
     /**

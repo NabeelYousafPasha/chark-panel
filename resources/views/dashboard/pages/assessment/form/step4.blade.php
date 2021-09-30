@@ -24,6 +24,62 @@
                         <div class="row">
                             <div class="col-md-12">
 
+                                @if($assessment ?? false)
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2>Uploads:</h2>
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary btn-block"
+                                            id="btn_cbct"
+                                            data-toggle="modal"
+                                            data-target="#modal__cbct"
+                                        >
+                                            CBCT
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary btn-block"
+                                            id="btn_photos"
+                                            data-toggle="modal"
+                                            data-target="#modal__photo"
+                                        >
+                                            Photo
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary btn-block"
+                                            id="btn_xray"
+                                            data-toggle="modal"
+                                            data-target="#modal__xray"
+                                        >
+                                            X-Ray
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary btn-block"
+                                            id="btn_sleep_study"
+                                            data-toggle="modal"
+                                            data-target="#modal__sleep_study"
+                                        >
+                                            Sleep Study
+                                        </button>
+                                    </div>
+                                </div>
+                                @endif
+
+                                <hr>
+
                                 <form
                                     action="{{ $route }}"
                                     method="POST"
@@ -36,127 +92,8 @@
                                     @method($_method)
 
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <h2>Uploads:</h2>
-                                            <br>
 
-                                        </div>
-
-                                        <div class="col-md-12">
-
-                                            <div class="row form-group @error('cbct') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="cbct"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        CBCT:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="file"
-                                                        id="cbct"
-                                                        name="cbct"
-                                                        class="form-control"
-                                                    >
-                                                    <span class="help-block small">
-                                                        Allowed: Zip file
-                                                    </span>
-                                                    @error('cbct')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group @error('photos') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="photos"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                    Photos:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="file"
-                                                        id="photos"
-                                                        name="photos"
-                                                        class="form-control"
-                                                        accept="image/*"
-                                                    >
-                                                    <span class="help-block small">
-                                                        Allowed: png, jpg, jpeg
-                                                    </span>
-                                                    @error('photos')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group @error('xray') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="xray"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        X-Ray:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="file"
-                                                        id="xray"
-                                                        name="xray"
-                                                        class="form-control"
-                                                        accept="image/*"
-                                                    >
-                                                    <span class="help-block small">
-                                                        Allowed: png, jpg, jpeg
-                                                    </span>
-                                                    @error('xray')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group @error('sleep_study') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="sleep_study"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                    Sleep Study:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="file"
-                                                        id="sleep_study"
-                                                        name="sleep_study"
-                                                        class="form-control"
-                                                    >
-                                                    <span class="help-block small">
-                                                        Allowed: png, jpg, jpeg, docx, pdf
-                                                    </span>
-                                                    @error('sleep_study')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="row form-group @error('ahi') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
@@ -314,7 +251,9 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                        </div>
 
+                                        <div class="col-md-6">
                                             <div class="row form-group @error('assessments_observation') has-error @enderror">
                                                 <div class="col-md-12">
                                                     <label
@@ -327,7 +266,7 @@
                                                         id="assessments_observation"
                                                         name="assessments_observation"
                                                         class="form-control"
-                                                        rows="10"
+                                                        rows="12"
                                                         required=""
                                                     >{{ $diagnosticTest->assessments_observation ?? old('assessments_observation') }}</textarea>
                                                     @error('assessments_observation')
@@ -364,6 +303,251 @@
             </div>
         </div>
     </div>
+
+
+    {{-- Modals --}}
+    @if($assessment ?? false)
+        <div
+            class="modal inmodal "
+            id="modal__cbct"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content animated flipInY">
+
+                    <form
+                        id="form__cbct"
+                        method="POST"
+                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}"
+                        enctype="multipart/form-data"
+                    >
+                        @csrf
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Upload CBCT</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row form-group @error('cbct') has-error @enderror">
+                                <label
+                                    for="cbct"
+                                    class="col-form-label text-md-left"
+                                >
+                                    CBCT:
+                                </label>
+                                <input
+                                    type="file"
+                                    id="cbct"
+                                    name="cbct"
+                                    class="form-control"
+                                >
+                                <span class="help-block small">
+                                    Allowed: Zip file
+                                </span>
+                                @error('cbct')
+                                    <span class="help-block has-error">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="modal__btn_cbct"
+                            >
+                                Upload
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="modal inmodal "
+            id="modal__photo"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content animated flipInY">
+
+                    <form
+                        id="form__cbct"
+                        method="POST"
+                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'photo']) }}"
+                        enctype="multipart/form-data"
+                    >
+                        @csrf
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Upload Photo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row form-group @error('photo') has-error @enderror">
+                                <label
+                                    for="photo"
+                                    class="col-form-label text-md-left"
+                                >
+                                    Photo:
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="photo"
+                                    name="photo"
+                                    class="form-control"
+                                >
+                                <span class="help-block small">
+                                    Allowed: png, jpg, jpeg
+                                </span>
+                                @error('photo')
+                                    <span class="help-block has-error">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="modal__btn_photo"
+                            >
+                                Upload
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="modal inmodal "
+            id="modal__xray"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content animated flipInY">
+                    <form
+                        id="form__cbct"
+                        method="POST"
+                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'xray']) }}"
+                        enctype="multipart/form-data"
+                    >
+                        @csrf
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Upload X-Ray</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row form-group @error('xray') has-error @enderror">
+                                <label
+                                    for="xray"
+                                    class="col-form-label text-md-left"
+                                >
+                                    X-Ray:
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="xray"
+                                    name="xray"
+                                    class="form-control"
+                                >
+                                <span class="help-block small">
+                                    Allowed: png, jpg, jpeg, zip file
+                                </span>
+                                @error('xray')
+                                    <span class="help-block has-error">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="modal__btn_xray"
+                            >
+                                Upload
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="modal inmodal "
+            id="modal__sleep_study"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content animated flipInY">
+                    <form
+                        id="form__cbct"
+                        method="POST"
+                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'sleep_study']) }}"
+                        enctype="multipart/form-data"
+                    >
+                        @csrf
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Upload Sleep Study</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row form-group @error('sleep_study') has-error @enderror">
+                                <label
+                                    for="sleep_study"
+                                    class="col-form-label text-md-left"
+                                >
+                                    Sleep Study:
+                                </label>
+                                <input
+                                    type="file"
+                                    id="sleep_study"
+                                    name="sleep_study"
+                                    class="form-control"
+                                >
+                                <span class="help-block small">
+                                    Allowed: png, jpg, jpeg, docx, pdf file
+                                </span>
+                                @error('sleep_study')
+                                    <span class="help-block has-error">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="modal__btn_sleep_study"
+                            >
+                                Upload
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endif
+
 @endsection
 
 
