@@ -149,7 +149,7 @@
                                                         name="alcohol_with_dinner_quantity"
                                                         id="alcohol_with_dinner_quantity"
                                                         class="form-control"
-                                                        min="0"
+                                                        min="1"
                                                         value="{{ $medicalHistory->alcohol_with_dinner_quantity ?? old('alcohol_with_dinner_quantity') }}"
                                                     >
                                                 </div>

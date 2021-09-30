@@ -3,9 +3,6 @@
         <tr>
             <th>{{ trans('lang.dataTable.thead.sr_no') }}</th>
             <th>Creation Date</th>
-            <th>External Assessment</th>
-            <th>Polygraph</th>
-            <th>Polysomnography</th>
             <th>Created By</th>
             <th>Comments</th>
             <th>{{ trans('lang.dataTable.thead.actions') }}</th>
@@ -16,9 +13,6 @@
             <tr>
                 <td>{{ ++$key }}</td>
                 <td>{{ $patientAssessment->created_at }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td>{{ $patientAssessment->full_name }}</td>
                 <td>
                     <div class="btn-group-xs">

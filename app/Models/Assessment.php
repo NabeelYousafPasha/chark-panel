@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\FileManagerTrait;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\{
+    HasMedia,
+    HasMediaTrait
+};
 
-class Assessment extends Model
+class Assessment extends Model implements HasMedia
 {
+    use HasMediaTrait, FileManagerTrait;
+
     protected $fillable = [
         'patient_id',
         'date',

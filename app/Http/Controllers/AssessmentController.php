@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Assessment\AssessmentRequest;
+use App\Http\Requests\Upload\FileUploadRequest;
+use App\Jobs\FileUpload;
 use App\Models\{
     Assessment,
     ClinicalExploration,
@@ -15,7 +17,7 @@ use App\Models\{
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use File;
+use Illuminate\Support\Str;
 
 class AssessmentController extends Controller
 {
@@ -48,7 +50,7 @@ class AssessmentController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function create(Request $request, Patient $patient, $step = 'step1')
+    public function create(Request $request, Patient $patient, $step = 'step1', ?Assessment $assessmentPerformed = null)
     {
         if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
@@ -66,7 +68,13 @@ class AssessmentController extends Controller
 
         $error = false;
         if ($step != 'step1') {
-            $assessment = Assessment::where('patient_id', '=', $patient->id)->latest()->firstOrFail();
+            // only occur first time
+            $assessment = Assessment::where('patient_id', '=', $patient->id);
+
+            if($assessmentPerformed) {
+                $assessment = $assessment->where('id', '=', $assessmentPerformed->id);
+            }
+            $assessment = $assessment->latest()->firstOrFail();
 
             switch ($step) {
                 case 'step2': {
@@ -115,6 +123,8 @@ class AssessmentController extends Controller
 
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'patient' => $patient,
+
+            'assessment' => $assessment ?? null,
 
             'form' => 'create',
             '_method' => 'POST',
@@ -181,9 +191,14 @@ class AssessmentController extends Controller
                 break;
             }
             case 'step3': {
+
+                $upperAirwaySurgeryValue = implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery_value') ?? []);
+
                 $data['clinicalExploration'] = $clinicalExploration = ClinicalExploration::create(array_merge($request->validated(), [
                         'assessment_id' => $assessment->id,
-                    ], ['upper_airway_surgery_value' => implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery_value') ?? [])]));
+                    ], [
+                        'upper_airway_surgery_value' => ! empty($upperAirwaySurgeryValue) ? $upperAirwaySurgeryValue : NULL,
+                ]));
 
                 (!$clinicalExploration)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 3')
@@ -193,46 +208,10 @@ class AssessmentController extends Controller
                 break;
             }
             case 'step4': {
-                if($request->hasfile('cbct'))
-                {
-                    $file = $request->file('cbct');
-                    $cbctFile=time().$file->getClientOriginalName();
-                    Storage::disk('local')->put('/public/cbctFile/'.$cbctFile, File::get($file));
-                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
-                }else{
-                    $cbctFile="";
-                }
-                if($request->hasfile('photos'))
-                {
-                    $file = $request->file('photos');
-                    $photoFile=time().$file->getClientOriginalName();
-                    Storage::disk('local')->put('/public/photoFile/'.$photoFile, File::get($file));
-                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
-                }else{
-                    $photoFile="";
-                }
-                if($request->hasfile('xray'))
-                {
-                    $file = $request->file('xray');
-                    $xrayFile=time().$file->getClientOriginalName();
-                    Storage::disk('local')->put('/public/xrayFile/'.$xrayFile, File::get($file));
-                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
-                }else{
-                    $xrayFile="";
-                }
-                if($request->hasfile('sleep_study'))
-                {
-                    $file = $request->file('sleep_study');
-                    $sleep_studyFile=time().$file->getClientOriginalName();
-                    Storage::disk('local')->put('/public/sleep_studyFile/'.$sleep_studyFile, File::get($file));
-                    //Storage::cloud()->put('/public/cbctFile/'.$cbctFile, File::get($file));
-                }else{
-                    $sleep_studyFile="";
-                }
-                
+
                 $data['diagnosticTest'] = $diagnosticTest = DiagnosticTest::create(array_merge($request->validated(), [
                         'assessment_id' => $assessment->id,
-                    ]));
+                ]));
 
                 (!$diagnosticTest)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 4')
@@ -246,7 +225,11 @@ class AssessmentController extends Controller
             }
         }
 
-        return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => $step]);
+        return redirect()->route('dashboard.assessment.create.step', [
+            'patient' => $patient,
+            'step' => $step,
+            'assessmentPerformed' => $assessment,
+        ]);
     }
 
     /**
@@ -275,6 +258,8 @@ class AssessmentController extends Controller
         $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)
                     ->latest()
                     ->first();
+
+        $assessment = $assessment->with('media')->where('id', '=', $assessment->id)->first();
 
         return $this->renderView('dashboard.pages.assessment.show', [
             'assessment' => $assessment,
@@ -404,10 +389,13 @@ class AssessmentController extends Controller
                 break;
             }
             case 'step3': {
+
+                $upperAirwaySurgeryValue = implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery_value') ?? []);
+
                 $data['clinicalExploration'] = $clinicalExploration = ClinicalExploration::updateOrcreate([
                         'assessment_id' => $assessment->id,
                     ], array_merge($request->validated(), [
-                        'upper_airway_surgery_value' => implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery_value') ?? [])
+                        'upper_airway_surgery_value' => ! empty($upperAirwaySurgeryValue) ? $upperAirwaySurgeryValue : NULL,
                     ])
                 );
 
@@ -436,6 +424,33 @@ class AssessmentController extends Controller
         }
 
         return redirect()->route('dashboard.assessment.edit.step', ['assessment' => $assessment, 'step' => $step, 'patient' => $patient,]);
+    }
+
+
+    public function storeMedia(FileUploadRequest $request, Assessment $assessment, $mediaType)
+    {
+        try {
+            $file = $request->file($mediaType);
+            $fileName = $assessment->id.'-'.time().'-'.uniqid('assessment-' . $assessment->id).'-'.$file->getClientOriginalName();
+            $fileName = strtolower(preg_replace('/\s+/', '-', $fileName));
+
+            $movedFile = $file->storeAs('temporary_assessments', $fileName, 'public');
+
+            // dispatching job
+            FileUpload::dispatch($movedFile, $assessment, $mediaType, 's3');
+
+            $this->message('successMessage', 'File is queued to be processed.');
+
+            return redirect()->back();
+
+
+        } catch (\Exception $exception) {
+
+            $this->message('errorMessage', 'Error: '.$exception->getMessage());
+            return redirect()->back()->with([
+                'errors' => $exception->getCode().' - '.$exception->getMessage(),
+            ]);
+        }
     }
 
     /**
