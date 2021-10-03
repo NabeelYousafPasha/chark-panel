@@ -1,5 +1,5 @@
 <!--  SIDEBAR -->
-<nav class="navbar-default navbar-static-side" role="navigation">
+<nav class="navbar-default navbar-static-side" role="navigation" style="position: fixed;">
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">

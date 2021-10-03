@@ -378,11 +378,10 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input
-                                                        type="number"
+                                                        type="text"
                                                         name="height"
                                                         id="height"
-                                                        class="form-control"
-                                                        min="0"
+                                                        class="form-control float_number"
                                                         required=""
                                                         value="{{ $clinicalExploration->height ?? old('height') }}"
                                                     >
@@ -404,11 +403,10 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input
-                                                        type="number"
+                                                        type="text"
                                                         name="weight"
                                                         id="weight"
-                                                        class="form-control"
-                                                        min="0"
+                                                        class="form-control float_number"
                                                         required=""
                                                         value="{{ $clinicalExploration->weight ?? old('weight') }}"
                                                     >
@@ -1586,6 +1584,12 @@
             } else {
                 upper_airway_surgery_value__div.hide();
                 other_upper_airway_surgery__div.hide();
+            }
+        });
+
+        $('.float_number').keypress(function(event) {
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
             }
         });
 

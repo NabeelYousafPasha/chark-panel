@@ -63,7 +63,7 @@ class AssessmentRequest extends FormRequest
             'step2' => [
                 "smoker" => ['required', 'boolean',],
                 "alcohol_with_dinner" => ['required', 'boolean',],
-                "alcohol_with_dinner_quantity" => ['required_if:alcohol_with_dinner,1', 'numeric',],
+                "alcohol_with_dinner_quantity" => ['nullable', 'required_if:alcohol_with_dinner,1', 'numeric',],
                 "high_blood_pressure" => ['required', 'boolean',],
                 "myocardial_infarction" => ['required', 'boolean',],
                 "coronary_artery_disease" => ['required', 'boolean',],
