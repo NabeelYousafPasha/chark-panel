@@ -77,10 +77,14 @@ Route::group([
             Route::get('/patients/{patient}/assessment/{step}/{assessmentPerformed?}', [AssessmentController::class, 'create'])->name('assessment.create.step');
             Route::post('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'store'])->name('assessment.store.step');
 
+            // File / Media
             Route::post('/patients/assessment/{assessment}/{mediaType}', [AssessmentController::class, 'storeMedia'])->name('assessment.store.media');
 
+            // Assessment Edit
             Route::get('/patients/assessment/{assessment}/edit/{step}', [AssessmentController::class, 'edit'])->name('assessment.edit.step');
             Route::patch('/patients/assessment/{assessment}/{step}', [AssessmentController::class, 'update'])->name('assessment.update.step');
+
+            // Assessment Show
             Route::get('/patients/assessment/{assessment}/show', [AssessmentController::class, 'show'])->name('assessment.show');
 
             // Patient Details

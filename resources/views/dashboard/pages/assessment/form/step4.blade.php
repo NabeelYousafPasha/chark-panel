@@ -1,6 +1,8 @@
 @extends('dashboard.layout.app')
 
 @section('stylesheets')
+    <!-- Filepond stylesheet -->
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -336,11 +338,14 @@
                                 >
                                     CBCT:
                                 </label>
+                                <!-- We'll transform this input into a pond -->
                                 <input
                                     type="file"
                                     id="cbct"
                                     name="cbct"
-                                    class="form-control"
+                                    class="filepond"
+                                    data-max-file-size="3MB"
+                                    data-max-files="1"
                                 >
                                 <span class="help-block small">
                                     Allowed: Zip file
@@ -378,7 +383,7 @@
                 <div class="modal-content animated flipInY">
 
                     <form
-                        id="form__cbct"
+                        id="form__photo"
                         method="POST"
                         action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'photo']) }}"
                         enctype="multipart/form-data"
@@ -396,12 +401,12 @@
                                 >
                                     Photo:
                                 </label>
-
+                                <!-- We'll transform this input into a pond -->
                                 <input
                                     type="file"
                                     id="photo"
                                     name="photo"
-                                    class="form-control"
+                                    class="filepond"
                                 >
                                 <span class="help-block small">
                                     Allowed: png, jpg, jpeg
@@ -438,7 +443,7 @@
             <div class="modal-dialog">
                 <div class="modal-content animated flipInY">
                     <form
-                        id="form__cbct"
+                        id="form__xray"
                         method="POST"
                         action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'xray']) }}"
                         enctype="multipart/form-data"
@@ -456,12 +461,12 @@
                                 >
                                     X-Ray:
                                 </label>
-
+                                <!-- We'll transform this input into a pond -->
                                 <input
                                     type="file"
                                     id="xray"
                                     name="xray"
-                                    class="form-control"
+                                    class="filepond"
                                 >
                                 <span class="help-block small">
                                     Allowed: png, jpg, jpeg, zip file
@@ -498,7 +503,7 @@
             <div class="modal-dialog">
                 <div class="modal-content animated flipInY">
                     <form
-                        id="form__cbct"
+                        id="form__sleep_study"
                         method="POST"
                         action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'sleep_study']) }}"
                         enctype="multipart/form-data"
@@ -516,11 +521,12 @@
                                 >
                                     Sleep Study:
                                 </label>
+                                <!-- We'll transform this input into a pond -->
                                 <input
                                     type="file"
                                     id="sleep_study"
                                     name="sleep_study"
-                                    class="form-control"
+                                    class="filepond"
                                 >
                                 <span class="help-block small">
                                     Allowed: png, jpg, jpeg, docx, pdf file
@@ -550,5 +556,28 @@
 
 @endsection
 
+@section('scripts')
+    <!-- Load FilePond library -->
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+
+    <script>
+        // Get a reference to the file input element
+        const cbctFile = document.querySelector('input[id="cbct"]');
+
+        // Create a FilePond instance
+        const cbctPond = FilePond.create(cbctFile);
+
+        cbctPond.setOptions({
+            server: {
+                url: '{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+            },
+        });
+
+    </script>
+@endsection
 
 
