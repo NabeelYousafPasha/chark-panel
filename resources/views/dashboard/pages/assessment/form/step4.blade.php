@@ -319,13 +319,13 @@
             <div class="modal-dialog">
                 <div class="modal-content animated flipInY">
 
-                    <form
+                   {{-- <form
                         id="form__cbct"
                         method="POST"
                         action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}"
                         enctype="multipart/form-data"
                     >
-                        @csrf
+                        @csrf--}}
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title">Upload CBCT</h4>
@@ -358,16 +358,16 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-white refresh-page">Close</button>
                             <button
-                                type="submit"
-                                class="btn btn-primary"
-                                id="modal__btn_cbct"
+                                type="button"
+                                class="btn btn-primary refresh-page"
+                                id="modal__btn_sleep_study"
                             >
                                 Upload
                             </button>
                         </div>
-                    </form>
+{{--                    </form>--}}
                 </div>
             </div>
         </div>
@@ -479,10 +479,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-white refreshPage" data-dismiss="modal" >Close</button>
                             <button
                                 type="submit"
-                                class="btn btn-primary"
+                                class="btn btn-primary refreshPage"
                                 id="modal__btn_xray"
                             >
                                 Upload
@@ -539,10 +539,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="reset" class="btn btn-white refresh-page">Close</button>
                             <button
-                                type="submit"
-                                class="btn btn-primary"
+                                type="button"
+                                class="btn btn-primary refresh-page"
                                 id="modal__btn_sleep_study"
                             >
                                 Upload
@@ -576,6 +576,12 @@
                 },
             },
         });
+
+        $('.refresh-page').on('click', function(){
+            console.log('test');
+           location.reload();
+        });
+
 
     </script>
 @endsection

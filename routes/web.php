@@ -80,6 +80,7 @@ Route::group([
             // File / Media
             Route::post('/patients/assessment/{assessment}/{mediaType}', [AssessmentController::class, 'storeMedia'])->name('assessment.store.media');
 
+
             // Assessment Edit
             Route::get('/patients/assessment/{assessment}/edit/{step}', [AssessmentController::class, 'edit'])->name('assessment.edit.step');
             Route::patch('/patients/assessment/{assessment}/{step}', [AssessmentController::class, 'update'])->name('assessment.update.step');

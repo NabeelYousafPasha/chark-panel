@@ -441,12 +441,27 @@ class AssessmentController extends Controller
 
             $this->message('successMessage', 'File is queued to be processed.');
 
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'File is queued to be processed.',
+                ]);
+            }
+
             return redirect()->back();
 
 
         } catch (\Exception $exception) {
 
             $this->message('errorMessage', 'Error: '.$exception->getMessage());
+
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $exception->getMessage(),
+                ]);
+            }
+
             return redirect()->back()->with([
                 'errors' => $exception->getCode().' - '.$exception->getMessage(),
             ]);
