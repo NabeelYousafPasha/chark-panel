@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Assessment\AssessmentRequest;
 use App\Http\Requests\Upload\FileUploadRequest;
 use App\Jobs\FileUpload;
-use App\Models\{
-    Assessment,
+use App\Models\{Assessment,
     ClinicalExploration,
     DiagnosticTest,
+    LocalMedia,
     MedicalHistory,
     Patient,
     SleepinessScale,
-    Symptom
-};
+    Symptom};
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -427,24 +427,34 @@ class AssessmentController extends Controller
     }
 
 
-    public function storeMedia(FileUploadRequest $request, Assessment $assessment, $mediaType)
+    public function storeMedia(FileUploadRequest $request, Assessment $assessment, $mediaType, $requestAjaxType = false)
     {
         try {
             $file = $request->file($mediaType);
             $fileName = $assessment->id.'-'.time().'-'.uniqid('assessment-' . $assessment->id).'-'.$file->getClientOriginalName();
             $fileName = strtolower(preg_replace('/\s+/', '-', $fileName));
 
-            $movedFile = $file->storeAs('temporary_assessments', $fileName, 'public');
+            $movedFile = $file->storeAs('patient-'.$assessment->patient_id.'/assessment-'.$assessment->id.'/'.$mediaType, $fileName, 'public');
+
+            $localMedia = LocalMedia::create([
+                'assessment_id' => $assessment->id,
+                'name' => $fileName,
+                'type' => $mediaType,
+                'extension' => $file->getClientOriginalExtension(),
+                'folder' => $mediaType,
+                'path' => $movedFile,
+            ]);
 
             // dispatching job
-            FileUpload::dispatch($movedFile, $assessment, $mediaType, 's3');
+//            FileUpload::dispatch($movedFile, $assessment, $mediaType, 's3');
 
             $this->message('successMessage', 'File is queued to be processed.');
 
-            if ($request->ajax()) {
+            if ($requestAjaxType) {
                 return response()->json([
                     'success' => true,
                     'message' => 'File is queued to be processed.',
+                    'file_id'    => $localMedia->id,
                 ]);
             }
 
@@ -455,7 +465,7 @@ class AssessmentController extends Controller
 
             $this->message('errorMessage', 'Error: '.$exception->getMessage());
 
-            if ($request->ajax()) {
+            if ($requestAjaxType) {
                 return response()->json([
                     'success' => false,
                     'message' => $exception->getMessage(),
@@ -477,6 +487,28 @@ class AssessmentController extends Controller
     public function destroy(Assessment $assessment)
     {
         //
+    }
+
+    public function deleteMedia(LocalMedia $localMedia)
+    {
+        try {
+            $deleted = $localMedia->delete();
+
+            return response()->json([
+                'success' => true,
+                'deleted' => $deleted,
+            ], Response::HTTP_NO_CONTENT);
+
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'success' => false,
+                'deleted' => 0,
+                'message' => $exception->getMessage(),
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        }
+
     }
 
     /**

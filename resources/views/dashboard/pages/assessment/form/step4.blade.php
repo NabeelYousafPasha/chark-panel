@@ -569,10 +569,30 @@
 
         cbctPond.setOptions({
             server: {
-                url: '{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}',
+                url: '{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct', 'requestAjaxType' => true]) }}',
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                revert: (response, load, error) => {
+                    let fileId = JSON.parse(response).file_id;
+                    // Should remove the earlier created temp file here
+                    {{--let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";--}}
+                    {{--route = route.replace(':file', response.file_id);--}}
+                    $.ajax({
+                        type: 'GET',
+                        url: "/dashboard/patients/assessments/localMedia/"+fileId,
+                        success: function(data) {
+                            console.log(data);
+                        }
+
+                    });
+
+                    // Can call the error method if something is wrong, should exit after
+                    error('oh my goodness');
+
+                    // Should call the load method when done, no parameters required
+                    load();
                 },
             },
         });
