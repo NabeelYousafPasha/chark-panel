@@ -18,6 +18,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\Models\Media;
 
 class AssessmentController extends Controller
 {
@@ -436,15 +437,6 @@ class AssessmentController extends Controller
 
             $movedFile = $file->storeAs('patient-'.$assessment->patient_id.'/assessment-'.$assessment->id.'/'.$mediaType, $fileName, 'public');
 
-            $localMedia = LocalMedia::create([
-                'assessment_id' => $assessment->id,
-                'name' => $fileName,
-                'type' => $mediaType,
-                'extension' => $file->getClientOriginalExtension(),
-                'folder' => $mediaType,
-                'path' => $movedFile,
-            ]);
-
             // dispatching job
 //            FileUpload::dispatch($movedFile, $assessment, $mediaType, 's3');
 
@@ -454,7 +446,7 @@ class AssessmentController extends Controller
                 return response()->json([
                     'success' => true,
                     'message' => 'File is queued to be processed.',
-                    'file_id'    => $localMedia->id,
+                    'file'    => $movedFile,
                 ]);
             }
 
@@ -489,10 +481,10 @@ class AssessmentController extends Controller
         //
     }
 
-    public function deleteMedia(LocalMedia $localMedia)
+    public function deleteMedia(Media $media)
     {
         try {
-            $deleted = $localMedia->delete();
+            $deleted = $media->delete();
 
             return response()->json([
                 'success' => true,
@@ -508,7 +500,6 @@ class AssessmentController extends Controller
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
 
         }
-
     }
 
     /**
