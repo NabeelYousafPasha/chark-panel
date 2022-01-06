@@ -8,7 +8,6 @@ use App\Jobs\FileUpload;
 use App\Models\{Assessment,
     ClinicalExploration,
     DiagnosticTest,
-    LocalMedia,
     MedicalHistory,
     Patient,
     SleepinessScale,
@@ -16,8 +15,6 @@ use App\Models\{Assessment,
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Spatie\MediaLibrary\Models\Media;
 
 class AssessmentController extends Controller
