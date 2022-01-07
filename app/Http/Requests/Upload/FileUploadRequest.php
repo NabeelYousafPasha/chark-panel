@@ -39,10 +39,10 @@ class FileUploadRequest extends FormRequest
 
         $rules = [
             "media_type" => ['required', 'in:'.implode(',', $mediaType)],
-            "cbct" => ['required', 'url',],
-            "photo" => ['required', 'file', 'image', 'max:2000'],
-            "xray" => ['required', 'file', 'image', 'max:2000'],
-            "sleep_study" => ['required', 'file', 'max:2000'],
+            "cbct" => ['required', 'string', 'url', 'max:255',],
+            "photo" => ['required', 'file', 'image', 'max:5000'],
+            "xray" => ['required', 'file', 'image', 'max:5000'],
+            "sleep_study" => ['required', 'file', 'max:5000', 'mimes:doc,pdf,docx,zip',],
         ];
 
         switch ($media) {

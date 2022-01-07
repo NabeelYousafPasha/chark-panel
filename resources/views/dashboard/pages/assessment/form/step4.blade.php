@@ -43,7 +43,7 @@
                                         >
                                             CBCT
                                         </button>
-                                        <span class="small">Attach the links of uploaded CBCT</span>
+                                        <span class="small">Attach the links of uploaded CBCT (Google drive, Dropbox, OneDrive)</span>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-6">
                                         <button
@@ -67,7 +67,7 @@
                                         >
                                             X-Ray
                                         </button>
-                                        <span class="small">Images, Scanned Files, Docs</span>
+                                        <span class="small">Images</span>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-6">
                                         <button
@@ -79,7 +79,7 @@
                                         >
                                             Sleep Study
                                         </button>
-                                        <span class="small">Docs, Images</span>
+                                        <span class="small">Images, Docs</span>
                                     </div>
                                 </div>
                                 @endif
@@ -364,7 +364,7 @@
                             <button
                                 type="button"
                                 class="btn btn-primary refresh-page"
-                                id="modal__btn_sleep_study"
+                                id="modal__btn_sleep_cbct"
                             >
                                 Upload
                             </button>
@@ -411,6 +411,7 @@
                                     class="filepond"
                                     data-file_type="photo"
                                     required="required"
+                                    accept="image/*"
                                 >
                                 <span class="help-block small">
                                     Allowed: png, jpg, jpeg
@@ -425,7 +426,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white refresh-page">Close</button>
                             <button
-                                type="submit"
+                                type="button"
                                 class="btn btn-primary refresh-page"
                                 id="modal__btn_photo"
                             >
@@ -473,9 +474,10 @@
                                     class="filepond"
                                     data-file_type="xray"
                                     required="required"
+                                    accept="image/*"
                                 >
                                 <span class="help-block small">
-                                    Allowed: png, jpg, jpeg, docs file
+                                    Allowed: png, jpg, jpeg
                                 </span>
                                 @error('xray')
                                     <span class="help-block has-error">
@@ -487,7 +489,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white refresh-page">Close</button>
                             <button
-                                type="submit"
+                                type="button"
                                 class="btn btn-primary refresh-page"
                                 id="modal__btn_xray"
                             >
@@ -537,7 +539,7 @@
                                     required="required"
                                 >
                                 <span class="help-block small">
-                                    Allowed: png, jpg, jpeg, docx, pdf file
+                                    Allowed: png, jpg, jpeg, docx, pdf
                                 </span>
                                 @error('sleep_study')
                                     <span class="help-block has-error">
@@ -590,24 +592,26 @@
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                 },
                 revert: (response, load, error) => {
-                    let fileId = JSON.parse(response).file_id;
+                    let responseJson = JSON.parse(response);
+                    console.log(responseJson, response);
+
                     // Should remove the earlier created temp file here
                     {{--let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";--}}
                     {{--route = route.replace(':file', response.file_id);--}}
-                    $.ajax({
-                        type: 'GET',
-                        url: "/dashboard/patients/assessments/localMedia/"+fileId,
-                        success: function(data) {
-                            console.log(data);
-                        }
-
-                    });
-
-                    // Can call the error method if something is wrong, should exit after
-                    error('oh my goodness');
-
-                    // Should call the load method when done, no parameters required
-                    load();
+                    // $.ajax({
+                    //     type: 'GET',
+                    //     url: "/dashboard/patients/assessments/localMedia/"+fileId,
+                    //     success: function(data) {
+                    //         console.log(data);
+                    //     }
+                    //
+                    // });
+                    //
+                    // // Can call the error method if something is wrong, should exit after
+                    // error('oh my goodness');
+                    //
+                    // // Should call the load method when done, no parameters required
+                    // load();
                 },
             },
         });

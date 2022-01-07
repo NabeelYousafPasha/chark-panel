@@ -429,7 +429,7 @@ class AssessmentController extends Controller
     {
         try {
             $file = $request->file($mediaType);
-            $fileName = $assessment->id.'-'.time().'-'.uniqid('assessment-' . $assessment->id).'-'.$file->getClientOriginalName();
+            $fileName = 'p#'.$assessment->patient_id.'-a#'.$assessment->id.'-'.'by-'.auth()->id().'-'.time().'-'.$file->getClientOriginalName();
             $fileName = strtolower(preg_replace('/\s+/', '-', $fileName));
 
             $movedFile = $file->storeAs('patient-'.$assessment->patient_id.'/assessment-'.$assessment->id.'/'.$mediaType, $fileName, 'public');
