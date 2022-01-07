@@ -78,8 +78,10 @@ Route::group([
             Route::post('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'store'])->name('assessment.store.step');
 
             // File / Media
-            Route::get('/patients/assessments/localMedia/{localMedia}', [AssessmentController::class, 'deleteMedia'])->name('assessment.delete.media');
             Route::post('/patients/assessment/{assessment}/{mediaType}/{requestAjaxType?}', [AssessmentController::class, 'storeMedia'])->name('assessment.store.media');
+
+            // local media delete
+            Route::delete('/patients/assessments/localMedia/{localMedia}', [AssessmentController::class, 'deleteLocalMedia'])->name('assessment.delete.media');
 
             // Assessment Edit
             Route::get('/patients/assessment/{assessment}/edit/{step}', [AssessmentController::class, 'edit'])->name('assessment.edit.step');

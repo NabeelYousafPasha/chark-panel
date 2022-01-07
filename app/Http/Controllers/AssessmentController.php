@@ -8,6 +8,7 @@ use App\Jobs\FileUpload;
 use App\Models\{Assessment,
     ClinicalExploration,
     DiagnosticTest,
+    LocalMedia,
     MedicalHistory,
     Patient,
     SleepinessScale,
@@ -434,6 +435,16 @@ class AssessmentController extends Controller
 
             $movedFile = $file->storeAs('patient-'.$assessment->patient_id.'/assessment-'.$assessment->id.'/'.$mediaType, $fileName, 'public');
 
+            $localMedia = LocalMedia::create([
+                'assessment_id' => $assessment->id,
+                'name' => $fileName,
+                'media_type' => $mediaType,
+                'extension' => $file->getClientOriginalExtension(),
+                'folder' => $mediaType,
+                'path' => $movedFile,
+                'uploaded_by' => auth()->id(),
+            ]);
+
             // dispatching job
 //            FileUpload::dispatch($movedFile, $assessment, $mediaType, 's3');
 
@@ -444,6 +455,7 @@ class AssessmentController extends Controller
                     'success' => true,
                     'message' => 'File is queued to be processed.',
                     'file'    => $movedFile,
+                    'local_media' => $localMedia,
                 ]);
             }
 
@@ -478,14 +490,15 @@ class AssessmentController extends Controller
         //
     }
 
-    public function deleteMedia(Media $media)
+    public function deleteLocalMedia(LocalMedia $localMedia)
     {
         try {
-            $deleted = $media->delete();
+            $deleted = $localMedia->delete();
 
             return response()->json([
                 'success' => true,
                 'deleted' => $deleted,
+                'message' => 'local file deleted',
             ], Response::HTTP_NO_CONTENT);
 
         } catch (\Exception $exception) {

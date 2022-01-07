@@ -593,25 +593,31 @@
                 },
                 revert: (response, load, error) => {
                     let responseJson = JSON.parse(response);
-                    console.log(responseJson, response);
+                    let localMedia = responseJson.local_media.id;
 
                     // Should remove the earlier created temp file here
-                    {{--let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";--}}
-                    {{--route = route.replace(':file', response.file_id);--}}
-                    // $.ajax({
-                    //     type: 'GET',
-                    //     url: "/dashboard/patients/assessments/localMedia/"+fileId,
-                    //     success: function(data) {
-                    //         console.log(data);
-                    //     }
-                    //
-                    // });
-                    //
-                    // // Can call the error method if something is wrong, should exit after
-                    // error('oh my goodness');
-                    //
-                    // // Should call the load method when done, no parameters required
-                    // load();
+                    let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";
+                    route = route.replace(':file', localMedia);
+
+                    console.log(route);
+
+                    $.ajax({
+                        type: 'DELETE',
+                        url: route,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function(data) {
+                            console.log(data);
+                        }
+
+                    });
+
+                    // Can call the error method if something is wrong, should exit after
+                    error('oh my goodness');
+
+                    // Should call the load method when done, no parameters required
+                    load();
                 },
             },
         });
