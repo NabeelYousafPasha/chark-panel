@@ -445,9 +445,6 @@ class AssessmentController extends Controller
                 'uploaded_by' => auth()->id(),
             ]);
 
-            // dispatching job
-//            FileUpload::dispatch($movedFile, $assessment, $mediaType, 's3');
-
             $this->message('successMessage', 'File is queued to be processed.');
 
             if ($requestAjaxType) {
@@ -488,6 +485,20 @@ class AssessmentController extends Controller
     public function destroy(Assessment $assessment)
     {
         //
+    }
+
+    public function migrateToAWS(LocalMedia $localMedia)
+    {
+        $movedFile = $localMedia->path;
+        $assessment = Assessment::where('id', '=', $localMedia->assessment_id)->first();
+
+        // dispatching job
+        FileUpload::dispatch($movedFile, $assessment, $localMedia->media_type, 's3');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'queue started',
+        ], Response::HTTP_OK);
     }
 
     public function deleteLocalMedia(LocalMedia $localMedia)

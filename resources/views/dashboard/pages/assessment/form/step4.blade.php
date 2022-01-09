@@ -364,7 +364,7 @@
                             <button
                                 type="button"
                                 class="btn btn-primary refresh-page"
-                                id="modal__btn_sleep_cbct"
+                                id="modal__btn_cbct"
                             >
                                 Upload
                             </button>
@@ -427,8 +427,10 @@
                             <button type="button" class="btn btn-white refresh-page">Close</button>
                             <button
                                 type="button"
-                                class="btn btn-primary refresh-page"
+                                class="btn btn-primary"
                                 id="modal__btn_photo"
+                                data-local_media=""
+                                data-media_type="photo"
                             >
                                 Upload
                             </button>
@@ -447,13 +449,13 @@
         >
             <div class="modal-dialog">
                 <div class="modal-content animated flipInY">
-                    <form
+                    {{--<form
                         id="form__xray"
                         method="POST"
                         action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'xray']) }}"
                         enctype="multipart/form-data"
                     >
-                        @csrf
+                        @csrf--}}
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title">Upload X-Ray</h4>
@@ -490,8 +492,10 @@
                             <button type="button" class="btn btn-white refresh-page">Close</button>
                             <button
                                 type="button"
-                                class="btn btn-primary refresh-page"
+                                class="btn btn-primary"
                                 id="modal__btn_xray"
+                                data-local_media=""
+                                data-media_type="xray"
                             >
                                 Upload
                             </button>
@@ -510,13 +514,13 @@
         >
             <div class="modal-dialog">
                 <div class="modal-content animated flipInY">
-                    <form
+                    {{--<form
                         id="form__sleep_study"
                         method="POST"
                         action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'sleep_study']) }}"
                         enctype="multipart/form-data"
                     >
-                        @csrf
+                        @csrf--}}
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title">Upload Sleep Study</h4>
@@ -552,13 +556,15 @@
                             <button type="reset" class="btn btn-white refresh-page">Close</button>
                             <button
                                 type="button"
-                                class="btn btn-primary refresh-page"
+                                class="btn btn-primary"
                                 id="modal__btn_sleep_study"
+                                data-local_media=""
+                                data-media_type="sleep_study"
                             >
                                 Upload
                             </button>
                         </div>
-                    </form>
+                    {{--</form>--}}
                 </div>
             </div>
         </div>
@@ -591,6 +597,17 @@
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                 },
+                process: {
+                    onload: (response) => {
+                        let responseJson = JSON.parse(response);
+                        let localMedia = responseJson.local_media.id;
+
+                        $('#modal__btn_photo').attr('data-local_media', localMedia);
+                    },
+                    onerror: () => {
+                        alert('Some Error Occured');
+                    },
+                },
                 revert: (response, load, error) => {
                     let responseJson = JSON.parse(response);
                     let localMedia = responseJson.local_media.id;
@@ -599,16 +616,14 @@
                     let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";
                     route = route.replace(':file', localMedia);
 
-                    console.log(route);
-
                     $.ajax({
                         type: 'DELETE',
                         url: route,
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         },
-                        success: function(data) {
-                            console.log(data);
+                        success: function(data, responseStatus, xhr) {
+                            // console.log(data, responseStatus, xhr);
                         }
 
                     });
@@ -620,6 +635,25 @@
                     load();
                 },
             },
+        });
+
+        $('#modal__btn_photo').on('click', function () {
+
+            let media = $(this).attr('data-local_media');
+
+            let route = "{{ route('dashboard.assessment.migrate.media', ['localMedia' => ':file']) }}";
+            route = route.replace(':file', media);
+
+            $.ajax({
+                type: 'POST',
+                url: route,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                success: function(data, responseStatus, xhr) {
+                    location.reload();
+                }
+            });
         });
     </script>
 
@@ -637,16 +671,33 @@
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                 },
+                process: {
+                    onload: (response) => {
+                        let responseJson = JSON.parse(response);
+                        let localMedia = responseJson.local_media.id;
+
+                        $('#modal__btn_xray').attr('data-local_media', localMedia);
+                    },
+                    onerror: () => {
+                        alert('Some Error Occured');
+                    },
+                },
                 revert: (response, load, error) => {
-                    let fileId = JSON.parse(response).file_id;
+                    let responseJson = JSON.parse(response);
+                    let localMedia = responseJson.local_media.id;
+
                     // Should remove the earlier created temp file here
-                    {{--let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";--}}
-                    {{--route = route.replace(':file', response.file_id);--}}
+                    let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";
+                    route = route.replace(':file', localMedia);
+
                     $.ajax({
-                        type: 'GET',
-                        url: "/dashboard/patients/assessments/localMedia/"+fileId,
-                        success: function(data) {
-                            console.log(data);
+                        type: 'DELETE',
+                        url: route,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function(data, responseStatus, xhr) {
+                            // console.log(data, responseStatus, xhr);
                         }
 
                     });
@@ -658,6 +709,25 @@
                     load();
                 },
             },
+        });
+
+        $('#modal__btn_xray').on('click', function () {
+
+            let media = $(this).attr('data-local_media');
+
+            let route = "{{ route('dashboard.assessment.migrate.media', ['localMedia' => ':file']) }}";
+            route = route.replace(':file', media);
+
+            $.ajax({
+                type: 'POST',
+                url: route,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                success: function(data, responseStatus, xhr) {
+                    location.reload();
+                }
+            });
         });
     </script>
 
@@ -675,16 +745,33 @@
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                 },
+                process: {
+                    onload: (response) => {
+                        let responseJson = JSON.parse(response);
+                        let localMedia = responseJson.local_media.id;
+
+                        $('#modal__btn_sleep_study').attr('data-local_media', localMedia);
+                    },
+                    onerror: () => {
+                        alert('Some Error Occured');
+                    },
+                },
                 revert: (response, load, error) => {
-                    let fileId = JSON.parse(response).file_id;
+                    let responseJson = JSON.parse(response);
+                    let localMedia = responseJson.local_media.id;
+
                     // Should remove the earlier created temp file here
-                    {{--let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";--}}
-                    {{--route = route.replace(':file', response.file_id);--}}
+                    let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";
+                    route = route.replace(':file', localMedia);
+
                     $.ajax({
-                        type: 'GET',
-                        url: "/dashboard/patients/assessments/localMedia/"+fileId,
-                        success: function(data) {
-                            console.log(data);
+                        type: 'DELETE',
+                        url: route,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function(data, responseStatus, xhr) {
+                            // console.log(data, responseStatus, xhr);
                         }
 
                     });
@@ -696,6 +783,25 @@
                     load();
                 },
             },
+        });
+
+        $('#modal__btn_sleep_study').on('click', function () {
+
+            let media = $(this).attr('data-local_media');
+
+            let route = "{{ route('dashboard.assessment.migrate.media', ['localMedia' => ':file']) }}";
+            route = route.replace(':file', media);
+
+            $.ajax({
+                type: 'POST',
+                url: route,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                success: function(data, responseStatus, xhr) {
+                    location.reload();
+                }
+            });
         });
     </script>
 @endsection

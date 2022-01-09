@@ -80,7 +80,8 @@ Route::group([
             // File / Media
             Route::post('/patients/assessment/{assessment}/{mediaType}/{requestAjaxType?}', [AssessmentController::class, 'storeMedia'])->name('assessment.store.media');
 
-            // local media delete
+            // local media
+            Route::post('/patients/assessments/migrate/{localMedia}', [AssessmentController::class, 'migrateToAWS'])->name('assessment.migrate.media');
             Route::delete('/patients/assessments/localMedia/{localMedia}', [AssessmentController::class, 'deleteLocalMedia'])->name('assessment.delete.media');
 
             // Assessment Edit
