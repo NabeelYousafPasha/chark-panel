@@ -323,13 +323,13 @@
             <div class="modal-dialog">
                 <div class="modal-content animated flipInY">
 
-                    {{--<form
+                    <form
                         id="form__cbct"
                         method="POST"
-                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}"
+                        action="{{ route('dashboard.assessment.store.link', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}"
                         enctype="multipart/form-data"
                     >
-                        @csrf--}}
+                        @csrf
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title">Upload CBCT</h4>
@@ -362,14 +362,14 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white refresh-page">Close</button>
                             <button
-                                type="button"
-                                class="btn btn-primary refresh-page"
+                                type="submit"
+                                class="btn btn-primary"
                                 id="modal__btn_cbct"
                             >
                                 Upload
                             </button>
                         </div>
-                    {{-- </form> --}}
+                     </form>
                 </div>
             </div>
         </div>

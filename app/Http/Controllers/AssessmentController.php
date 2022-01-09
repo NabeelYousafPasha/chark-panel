@@ -6,6 +6,7 @@ use App\Http\Requests\Assessment\AssessmentRequest;
 use App\Http\Requests\Upload\FileUploadRequest;
 use App\Jobs\FileUpload;
 use App\Models\{Assessment,
+    AssessmentLink,
     ClinicalExploration,
     DiagnosticTest,
     LocalMedia,
@@ -269,6 +270,8 @@ class AssessmentController extends Controller
             'diagnosticTest' => $diagnosticTest,
             'clinicalExploration' => $clinicalExploration,
 
+            'assessmentLinks' => AssessmentLink::where('assessment_id', '=', $assessment->id)->get(),
+
             'patient' => Patient::where('id', '=', $assessment->patient_id)->first(),
         ]);
     }
@@ -474,6 +477,38 @@ class AssessmentController extends Controller
                 'errors' => $exception->getCode().' - '.$exception->getMessage(),
             ]);
         }
+    }
+
+    public function storeLinks(Request $request, Assessment $assessment, $mediaType)
+    {
+        $mediaTypes = [
+            'cbct',
+        ];
+
+        if (! in_array($mediaType, $mediaTypes)) {
+            return redirect()->back()->with([
+                'errors' => 'Media type not allowed',
+            ]);
+        }
+
+        $rules = [
+            "cbct" => ['required', 'string', 'url', 'max:255',],
+        ];
+
+        $this->validate($request, $rules);
+
+        $assessmentLink = AssessmentLink::create([
+            'assessment_id' => $assessment->id,
+            'type' => $mediaType,
+            'link' => $request->input('cbct'),
+            'created_by' => auth()->id(),
+        ]);
+
+        $assessmentLink
+            ? $this->message('successMessage', 'CBCT link attached')
+            : $this->message('errorMessage', 'Link could not be attached');
+
+        return redirect()->back();
     }
 
     /**

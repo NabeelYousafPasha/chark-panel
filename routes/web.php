@@ -77,6 +77,9 @@ Route::group([
             Route::get('/patients/{patient}/assessment/{step}/{assessmentPerformed?}', [AssessmentController::class, 'create'])->name('assessment.create.step');
             Route::post('/patients/{patient}/assessment/{step}', [AssessmentController::class, 'store'])->name('assessment.store.step');
 
+            // Assessment Link
+            Route::post('/patients/assessment/{assessment}/link/{mediaType}', [AssessmentController::class, 'storeLinks'])->name('assessment.store.link');
+
             // File / Media
             Route::post('/patients/assessment/{assessment}/{mediaType}/{requestAjaxType?}', [AssessmentController::class, 'storeMedia'])->name('assessment.store.media');
 

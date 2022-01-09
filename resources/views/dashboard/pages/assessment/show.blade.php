@@ -983,7 +983,7 @@
 
                                 <h2 class="text-center">Files / Images / Reports</h2>
 
-                                @if(empty($assessment->media->toArray() ?? []))
+                                @if(empty($assessmentLinks ?? []))
                                     <div class="no-data text-center">
                                         <i class="fa fa-ban fa-5x fa-fw"></i>
                                     </div>
@@ -996,9 +996,9 @@
                                                     CBCT:
                                                 </th>
                                                 <td width="40" class="text-right">
-                                                    @foreach($assessment->media->where('collection_name', '=', 'cbct') as $cbct)
+                                                    @foreach($assessmentLinks ?? [] as $cbct)
                                                         <a
-                                                            href="{{ $cbct->getUrl() }}"
+                                                            href="{{ $cbct->link }}"
                                                             target="_blank"
                                                         >
                                                             <i class="fa fa-file fa-fw fa-1x"></i>
