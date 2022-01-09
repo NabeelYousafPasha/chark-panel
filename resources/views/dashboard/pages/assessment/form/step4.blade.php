@@ -1,6 +1,8 @@
 @extends('dashboard.layout.app')
 
 @section('stylesheets')
+    <!-- Filepond stylesheet -->
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -41,6 +43,7 @@
                                         >
                                             CBCT
                                         </button>
+                                        <span class="small">Attach the links of uploaded CBCT (Google drive, Dropbox, OneDrive)</span>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-6">
                                         <button
@@ -52,6 +55,7 @@
                                         >
                                             Photo
                                         </button>
+                                        <span class="small">Images</span>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-6">
                                         <button
@@ -63,6 +67,7 @@
                                         >
                                             X-Ray
                                         </button>
+                                        <span class="small">Images</span>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-6">
                                         <button
@@ -74,6 +79,7 @@
                                         >
                                             Sleep Study
                                         </button>
+                                        <span class="small">Images, Docs</span>
                                     </div>
                                 </div>
                                 @endif
@@ -320,7 +326,7 @@
                     <form
                         id="form__cbct"
                         method="POST"
-                        action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}"
+                        action="{{ route('dashboard.assessment.store.link', ['assessment' => $assessment->id, 'mediaType' => 'cbct']) }}"
                         enctype="multipart/form-data"
                     >
                         @csrf
@@ -337,13 +343,14 @@
                                     CBCT:
                                 </label>
                                 <input
-                                    type="file"
+                                    type="url"
                                     id="cbct"
                                     name="cbct"
                                     class="form-control"
+                                    required
                                 >
                                 <span class="help-block small">
-                                    Allowed: Zip file
+                                    Links, URLs
                                 </span>
                                 @error('cbct')
                                     <span class="help-block has-error">
@@ -353,7 +360,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-white refresh-page">Close</button>
                             <button
                                 type="submit"
                                 class="btn btn-primary"
@@ -362,7 +369,7 @@
                                 Upload
                             </button>
                         </div>
-                    </form>
+                     </form>
                 </div>
             </div>
         </div>
@@ -377,13 +384,13 @@
             <div class="modal-dialog">
                 <div class="modal-content animated flipInY">
 
-                    <form
-                        id="form__cbct"
+                    {{--<form
+                        id="form__photo"
                         method="POST"
                         action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'photo']) }}"
                         enctype="multipart/form-data"
                     >
-                        @csrf
+                        @csrf--}}
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title">Upload Photo</h4>
@@ -396,12 +403,15 @@
                                 >
                                     Photo:
                                 </label>
-
+                                <!-- We'll transform this input into a pond -->
                                 <input
                                     type="file"
                                     id="photo"
                                     name="photo"
-                                    class="form-control"
+                                    class="filepond"
+                                    data-file_type="photo"
+                                    required="required"
+                                    accept="image/*"
                                 >
                                 <span class="help-block small">
                                     Allowed: png, jpg, jpeg
@@ -414,16 +424,18 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-white refresh-page">Close</button>
                             <button
-                                type="submit"
+                                type="button"
                                 class="btn btn-primary"
                                 id="modal__btn_photo"
+                                data-local_media=""
+                                data-media_type="photo"
                             >
                                 Upload
                             </button>
                         </div>
-                    </form>
+                    {{--</form>--}}
                 </div>
             </div>
         </div>
@@ -437,13 +449,13 @@
         >
             <div class="modal-dialog">
                 <div class="modal-content animated flipInY">
-                    <form
-                        id="form__cbct"
+                    {{--<form
+                        id="form__xray"
                         method="POST"
                         action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'xray']) }}"
                         enctype="multipart/form-data"
                     >
-                        @csrf
+                        @csrf--}}
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title">Upload X-Ray</h4>
@@ -456,15 +468,18 @@
                                 >
                                     X-Ray:
                                 </label>
-
+                                <!-- We'll transform this input into a pond -->
                                 <input
                                     type="file"
                                     id="xray"
                                     name="xray"
-                                    class="form-control"
+                                    class="filepond"
+                                    data-file_type="xray"
+                                    required="required"
+                                    accept="image/*"
                                 >
                                 <span class="help-block small">
-                                    Allowed: png, jpg, jpeg, zip file
+                                    Allowed: png, jpg, jpeg
                                 </span>
                                 @error('xray')
                                     <span class="help-block has-error">
@@ -474,16 +489,18 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-white refresh-page">Close</button>
                             <button
-                                type="submit"
+                                type="button"
                                 class="btn btn-primary"
                                 id="modal__btn_xray"
+                                data-local_media=""
+                                data-media_type="xray"
                             >
                                 Upload
                             </button>
                         </div>
-                    </form>
+                    {{--</form>--}}
                 </div>
             </div>
         </div>
@@ -497,13 +514,13 @@
         >
             <div class="modal-dialog">
                 <div class="modal-content animated flipInY">
-                    <form
-                        id="form__cbct"
+                    {{--<form
+                        id="form__sleep_study"
                         method="POST"
                         action="{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'sleep_study']) }}"
                         enctype="multipart/form-data"
                     >
-                        @csrf
+                        @csrf--}}
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title">Upload Sleep Study</h4>
@@ -516,14 +533,17 @@
                                 >
                                     Sleep Study:
                                 </label>
+                                <!-- We'll transform this input into a pond -->
                                 <input
                                     type="file"
                                     id="sleep_study"
                                     name="sleep_study"
-                                    class="form-control"
+                                    class="filepond"
+                                    data-file_type="sleep_study"
+                                    required="required"
                                 >
                                 <span class="help-block small">
-                                    Allowed: png, jpg, jpeg, docx, pdf file
+                                    Allowed: png, jpg, jpeg, docx, pdf
                                 </span>
                                 @error('sleep_study')
                                     <span class="help-block has-error">
@@ -533,16 +553,18 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="reset" class="btn btn-white refresh-page">Close</button>
                             <button
-                                type="submit"
+                                type="button"
                                 class="btn btn-primary"
                                 id="modal__btn_sleep_study"
+                                data-local_media=""
+                                data-media_type="sleep_study"
                             >
                                 Upload
                             </button>
                         </div>
-                    </form>
+                    {{--</form>--}}
                 </div>
             </div>
         </div>
@@ -550,5 +572,238 @@
 
 @endsection
 
+@section('scripts')
+    <!-- Load FilePond library -->
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+
+    <script type="text/javascript">
+        // refresh page
+        $('.refresh-page').on('click', function(){
+            location.reload();
+        });
+    </script>
+
+    <script type="text/javascript">
+        // Get a reference to the file input element
+        const photoFile = document.querySelector('input[id="photo"]');
+
+        // Create a FilePond instance
+        const photoPond = FilePond.create(photoFile);
+
+        photoPond.setOptions({
+            server: {
+                url: '{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'photo', 'requestAjaxType' => true]) }}',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                process: {
+                    onload: (response) => {
+                        let responseJson = JSON.parse(response);
+                        let localMedia = responseJson.local_media.id;
+
+                        $('#modal__btn_photo').attr('data-local_media', localMedia);
+                    },
+                    onerror: () => {
+                        alert('Some Error Occured');
+                    },
+                },
+                revert: (response, load, error) => {
+                    let responseJson = JSON.parse(response);
+                    let localMedia = responseJson.local_media.id;
+
+                    // Should remove the earlier created temp file here
+                    let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";
+                    route = route.replace(':file', localMedia);
+
+                    $.ajax({
+                        type: 'DELETE',
+                        url: route,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function(data, responseStatus, xhr) {
+                            // console.log(data, responseStatus, xhr);
+                        }
+
+                    });
+
+                    // Can call the error method if something is wrong, should exit after
+                    error('oh my goodness');
+
+                    // Should call the load method when done, no parameters required
+                    load();
+                },
+            },
+        });
+
+        $('#modal__btn_photo').on('click', function () {
+
+            let media = $(this).attr('data-local_media');
+
+            let route = "{{ route('dashboard.assessment.migrate.media', ['localMedia' => ':file']) }}";
+            route = route.replace(':file', media);
+
+            $.ajax({
+                type: 'POST',
+                url: route,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                success: function(data, responseStatus, xhr) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        // Get a reference to the file input element
+        const xrayFile = document.querySelector('input[id="xray"]');
+
+        // Create a FilePond instance
+        const xrayPond = FilePond.create(xrayFile);
+
+        xrayPond.setOptions({
+            server: {
+                url: '{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'xray', 'requestAjaxType' => true]) }}',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                process: {
+                    onload: (response) => {
+                        let responseJson = JSON.parse(response);
+                        let localMedia = responseJson.local_media.id;
+
+                        $('#modal__btn_xray').attr('data-local_media', localMedia);
+                    },
+                    onerror: () => {
+                        alert('Some Error Occured');
+                    },
+                },
+                revert: (response, load, error) => {
+                    let responseJson = JSON.parse(response);
+                    let localMedia = responseJson.local_media.id;
+
+                    // Should remove the earlier created temp file here
+                    let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";
+                    route = route.replace(':file', localMedia);
+
+                    $.ajax({
+                        type: 'DELETE',
+                        url: route,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function(data, responseStatus, xhr) {
+                            // console.log(data, responseStatus, xhr);
+                        }
+
+                    });
+
+                    // Can call the error method if something is wrong, should exit after
+                    error('oh my goodness');
+
+                    // Should call the load method when done, no parameters required
+                    load();
+                },
+            },
+        });
+
+        $('#modal__btn_xray').on('click', function () {
+
+            let media = $(this).attr('data-local_media');
+
+            let route = "{{ route('dashboard.assessment.migrate.media', ['localMedia' => ':file']) }}";
+            route = route.replace(':file', media);
+
+            $.ajax({
+                type: 'POST',
+                url: route,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                success: function(data, responseStatus, xhr) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        // Get a reference to the file input element
+        const sleepStudyFile = document.querySelector('input[id="sleep_study"]');
+
+        // Create a FilePond instance
+        const sleepStudyPond = FilePond.create(sleepStudyFile);
+
+        sleepStudyPond.setOptions({
+            server: {
+                url: '{{ route('dashboard.assessment.store.media', ['assessment' => $assessment->id, 'mediaType' => 'sleep_study', 'requestAjaxType' => true]) }}',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                process: {
+                    onload: (response) => {
+                        let responseJson = JSON.parse(response);
+                        let localMedia = responseJson.local_media.id;
+
+                        $('#modal__btn_sleep_study').attr('data-local_media', localMedia);
+                    },
+                    onerror: () => {
+                        alert('Some Error Occured');
+                    },
+                },
+                revert: (response, load, error) => {
+                    let responseJson = JSON.parse(response);
+                    let localMedia = responseJson.local_media.id;
+
+                    // Should remove the earlier created temp file here
+                    let route = "{{ route('dashboard.assessment.delete.media', ['localMedia' => ':file']) }}";
+                    route = route.replace(':file', localMedia);
+
+                    $.ajax({
+                        type: 'DELETE',
+                        url: route,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        success: function(data, responseStatus, xhr) {
+                            // console.log(data, responseStatus, xhr);
+                        }
+
+                    });
+
+                    // Can call the error method if something is wrong, should exit after
+                    error('oh my goodness');
+
+                    // Should call the load method when done, no parameters required
+                    load();
+                },
+            },
+        });
+
+        $('#modal__btn_sleep_study').on('click', function () {
+
+            let media = $(this).attr('data-local_media');
+
+            let route = "{{ route('dashboard.assessment.migrate.media', ['localMedia' => ':file']) }}";
+            route = route.replace(':file', media);
+
+            $.ajax({
+                type: 'POST',
+                url: route,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                success: function(data, responseStatus, xhr) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
+@endsection
 
 

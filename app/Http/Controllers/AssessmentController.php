@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Assessment\AssessmentRequest;
 use App\Http\Requests\Upload\FileUploadRequest;
 use App\Jobs\FileUpload;
-use App\Models\{
-    Assessment,
+use App\Models\{Assessment,
+    AssessmentLink,
     ClinicalExploration,
     DiagnosticTest,
+    LocalMedia,
     MedicalHistory,
     Patient,
     SleepinessScale,
-    Symptom
-};
+    Symptom};
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use Spatie\MediaLibrary\Models\Media;
 
 class AssessmentController extends Controller
 {
@@ -270,6 +270,8 @@ class AssessmentController extends Controller
             'diagnosticTest' => $diagnosticTest,
             'clinicalExploration' => $clinicalExploration,
 
+            'assessmentLinks' => AssessmentLink::where('assessment_id', '=', $assessment->id)->get(),
+
             'patient' => Patient::where('id', '=', $assessment->patient_id)->first(),
         ]);
     }
@@ -427,19 +429,35 @@ class AssessmentController extends Controller
     }
 
 
-    public function storeMedia(FileUploadRequest $request, Assessment $assessment, $mediaType)
+    public function storeMedia(FileUploadRequest $request, Assessment $assessment, $mediaType, $requestAjaxType = false)
     {
         try {
             $file = $request->file($mediaType);
-            $fileName = $assessment->id.'-'.time().'-'.uniqid('assessment-' . $assessment->id).'-'.$file->getClientOriginalName();
+            $fileName = 'p#'.$assessment->patient_id.'-a#'.$assessment->id.'-'.'by-'.auth()->id().'-'.time().'-'.$file->getClientOriginalName();
             $fileName = strtolower(preg_replace('/\s+/', '-', $fileName));
 
-            $movedFile = $file->storeAs('temporary_assessments', $fileName, 'public');
+            $movedFile = $file->storeAs('patient-'.$assessment->patient_id.'/assessment-'.$assessment->id.'/'.$mediaType, $fileName, 'public');
 
-            // dispatching job
-            FileUpload::dispatch($movedFile, $assessment, $mediaType, 's3');
+            $localMedia = LocalMedia::create([
+                'assessment_id' => $assessment->id,
+                'name' => $fileName,
+                'media_type' => $mediaType,
+                'extension' => $file->getClientOriginalExtension(),
+                'folder' => $mediaType,
+                'path' => $movedFile,
+                'uploaded_by' => auth()->id(),
+            ]);
 
             $this->message('successMessage', 'File is queued to be processed.');
+
+            if ($requestAjaxType) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'File is queued to be processed.',
+                    'file'    => $movedFile,
+                    'local_media' => $localMedia,
+                ]);
+            }
 
             return redirect()->back();
 
@@ -447,10 +465,50 @@ class AssessmentController extends Controller
         } catch (\Exception $exception) {
 
             $this->message('errorMessage', 'Error: '.$exception->getMessage());
+
+            if ($requestAjaxType) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $exception->getMessage(),
+                ]);
+            }
+
             return redirect()->back()->with([
                 'errors' => $exception->getCode().' - '.$exception->getMessage(),
             ]);
         }
+    }
+
+    public function storeLinks(Request $request, Assessment $assessment, $mediaType)
+    {
+        $mediaTypes = [
+            'cbct',
+        ];
+
+        if (! in_array($mediaType, $mediaTypes)) {
+            return redirect()->back()->with([
+                'errors' => 'Media type not allowed',
+            ]);
+        }
+
+        $rules = [
+            "cbct" => ['required', 'string', 'url', 'max:255',],
+        ];
+
+        $this->validate($request, $rules);
+
+        $assessmentLink = AssessmentLink::create([
+            'assessment_id' => $assessment->id,
+            'type' => $mediaType,
+            'link' => $request->input('cbct'),
+            'created_by' => auth()->id(),
+        ]);
+
+        $assessmentLink
+            ? $this->message('successMessage', 'CBCT link attached')
+            : $this->message('errorMessage', 'Link could not be attached');
+
+        return redirect()->back();
     }
 
     /**
@@ -462,6 +520,42 @@ class AssessmentController extends Controller
     public function destroy(Assessment $assessment)
     {
         //
+    }
+
+    public function migrateToAWS(LocalMedia $localMedia)
+    {
+        $movedFile = $localMedia->path;
+        $assessment = Assessment::where('id', '=', $localMedia->assessment_id)->first();
+
+        // dispatching job
+        FileUpload::dispatch($movedFile, $assessment, $localMedia->media_type, 's3');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'queue started',
+        ], Response::HTTP_OK);
+    }
+
+    public function deleteLocalMedia(LocalMedia $localMedia)
+    {
+        try {
+            $deleted = $localMedia->delete();
+
+            return response()->json([
+                'success' => true,
+                'deleted' => $deleted,
+                'message' => 'local file deleted',
+            ], Response::HTTP_NO_CONTENT);
+
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'success' => false,
+                'deleted' => 0,
+                'message' => $exception->getMessage(),
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        }
     }
 
     /**
