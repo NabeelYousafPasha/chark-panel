@@ -1012,7 +1012,7 @@
                                                     Photos:
                                                 </th>
                                                 <td width="40" class="text-right">
-                                                    @foreach($assessment->media->where('collection_name', '=', 'photos') as $photo)
+                                                    @foreach($assessment->media->where('collection_name', '=', 'photo') as $photo)
                                                         <a
                                                             href="{{ $photo->getUrl() }}"
                                                             target="_blank"
