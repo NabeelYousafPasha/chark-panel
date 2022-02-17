@@ -1479,6 +1479,102 @@
                                             <div class="row form-group @error('assessment_observation') has-error @enderror">
                                                 <div class="col-md-12">
                                                     <img src="{{asset('frontend-assets/images/teeth.jpeg')}}" alt="" class="img-responsive">
+                                                    <div class="teeth-1" style="position: absolute;margin-top: -46px;">
+                                                        <label><input type="checkbox" name="teeth-1">1</label>
+                                                    </div>
+                                                    <div class="teeth-1" style="position: absolute;margin-top: -66px;margin-left: 5px;">
+                                                        <label><input type="checkbox" name="teeth-2">2</label>
+                                                    </div>
+                                                    <div class="teeth-3" style="position: absolute;margin-top: -86px;margin-left: 10px;">
+                                                        <label><input type="checkbox" name="teeth-3">3</label>
+                                                    </div>
+                                                    <div class="teeth-4" style="position: absolute;margin-top: -105px;margin-left: 16px;">
+                                                        <label><input type="checkbox" name="teeth-4">4</label>
+                                                    </div>
+                                                    <div class="teeth-5" style="position: absolute;margin-top: -122px;margin-left: 24px;">
+                                                        <label><input type="checkbox" name="teeth-5">5</label>
+                                                    </div>
+                                                    <div class="teeth-6" style="position: absolute;margin-top: -136px;margin-left: 34px;">
+                                                        <label><input type="checkbox" name="teeth-6">6</label>
+                                                    </div>
+                                                    <div class="teeth-7" style="position: absolute;margin-top: -146px;margin-left: 48px;">
+                                                        <label><input type="checkbox" name="teeth-7">7</label>
+                                                    </div>
+                                                    <div class="teeth-8" style="position: absolute;margin-top: -151px;margin-left: 74px;">
+                                                        <label><input type="checkbox" name="teeth-8">8</label>
+                                                    </div>
+                                                    <div class="teeth-9" style="position: absolute;margin-top: -151px;margin-left: 97px;">
+                                                        <label><input type="checkbox" name="teeth-9">9</label>
+                                                    </div>
+                                                    <div class="teeth-10" style="position: absolute;margin-top: -145px;margin-left: 121px;">
+                                                        <label><input type="checkbox" name="teeth-10">10</label>
+                                                    </div>
+                                                    <div class="teeth-11" style="position: absolute;margin-top: -132px;margin-left: 141px;">
+                                                        <label><input type="checkbox" name="teeth-11">11</label>
+                                                    </div>
+                                                    <div class="teeth-12" style="position: absolute;margin-top: -117px;margin-left: 151px;">
+                                                        <label><input type="checkbox" name="teeth-12">12</label>
+                                                    </div>
+                                                    <div class="teeth-13" style="position: absolute;margin-top: -102px;margin-left: 158px;">
+                                                        <label><input type="checkbox" name="teeth-13">13</label>
+                                                    </div>
+                                                    <div class="teeth-14" style="position: absolute;margin-top: -85px;margin-left: 164px;">
+                                                        <label><input type="checkbox" name="teeth-14">14</label>
+                                                    </div>
+                                                    <div class="teeth-15" style="position: absolute;margin-top: -67px;margin-left: 168px;">
+                                                        <label><input type="checkbox" name="teeth-15">15</label>
+                                                    </div>
+                                                    <div class="teeth-16" style="position: absolute;margin-top: -47px;margin-left: 170px;">
+                                                        <label><input type="checkbox" name="teeth-16">16</label>
+                                                    </div>
+                                                    <div class="teeth-17" style="position: absolute;margin-top: -127px;margin-left: 355px;">
+                                                        <label><input type="checkbox" name="teeth-17">17</label>
+                                                    </div>
+                                                    <div class="teeth-18" style="position: absolute;margin-top: -104px;margin-left: 348px;">
+                                                        <label><input type="checkbox" name="teeth-18">18</label>
+                                                    </div>
+                                                    <div class="teeth-19" style="position: absolute;margin-top: -84px;margin-left: 343px;">
+                                                        <label><input type="checkbox" name="teeth-19">19</label>
+                                                    </div>
+                                                    <div class="teeth-20" style="position: absolute;margin-top: -67px;margin-left: 336px;">
+                                                        <label><input type="checkbox" name="teeth-20">20</label>
+                                                    </div>
+                                                    <div class="teeth-21" style="position: absolute;margin-top: -52px;margin-left: 327px;">
+                                                        <label><input type="checkbox" name="teeth-21">21</label>
+                                                    </div>
+                                                    <div class="teeth-22" style="position: absolute;margin-top: -39px;margin-left: 312px;">
+                                                        <label><input type="checkbox" name="teeth-22">22</label>
+                                                    </div>
+                                                    <div class="teeth-23" style="position: absolute;margin-top: -29px;margin-left: 299px;">
+                                                        <label><input type="checkbox" name="teeth-23">23</label>
+                                                    </div>
+                                                    <div class="teeth-24" style="position: absolute;margin-top: -17px;margin-left: 281px;">
+                                                        <label><input type="checkbox" name="teeth-24">24</label>
+                                                    </div>
+                                                    <div class="teeth-25" style="position: absolute;margin-top: -17px;margin-left: 252px;">
+                                                        <label><input type="checkbox" name="teeth-25">25</label>
+                                                    </div>
+                                                    <div class="teeth-26" style="position: absolute;margin-top: -29px;margin-left: 225px;">
+                                                        <label>26<input type="checkbox" name="teeth-26"></label>
+                                                    </div>
+                                                    <div class="teeth-27" style="position: absolute;margin-top: -45px;margin-left: 218px;">
+                                                        <label>27<input type="checkbox" name="teeth-27"></label>
+                                                    </div>
+                                                    <div class="teeth-28" style="position: absolute;margin-top: -59px;margin-left: 206px;">
+                                                        <label>28<input type="checkbox" name="teeth-28"></label>
+                                                    </div>
+                                                    <div class="teeth-29" style="position: absolute;margin-top: -73px;margin-left: 197px;">
+                                                        <label>29<input type="checkbox" name="teeth-29"></label>
+                                                    </div>
+                                                    <div class="teeth-30" style="position: absolute;margin-top: -89px;margin-left: 190px;">
+                                                        <label>30<input type="checkbox" name="teeth-30"></label>
+                                                    </div>
+                                                    <div class="teeth-31" style="position: absolute;margin-top: -107px;margin-left: 185px;">
+                                                        <label>31<input type="checkbox" name="teeth-31"></label>
+                                                    </div>
+                                                    <div class="teeth-32" style="position: absolute;margin-top: -129px;margin-left: 179px;">
+                                                        <label>32<input type="checkbox" name="teeth-32"></label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
