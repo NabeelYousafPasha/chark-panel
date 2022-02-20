@@ -13,7 +13,8 @@ use App\Models\{Assessment,
     MedicalHistory,
     Patient,
     SleepinessScale,
-    Symptom};
+    Symptom,
+    TeethJaw};
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -66,6 +67,8 @@ class AssessmentController extends Controller
             return redirect()->route('dashboard.assessment.create.step', ['patient' => $patient, 'step' => 'step1']);
         }
 
+        $with = [];
+
         $error = false;
         if ($step != 'step1') {
             // only occur first time
@@ -89,6 +92,15 @@ class AssessmentController extends Controller
                 }
                 case 'step3': {
                     $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)->first();
+
+                    $jawTeeth = TeethJaw::orderBy('jaw', 'DESC')->orderBy('position', 'DESC')->get();
+                    $upperJawTeeth = $jawTeeth->where('jaw', '=', 1);
+                    $lowerJawTeeth = $jawTeeth->where('jaw', '=', 0);
+
+                    $with = [
+                        'upperJawTeeth' => $upperJawTeeth,
+                        'lowerJawTeeth' => $lowerJawTeeth,
+                    ];
 
                     if (is_null($medicalHistory)) {
                         $error = true;
@@ -121,7 +133,7 @@ class AssessmentController extends Controller
             }
         }
 
-        return $this->renderView('dashboard.pages.assessment.form.'.$step, [
+        return $this->renderView('dashboard.pages.assessment.form.'.$step, array_merge([
             'patient' => $patient,
 
             'assessment' => $assessment ?? null,
@@ -131,7 +143,7 @@ class AssessmentController extends Controller
             'route' => route('dashboard.assessment.store.step', [
                 'patient' => $patient, 'step' => $step,
             ]),
-        ]);
+        ], $with));
     }
 
     /**

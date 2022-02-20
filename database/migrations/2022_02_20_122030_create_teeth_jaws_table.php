@@ -22,6 +22,7 @@ class CreateTeethJawsTable extends Migration
             $table->string('image');
             $table->unsignedInteger('order');
             $table->foreignId('created_by')->constrained('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

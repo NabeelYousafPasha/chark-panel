@@ -22,6 +22,69 @@
         .tonsil-image {
             width: 100px;
         }
+
+    </style>
+    <style>
+        .teeth-ul {
+            list-style-type: none;
+        }
+
+        .teeth-li {
+            display: inline-block;
+        }
+
+        input[type="checkbox"][id^="myCheckbox"] {
+            display: none;
+        }
+
+        .teeth-label {
+            border: 1px solid #fff;
+            padding: 10px;
+            display: block;
+            position: relative;
+            margin: 1px;
+            cursor: pointer;
+        }
+
+        .teeth-label:before {
+            background-color: white;
+            color: white;
+            content: " ";
+            display: block;
+            border-radius: 50%;
+            border: 1px solid grey;
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            line-height: 28px;
+            transition-duration: 0.4s;
+            transform: scale(0);
+        }
+
+        .teeth-label img {
+            width: 50px;
+            transition-duration: 0.2s;
+            transform-origin: 50% 50%;
+        }
+
+        :checked + .teeth-label {
+            border-color: #ddd;
+        }
+
+        :checked + .teeth-label:before {
+            content: "✓";
+            background-color: grey;
+            transform: scale(1);
+        }
+
+        :checked + .teeth-label img {
+            transform: scale(0.8);
+            /* box-shadow: 0 0 5px #333; */
+            z-index: -1;
+        }
     </style>
 @endsection
 
@@ -1477,8 +1540,47 @@
                                             <br>
 
                                             <div class="row form-group @error('assessment_observation') has-error @enderror">
+
                                                 <div class="col-md-12">
-                                                    <img src="{{asset('frontend-assets/images/teeth.jpeg')}}" alt="" class="img-responsive">
+                                                    <ul class="teeth-ul">
+                                                        @foreach($upperJawTeeth ?? [] as $upperTooth)
+                                                            <li class="teeth-li">
+                                                                <input
+                                                                    type="checkbox"
+                                                                    id="myCheckbox{{ $upperTooth->id }}"
+                                                                />
+                                                                <label class="teeth-label" for="myCheckbox{{ $upperTooth->id }}">
+                                                                    <img
+                                                                        src="{{ asset('frontend-assets/images/'.$upperTooth->image) }}"
+                                                                        alt=""
+                                                                        class="img"
+                                                                        width="50px"
+                                                                    >
+                                                                </label>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <ul class="teeth-ul">
+                                                        @foreach($lowerJawTeeth ?? [] as $lowerTooth)
+                                                            <li class="teeth-li">
+                                                                <input
+                                                                    type="checkbox"
+                                                                    id="myCheckbox{{ $lowerTooth->id }}"
+                                                                />
+                                                                <label class="teeth-label" for="myCheckbox{{ $lowerTooth->id }}">
+                                                                    <img
+                                                                        src="{{ asset('frontend-assets/images/'.$lowerTooth->image) }}"
+                                                                        alt=""
+                                                                        class="img"
+                                                                        width="50px"
+                                                                    >
+                                                                </label>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
