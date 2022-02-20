@@ -36,8 +36,8 @@ return [
     ],
 
     'si_units' => [
-        'lbs_to_kgs' => '0.453',
-        'kgs_to_lbs' => '2.204',
+        'lbs_to_kgs' => '2.204',
+        'kgs_to_lbs' => '0.453',
 
         'foot_to_meter' => '0.3048',
     ],

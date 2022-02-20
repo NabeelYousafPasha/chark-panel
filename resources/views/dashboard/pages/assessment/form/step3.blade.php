@@ -27,19 +27,20 @@
     <style>
         .teeth-ul {
             list-style-type: none;
+            padding: 0px;
         }
 
         .teeth-li {
             display: inline-block;
         }
 
-        input[type="checkbox"][id^="myCheckbox"] {
+        input[type="checkbox"][id^="toothCheckbox"] {
             display: none;
         }
 
         .teeth-label {
             border: 1px solid #fff;
-            padding: 10px;
+            padding: 0px;
             display: block;
             position: relative;
             margin: 1px;
@@ -121,7 +122,7 @@
                                     @method($_method)
 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
 
                                             <h2>Previous Treatments</h2>
                                             <br>
@@ -424,16 +425,54 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-6">
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
 
                                             <h2>Physical Exam</h2>
                                             <br>
 
-                                            <div class="row form-group @error('height') has-error @enderror">
+                                            <div class="row form-group @error('bmi_calculator') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
-                                                        for="height"
+                                                        for="bmi_calculator"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        BMI Calculator
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>
+                                                        <input
+                                                            type="radio"
+                                                            name="bmi_calculator"
+                                                            id="bmi_calculator_standard"
+                                                            class=""
+                                                            value="standard_bmi"
+                                                        >
+                                                        Standard
+                                                    </label>
+
+                                                    <label>
+                                                        <input
+                                                            type="radio"
+                                                            name="bmi_calculator"
+                                                            id="bmi_calculator_metric"
+                                                            class=""
+                                                            value="metric_bmi"
+                                                        >
+                                                        Metric
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="standard row form-group @error('height') has-error @enderror">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="height_standard"
                                                         class="col-form-label text-md-left"
                                                     >
                                                         Height (feet and inches):
@@ -443,22 +482,22 @@
                                                     <input
                                                         type="text"
                                                         name="height"
-                                                        id="height"
+                                                        id="height_standard"
                                                         class="form-control float_number"
                                                         {{--required=""--}}
                                                         value="{{ $clinicalExploration->height ?? old('height') }}"
                                                     >
                                                     @error('height')
-                                                        <span class="help-block has-error">
+                                                    <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group @error('weight') has-error @enderror">
+                                            <div class="standard row form-group @error('weight') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
-                                                        for="weight"
+                                                        for="weight_standard"
                                                         class="col-form-label text-md-left"
                                                     >
                                                         Weight (pounds):
@@ -468,19 +507,71 @@
                                                     <input
                                                         type="text"
                                                         name="weight"
-                                                        id="weight"
+                                                        id="weight_standard"
                                                         class="form-control float_number"
                                                         {{--required=""--}}
                                                         value="{{ $clinicalExploration->weight ?? old('weight') }}"
                                                     >
                                                     @error('weight')
-                                                        <span class="help-block has-error">
+                                                    <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="row form-group @error('bmi') has-error @enderror">
+
+                                            <div class="metric row form-group @error('height') has-error @enderror">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="height_metric"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Height (centimeters):
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="height"
+                                                        id="height_metric"
+                                                        class="form-control float_number"
+                                                        {{--required=""--}}
+                                                        value="{{ $clinicalExploration->height ?? old('height') }}"
+                                                    >
+                                                    @error('height')
+                                                    <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="metric row form-group @error('weight') has-error @enderror">
+                                                <div class="col-md-6">
+                                                    <label
+                                                        for="weight_metric"
+                                                        class="col-form-label text-md-left"
+                                                    >
+                                                        Weight (kilograms):
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input
+                                                        type="text"
+                                                        name="weight"
+                                                        id="weight_metric"
+                                                        class="form-control float_number"
+                                                        {{--required=""--}}
+                                                        value="{{ $clinicalExploration->weight ?? old('weight') }}"
+                                                    >
+                                                    @error('weight')
+                                                    <span class="help-block has-error">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="bmi_result row form-group @error('bmi') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
                                                         for="bmi"
@@ -499,12 +590,13 @@
                                                         value="{{ $clinicalExploration->bmi ?? old('bmi') }}"
                                                     >
                                                     @error('bmi')
-                                                        <span class="help-block has-error">
+                                                    <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
                                             </div>
+
                                             <div class="row form-group @error('neck_circumference') has-error @enderror">
                                                 <div class="col-md-6">
                                                     <label
@@ -525,7 +617,7 @@
                                                         value="{{ $clinicalExploration->neck_circumference ?? old('neck_circumference') }}"
                                                     >
                                                     @error('neck_circumference')
-                                                        <span class="help-block has-error">
+                                                    <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
@@ -1536,7 +1628,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h2>{{ __('Teeth') }}</h2>
+                                            <h2>{{ __('Missing Teeth') }}</h2>
                                             <br>
 
                                             <div class="row form-group @error('assessment_observation') has-error @enderror">
@@ -1547,9 +1639,9 @@
                                                             <li class="teeth-li">
                                                                 <input
                                                                     type="checkbox"
-                                                                    id="myCheckbox{{ $upperTooth->id }}"
+                                                                    id="toothCheckbox{{ $upperTooth->id }}"
                                                                 />
-                                                                <label class="teeth-label" for="myCheckbox{{ $upperTooth->id }}">
+                                                                <label class="teeth-label" for="toothCheckbox{{ $upperTooth->id }}">
                                                                     <img
                                                                         src="{{ asset('frontend-assets/images/'.$upperTooth->image) }}"
                                                                         alt=""
@@ -1568,9 +1660,9 @@
                                                             <li class="teeth-li">
                                                                 <input
                                                                     type="checkbox"
-                                                                    id="myCheckbox{{ $lowerTooth->id }}"
+                                                                    id="toothCheckbox{{ $lowerTooth->id }}"
                                                                 />
-                                                                <label class="teeth-label" for="myCheckbox{{ $lowerTooth->id }}">
+                                                                <label class="teeth-label" for="toothCheckbox{{ $lowerTooth->id }}">
                                                                     <img
                                                                         src="{{ asset('frontend-assets/images/'.$lowerTooth->image) }}"
                                                                         alt=""
@@ -1617,13 +1709,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
-            let bmiInput = $('#bmi')
+            let bmiInput = $('#bmi');
+            bmiInput.val(0);
 
-            let heightInput = $('#height')
-            let weightInput = $('#weight')
+            let heightStandardInput = $('#height_standard');
+            let weightStandardInput = $('#weight_standard');
 
-            heightInput.on('keyup', function () {
-                let w = weightInput.val()
+            let heightMetricInput = $('#height_metric');
+            let weightMetricInput = $('#weight_metric');
+
+            let bmiCalculator = $("input[name=bmi_calculator]");
+
+            $('.standard').hide();
+            $('.metric').hide();
+
+            bmiCalculator.on('change', function () {
+                let bmiCalculatorValue = $(this).val();
+                toggleBMIcalculator(bmiCalculatorValue);
+            });
+
+            heightStandardInput.on('keyup', function () {
+                let w = weightStandardInput.val()
                 let h = $(this).val()
 
                 let options = ['', 0];
@@ -1634,15 +1740,12 @@
                     return;
                 }
 
-                let bmi = calculateBmi(w, h)
+                let bmi = calculateStandardBMI(w, h)
 
                 bmiInput.val(bmi)
-
-
             });
-
-            weightInput.on('keyup', function () {
-                let h = heightInput.val()
+            weightStandardInput.on('keyup', function () {
+                let h = heightStandardInput.val()
                 let w = $(this).val()
 
                 let options = ['', 0];
@@ -1653,26 +1756,94 @@
                     return;
                 }
 
-                let bmi = calculateBmi(w, h)
+                let bmi = calculateStandardBMI(w, h)
+
+                bmiInput.val(bmi)
+            });
+
+            heightMetricInput.on('keyup', function () {
+                let w = weightMetricInput.val()
+                let h = $(this).val()
+
+                let options = ['', 0];
+
+                if (options.includes(h) || options.includes(w)) {
+                    bmiInput.val(0);
+
+                    return;
+                }
+
+                let bmi = calculateMetricBMI(w, h)
+
+                bmiInput.val(bmi)
+
+
+            });
+            weightMetricInput.on('keyup', function () {
+                let h = heightMetricInput.val()
+                let w = $(this).val()
+
+                let options = ['', 0];
+
+                if (options.includes(h) || options.includes(w)) {
+                    bmiInput.val(0);
+
+                    return;
+                }
+
+                let bmi = calculateMetricBMI(w, h)
 
                 bmiInput.val(bmi)
             });
         });
 
-        function calculateBmi(w, h) {
-            // calculate bmi
+        function toggleBMIcalculator($bmiCalculatorValue) {
+            if ($bmiCalculatorValue === 'standard_bmi') {
+                $('.metric').hide();
+                $('.standard').show('slow');
+            } else {
+                $('.standard').hide();
+                $('.metric').show('slow');
+            }
+            let bmiInput = $('#bmi');
+            bmiInput.val(0);
+
+            let heightStandardInput = $('#height_standard');
+            heightStandardInput.val('');
+            let weightStandardInput = $('#weight_standard');
+            weightStandardInput.val('');
+
+            let heightMetricInput = $('#height_metric');
+            heightMetricInput.val('');
+            let weightMetricInput = $('#weight_metric');
+            weightMetricInput.val('');
+        }
+
+        function calculateStandardBMI(w, h) {
+            let height = ''+h;
+            let weightInPound = parseFloat(w);
+
+            height = height.split('.');
+            let feet = height[0];
+            let inch = height[1];
+
+            let heightInMeter = (parseFloat(feet) * parseFloat(0.3048)) + (parseFloat(inch) * parseFloat(0.0254));
+            let weightInKgs = weightInPound / parseFloat({{ config('constants.si_units.lbs_to_kgs') }});
+
+            let bmi = weightInKgs / (heightInMeter * heightInMeter);
+
+            return parseFloat(bmi).toFixed(2);
+        }
+
+        function calculateMetricBMI(w, h) {
             let height = h;
-            let weight = w;
+            let weightInKgs = parseFloat(w);
 
-            // feet to meter
-            height = parseFloat(height) * parseFloat({{ config('constants.si_units.foot_to_meter') }})
+            let heightInMeter = parseFloat(height) / parseFloat(100);
 
-            // lb to kg
-            weight = parseFloat(weight) * parseFloat({{ config('constants.si_units.lbs_to_kgs') }})
+            let bmi = weightInKgs / (heightInMeter * heightInMeter);
 
-            let bmi = weight / (height * height)
-
-            return parseFloat(bmi).toFixed(2)
+            return parseFloat(bmi).toFixed(2);
         }
 
         let upper_airway_surgery_value__div = $('#upper_airway_surgery_value__div').hide();
