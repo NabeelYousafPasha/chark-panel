@@ -80,7 +80,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('cpap') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->cpap ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -93,7 +93,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('cpap') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->cpap ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -123,7 +123,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('mandibular_advancement_device') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->mandibular_advancement_device ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -136,7 +136,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('mandibular_advancement_device') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->mandibular_advancement_device ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -166,7 +166,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('positional_therapy') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->positional_therapy ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -179,7 +179,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('positional_therapy') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->positional_therapy ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -210,7 +210,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('upper_airway_surgery') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->upper_airway_surgery ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -223,7 +223,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('upper_airway_surgery') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->upper_airway_surgery ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -308,7 +308,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('bariatric_surgery') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->bariatric_surgery ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -321,7 +321,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('bariatric_surgery') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->bariatric_surgery ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -350,7 +350,7 @@
                                                         name="other_treatments_for_sleep_apnea"
                                                         id="other_treatments_for_sleep_apnea"
                                                         class="form-control"
-                                                        required=""
+                                                        {{--required=""--}}
                                                         value="{{ $clinicalExploration->other_treatments_for_sleep_apnea ?? old('other_treatments_for_sleep_apnea') }}"
                                                     >
                                                 </div>
@@ -382,7 +382,7 @@
                                                         name="height"
                                                         id="height"
                                                         class="form-control float_number"
-                                                        required=""
+                                                        {{--required=""--}}
                                                         value="{{ $clinicalExploration->height ?? old('height') }}"
                                                     >
                                                     @error('height')
@@ -407,7 +407,7 @@
                                                         name="weight"
                                                         id="weight"
                                                         class="form-control float_number"
-                                                        required=""
+                                                        {{--required=""--}}
                                                         value="{{ $clinicalExploration->weight ?? old('weight') }}"
                                                     >
                                                     @error('weight')
@@ -458,7 +458,7 @@
                                                         id="neck_circumference"
                                                         class="form-control"
                                                         min="0"
-                                                        required=""
+                                                        {{--required=""--}}
                                                         value="{{ $clinicalExploration->neck_circumference ?? old('neck_circumference') }}"
                                                     >
                                                     @error('neck_circumference')
@@ -495,7 +495,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('bruxism') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->bruxism ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -508,7 +508,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('bruxism') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->bruxism ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -539,7 +539,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required="" {{ old('pointed_hard_palade') == '1' ? 'checked' : '' }}
+                                                            {{--required=""--}} {{ old('pointed_hard_palade') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->pointed_hard_palade ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
@@ -551,7 +551,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('pointed_hard_palade') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->pointed_hard_palade ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -582,7 +582,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('tmj_noise') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->tmj_noise ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -595,7 +595,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required="" {{ old('tmj_noise') == '0' ? 'checked' : '' }}
+                                                            {{--required=""--}} {{ old('tmj_noise') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->tmj_noise ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
@@ -625,7 +625,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required="" {{ old('tmj_pain') == '1' ? 'checked' : '' }}
+                                                            {{--required=""--}} {{ old('tmj_pain') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->tmj_pain ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
@@ -637,7 +637,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required="" {{ old('tmj_pain') == '0' ? 'checked' : '' }}
+                                                            {{--required=""--}} {{ old('tmj_pain') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->tmj_pain ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
@@ -667,7 +667,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required="" {{ old('bilateral_crossbite') == '1' ? 'checked' : '' }}
+                                                            {{--required=""--}} {{ old('bilateral_crossbite') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->bilateral_crossbite ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
@@ -679,7 +679,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required="" {{ old('bilateral_crossbite') == '0' ? 'checked' : '' }}
+                                                            {{--required=""--}} {{ old('bilateral_crossbite') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->bilateral_crossbite ?? null) == '0' ? 'checked' : '' }}
                                                         >
                                                         <span>No</span>
@@ -709,7 +709,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required="" {{ old('lateral_crossbite') == '1' ? 'checked' : '' }}
+                                                            {{--required=""--}} {{ old('lateral_crossbite') == '1' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->lateral_crossbite ?? null) == '1' ? 'checked' : '' }}
                                                         >
                                                         <span>Yes</span>
@@ -721,7 +721,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('lateral_crossbite') == '0' ? 'checked' : '' }}
                                                             {{ ($clinicalExploration->lateral_crossbite ?? null) == '0' ? 'checked' : '' }}
                                                         >
