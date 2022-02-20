@@ -325,6 +325,10 @@ class AssessmentController extends Controller
         $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)->latest()
                     ->first();
 
+        $jawTeeth = TeethJaw::orderBy('jaw', 'DESC')->orderBy('position', 'DESC')->get();
+        $upperJawTeeth = $jawTeeth->where('jaw', '=', 1);
+        $lowerJawTeeth = $jawTeeth->where('jaw', '=', 0);
+
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'assessment' => $assessment,
             'step' => $step,
@@ -336,6 +340,9 @@ class AssessmentController extends Controller
             'clinicalExploration' => $clinicalExploration,
 
             'patient' => $patient,
+
+            'upperJawTeeth' => $upperJawTeeth,
+            'lowerJawTeeth' => $lowerJawTeeth,
 
             'form' => 'create',
             '_method' => 'PATCH',
