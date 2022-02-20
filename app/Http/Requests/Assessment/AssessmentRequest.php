@@ -34,30 +34,30 @@ class AssessmentRequest extends FormRequest
         $rules = [
             'step1' => [
                 // symptoms
-                "snore" => ['required', 'boolean',],
-                "apnea" => ['required', 'boolean',],
-                "breathing_shortness" => ['required', 'boolean',],
-                "average_sleep" => ['required', 'numeric',],
-                "fragmented_sleep" => ['required', 'boolean',],
-                "nocturia" => ['required', 'boolean',],
-                "tired_during_day" => ['required', 'boolean',],
-                "morning_headache" => ['required', 'boolean',],
-                "nap" => ['required', 'boolean',],
-                "sleepiness_during_day" => ['required', 'boolean',],
-                "loss_of_concentration" => ['required', 'boolean',],
+                "snore" => ['nullable', 'boolean',],
+                "apnea" => ['nullable', 'boolean',],
+                "breathing_shortness" => ['nullable', 'boolean',],
+                "average_sleep" => ['nullable', 'numeric',],
+                "fragmented_sleep" => ['nullable', 'boolean',],
+                "nocturia" => ['nullable', 'boolean',],
+                "tired_during_day" => ['nullable', 'boolean',],
+                "morning_headache" => ['nullable', 'boolean',],
+                "nap" => ['nullable', 'boolean',],
+                "sleepiness_during_day" => ['nullable', 'boolean',],
+                "loss_of_concentration" => ['nullable', 'boolean',],
 
                 // symptoms via modal
-                "night_snoring_experience" => ['required', 'numeric', 'in:'.implode(",", array_keys(config('constants.night_snoring_experience'))),],
+                "night_snoring_experience" => ['nullable', 'numeric', 'in:'.implode(",", array_keys(config('constants.night_snoring_experience'))),],
 
                 // symptoms via modal for epworth test sleepiness scale
-                "while_sitting_and_reading" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
-                "while_watching_television" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
-                "while_inactive_in_public_place" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
-                "while_travelling" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
-                "while_laying_down_in_afternoon" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
-                "while_talking" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
-                "while_sitting_after_lunch" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
-                "while_driving" => ['required', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
+                "while_sitting_and_reading" => ['nullable', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
+                "while_watching_television" => ['nullable', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
+                "while_inactive_in_public_place" => ['nullable', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
+                "while_travelling" => ['nullable', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
+                "while_laying_down_in_afternoon" => ['nullable', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
+                "while_talking" => ['nullable', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
+                "while_sitting_after_lunch" => ['nullable', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
+                "while_driving" => ['nullable', 'string', 'in:'.implode(",", array_keys(config('constants.sleepiness_scale_options'))),],
             ],
 
             'step2' => [

@@ -165,7 +165,9 @@ class AssessmentController extends Controller
             case 'step1': {
                 $data['symptom'] = $symptom = Symptom::create([
                     'assessment_id' => $assessment->id,
-                ] + $request->validated());
+                ] + $request->validated() + [
+                    'night_snoring_experience' => $request->input('night_snoring_experience') ?? 0,
+                ]);
 
                 $data['sleepinessScale'] = $sleepinessScale = SleepinessScale::create([
                         'assessment_id' => $assessment->id,
