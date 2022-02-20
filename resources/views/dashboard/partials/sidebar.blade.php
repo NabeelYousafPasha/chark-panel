@@ -37,27 +37,29 @@
                 </a>
             </li>
 
-            <li class="">
-                <a href="javascript:void(0)">
-                    <i class="fa-fw fa fa-gear"></i>
-                    <span class="nav-label">
-                        Setup
-                    </span>
-                    <span class="fa-fw fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level collapse">
-                    <li class="">
-                        <a
-                            href="{{ route('dashboard.setup.permissions_roles.index') }}"
-                        >
-                            <i class="fa-fw fa fa-gears"></i>
-                            <span class="nav-label custom-nav-label">
-                                Role - Permission
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            @if(auth()->user()->can('view_permission_role'))
+                <li class="">
+                    <a href="javascript:void(0)">
+                        <i class="fa-fw fa fa-gear"></i>
+                        <span class="nav-label">
+                            Setup
+                        </span>
+                        <span class="fa-fw fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="">
+                            <a
+                                href="{{ route('dashboard.setup.permissions_roles.index') }}"
+                            >
+                                <i class="fa-fw fa fa-gears"></i>
+                                <span class="nav-label custom-nav-label">
+                                    Role - Permission
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
 
             <li class="">
                 <a href="{{ route('dashboard.clinics.index') }}">
@@ -76,43 +78,6 @@
                     </span>
                 </a>
             </li>
-
-
-            {{--<li class="">
-                <a href="javascript:void(0)">
-                    <i class="fa-fw fa fa-dashboard"></i>
-                    <span class="nav-label">
-                        {{ trans('lang.sidebar.dashboard') }}
-                    </span>
-                    <span class="fa-fw fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level collapse">
-                    <li class="">
-                        <a
-                            href="javascript:void(0)"
-                        >
-                            <i class="fa-fw fa fa-hand-grab-o"></i>
-                            <span class="nav-label custom-nav-label">
-                                {{ trans('lang.sidebar.home') }}
-                            </span>
-                            <span class="fa-fw fa arrow"></span>
-                        </a>
-
-                        <ul class="nav nav-third-level collapse">
-                            <li class="">
-                                <a
-                                    href="javascript:void(0)"
-                                >
-                                    <i class="fa-fw fa fa-dashboard"></i>
-                                    <span class="nav-label custom-nav-label">
-                                        {{ trans('lang.sidebar.dashboard') }}
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>--}}
         </ul>
     </div>
 </nav>

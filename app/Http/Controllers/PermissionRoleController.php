@@ -10,8 +10,6 @@ use Spatie\Permission\PermissionRegistrar;
 
 class PermissionRoleController extends Controller
 {
-    const TABLE_ROLE_HAS_PERMISSIONS = 'role_has_permissions';
-
     /**
      * Display a listing of the resource.
      *
@@ -22,12 +20,24 @@ class PermissionRoleController extends Controller
         if (auth()->user()->cannot('view_permission_role'))
             return $this->permissionDenied('dashboard.index');
 
-        $roles = Role::exceptAdmin()->pluck('name', 'id');
-        $permissions = Permission::orderBy('id')->pluck('name', 'id');
+        $restrictedPermissions = [
+            'create_permission_role',
+            'view_permission_role',
+            'update_permission_role',
+            'delete_permission_role',
+        ];
 
-        $permissions_roles = DB::table(self::TABLE_ROLE_HAS_PERMISSIONS)
+        $roles = Role::exceptAdmin()->pluck('name', 'id');
+        $permissions = Permission::orderBy('id')
+            ->whereNotIn('permissions.name', $restrictedPermissions)
+            ->pluck('name', 'id');
+
+        $permissions_roles = DB::table(config('permission.table_names.role_has_permissions'))
             ->select(DB::raw('CONCAT(permission_id,"-",role_id) AS detail'))
-            ->pluck('detail')->all();
+            ->join('permissions', config('permission.table_names.role_has_permissions').'.permission_id', '=', 'permissions.id')
+            ->whereNotIn('permissions.name', $restrictedPermissions)
+            ->pluck('detail')
+            ->all();
 
         return $this->renderView('dashboard.pages.permission_role.index', [
             'roles' => $roles,
@@ -67,10 +77,10 @@ class PermissionRoleController extends Controller
         app()->make(PermissionRegistrar::class)->forgetCachedPermissions();
 
         DB::transaction(function () use ($data) {
-            DB::table(self::TABLE_ROLE_HAS_PERMISSIONS)->whereNotIn('role_id', [
+            DB::table(config('permission.table_names.role_has_permissions'))->whereNotIn('role_id', [
                 Role::where('name', Role::ADMIN)->first()->id
             ])->delete();
-            DB::table(self::TABLE_ROLE_HAS_PERMISSIONS)->insert($data);
+            DB::table(config('permission.table_names.role_has_permissions'))->insert($data);
         });
 
         $this->message('successMessage');
