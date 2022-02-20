@@ -42,14 +42,16 @@
                         >
                             <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
                         </a>
-                        
-                        <a
-                            title="Patient Details"
-                            class="btn btn-success btn-xs"
-                            href="{{ route('dashboard.patient-details.create', $patient) }}"
-                        >
-                            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
-                        </a>
+
+                        @if(0)
+                            <a
+                                title="Patient Details"
+                                class="btn btn-success btn-xs"
+                                href="{{ route('dashboard.patient-details.create', $patient) }}"
+                            >
+                                <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+                            </a>
+                        @endif
 
                         @if($crud['EDIT_PATIENT']['can'] ?? false)
                             <a
