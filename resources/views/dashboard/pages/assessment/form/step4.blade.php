@@ -99,167 +99,169 @@
 
                                     <div class="row">
 
-                                        <div class="col-md-6">
-                                            <div class="row form-group @error('ahi') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="ahi"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        AHI:
-                                                    </label>
+                                        @if(0)
+                                            <div class="col-md-12">
+                                                <div class="row form-group @error('ahi') has-error @enderror">
+                                                    <div class="col-md-6">
+                                                        <label
+                                                            for="ahi"
+                                                            class="col-form-label text-md-left"
+                                                        >
+                                                            AHI:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input
+                                                            type="text"
+                                                            id="ahi"
+                                                            name="ahi"
+                                                            class="form-control"
+                                                            {{--required=""--}}
+                                                            value="{{ $diagnosticTest->ahi ?? old('ahi') }}"
+                                                        >
+                                                        @error('ahi')
+                                                            <span class="help-block has-error">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="text"
-                                                        id="ahi"
-                                                        name="ahi"
-                                                        class="form-control"
-                                                        required=""
-                                                        value="{{ $diagnosticTest->ahi ?? old('ahi') }}"
-                                                    >
-                                                    @error('ahi')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+
+                                                <div class="row form-group @error('rdi') has-error @enderror">
+                                                    <div class="col-md-6">
+                                                        <label
+                                                            for="rdi"
+                                                            class="col-form-label text-md-left"
+                                                        >
+                                                            RDI:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input
+                                                            type="text"
+                                                            id="rdi"
+                                                            name="rdi"
+                                                            class="form-control"
+                                                            {{--required=""--}}
+                                                            value="{{ $diagnosticTest->rdi ?? old('rdi') }}"
+                                                        >
+                                                        @error('rdi')
+                                                            <span class="help-block has-error">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group @error('nadir') has-error @enderror">
+                                                    <div class="col-md-6">
+                                                        <label
+                                                            for="nadir"
+                                                            class="col-form-label text-md-left"
+                                                        >
+                                                            NADIR:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input
+                                                            type="text"
+                                                            id="nadir"
+                                                            name="nadir"
+                                                            class="form-control"
+                                                            {{--required=""--}}
+                                                            value="{{ $diagnosticTest->nadir ?? old('nadir') }}"
+                                                        >
+                                                        @error('nadir')
+                                                            <span class="help-block has-error">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group @error('odi') has-error @enderror">
+                                                    <div class="col-md-6">
+                                                        <label
+                                                            for="odi"
+                                                            class="col-form-label text-md-left"
+                                                        >
+                                                            ODI:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input
+                                                            type="text"
+                                                            id="odi"
+                                                            name="odi"
+                                                            class="form-control"
+                                                            {{--required=""--}}
+                                                            value="{{ $diagnosticTest->odi ?? old('odi') }}"
+                                                        >
+                                                        @error('odi')
+                                                            <span class="help-block has-error">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group @error('avg_duration_of_apnea') has-error @enderror">
+                                                    <div class="col-md-6">
+                                                        <label
+                                                            for="avg_duration_of_apnea"
+                                                            class="col-form-label text-md-left"
+                                                        >
+                                                            Average duration of apnea (sec):
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input
+                                                            type="number"
+                                                            id="avg_duration_of_apnea"
+                                                            name="avg_duration_of_apnea"
+                                                            class="form-control"
+                                                            min="0"
+                                                            {{--required=""--}}
+                                                            value="{{ $diagnosticTest->avg_duration_of_apnea ?? old('avg_duration_of_apnea') }}"
+                                                        >
+                                                        @error('avg_duration_of_apnea')
+                                                            <span class="help-block has-error">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group @error('max_duration_of_apnea') has-error @enderror">
+                                                    <div class="col-md-6">
+                                                        <label
+                                                            for="max_duration_of_apnea"
+                                                            class="col-form-label text-md-left"
+                                                        >
+                                                            Maximum duration of apnea(sec):
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input
+                                                            type="number"
+                                                            id="max_duration_of_apnea"
+                                                            name="max_duration_of_apnea"
+                                                            class="form-control"
+                                                            min="0"
+                                                            {{--required=""--}}
+                                                            value="{{ $diagnosticTest->max_duration_of_apnea ?? old('max_duration_of_apnea') }}"
+                                                        >
+                                                        @error('max_duration_of_apnea')
+                                                            <span class="help-block has-error">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
+                                        @endif
 
-                                            <div class="row form-group @error('rdi') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="rdi"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        RDI:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="text"
-                                                        id="rdi"
-                                                        name="rdi"
-                                                        class="form-control"
-                                                        required=""
-                                                        value="{{ $diagnosticTest->rdi ?? old('rdi') }}"
-                                                    >
-                                                    @error('rdi')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group @error('nadir') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="nadir"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        NADIR:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="text"
-                                                        id="nadir"
-                                                        name="nadir"
-                                                        class="form-control"
-                                                        required=""
-                                                        value="{{ $diagnosticTest->nadir ?? old('nadir') }}"
-                                                    >
-                                                    @error('nadir')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group @error('odi') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="odi"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        ODI:
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="text"
-                                                        id="odi"
-                                                        name="odi"
-                                                        class="form-control"
-                                                        required=""
-                                                        value="{{ $diagnosticTest->odi ?? old('odi') }}"
-                                                    >
-                                                    @error('odi')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group @error('avg_duration_of_apnea') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="avg_duration_of_apnea"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        Average duration of apnea (sec):
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="number"
-                                                        id="avg_duration_of_apnea"
-                                                        name="avg_duration_of_apnea"
-                                                        class="form-control"
-                                                        min="0"
-                                                        required=""
-                                                        value="{{ $diagnosticTest->avg_duration_of_apnea ?? old('avg_duration_of_apnea') }}"
-                                                    >
-                                                    @error('avg_duration_of_apnea')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group @error('max_duration_of_apnea') has-error @enderror">
-                                                <div class="col-md-6">
-                                                    <label
-                                                        for="max_duration_of_apnea"
-                                                        class="col-form-label text-md-left"
-                                                    >
-                                                        Maximum duration of apnea(sec):
-                                                    </label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input
-                                                        type="number"
-                                                        id="max_duration_of_apnea"
-                                                        name="max_duration_of_apnea"
-                                                        class="form-control"
-                                                        min="0"
-                                                        required=""
-                                                        value="{{ $diagnosticTest->max_duration_of_apnea ?? old('max_duration_of_apnea') }}"
-                                                    >
-                                                    @error('max_duration_of_apnea')
-                                                        <span class="help-block has-error">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="row form-group @error('assessments_observation') has-error @enderror">
                                                 <div class="col-md-12">
                                                     <label
@@ -273,7 +275,7 @@
                                                         name="assessments_observation"
                                                         class="form-control"
                                                         rows="12"
-                                                        required=""
+                                                        {{--required=""--}}
                                                     >{{ $diagnosticTest->assessments_observation ?? old('assessments_observation') }}</textarea>
                                                     @error('assessments_observation')
                                                         <span class="help-block has-error">

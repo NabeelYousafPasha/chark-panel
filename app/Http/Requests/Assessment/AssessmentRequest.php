@@ -121,13 +121,13 @@ class AssessmentRequest extends FormRequest
             ],
 
             'step4' => [
-                "ahi" => ['required', 'string', 'max:255',],
-                "rdi" => ['required', 'string', 'max:255',],
-                "nadir" => ['required', 'string', 'max:255',],
-                "odi" => ['required', 'string', 'max:255',],
-                "avg_duration_of_apnea" => ['required', 'numeric',],
-                "max_duration_of_apnea" => ['required', 'numeric',],
-                "assessments_observation" => ['required', 'string', 'max:255',],
+                "ahi" => ['nullable', 'string', 'max:255',],
+                "rdi" => ['nullable', 'string', 'max:255',],
+                "nadir" => ['nullable', 'string', 'max:255',],
+                "odi" => ['nullable', 'string', 'max:255',],
+                "avg_duration_of_apnea" => ['nullable', 'numeric',],
+                "max_duration_of_apnea" => ['nullable', 'numeric',],
+                "assessments_observation" => ['nullable', 'string', 'max:255',],
             ],
         ];
 
