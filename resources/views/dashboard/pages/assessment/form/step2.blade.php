@@ -58,7 +58,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('smoker') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->smoker ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -71,7 +71,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('smoker') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->smoker ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -104,7 +104,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('alcohol_with_dinner') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->alcohol_with_dinner ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -117,7 +117,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('alcohol_with_dinner') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->alcohol_with_dinner ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -181,7 +181,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('high_blood_pressure') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->high_blood_pressure ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -194,7 +194,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('high_blood_pressure') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->high_blood_pressure ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -225,7 +225,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('myocardial_infarction') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->myocardial_infarction ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -238,7 +238,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('myocardial_infarction') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->myocardial_infarction ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -269,7 +269,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('coronary_artery_disease') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->coronary_artery_disease ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -282,7 +282,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('coronary_artery_disease') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->coronary_artery_disease ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -312,7 +312,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('arrhythmia') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->arrhythmia ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -325,7 +325,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('arrhythmia') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->arrhythmia ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -355,7 +355,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('heart_failure') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->heart_failure ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -368,7 +368,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('heart_failure') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->heart_failure ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -398,7 +398,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('diabetes') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->diabetes ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -411,7 +411,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('diabetes') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->diabetes ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -441,7 +441,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('depression') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->depression ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -454,7 +454,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('depression') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->depression ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -484,7 +484,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('dementia') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->dementia ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -497,7 +497,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('dementia') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->dementia ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -527,7 +527,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('stroke') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->stroke ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -540,7 +540,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('stroke') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->stroke ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -570,7 +570,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('lung_disease') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->lung_disease ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -583,7 +583,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('lung_disease') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->lung_disease ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -613,7 +613,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('hypothyroidism') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->hypothyroidism ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -626,7 +626,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('hypothyroidism') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->hypothyroidism ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -655,7 +655,7 @@
                                                         name="other_medical_history"
                                                         id="other_medical_history"
                                                         class="form-control"
-                                                        required=""
+                                                        {{--required=""--}}
                                                         value="{{ $medicalHistory->other_medical_history ?? old('other_medical_history') }}"
                                                     >
                                                 </div>
@@ -687,7 +687,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('anxiolytics') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->anxiolytics ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -700,7 +700,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('anxiolytics') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->anxiolytics ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -757,7 +757,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('antidepressants') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->antidepressants ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -770,7 +770,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('antidepressants') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->antidepressants ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -827,7 +827,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('induce_sleep_medication') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->induce_sleep_medication ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -840,7 +840,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('induce_sleep_medication') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->induce_sleep_medication ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -896,7 +896,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('other_medications') == '1' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->other_medications ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -909,7 +909,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('other_medications') == '0' ? 'checked' : '' }}
                                                             {{ ($medicalHistory->other_medications ?? null) == '0' ? 'checked' : '' }}
                                                         >
