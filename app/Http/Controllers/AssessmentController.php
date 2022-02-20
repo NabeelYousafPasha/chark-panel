@@ -163,13 +163,15 @@ class AssessmentController extends Controller
 
         switch ($step) {
             case 'step1': {
-                $data['symptom'] = $symptom = Symptom::create([
+                $data['symptom'] = $symptom = Symptom::updateOrCreate([
                     'assessment_id' => $assessment->id,
-                ] + $request->validated());
+                ], array_merge($request->validated(), [
+                    'night_snoring_experience' => $request->input('night_snoring_experience') ?? 0,
+                ]));
 
-                $data['sleepinessScale'] = $sleepinessScale = SleepinessScale::create([
+                $data['sleepinessScale'] = $sleepinessScale = SleepinessScale::updateOrCreate([
                         'assessment_id' => $assessment->id,
-                    ] + $request->validated());
+                    ], $request->validated());
 
                 (!$symptom || !$sleepinessScale)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 1')
@@ -179,9 +181,9 @@ class AssessmentController extends Controller
                 break;
             }
             case 'step2': {
-                $data['medicalHistory'] = $medicalHistory = MedicalHistory::create([
+                $data['medicalHistory'] = $medicalHistory = MedicalHistory::updateOrCreate([
                         'assessment_id' => $assessment->id,
-                    ] + $request->validated());
+                    ], $request->validated());
 
                 (!$medicalHistory)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 2')
@@ -194,9 +196,9 @@ class AssessmentController extends Controller
 
                 $upperAirwaySurgeryValue = implode(config('constants.upper_airway_surgery_separator'), $request->input('upper_airway_surgery_value') ?? []);
 
-                $data['clinicalExploration'] = $clinicalExploration = ClinicalExploration::create(array_merge($request->validated(), [
-                        'assessment_id' => $assessment->id,
-                    ], [
+                $data['clinicalExploration'] = $clinicalExploration = ClinicalExploration::updateOrCreate([
+                    'assessment_id' => $assessment->id,
+                ], array_merge($request->validated(), [
                         'upper_airway_surgery_value' => ! empty($upperAirwaySurgeryValue) ? $upperAirwaySurgeryValue : NULL,
                 ]));
 
@@ -209,9 +211,9 @@ class AssessmentController extends Controller
             }
             case 'step4': {
 
-                $data['diagnosticTest'] = $diagnosticTest = DiagnosticTest::create(array_merge($request->validated(), [
-                        'assessment_id' => $assessment->id,
-                ]));
+                $data['diagnosticTest'] = $diagnosticTest = DiagnosticTest::updateOrCreate([
+                    'assessment_id' => $assessment->id,
+                ], $request->validated());
 
                 (!$diagnosticTest)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 4')

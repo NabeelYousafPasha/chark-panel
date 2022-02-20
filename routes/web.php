@@ -45,6 +45,10 @@ Route::group([
             dd('Route');
         })->name('sleep-test.store');
 
+        Route::get('terms-and-conditions', function () {
+            return view('dashboard.pages.term_and_condition.terms_and_conditions');
+        })->name('terms-conditions');
+
         // Back End
         // User => change Password
         Route::get('users/password/{forceChange?}/{user?}', 'UserController@changePassword')->name('users.password.create');

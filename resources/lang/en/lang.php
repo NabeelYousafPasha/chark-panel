@@ -9,6 +9,8 @@ return [
         'permissions_roles'   => 'Permissions Roles',
     ],
 
+    'terms_and_conditions' => 'Terms & Conditions',
+
     'dataTable' => [
         'thead' => [
             'sr_no'     => 'Sr #',

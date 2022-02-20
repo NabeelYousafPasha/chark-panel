@@ -56,7 +56,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('snore') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->snore ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -69,7 +69,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('snore') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->snore ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -98,7 +98,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('apnea') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->apnea ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -111,7 +111,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('apnea') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->apnea ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -140,7 +140,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('breathing_shortness') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->breathing_shortness ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -153,7 +153,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('breathing_shortness') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->breathing_shortness ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -183,7 +183,7 @@
                                                         min="0"
                                                         max="24"
                                                         value="{{ $symptom->average_sleep ?? old('average_sleep') }}"
-                                                        required=""
+                                                        {{--required=""--}}
                                                     >
 
                                                     @error('average_sleep')
@@ -208,7 +208,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('fragmented_sleep') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->fragmented_sleep ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -221,7 +221,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('fragmented_sleep') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->fragmented_sleep ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -257,7 +257,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('nocturia') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->nocturia ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -270,7 +270,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('nocturia') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->nocturia ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -299,7 +299,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('tired_during_day') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->tired_during_day ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -312,7 +312,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('tired_during_day') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->tired_during_day ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -341,7 +341,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('morning_headache') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->morning_headache ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -354,7 +354,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('morning_headache') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->morning_headache ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -383,7 +383,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('nap') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->nap ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -396,7 +396,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('nap') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->nap ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -425,7 +425,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('sleepiness_during_day') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->sleepiness_during_day ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -438,7 +438,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('sleepiness_during_day') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->sleepiness_during_day ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -467,7 +467,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="1"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('loss_of_concentration') == '1' ? 'checked' : '' }}
                                                             {{ ($symptom->loss_of_concentration ?? null) == '1' ? 'checked' : '' }}
                                                         >
@@ -480,7 +480,7 @@
                                                             type="radio"
                                                             class=""
                                                             value="0"
-                                                            required=""
+                                                            {{--required=""--}}
                                                             {{ old('loss_of_concentration') == '0' ? 'checked' : '' }}
                                                             {{ ($symptom->loss_of_concentration ?? null) == '0' ? 'checked' : '' }}
                                                         >
@@ -607,7 +607,7 @@
                                                     type="radio"
                                                     class=""
                                                     value="{{ $option }}"
-                                                    required
+                                                    {{--required=""--}}
                                                     form="step1"
                                                     {{ old('while_sitting_and_reading') == $option ? 'checked' : '' }}
                                                     {{ ($sleepinessScale->while_sitting_and_reading ?? null) == $option ? 'checked' : '' }}
@@ -638,7 +638,7 @@
                                                     type="radio"
                                                     class=""
                                                     value="{{ $option }}"
-                                                    required
+                                                    {{--required=""--}}
                                                     form="step1"
                                                     {{ old('while_watching_television') == $option ? 'checked' : '' }}
                                                     {{ ($sleepinessScale->while_watching_television ?? null) == $option ? 'checked' : '' }}
@@ -668,7 +668,7 @@
                                                     type="radio"
                                                     class=""
                                                     value="{{ $option }}"
-                                                    required
+                                                    {{--required=""--}}
                                                     form="step1"
                                                     {{ old('while_inactive_in_public_place') == $option ? 'checked' : '' }}
                                                     {{ ($sleepinessScale->while_inactive_in_public_place ?? null) == $option ? 'checked' : '' }}
@@ -698,7 +698,7 @@
                                                     type="radio"
                                                     class=""
                                                     value="{{ $option }}"
-                                                    required
+                                                    {{--required=""--}}
                                                     form="step1"
                                                     {{ old('while_travelling') == $option ? 'checked' : '' }}
                                                     {{ ($sleepinessScale->while_travelling ?? null) == $option ? 'checked' : '' }}
@@ -728,7 +728,7 @@
                                                     type="radio"
                                                     class=""
                                                     value="{{ $option }}"
-                                                    required
+                                                    {{--required=""--}}
                                                     form="step1"
                                                     {{ old('while_laying_down_in_afternoon') == $option ? 'checked' : '' }}
                                                     {{ ($sleepinessScale->while_laying_down_in_afternoon ?? null) == $option ? 'checked' : '' }}
@@ -758,7 +758,7 @@
                                                     type="radio"
                                                     class=""
                                                     value="{{ $option }}"
-                                                    required
+                                                    {{--required=""--}}
                                                     form="step1"
                                                     {{ old('while_talking') == $option ? 'checked' : '' }}
                                                     {{ ($sleepinessScale->while_talking ?? null) == $option ? 'checked' : '' }}
@@ -788,7 +788,7 @@
                                                     type="radio"
                                                     class=""
                                                     value="{{ $option }}"
-                                                    required
+                                                    {{--required=""--}}
                                                     form="step1"
                                                     {{ old('while_sitting_after_lunch') == $option ? 'checked' : '' }}
                                                     {{ ($sleepinessScale->while_sitting_after_lunch ?? null) == $option ? 'checked' : '' }}
@@ -818,7 +818,7 @@
                                                     type="radio"
                                                     class=""
                                                     value="{{ $option }}"
-                                                    required
+                                                    {{--required=""--}}
                                                     form="step1"
                                                     {{ old('while_driving') == $option ? 'checked' : '' }}
                                                     {{ ($sleepinessScale->while_driving ?? null) == $option ? 'checked' : '' }}
@@ -889,7 +889,7 @@
                                                     type="radio"
                                                     class=""
                                                     value="{{ $nightSnoreKey }}"
-                                                    required
+                                                    {{--required=""--}}
                                                     form="step1"
                                                     {{ (old('night_snoring_experience') ?? null) == $nightSnoreKey ? 'checked' : '' }}
                                                     {{ ($symptom->night_snoring_experience ?? null) == $nightSnoreKey ? 'checked' : '' }}
