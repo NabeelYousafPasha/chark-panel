@@ -889,66 +889,68 @@
                                     <div class="table-responsive">
                                         <table class="table-condensed" width="100%">
                                             <tbody>
-                                                <tr>
-                                                    <td width="60">
-                                                        <b>
-                                                            AHI:
-                                                        </b>
-                                                    </td>
-                                                    <td width="40" class="text-right">
-                                                        {{ $diagnosticTest->ahi }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <b>
-                                                            RDI:
-                                                        </b>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        {{ $diagnosticTest->rdi }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <b>
-                                                            NADIR:
-                                                        </b>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        {{ $diagnosticTest->nadir }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <b>
-                                                            ODI:
-                                                        </b>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        {{ $diagnosticTest->odi }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <b>
-                                                            Average duration of apnea (sec):
-                                                        </b>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        {{ $diagnosticTest->avg_duration_of_apnea }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <b>
-                                                            Maximum duration of apnea(sec):
-                                                        </b>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        {{ $diagnosticTest->max_duration_of_apnea }}
-                                                    </td>
-                                                </tr>
+                                                @if(0)
+                                                    {{--<tr>
+                                                        <td width="60">
+                                                            <b>
+                                                                AHI:
+                                                            </b>
+                                                        </td>
+                                                        <td width="40" class="text-right">
+                                                            {{ $diagnosticTest->ahi }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                RDI:
+                                                            </b>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            {{ $diagnosticTest->rdi }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                NADIR:
+                                                            </b>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            {{ $diagnosticTest->nadir }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                ODI:
+                                                            </b>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            {{ $diagnosticTest->odi }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Average duration of apnea (sec):
+                                                            </b>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            {{ $diagnosticTest->avg_duration_of_apnea }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b>
+                                                                Maximum duration of apnea(sec):
+                                                            </b>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            {{ $diagnosticTest->max_duration_of_apnea }}
+                                                        </td>
+                                                    </tr>--}}
+                                                @endif
                                                 <tr>
                                                     <td>
                                                         <b>
