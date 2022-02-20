@@ -61,23 +61,27 @@
                 </li>
             @endif
 
-            <li class="">
-                <a href="{{ route('dashboard.clinics.index') }}">
-                    <i class="fa-fw fa fa-hospital-o"></i>
-                    <span class="nav-label">
-                        {{ 'Clinics' }}
-                    </span>
-                </a>
-            </li>
+            @if(auth()->user()->can('view_clinic'))
+                <li class="">
+                    <a href="{{ route('dashboard.clinics.index') }}">
+                        <i class="fa-fw fa fa-hospital-o"></i>
+                        <span class="nav-label">
+                            {{ 'Clinics' }}
+                        </span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="">
-                <a href="{{ route('dashboard.patients.index') }}">
-                    <i class="fa-fw fa fa-users"></i>
-                    <span class="nav-label">
-                        {{ 'Patients' }}
-                    </span>
-                </a>
-            </li>
+            @if(auth()->user()->can('view_patient'))
+                <li class="">
+                    <a href="{{ route('dashboard.patients.index') }}">
+                        <i class="fa-fw fa fa-users"></i>
+                        <span class="nav-label">
+                            {{ 'Patients' }}
+                        </span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </nav>
