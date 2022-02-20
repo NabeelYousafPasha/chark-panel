@@ -2,12 +2,13 @@
     <thead>
         <tr>
             <th>{{ trans('lang.dataTable.thead.sr_no') }}</th>
-            <th>Patient ID / Alias</th>
+            <th>Name</th>
             <th>Gender</th>
             <th>DOB / Age</th>
             <th>Clinic</th>
             <th>Country</th>
             <th>Created By</th>
+            <th>Created At</th>
             <th>Assessments</th>
             <th>{{ trans('lang.dataTable.thead.actions') }}</th>
         </tr>
@@ -22,6 +23,7 @@
                 <td>{{ $patient->clinic_name }}</td>
                 <td>{{ $patient->country_name }}</td>
                 <td>{{ $patient->username }}</td>
+                <td>{{ $patient->created_at }}</td>
                 <td>
                     <div class="btn-group btn-group-xs">
                         <a

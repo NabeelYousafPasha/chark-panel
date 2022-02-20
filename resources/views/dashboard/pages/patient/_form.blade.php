@@ -24,7 +24,7 @@
     @enderror
 </div>
 
-<div class="form-group @error('email') has-error @enderror">
+{{--<div class="form-group @error('email') has-error @enderror">
     <label class="control-label" for="email">Email *</label>
     <input
         type="email"
@@ -40,16 +40,16 @@
             <strong>{{ $message }}</strong>
         </span>
     @enderror
-</div>
+</div>--}}
 
 <div class="form-group @error('alias') has-error @enderror">
-    <label class="control-label" for="alias">Patient / ID / Alias *</label>
+    <label class="control-label" for="alias">Patient Name *</label>
     <input
         type="text"
         class="form-control"
         id="alias"
         name="alias"
-        placeholder="Patient"
+        placeholder="Patient Name"
         value="{{ $patient->alias ?? old('alias') }}"
         required
     >
