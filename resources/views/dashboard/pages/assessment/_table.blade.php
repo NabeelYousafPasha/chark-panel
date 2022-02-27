@@ -4,7 +4,7 @@
             <th>{{ trans('lang.dataTable.thead.sr_no') }}</th>
             <th>Creation Date</th>
             <th>Created By</th>
-            <th>Comments</th>
+            <th>Teatment</th>
             <th>{{ trans('lang.dataTable.thead.actions') }}</th>
         </tr>
     </thead>

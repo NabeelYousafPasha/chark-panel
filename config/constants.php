@@ -35,6 +35,11 @@ return [
         '0' => 'No',
     ],
 
+    'bmi_unit' => [
+        'standard' => '1',
+        'metric' => '2',
+    ],
+
     'si_units' => [
         'lbs_to_kgs' => '2.204',
         'kgs_to_lbs' => '0.453',

@@ -455,7 +455,6 @@
                                                         >
                                                         Standard
                                                     </label>
-
                                                     <label>
                                                         <input
                                                             type="radio"
@@ -466,6 +465,12 @@
                                                         >
                                                         Metric
                                                     </label>
+
+                                                    <input
+                                                        type="hidden"
+                                                        id="bmi_unit"
+                                                        name="bmi_unit"
+                                                    >
                                                 </div>
                                             </div>
 
@@ -1627,11 +1632,18 @@
                                     <hr>
 
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 @error('teeth') has-error @enderror @error('teeth.*') has-error @enderror">
                                             <h2>{{ __('Missing Teeth') }}</h2>
                                             <br>
 
-                                            <div class="row form-group @error('assessment_observation') has-error @enderror">
+                                            <div class="row form-group @error('teeth') has-error @enderror @error('teeth.*') has-error @enderror">
+
+                                                <input
+                                                    type="hidden"
+                                                    id=""
+                                                    value=""
+                                                    name="teeth"
+                                                />
 
                                                 <div class="col-md-12">
                                                     <ul class="teeth-ul">
@@ -1640,6 +1652,9 @@
                                                                 <input
                                                                     type="checkbox"
                                                                     id="toothCheckbox{{ $upperTooth->id }}"
+                                                                    value="{{ $upperTooth->id }}"
+                                                                    name="teeth[]"
+                                                                    {{ in_array($upperTooth->id, $assessmentMissingTeeth) ? 'checked' : '' }}
                                                                 />
                                                                 <label class="teeth-label" for="toothCheckbox{{ $upperTooth->id }}">
                                                                     <img
@@ -1661,6 +1676,9 @@
                                                                 <input
                                                                     type="checkbox"
                                                                     id="toothCheckbox{{ $lowerTooth->id }}"
+                                                                    value="{{ $lowerTooth->id }}"
+                                                                    name="teeth[]"
+                                                                    {{ in_array($lowerTooth->id, $assessmentMissingTeeth) ? 'checked' : '' }}
                                                                 />
                                                                 <label class="teeth-label" for="toothCheckbox{{ $lowerTooth->id }}">
                                                                     <img
@@ -1674,6 +1692,18 @@
                                                         @endforeach
                                                     </ul>
                                                 </div>
+
+                                                @error('teeth')
+                                                    <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+
+                                                @error('teeth.*')
+                                                    <span class="help-block has-error">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -1801,9 +1831,11 @@
             if ($bmiCalculatorValue === 'standard_bmi') {
                 $('.metric').hide();
                 $('.standard').show('slow');
+                $('#bmi_unit').val(1);
             } else {
                 $('.standard').hide();
                 $('.metric').show('slow');
+                $('#bmi_unit').val(2);
             }
             let bmiInput = $('#bmi');
             bmiInput.val(0);
@@ -1820,12 +1852,22 @@
         }
 
         function calculateStandardBMI(w, h) {
+
+            $('input[name="height"]').val(h);
+            $('input[name="weight"]').val(w);
+
             let height = ''+h;
             let weightInPound = parseFloat(w);
 
-            height = height.split('.');
-            let feet = height[0];
-            let inch = height[1];
+            let feet = height;
+            let inch = 0;
+
+            // if float
+            if (height % 1 !== 0) {
+                height = height.split('.');
+                feet = height[0];
+                inch = height[1];
+            }
 
             let heightInMeter = (parseFloat(feet) * parseFloat(0.3048)) + (parseFloat(inch) * parseFloat(0.0254));
             let weightInKgs = weightInPound / parseFloat({{ config('constants.si_units.lbs_to_kgs') }});
@@ -1836,6 +1878,9 @@
         }
 
         function calculateMetricBMI(w, h) {
+            $('input[name="height"]').val(h);
+            $('input[name="weight"]').val(w);
+
             let height = h;
             let weightInKgs = parseFloat(w);
 

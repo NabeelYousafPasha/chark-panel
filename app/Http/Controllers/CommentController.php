@@ -24,7 +24,7 @@ class CommentController extends Controller
                     ->join('users', 'comments.created_by', '=', 'users.id')
                     ->where('assessment_id', '=', $assessment->id)
                     ->where('patient_id', '=', $assessment->patient_id)
-                    ->latest();
+                    ->latest('comments.created_at');
 
         return $this->renderView('dashboard.pages.comment.index', [
             'comments' => $comments->get(),
@@ -128,7 +128,7 @@ class CommentController extends Controller
     protected function renderView($view, array $withParams = [])
     {
         $params = [
-            'page' => 'Comments',
+            'page' => 'Treatments',
             'resource' => 'Comments',
             'translationFromKey' => 'lang.models.comments.fillable',
             'crud' => [

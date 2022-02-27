@@ -7,6 +7,7 @@ use App\Http\Requests\Upload\FileUploadRequest;
 use App\Jobs\FileUpload;
 use App\Models\{Assessment,
     AssessmentLink,
+    AssessmentTeethJaw,
     ClinicalExploration,
     DiagnosticTest,
     LocalMedia,
@@ -214,6 +215,14 @@ class AssessmentController extends Controller
                         'upper_airway_surgery_value' => ! empty($upperAirwaySurgeryValue) ? $upperAirwaySurgeryValue : NULL,
                 ]));
 
+                AssessmentTeethJaw::where('assessment_id', '=', $assessment->id)->delete();
+                foreach ($request->input('teeth') ?? [] as $tooth) {
+                    AssessmentTeethJaw::updateOrCreate([
+                        'assessment_id' => $assessment->id,
+                        'tooth_id' => $tooth,
+                    ]);
+                }
+
                 (!$clinicalExploration)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 3')
                     : $this->message('successMessage', 'Success: Step 3 saved');
@@ -329,6 +338,8 @@ class AssessmentController extends Controller
         $upperJawTeeth = $jawTeeth->where('jaw', '=', 1);
         $lowerJawTeeth = $jawTeeth->where('jaw', '=', 0);
 
+        $assessmentMissingTeeth = AssessmentTeethJaw::where('assessment_id', '=', $assessment->id)->pluck('tooth_id', 'id')->toArray();
+
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'assessment' => $assessment,
             'step' => $step,
@@ -343,6 +354,8 @@ class AssessmentController extends Controller
 
             'upperJawTeeth' => $upperJawTeeth,
             'lowerJawTeeth' => $lowerJawTeeth,
+
+            'assessmentMissingTeeth' => $assessmentMissingTeeth,
 
             'form' => 'create',
             '_method' => 'PATCH',
@@ -421,6 +434,14 @@ class AssessmentController extends Controller
                         'upper_airway_surgery_value' => ! empty($upperAirwaySurgeryValue) ? $upperAirwaySurgeryValue : NULL,
                     ])
                 );
+
+                AssessmentTeethJaw::where('assessment_id', '=', $assessment->id)->delete();
+                foreach ($request->input('teeth') ?? [] as $tooth) {
+                    AssessmentTeethJaw::updateOrCreate([
+                        'assessment_id' => $assessment->id,
+                        'tooth_id' => $tooth,
+                    ]);
+                }
 
                 (!$clinicalExploration)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 3')

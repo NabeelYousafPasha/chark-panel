@@ -700,7 +700,7 @@
                                                 <tr>
                                                     <td>
                                                         <b>
-                                                            Height (feet and inches):
+                                                            Height ({{ $clinicalExploration->height_unit }}):
                                                         </b>
                                                     </td>
                                                     <td class="text-right">
@@ -710,7 +710,7 @@
                                                 <tr>
                                                     <td>
                                                         <b>
-                                                            Weight (pounds):
+                                                            Weight ({{ $clinicalExploration->weight_unit }}):
                                                         </b>
                                                     </td>
                                                     <td class="text-right">

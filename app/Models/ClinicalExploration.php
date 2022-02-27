@@ -19,6 +19,7 @@ class ClinicalExploration extends Model
         "height",
         "weight",
         "bmi",
+        "bmi_unit",
         "neck_circumference",
         "bruxism",
         "pointed_hard_palade",
@@ -44,4 +45,37 @@ class ClinicalExploration extends Model
         'created_at',
         'updated_at',
     ];
+
+    /*
+     * Accessors
+     **/
+    public function getHeightUnitAttribute()
+    {
+        $heightUnit = '';
+
+        if ($this->bmi_unit == 1) {
+            $heightUnit = 'Feet and Inches';
+        }
+
+        if ($this->bmi_unit == 2) {
+            $heightUnit = 'Centimeters';
+        }
+
+        return $heightUnit;
+    }
+
+    public function getWeightUnitAttribute()
+    {
+        $weightUnit = '';
+
+        if ($this->bmi_unit == 1) {
+            $weightUnit = 'Pounds';
+        }
+
+        if ($this->bmi_unit == 2) {
+            $weightUnit = 'Kilograms';
+        }
+
+        return $weightUnit;
+    }
 }
