@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Assessment;
 
+use App\Models\TeethJaw;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -99,6 +100,7 @@ class AssessmentRequest extends FormRequest
                 "height" => ['nullable', 'numeric',],
                 "weight" => ['nullable', 'numeric',],
                 "bmi" => ['nullable', 'numeric',],
+                "bmi_unit" => ['nullable', 'numeric', 'in:'.implode(",", array_values(config('constants.bmi_unit'))),],
                 "neck_circumference" => ['nullable', 'numeric',],
                 "bruxism" => ['nullable', 'boolean',],
                 "pointed_hard_palade" => ['nullable', 'boolean',],
@@ -118,6 +120,8 @@ class AssessmentRequest extends FormRequest
 //                "only_hard_palate_visibility" => ['nullable', 'boolean',],
                 "mallampati_classification" => ['nullable', 'string', Rule::in(config('constants.clinical_explorations.mallampati_classification')),],
                 "tonsil_classification" => ['nullable', 'string', Rule::in(config('constants.clinical_explorations.tonsil_classification')),],
+                "teeth" => ['nullable', 'array',],
+                "teeth.*" => ['nullable', 'numeric', 'exists:'.TeethJaw::class.',id',],
             ],
 
             'step4' => [

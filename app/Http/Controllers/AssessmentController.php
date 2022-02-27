@@ -7,6 +7,7 @@ use App\Http\Requests\Upload\FileUploadRequest;
 use App\Jobs\FileUpload;
 use App\Models\{Assessment,
     AssessmentLink,
+    AssessmentTeethJaw,
     ClinicalExploration,
     DiagnosticTest,
     LocalMedia,
@@ -213,6 +214,14 @@ class AssessmentController extends Controller
                 ], array_merge($request->validated(), [
                         'upper_airway_surgery_value' => ! empty($upperAirwaySurgeryValue) ? $upperAirwaySurgeryValue : NULL,
                 ]));
+
+                AssessmentTeethJaw::where('assessment_id', '=', $assessment->id)->delete();
+                foreach ($request->input('teeth') ?? [] as $tooth) {
+                    AssessmentTeethJaw::updateOrCreate([
+                        'assessment_id' => $assessment->id,
+                        'tooth_id' => $tooth,
+                    ]);
+                }
 
                 (!$clinicalExploration)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 3')
@@ -421,6 +430,14 @@ class AssessmentController extends Controller
                         'upper_airway_surgery_value' => ! empty($upperAirwaySurgeryValue) ? $upperAirwaySurgeryValue : NULL,
                     ])
                 );
+
+                AssessmentTeethJaw::where('assessment_id', '=', $assessment->id)->delete();
+                foreach ($request->input('teeth') ?? [] as $tooth) {
+                    AssessmentTeethJaw::updateOrCreate([
+                        'assessment_id' => $assessment->id,
+                        'tooth_id' => $tooth,
+                    ]);
+                }
 
                 (!$clinicalExploration)
                     ? $this->message('errorMessage', 'Error: Something went wrong while saving Step 3')
