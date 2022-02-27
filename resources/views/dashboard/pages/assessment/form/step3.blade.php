@@ -1654,6 +1654,7 @@
                                                                     id="toothCheckbox{{ $upperTooth->id }}"
                                                                     value="{{ $upperTooth->id }}"
                                                                     name="teeth[]"
+                                                                    {{ in_array($upperTooth->id, $assessmentMissingTeeth) ? 'checked' : '' }}
                                                                 />
                                                                 <label class="teeth-label" for="toothCheckbox{{ $upperTooth->id }}">
                                                                     <img
@@ -1677,6 +1678,7 @@
                                                                     id="toothCheckbox{{ $lowerTooth->id }}"
                                                                     value="{{ $lowerTooth->id }}"
                                                                     name="teeth[]"
+                                                                    {{ in_array($lowerTooth->id, $assessmentMissingTeeth) ? 'checked' : '' }}
                                                                 />
                                                                 <label class="teeth-label" for="toothCheckbox{{ $lowerTooth->id }}">
                                                                     <img

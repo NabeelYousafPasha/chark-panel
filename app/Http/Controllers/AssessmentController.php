@@ -338,6 +338,8 @@ class AssessmentController extends Controller
         $upperJawTeeth = $jawTeeth->where('jaw', '=', 1);
         $lowerJawTeeth = $jawTeeth->where('jaw', '=', 0);
 
+        $assessmentMissingTeeth = AssessmentTeethJaw::where('assessment_id', '=', $assessment->id)->pluck('tooth_id', 'id')->toArray();
+
         return $this->renderView('dashboard.pages.assessment.form.'.$step, [
             'assessment' => $assessment,
             'step' => $step,
@@ -352,6 +354,8 @@ class AssessmentController extends Controller
 
             'upperJawTeeth' => $upperJawTeeth,
             'lowerJawTeeth' => $lowerJawTeeth,
+
+            'assessmentMissingTeeth' => $assessmentMissingTeeth,
 
             'form' => 'create',
             '_method' => 'PATCH',
