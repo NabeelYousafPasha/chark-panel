@@ -17,7 +17,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->user()->cannot('view_user'))
+            return $this->permissionDenied('dashboard.index');
+
+        $users = User::where('id', '<>', auth()->id());
+
+        return $this->renderView('dashboard.pages.user.index', [
+            'users' => $users->get(),
+            'forceChangePassword' => $forceChangePassword ?? false,
+        ]);
     }
 
     /**
@@ -156,15 +164,24 @@ class UserController extends Controller
     protected function renderView($view, array $withParams = [])
     {
         $params = [
-            'page' => 'Profile',
+            'page' => 'Users',
             'resource' => 'User',
             'translationFromKey' => 'lang.models.user.fillable',
             'crud' => [
-                'create' => 'javascript:void(0)',
+                'CREATE_USER' => [
+                    'route' => route('dashboard.users.create'),
+                    'can' => false,
+                ],
+                'EDIT_USER' => [
+                    'can' => false, // ! auth()->user()->cannot('update_user'),
+                ],
+                'DELETE_USER' => [
+                    'can' => false, // ! auth()->user()->cannot('delete_user'),
+                ],
             ],
             'breadcrumbs' => array(
                 [
-                    'name' => 'Profile',
+                    'name' => 'Users',
                     'route' => 'javascript:void(0)',
                     'active' => true,
                 ],
