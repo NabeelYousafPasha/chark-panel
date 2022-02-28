@@ -82,6 +82,17 @@
                     </a>
                 </li>
             @endif
+
+            @if(auth()->user()->can('view_user'))
+                <li class="">
+                    <a href="{{ route('dashboard.users.index') }}">
+                        <i class="fa-fw fa fa-user-secret"></i>
+                        <span class="nav-label">
+                            {{ 'Users' }}
+                        </span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </nav>

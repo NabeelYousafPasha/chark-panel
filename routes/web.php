@@ -70,6 +70,9 @@ Route::group([
                 Route::resource('permissions_roles', 'PermissionRoleController');
             });
 
+            // User
+            Route::resource('/users', 'UserController');
+
             // Clinic
             Route::resource('/clinics', 'ClinicController');
 
