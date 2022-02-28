@@ -109,9 +109,12 @@ class AssessmentController extends Controller
                     $upperJawTeeth = $jawTeeth->where('jaw', '=', 1);
                     $lowerJawTeeth = $jawTeeth->where('jaw', '=', 0);
 
+                    $assessmentMissingTeeth = AssessmentTeethJaw::where('assessment_id', '=', $assessment->id)->pluck('tooth_id', 'id')->toArray();
+
                     $with = [
                         'upperJawTeeth' => $upperJawTeeth,
                         'lowerJawTeeth' => $lowerJawTeeth,
+                        'assessmentMissingTeeth' => $assessmentMissingTeeth,
                     ];
 
                     if (is_null($medicalHistory)) {
