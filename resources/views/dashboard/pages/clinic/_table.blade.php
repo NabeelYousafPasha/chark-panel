@@ -4,7 +4,7 @@
             <th>{{ trans('lang.dataTable.thead.sr_no') }}</th>
             <th>Clinic</th>
             <th>Details</th>
-            <th>Created By</th>
+            {{-- <th>Created By</th> --}}
             <th>{{ trans('lang.dataTable.thead.actions') }}</th>
         </tr>
     </thead>
@@ -14,7 +14,7 @@
                 <td>{{ ++$key }}</td>
                 <td>{{ $clinic->name }}</td>
                 <td>{{ $clinic->details }}</td>
-                <td>{{ $clinic->created_by }}</td>
+                {{-- <td>{{ $clinic->created_by }}</td> --}}
                 <td>
                     <div class="btn-group btn-group-xs">
                         {{--<a

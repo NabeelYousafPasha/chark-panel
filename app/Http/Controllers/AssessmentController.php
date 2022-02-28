@@ -13,6 +13,7 @@ use App\Models\{Assessment,
     LocalMedia,
     MedicalHistory,
     Patient,
+    Role,
     SleepinessScale,
     Symptom,
     TeethJaw};
@@ -32,6 +33,11 @@ class AssessmentController extends Controller
     {
         if (auth()->user()->cannot('view_assessment'))
             return $this->permissionDenied('dashboard.index');
+
+        if (! auth()->user()->hasRole(Role::ADMIN)) {
+            if ($patient->created_by != auth()->id())
+                return $this->permissionDenied('dashboard.patients.index');
+        }
 
         $patientAssessments = Assessment::addSelect([
                 'assessments.*',
@@ -56,6 +62,11 @@ class AssessmentController extends Controller
     {
         if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
+
+        if (! auth()->user()->hasRole(Role::ADMIN)) {
+            if ($patient->created_by != auth()->id())
+                return $this->permissionDenied('dashboard.patients.index');
+        }
 
         abort_if((! in_array($step, ['step1', 'step2', 'step3', 'step4'])
             ||
@@ -159,6 +170,11 @@ class AssessmentController extends Controller
     {
         if (auth()->user()->cannot('create_assessment'))
             return $this->permissionDenied('dashboard.index');
+
+        if (! auth()->user()->hasRole(Role::ADMIN)) {
+            if ($patient->created_by != auth()->id())
+                return $this->permissionDenied('dashboard.patients.index');
+        }
 
         if (! in_array($step, ['step1', 'step2', 'step3', 'step4'])) {
             $this->message('errorMessage', 'Error: Invalid Step');
@@ -266,6 +282,11 @@ class AssessmentController extends Controller
         if (auth()->user()->cannot('view_assessment'))
             return $this->permissionDenied('dashboard.index');
 
+        if (! auth()->user()->hasRole(Role::ADMIN)) {
+            if (Patient::where('id', '=', $assessment->patient_id)->first()->created_by != auth()->id())
+                return $this->permissionDenied('dashboard.patients.index');
+        }
+
         $symptom = Symptom::where('assessment_id', '=', $assessment->id)
                     ->latest()
                     ->first();
@@ -309,6 +330,11 @@ class AssessmentController extends Controller
     {
         if (auth()->user()->cannot('update_assessment'))
             return $this->permissionDenied('dashboard.index');
+
+        if (! auth()->user()->hasRole(Role::ADMIN)) {
+            if (Patient::where('id', '=', $assessment->patient_id)->first()->created_by != auth()->id())
+                return $this->permissionDenied('dashboard.patients.index');
+        }
 
         abort_if((! in_array($step, ['step1', 'step2', 'step3', 'step4'])
             ||
@@ -381,6 +407,11 @@ class AssessmentController extends Controller
     {
         if (auth()->user()->cannot('update_assessment'))
             return $this->permissionDenied('dashboard.index');
+
+        if (! auth()->user()->hasRole(Role::ADMIN)) {
+            if (Patient::where('id', '=', $assessment->patient_id)->first()->created_by != auth()->id())
+                return $this->permissionDenied('dashboard.patients.index');
+        }
 
         abort_if((! in_array($step, ['step1', 'step2', 'step3', 'step4'])
             ||

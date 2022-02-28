@@ -17,6 +17,9 @@ class CommentController extends Controller
      */
     public function index(Assessment $assessment)
     {
+        if (auth()->user()->cannot('view_comment'))
+            return $this->permissionDenied('dashboard.assessment.index', ['patient' => $assessment->patient_id]);
+
         $comments = Comment::addSelect([
                         'comments.*',
                         DB::raw('CONCAT(users.first_name, " ", users.last_name) as full_name'),
@@ -39,6 +42,9 @@ class CommentController extends Controller
      */
     public function create(Assessment $assessment)
     {
+        if (auth()->user()->cannot('create_comment'))
+            return $this->permissionDenied('dashboard.assessment.index', ['patient' => $assessment->patient_id]);
+
         $form = $this->setForm(route('dashboard.comment.store', ['assessment' => $assessment,]), 'POST', 'dashboard.pages.comment._form', [
             'form_id' => 'create_form__comment',
             'form_name' => 'create_form__comment',
@@ -56,8 +62,11 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request,Assessment $assessment )
+    public function store(Request $request, Assessment $assessment )
     {
+        if (auth()->user()->cannot('create_comment'))
+            return $this->permissionDenied('dashboard.assessment.index', ['patient' => $assessment->patient_id]);
+
         $this->validate($request, [
             'comment' => ['required', 'string', ],
         ]);
@@ -136,7 +145,7 @@ class CommentController extends Controller
                     'can' => ! auth()->user()->cannot('create_comment'),
                 ],
                 'SHOW_COMMENT' => [
-                    'can' => ! auth()->user()->cannot('show_comment'),
+                    'can' => ! auth()->user()->cannot('view_comment'),
                 ],
                 'EDIT_ASSESSMENT' => [
                     'can' => ! auth()->user()->cannot('update_comment'),
@@ -153,7 +162,7 @@ class CommentController extends Controller
                 ],
                 [
                     'name' => 'Assessment',
-                    'route' => 'javascript:void(0)',
+                    'route' => route('dashboard.assessment.index', ['patient' => $withParams['assessment']->patient_id ?? 0]),
                     'active' => false,
                 ],
                 [

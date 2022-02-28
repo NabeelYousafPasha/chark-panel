@@ -17,13 +17,15 @@
                     <div class="ibox-title">
                         <h5>{{ $page }}</h5>
                         <div class="ibox-tools">
-                            <a
-                                title="{{ $actions['add'] .' '. $resource }}"
-                                class="btn btn-primary btn-xs"
-                                href="{{ route('dashboard.comment.create', ['assessment' => $assessment,]) }}"
-                            >
-                                <i class="fa-fw fa fa-plus"></i>
-                            </a>
+                            @if($crud['CREATE_COMMENT']['can'] ?? false)
+                                <a
+                                    title="{{ $actions['add'] .' '. $resource }}"
+                                    class="btn btn-primary btn-xs"
+                                    href="{{ route('dashboard.comment.create', ['assessment' => $assessment,]) }}"
+                                >
+                                    <i class="fa-fw fa fa-plus"></i>
+                                </a>
+                            @endif
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
                             </a>

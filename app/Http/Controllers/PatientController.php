@@ -6,6 +6,7 @@ use App\Http\Requests\Patient\PatientRequest;
 use App\Models\Clinic;
 use App\Models\Patient;
 use App\Models\PatientDetail;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,6 +32,10 @@ class PatientController extends Controller
             ->createdByUser()
             ->countryJoin();
 
+        if (! auth()->user()->hasRole(Role::ADMIN)) {
+            $patients = $patients->where('patients.created_by', '=', auth()->id());
+        }
+
         return $this->renderView('dashboard.pages.patient.index', [
             'patients' => $patients->get(),
         ]);
@@ -43,7 +48,7 @@ class PatientController extends Controller
      */
     public function create(Request $request)
     {
-        if (auth()->user()->cannot('view_patient'))
+        if (auth()->user()->cannot('create_patient'))
             return $this->permissionDenied('dashboard.index');
 
         $clinics = Clinic::pluck('name', 'id');
@@ -69,7 +74,7 @@ class PatientController extends Controller
      */
     public function store(PatientRequest $request)
     {
-        if (auth()->user()->cannot('view_patient'))
+        if (auth()->user()->cannot('create_patient'))
             return $this->permissionDenied('dashboard.index');
 
         $patient = Patient::create($request->validated() + [
@@ -120,6 +125,11 @@ class PatientController extends Controller
         if (auth()->user()->cannot('update_patient'))
             return $this->permissionDenied('dashboard.index');
 
+        if (! auth()->user()->hasRole(Role::ADMIN)) {
+            if ($patient->created_by != auth()->id())
+                return $this->permissionDenied('dashboard.patients.index');
+        }
+
         $clinics = Clinic::pluck('name', 'id');
         $countries = DB::table('countries')->pluck('name', 'id');
 
@@ -147,6 +157,11 @@ class PatientController extends Controller
     {
         if (auth()->user()->cannot('update_patient'))
             return $this->permissionDenied('dashboard.index');
+
+        if (! auth()->user()->hasRole(Role::ADMIN)) {
+            if ($patient->created_by != auth()->id())
+                return $this->permissionDenied('dashboard.patients.index');
+        }
 
         $patient = $patient->update($request->validated());
 
