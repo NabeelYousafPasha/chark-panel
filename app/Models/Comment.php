@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\CommentObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,6 +23,14 @@ class Comment extends Model
         'updated_at',
     ];
 
+    /*
+     * OBSERVER
+     */
+    public static function boot()
+    {
+        parent::boot();
+        Comment::observe(CommentObserver::class);
+    }
 
     /*
      * Relationships
