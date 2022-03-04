@@ -1,20 +1,18 @@
 @component('mail::message')
-# New Comment on Treatment Plan
+Hello! {{ $user->full_name ?? '' }},
 
-Dear {{ $user->name ?? '' }},
-
-You have received a new comment on your patient <b>{{ $patient->alias }}</b>'s assessment held at {{ $assessment->created_at }}.
+You have received a new comment on your patient <b>{{ $patient->alias }}</b>'s assessment held at <b>{{ $assessment->created_at }}</b>.
 
 ```
-{{ $comment->comment }}
+{{ substr($comment->comment, 0, 50) }}...
 ```
 
-You can read more in detail by visitng our dashboard:
+Please check the portal for a complete treatment plan from Dr. Charkhandeh regarding your patient’s treatment.
 
 @component('mail::button', ['url' => route('/')])
-Preview Comment
+View Now
 @endcomponent
 
-Thanks,<br>
+Thank You,<br>
 {{ config('app.name') }}
 @endcomponent

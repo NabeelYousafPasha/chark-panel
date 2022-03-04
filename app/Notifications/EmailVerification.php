@@ -58,8 +58,9 @@ class EmailVerification extends Notification
         }
 
         return (new MailMessage)
-            ->subject(Lang::get('Thank You for Signing Up'))
-            ->line(Lang::get('Thank You for Signing up. Please click the button below to verify your email address.'))
+            ->subject(Lang::get("Thank You [Verification Link Inside]"))
+            ->line(Lang::get("Thank You for registering for CharkEducation Portal. Please click the button below to
+                verify your email address and complete the registration process."))
             ->action(Lang::get('Verify Now'), $verificationUrl)
             ->line(Lang::get('If you did not create an account, no further action is required.'));
     }

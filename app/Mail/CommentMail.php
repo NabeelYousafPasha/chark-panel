@@ -45,11 +45,13 @@ class CommentMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.comment.notify')->with([
-            'comment' => $this->comment,
-            'user' => $this->user,
-            'assessment' => $this->assessment,
-            'patient' => $this->patient,
-        ]);
+        return $this->subject("Treatment Plan")
+            ->markdown('emails.comment.notify')
+            ->with([
+                'comment' => $this->comment,
+                'user' => $this->user,
+                'assessment' => $this->assessment,
+                'patient' => $this->patient,
+            ]);
     }
 }
