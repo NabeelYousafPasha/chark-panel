@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'webdesign@charkeducation.com'),
-        'name' => env('MAIL_FROM_NAME', 'CharkEducation | Portal'),
+        'address' => env('MAIL_FROM_ADDRESS', 'events@chareducation.com'),
+        'name' => env('MAIL_FROM_NAME', 'CharkEducation'),
     ],
 
     /*
