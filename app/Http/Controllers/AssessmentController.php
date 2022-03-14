@@ -306,6 +306,11 @@ class AssessmentController extends Controller
                     ->latest()
                     ->first();
 
+        $jawTeeth = TeethJaw::orderBy('jaw', 'DESC')->orderBy('position', 'DESC')->get();
+        $upperJawTeeth = $jawTeeth->where('jaw', '=', 1);
+        $lowerJawTeeth = $jawTeeth->where('jaw', '=', 0);
+        $assessmentMissingTeeth = AssessmentTeethJaw::where('assessment_id', '=', $assessment->id)->pluck('tooth_id', 'id')->toArray();
+
         $assessment = $assessment->with('media')->where('id', '=', $assessment->id)->first();
 
         return $this->renderView('dashboard.pages.assessment.show', [
@@ -316,6 +321,10 @@ class AssessmentController extends Controller
             'medicalHistory' => $medicalHistory,
             'diagnosticTest' => $diagnosticTest,
             'clinicalExploration' => $clinicalExploration,
+
+            'upperJawTeeth' => $upperJawTeeth,
+            'lowerJawTeeth' => $lowerJawTeeth,
+            'assessmentMissingTeeth' => $assessmentMissingTeeth,
 
             'assessmentLinks' => AssessmentLink::where('assessment_id', '=', $assessment->id)->get(),
 
