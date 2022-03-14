@@ -13,6 +13,68 @@
         .no-data {
             padding: 10vh;
         }
+
+        .teeth-ul {
+            list-style-type: none;
+            padding: 0px;
+        }
+
+        .teeth-li {
+            display: inline-block;
+        }
+
+        input[type="checkbox"][id^="toothCheckbox"] {
+            display: none;
+        }
+
+        .teeth-label {
+            border: 1px solid #fff;
+            padding: 0px;
+            display: block;
+            position: relative;
+            margin: 1px;
+            cursor: pointer;
+        }
+
+        .teeth-label:before {
+            background-color: white;
+            color: white;
+            content: " ";
+            display: block;
+            border-radius: 50%;
+            border: 1px solid grey;
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            line-height: 28px;
+            transition-duration: 0.4s;
+            transform: scale(0);
+        }
+
+        .teeth-label img {
+            width: 50px;
+            transition-duration: 0.2s;
+            transform-origin: 50% 50%;
+        }
+
+        :checked + .teeth-label {
+            border-color: #ddd;
+        }
+
+        :checked + .teeth-label:before {
+            content: "✓";
+            background-color: grey;
+            transform: scale(1);
+        }
+
+        :checked + .teeth-label img {
+            transform: scale(0.8);
+            /* box-shadow: 0 0 5px #333; */
+            z-index: -1;
+        }
     </style>
 @endsection
 
@@ -535,7 +597,7 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                <h2 class="text-center">Clinical Eploration</h2>
+                                <h2 class="text-center">Clinical Exploration</h2>
 
                                 @if(is_null($clinicalExploration ?? null))
                                     <div class="no-data text-center">
@@ -861,6 +923,97 @@
                                         </table>
                                     </div>
                                 @endif
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{{ $page }}</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-md-12 @error('teeth') has-error @enderror @error('teeth.*') has-error @enderror">
+                                <h2 class="text-center">{{ __('Missing Teeth') }}</h2>
+                                <br>
+
+                                <div class="row form-group @error('teeth') has-error @enderror @error('teeth.*') has-error @enderror">
+
+                                    <input
+                                        type="hidden"
+                                        id=""
+                                        value=""
+                                        name="teeth"
+                                    />
+
+                                    <div class="col-md-12">
+                                        <ul class="teeth-ul">
+                                            @foreach($upperJawTeeth ?? [] as $upperTooth)
+                                                <li class="teeth-li">
+                                                    <input
+                                                        type="checkbox"
+                                                        id="toothCheckbox{{ $upperTooth->id }}"
+                                                        value="{{ $upperTooth->id }}"
+                                                        name="teeth[]"
+                                                        {{ in_array($upperTooth->id, $assessmentMissingTeeth) ? 'checked' : '' }}
+                                                    />
+                                                    <label class="teeth-label" for="toothCheckbox{{ $upperTooth->id }}">
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/'.$upperTooth->image) }}"
+                                                            alt=""
+                                                            class="img"
+                                                            width="50px"
+                                                        >
+                                                    </label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <ul class="teeth-ul">
+                                            @foreach($lowerJawTeeth ?? [] as $lowerTooth)
+                                                <li class="teeth-li">
+                                                    <input
+                                                        type="checkbox"
+                                                        id="toothCheckbox{{ $lowerTooth->id }}"
+                                                        value="{{ $lowerTooth->id }}"
+                                                        name="teeth[]"
+                                                        {{ in_array($lowerTooth->id, $assessmentMissingTeeth) ? 'checked' : '' }}
+                                                    />
+                                                    <label class="teeth-label" for="toothCheckbox{{ $lowerTooth->id }}">
+                                                        <img
+                                                            src="{{ asset('frontend-assets/images/'.$lowerTooth->image) }}"
+                                                            alt=""
+                                                            class="img"
+                                                            width="50px"
+                                                        >
+                                                    </label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+
+                                    @error('teeth')
+                                    <span class="help-block has-error">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                    @enderror
+
+                                    @error('teeth.*')
+                                    <span class="help-block has-error">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
