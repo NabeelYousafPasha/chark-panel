@@ -5,7 +5,7 @@
             <th>Name</th>
             <th>Gender</th>
             <th>DOB / Age</th>
-            <th>Clinic</th>
+            {{--<th>Clinic</th>--}}
             <th>Country</th>
             <th>Created By</th>
             <th>Created At</th>
@@ -20,7 +20,7 @@
                 <td>{{ $patient->alias }}</td>
                 <td>{{ ucfirst($patient->gender) }}</td>
                 <td>{{ $patient->dob }} <span class="badge">{{ $patient->age_via_dob->format('%y years') }}</span></td>
-                <td>{{ $patient->clinic_name }}</td>
+                {{--<td>{{ $patient->clinic_name }}</td>--}}
                 <td>{{ $patient->country_name }}</td>
                 <td>{{ $patient->username }}</td>
                 <td>{{ $patient->created_at }}</td>
@@ -28,7 +28,7 @@
                     <div class="btn-group btn-group-xs">
                         <a
                             title="Assessment"
-                            class="btn btn-info btn-xs"
+                            class="btn btn-primary btn-xs"
                             href="{{ route('dashboard.assessment.index', ['patient' => $patient]) }}"
                         >
                             <i class="fa fa-commenting-o fa-fw" aria-hidden="true"></i>
@@ -58,7 +58,7 @@
                         @if($crud['EDIT_PATIENT']['can'] ?? false)
                             <a
                                 title="{{ $actions['edit'] .' '. $resource }}"
-                                class="btn btn-primary btn-xs"
+                                class="btn btn-info btn-xs"
                                 href="{{ route('dashboard.patients.edit', ['patient' => $patient]) }}"
                             >
                                 <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>

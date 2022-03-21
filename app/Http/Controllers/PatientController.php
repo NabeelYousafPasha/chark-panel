@@ -51,7 +51,7 @@ class PatientController extends Controller
         if (auth()->user()->cannot('create_patient'))
             return $this->permissionDenied('dashboard.index');
 
-        $clinics = Clinic::pluck('name', 'id');
+//        $clinics = Clinic::pluck('name', 'id');
         $countries = DB::table('countries')->pluck('name', 'id');
 
         $form = $this->setForm(route('dashboard.patients.store'), 'POST', 'dashboard.pages.patient._form', [
@@ -60,7 +60,6 @@ class PatientController extends Controller
         ]);
 
         return $this->renderView('dashboard.pages.patient.form', [
-            'clinics' => $clinics,
             'countries' => $countries,
             'form' => $form,
         ]);
@@ -130,7 +129,6 @@ class PatientController extends Controller
                 return $this->permissionDenied('dashboard.patients.index');
         }
 
-        $clinics = Clinic::pluck('name', 'id');
         $countries = DB::table('countries')->pluck('name', 'id');
 
         $form = $this->setForm(route('dashboard.patients.update', ['patient' => $patient]), 'POST', 'dashboard.pages.patient._form', [
@@ -139,7 +137,6 @@ class PatientController extends Controller
         ], 'PATCH');
 
         return $this->renderView('dashboard.pages.patient.form', [
-            'clinics' => $clinics,
             'countries' => $countries,
             'patient' => $patient,
             'form' => $form,

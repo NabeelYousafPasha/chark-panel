@@ -29,7 +29,7 @@ class PatientRequest extends FormRequest
         $patient = $this->route('patient');
 
         $rules = [
-            'clinic_id' => ['required', 'numeric', 'exists:'.Clinic::class.',id',],
+            'clinic_id' => ['nullable', 'numeric', 'exists:'.Clinic::class.',id',],
 //            'email' => ['required', 'string', 'max:255', 'email', 'unique:'.Patient::class.',email',],
             'alias' => ['required', 'string', 'max:255',],
             'gender' => ['required', 'string', 'in:'.implode(',', array_keys(config('constants.gender'))),],

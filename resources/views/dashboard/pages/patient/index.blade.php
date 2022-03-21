@@ -59,7 +59,7 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        You are about to start registering a new patient on Chark Education. Please read the conditions,
+                        You are about to start registering a new patient on {{ config('app.name') }}. Please read the conditions,
                         data protection laws and accept the surrender of data for scientific purposes
                         <a
                             href="{{ route('terms-conditions') }}"
@@ -68,8 +68,7 @@
                         >
                             <strong>here</strong>
                         </a>
-                        , before continuing
-                        with the request.
+                        , before continuing with the request.
                         <br>
                         <br>
                         Accepting means that you have read and accept
@@ -78,7 +77,7 @@
                             target="_blank"
                             class="btn-link"
                         >
-                            <strong>Chark Education’s usage conditions</strong>
+                            <strong>{{ config('app.name') }}’s usage conditions</strong>
                         </a>
                 </div>
                 <div class="modal-footer">
