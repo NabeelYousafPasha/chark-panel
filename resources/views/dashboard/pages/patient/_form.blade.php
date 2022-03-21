@@ -1,4 +1,4 @@
-<div class="form-group @error('clinic_id') has-error @enderror">
+{{--<div class="form-group @error('clinic_id') has-error @enderror">
     <label class="control-label" for="clinic_id">Bill to *</label>
     <select
         id="clinic_id"
@@ -22,7 +22,7 @@
             <strong>{{ $message }}</strong>
         </span>
     @enderror
-</div>
+</div>--}}
 
 {{--<div class="form-group @error('email') has-error @enderror">
     <label class="control-label" for="email">Email *</label>

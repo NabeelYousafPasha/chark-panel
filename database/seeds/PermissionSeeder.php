@@ -17,7 +17,7 @@ class PermissionSeeder extends Seeder
         $entities = [
             'permission_role',
             'user',
-            'clinic',
+            // 'clinic',
             'patient',
             'assessment',
             'comment',
