@@ -485,13 +485,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input
-                                                        type="text"
+                                                        type="range"
                                                         name="height"
                                                         id="height_standard"
                                                         class="form-control float_number"
+                                                        min="1"
+                                                        max="10"
+                                                        step="0.1"
                                                         {{--required=""--}}
                                                         value="{{ $clinicalExploration->height ?? old('height') }}"
                                                     >
+
+                                                    <span>Value: <span id="span_range__height_standard"></span>
+                                                        feet/inches
+                                                    </span>
+
                                                     @error('height')
                                                     <span class="help-block has-error">
                                                             <strong>{{ $message }}</strong>
@@ -1910,6 +1918,13 @@
                 event.preventDefault();
             }
         });
+
+        // INPUT - range
+        $('#height_standard').on('change', function(e) {
+            let percentage_val = e.target.value;
+            $("#span_range__height_standard").html(percentage_val);
+        });
+        $('#height_standard').change();
 
     </script>
 @endsection
