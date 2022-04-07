@@ -117,7 +117,7 @@ class TeethJawSeeder extends Seeder
                         'jaw' => $jaw,
                         'position' => $position,
                         'order' => $teeth['tooth_number'],
-                        'image' => 'teeth/tooth-'.$jaw.'-'.$position.'-'.$teeth['tooth_number'].'.png',
+                        'image' => 'named-teeth/tooth/tooth-'.$jaw.'-'.$position.'-'.$teeth['tooth_number'].'.png',
                     ]);
                     unset($teeth['tooth_number']);
 
