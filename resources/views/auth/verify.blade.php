@@ -43,8 +43,8 @@
                         </div>
                     @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
+                    {{ __('Thank You for Signing Up. Please check your email for a verification link.') }}
+                    {{ __('If you did not receive the email check your Spam or') }}
 
                     <form
                         class="d-inline"
