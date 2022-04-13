@@ -58,9 +58,7 @@ Route::group([
             'prefix' => 'dashboard',
             'as' => 'dashboard.',
         ], function () {
-            Route::get('/', function () {
-                return view('dashboard.index');
-            })->name('index');
+            Route::get('/', [HomeController::class, 'index'])->name('index');
 
             // Setup
             Route::group([
