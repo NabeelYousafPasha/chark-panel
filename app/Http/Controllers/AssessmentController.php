@@ -105,10 +105,9 @@ class AssessmentController extends Controller
                 case 'step3': {
                     $medicalHistory = MedicalHistory::where('assessment_id', '=', $assessment->id)->first();
 
-                    $jawTeeth = TeethJaw::orderBy('jaw', 'DESC')
-                            ->orderBy('position', 'DESC')
-                            ->orderBy('order', 'ASC')
-                            ->get();
+                    $jawTeeth = TeethJaw::orderBy('order', 'ASC')
+                        ->orderBy('jaw', 'DESC')
+                        ->get();
 
                     $upperJawTeeth = $jawTeeth->where('jaw', '=', 1);
                     $lowerJawTeeth = $jawTeeth->where('jaw', '=', 0);
@@ -310,10 +309,9 @@ class AssessmentController extends Controller
                     ->latest()
                     ->first();
 
-        $jawTeeth = TeethJaw::orderBy('jaw', 'DESC')
-                ->orderBy('position', 'DESC')
-                ->orderBy('order', 'ASC')
-                ->get();
+        $jawTeeth = TeethJaw::orderBy('order', 'ASC')
+            ->orderBy('jaw', 'DESC')
+            ->get();
 
         $upperJawTeeth = $jawTeeth->where('jaw', '=', 1);
         $lowerJawTeeth = $jawTeeth->where('jaw', '=', 0);
@@ -380,9 +378,8 @@ class AssessmentController extends Controller
         $clinicalExploration = ClinicalExploration::where('assessment_id', '=', $assessment->id)->latest()
                     ->first();
 
-        $jawTeeth = TeethJaw::orderBy('jaw', 'DESC')
-                ->orderBy('position', 'DESC')
-                ->orderBy('order', 'ASC')
+        $jawTeeth = TeethJaw::orderBy('order', 'ASC')
+                ->orderBy('jaw', 'DESC')
                 ->get();
 
         $upperJawTeeth = $jawTeeth->where('jaw', '=', 1);
