@@ -38,13 +38,24 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <p>
-                                            VIDEO
-                                        </p>
+                                        <embed
+                                            name="plugin"
+                                            src="{{ asset('user-guide/V1.pdf') }}"
+                                            type="application/pdf"
+                                        >
+                                        <br>
+                                        <br>
+                                        <a
+                                            target="_blank"
+                                            class="btn-link"
+                                            href="{{ asset('user-guide/V1.pdf') }}"
+                                        >
+                                            Complete User Guide
+                                        </a>
                                     </div>
                                     <div class="col-md-6">
                                         <p>
-                                            PDF
+                                            VIDEO
                                         </p>
                                     </div>
                                 </div>
