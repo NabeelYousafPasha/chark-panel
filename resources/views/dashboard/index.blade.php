@@ -37,7 +37,7 @@
                                 <h2>{{ config('app.name') }} User's Guide</h2>
                                 <br>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <embed
                                             name="plugin"
                                             src="{{ asset('user-guide/V1.pdf') }}"
@@ -47,16 +47,12 @@
                                         <br>
                                         <a
                                             target="_blank"
-                                            class="btn-link"
+                                            class="btn btn-primary"
                                             href="{{ asset('user-guide/V1.pdf') }}"
                                         >
-                                            Complete User Guide
+                                            <i class="fa fa-download"></i>
+                                            Download - Complete User Guide
                                         </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>
-                                            VIDEO
-                                        </p>
                                     </div>
                                 </div>
                             </div>
